@@ -71,6 +71,7 @@
         function onAfterInitScreen_body() {
             console.log('maskedit value', maskedit0.value);
             edit1.value = maskedit0.value;
+            grid1.setMerge(true);
         }
 
         function onchange_radio0(e) {
@@ -145,7 +146,7 @@
     <i-edit style="width: 140px;position: absolute;left: 330px;top:80px" id="edit1" onchange="onchange_edit1(arguments[0])" tabIndex="4"></i-edit>
     <i-text text="금액" style="position: absolute;left: 500px;top:85px" id="text1"></i-text>
     <i-maskedit style="width: 140px;position: absolute;left: 540px;top:80px" id="maskedit1" value="1000000" textAlign="right" currencySign="\" decimalLength="" maxLength="10" minLength="0" minusSign="false" pattern="Z,ZZZ,ZZZ,ZZ9" type="number" unitDecimal="." unitInsert="true" unitPosition="3" unitSymbol="," tabIndex="5"></i-maskedit>
-    <i-grid id="grid1" style="position: absolute;left:70px;top:120px;height:144px;undefined:null;width:455px" columns="[{'fieldName':'no','name':'item0','colType':'','type':'','headerText':'이름'},{'fieldName':'registrationNumber','name':'item1','colType':'maskedit','type':'number','headerText':'주민번호','colWidth':120,'pattern':'ZZZZZZ-ZZZZZZZ','minusSign':false,'maxLength':13,'minLength':0,'textAlignment':'left'},{'fieldName':'amount','name':'item2','colType':'maskedit','type':'number','headerText':'금액','colWidth':120,'pattern':'Z,ZZZ,ZZZ,ZZ9','minusSign':false,'maxLength':10,'minLength':0,'textAlignment':'right'}]" tabIndex="6" columncount="3" initrowcount="0" onclick="onclick_grid1(arguments[0])"></i-grid>
+    <i-grid id="grid1" style="position: absolute;left:70px;top:120px;height:144px;undefined:null;width:455px" columns="[{'fieldName':'no','name':'item0','colType':'','type':'','headerText':'이름'},{'fieldName':'registrationNumber','name':'item1','colType':'maskedit','type':'number','headerText':'주민번호','colWidth':120,'pattern':'ZZZZZZ-ZZZZZZZ','minusSign':false,'maxLength':13,'minLength':0,'textAlignment':'left'},{'fieldName':'amount','name':'item2','colType':'maskedit','type':'number','headerText':'금액','colWidth':120,'pattern':'Z,ZZZ,ZZZ,ZZ9','minusSign':false,'maxLength':10,'minLength':0,'textAlignment':'right','colAutoMerge':true}]" tabIndex="6" columncount="3" initrowcount="0" onclick="onclick_grid1(arguments[0])" mergeUse="true"></i-grid>
     <i-edit style="width: 140px;position: absolute;left:540px;top:120px" id="edit2" onchange="onchange_edit2(arguments[0])" tabIndex="7"></i-edit>
     <i-edit style="width: 140px;position: absolute;left:710px;top:120px" id="edit3" tabIndex="8"></i-edit>
     <i-edit style="width: 140px;position: absolute;left:870px;top:120px" id="edit4" tabIndex="9"></i-edit>
