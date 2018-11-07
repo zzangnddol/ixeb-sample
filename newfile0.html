@@ -14,6 +14,28 @@
     <script type="text/javascript" src="./ixeb/lib/ixebBase.min.js"></script>
     <!-- From here, enter your script and style. -->
     <script type="text/javascript">
+        function onInitScreen_body() {
+            console.log('grid data', grid1.getGridData());
+            var data = {
+                'labels': [],
+                'datasets': [{
+                    'label': '금액',
+                    'backgroundColor': 'red',
+                    'data': [],
+                    'fill': false
+                }]
+            };
+            grid1.getGridData().forEach(function(d) {
+                console.log(d);
+                data.labels.push(d[0]);
+                data.datasets[0].data.push(d[2]);
+            });
+            console.log('data', data);
+            console.log('view', barchart0.getView());
+            barchart0.getView().options.scales.yAxes[0].ticks.beginAtZero = true;
+            barchart0.getView().data = data;
+            barchart0.getView().update();
+        }
         var toggleAddColumn = true;
 
         function onclick_button4(e) {
@@ -137,7 +159,7 @@
     </i-dataset>
 </head>
 
-<body onAfterInitScreen="onAfterInitScreen_body()">
+<body onAfterInitScreen="onAfterInitScreen_body()" onInitScreen="onInitScreen_body()">
 
     <i-edit style="width: 140px;position: absolute;left: 70px;top:30px" id="edit0" tabIndex="1"></i-edit>
     <i-radio items="[{'disable':false,'label':'enable','value':'true'},{'disable':false,'label':'disable','value':'false'}]" style="position: absolute;left: 240px;top:34.5px" id="radio0" value="true" onchange="onchange_radio0(arguments[0])" tabIndex="2"></i-radio>
@@ -160,6 +182,7 @@
     <i-button text="컬럼 추가/삭제" style="position: absolute; top: 220px; left: 680px;" id="button4" onclick="onclick_button4(arguments[0])"></i-button>
     <i-panel style="height: 320px;position: absolute;top: 320px;left: 70px;border: 1px solid black;width: 455px" id="panel0" url="mission-panel.html"></i-panel>
     <i-calendar style="width: 16em; position: absolute; top: 250px; left: 540px;" id="calendar0"></i-calendar>
+    <i-barchart style="position: absolute;top: 250px;left: 760px;height:198px;undefined:null;width:251px" data="{labels: ['1', '2', 'March', 'April', 'May', 'June', 'July'],datasets: [{'label': '한글',backgroundColor:'red',data: [10,20,30,40,50,60,70], fill: false }]}" id="barchart0"></i-barchart>
 </body>
 
 </html>
