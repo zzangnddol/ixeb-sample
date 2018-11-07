@@ -1,5 +1,6 @@
 [General]
 activeFile=C:/ixeb_win64/workspace/SampleProject/newfile0.html
+openedFileList=C:/ixeb_win64/workspace/SampleProject/newfile0.html
 
 [server]
 service=http://localhost:8080/ixeb-manager/service.manager.ixeb

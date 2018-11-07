@@ -1,62 +1,82 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="generator" content="iXebStudio Platform 2.2018.0907.2795">
     <meta name="ixeb-studio:SaveZOrder" content="undefined">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="ixeb-studio:grid-size" content="10x10">
     <meta name="ixeb-studio:screen-size" content="1280x1024">
-	<meta name="created" content="2018/11/06 16:19">
-	<title>File title</title>
-	<script type="text/javascript" src="./ixeb/ext/jquery/2.2.1/jquery-2.2.1.min.js"></script>
-	<script type="text/javascript" src="./ixeb/lib/ixebBase.min.js"></script>
-	<!-- From here, enter your script and style. -->
-	<script type="text/javascript">
-    	function onclick_grid1(e) {
-    	    console.log('grid clicked');
-    	    console.log('grid selected', grid1.getSelectedRange(), grid1.getRecord(grid1.getSelectedRange().startRowIndex));
-    	    edit5.value = JSON.stringify(grid1.getRecord(grid1.getSelectedRange().startRowIndex));
-    	    edit6.value = JSON.stringify(grid1.getGridData());
-        }
-    
-    	function onclick_button3(e) {
-    	    console.log('combo select item label', combo0.getSelectedLabel());
-    	    combo0.deleteItemByLabel(combo0.getSelectedLabel());
-        }
-    
-	    var combo0CreateCount = 0;
+    <meta name="created" content="2018/11/06 16:19">
+    <title>File title</title>
+    <script type="text/javascript" src="./ixeb/ext/jquery/2.2.1/jquery-2.2.1.min.js"></script>
+    <script type="text/javascript" src="./ixeb/lib/ixebBase.min.js"></script>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript">
+        var toggleAddColumn = true;
 
-    	function onclick_button2(e) {
-    	    console.log('combo add item button clicked', combo0.getItemCount());
-    	    combo0CreateCount++;
-    	    combo0.addItem({'label': 'label' + combo0CreateCount, 'value': 'value' + combo0CreateCount});
+        function onclick_button4(e) {
+            console.log('add grid column button clicked', grid1.columnCount);
+            if (toggleAddColumn) {
+                grid1.addColumn(grid1.columnCount, {
+                    'fieldName': 'addedColumn',
+                    'name': 'addedColumn',
+                    'type': '',
+                    'headerText': '추가컬럼'
+                });
+                toggleAddColumn = !toggleAddColumn;
+            } else {
+                grid1.removeColumn(grid1.columnCount - 1);
+                toggleAddColumn = !toggleAddColumn;
+            }
         }
-    
-    	function onchange_edit2(e) {
-    	    console.log('grid data change', edit2.value);
+
+        function onclick_grid1(e) {
+            console.log('grid clicked');
+            console.log('grid selected', grid1.getSelectedRange(), grid1.getRecord(grid1.getSelectedRange().startRowIndex));
+            edit5.value = JSON.stringify(grid1.getRecord(grid1.getSelectedRange().startRowIndex));
+            edit6.value = JSON.stringify(grid1.getGridData());
         }
-    
-    	function onchange_edit1(e) {
-    	    console.log('changed value', edit1.value);
-    	    maskedit0.value = edit1.value;
+
+        function onclick_button3(e) {
+            console.log('combo select item label', combo0.getSelectedLabel());
+            combo0.deleteItemByLabel(combo0.getSelectedLabel());
         }
-    
-    	function onchange_maskedit0(e) {
-    	    console.log('changed value', maskedit0.value);
-    	    edit1.value = maskedit0.value;
+        var combo0CreateCount = 0;
+
+        function onclick_button2(e) {
+            console.log('combo add item button clicked', combo0.getItemCount());
+            combo0CreateCount++;
+            combo0.addItem({
+                'label': 'label' + combo0CreateCount,
+                'value': 'value' + combo0CreateCount
+            });
         }
-    
-    	function onAfterInitScreen_body() {
-    	    console.log('maskedit value', maskedit0.value);
-    	    edit1.value = maskedit0.value;
+
+        function onchange_edit2(e) {
+            console.log('grid data change', edit2.value);
         }
-    
-    	function onchange_radio0(e) {
+
+        function onchange_edit1(e) {
+            console.log('changed value', edit1.value);
+            maskedit0.value = edit1.value;
+        }
+
+        function onchange_maskedit0(e) {
+            console.log('changed value', maskedit0.value);
+            edit1.value = maskedit0.value;
+        }
+
+        function onAfterInitScreen_body() {
+            console.log('maskedit value', maskedit0.value);
+            edit1.value = maskedit0.value;
+        }
+
+        function onchange_radio0(e) {
             console.log('radio value', radio0.value);
             edit0.enable = radio0.value;
         }
-	
 
         function onclick_btn_status0() {
             alert(dataset0.getRowStatus(dataset0.getRowPosition()));
@@ -85,7 +105,7 @@
         }
 
         function onclick_btn_excelimort0() {
-                grid1.importData();
+            grid1.importData();
         }
 
         function onclick_btn_excelexport0() {
@@ -105,15 +125,17 @@
     <i-dataset id="dataset0" serviceId="">
         <header>
             [{"id":"no","object":"","type":"","size":"","desc":"item0"},{"id":"registrationNumber","object":"","type":"","size":"","desc":"item1"},{"id":"amount","object":"","type":"","size":"","desc":"item2"}]
-        </header><data>
-                        	[{"no":"홍길동","registrationNumber":"1111111111111","amount":"100000"},{"no":"임꺽정","registrationNumber":"2222222222222","amount":"50000"}]
-                        </data>
+        </header>
+        <data>
+        	[{"no":"홍길동","registrationNumber":"1111111111111","amount":"100000"},{"no":"임꺽정","registrationNumber":"2222222222222","amount":"50000"}]
+        </data>
         <i-bind bindtype="recordset" property="" target="grid1" column=""></i-bind>
         <i-bind bindtype="attribute" property="value" target="edit2" column="no"></i-bind>
         <i-bind bindtype="attribute" property="value" target="edit3" column="registrationNumber"></i-bind>
         <i-bind bindtype="attribute" property="value" target="edit4" column="amount"></i-bind>
     </i-dataset>
 </head>
+
 <body onAfterInitScreen="onAfterInitScreen_body()">
 
     <i-edit style="width: 140px;position: absolute;left: 70px;top:30px" id="edit0" tabIndex="1"></i-edit>
@@ -123,16 +145,18 @@
     <i-edit style="width: 140px;position: absolute;left: 330px;top:80px" id="edit1" onchange="onchange_edit1(arguments[0])" tabIndex="4"></i-edit>
     <i-text text="금액" style="position: absolute;left: 500px;top:85px" id="text1"></i-text>
     <i-maskedit style="width: 140px;position: absolute;left: 540px;top:80px" id="maskedit1" value="1000000" textAlign="right" currencySign="\" decimalLength="" maxLength="10" minLength="0" minusSign="false" pattern="Z,ZZZ,ZZZ,ZZ9" type="number" unitDecimal="." unitInsert="true" unitPosition="3" unitSymbol="," tabIndex="5"></i-maskedit>
-    <i-grid id="grid1" style="position: absolute;left:70px;top:120px;width:376px;undefined:null;height:144px" columns="[{'fieldName':'no','name':'item0','colType':'','type':'','headerText':'이름'},{'fieldName':'registrationNumber','name':'item1','colType':'maskedit','type':'number','headerText':'주민번호','colWidth':120,'pattern':'ZZZZZZ-ZZZZZZZ','minusSign':false,'maxLength':13,'minLength':0,'textAlignment':'left'},{'fieldName':'amount','name':'item2','colType':'maskedit','type':'number','headerText':'금액','colWidth':120,'pattern':'Z,ZZZ,ZZZ,ZZ9','minusSign':false,'maxLength':10,'minLength':0,'textAlignment':'right'}]" tabIndex="6" columncount="3" initrowcount="0" onclick="onclick_grid1(arguments[0])"></i-grid>
-    <i-edit style="width: 140px;position: absolute;left: 490px;top:120px" id="edit2" onchange="onchange_edit2(arguments[0])" tabIndex="7"></i-edit>
-    <i-edit style="width: 140px;position: absolute;left: 660px;top:120px" id="edit3" tabIndex="8"></i-edit>
-    <i-edit style="width: 140px;position: absolute;left: 820px;top:120px" id="edit4" tabIndex="9"></i-edit>
-    <i-button text="추가" style="position: absolute;left:490px;top:220px" id="button0" onclick="onclick_button0(arguments[0])" tabIndex="10"></i-button>
-    <i-button text="제거" style="position: absolute;left:560px;top:220px" id="button1" onclick="onclick_button1(arguments[0])" tabIndex="11"></i-button>
+    <i-grid id="grid1" style="position: absolute;left:70px;top:120px;height:144px;undefined:null;width:455px" columns="[{'fieldName':'no','name':'item0','colType':'','type':'','headerText':'이름'},{'fieldName':'registrationNumber','name':'item1','colType':'maskedit','type':'number','headerText':'주민번호','colWidth':120,'pattern':'ZZZZZZ-ZZZZZZZ','minusSign':false,'maxLength':13,'minLength':0,'textAlignment':'left'},{'fieldName':'amount','name':'item2','colType':'maskedit','type':'number','headerText':'금액','colWidth':120,'pattern':'Z,ZZZ,ZZZ,ZZ9','minusSign':false,'maxLength':10,'minLength':0,'textAlignment':'right'}]" tabIndex="6" columncount="3" initrowcount="0" onclick="onclick_grid1(arguments[0])"></i-grid>
+    <i-edit style="width: 140px;position: absolute;left:540px;top:120px" id="edit2" onchange="onchange_edit2(arguments[0])" tabIndex="7"></i-edit>
+    <i-edit style="width: 140px;position: absolute;left:710px;top:120px" id="edit3" tabIndex="8"></i-edit>
+    <i-edit style="width: 140px;position: absolute;left:870px;top:120px" id="edit4" tabIndex="9"></i-edit>
+    <i-button text="추가" style="position: absolute;left:540px;top:220px" id="button0" onclick="onclick_button0(arguments[0])" tabIndex="10"></i-button>
+    <i-button text="제거" style="position: absolute;left:610px;top:220px" id="button1" onclick="onclick_button1(arguments[0])" tabIndex="11"></i-button>
     <i-combo style="width: 140px;position: absolute;left: 70px;top:280px" id="combo0" tabIndex="12"></i-combo>
     <i-button text="추가" style="position: absolute;left: 230px;top:281.5px" id="button2" onclick="onclick_button2(arguments[0])" tabIndex="13"></i-button>
     <i-button text="삭제" style="position: absolute;left: 300px;top:281.5px" id="button3" onclick="onclick_button3(arguments[0])" tabIndex="14"></i-button>
-    <i-edit style="position: absolute;top: 160px;left: 490px;width:470px;undefined:null;height:22px" id="edit5" tabIndex="15" type="none"></i-edit>
-    <i-edit style="position: absolute;top: 190px;left: 490px;width:470px;undefined:null;height:21px" id="edit6"></i-edit>
+    <i-edit style="position: absolute;width:470px;undefined:null;height:22px;left:540px;top:160px" id="edit5" tabIndex="15" type="none"></i-edit>
+    <i-edit style="position: absolute;width:470px;undefined:null;height:21px;left:540px;top:190px" id="edit6"></i-edit>
+    <i-button text="컬럼 추가/삭제" style="position: absolute; top: 220px; left: 680px;" id="button4" onclick="onclick_button4(arguments[0])"></i-button>
 </body>
+
 </html>
