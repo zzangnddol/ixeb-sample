@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="6">
+    <meta name="created" content="2016/10/06 09:20" data-uid="7">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="8">
+    <title data-uid="9">grid_tree_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="10"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="11"></script>
+    <script type="text/javascript" data-uid="12">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-06
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            treegrid0.setColumnProperty(3, 'type', 'number');
+            treegrid0.getView().columns()[2].footer().setText('평균');
+            var imageItems = ["ar.png", "at.png", "be.png", "br.png", "ca.png", "de.png", "dk.png", "et.png", "fi.png", "fr.png", "it.png", "jp.png", "kg.png"];
+            var iconcallback = function(row) {
+                var idx = row.iconIndex();
+                console.log(row.getValue('country'))
+                if (idx === undefined) {
+                    switch (row.getValue('country')) {
+                        case 'France':
+                            idx = 'fr.png';
+                            break;
+                        case 'Brazil':
+                            idx = 'br.png';
+                            break;
+                        case 'Netherlands':
+                            idx = 'et.png';
+                            break;
+                        case 'Colombia':
+                            idx = 'dk.png';
+                            break;
+                        case 'India':
+                            idx = 'it.png';
+                            break;
+                        case 'Mexico':
+                            idx = 'de.png';
+                            break;
+                        case 'Turkey':
+                            idx = 'fi.png';
+                            break;
+                        case 'Chile':
+                            idx = 'et.png';
+                            break;
+                        case 'Ethiopia':
+                            idx = 'et.png';
+                            break;
+                        default:
+                            idx = 'at.png';
+                    }
+                    row.setIconIndex(idx);
+                }
+                return idx;
+            }
+            treegrid0.registIconImageList('icon', '../images/', imageItems, iconcallback);
+            $.ajax({
+                url: 'tree_sample.json',
+                success: function(ret) {
+                    treegrid0.setGridData(ret);
+                    treegrid0.getView().expandAll();
+                }
+            });
+        }
+    </script>
+    <i-dataset data-uid="13" id="dataset0" serviceid="service_pms001">
+        <header data-uid="14"> [ {"id": "COMPID","desc": "","object": "","type": "","size": ""}, {"id": "NAME","desc": "","object": "","type": "","size": ""}, {"id": "PARENT_ID","desc": "","object": "","type": "","size": ""}, {"id": "ID","desc": "","object": "","type": "","size":
+            ""}, {"id": "LEVLCD","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT1","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT2","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT3","desc": "","object": "","type":
+            "","size": ""}, {"id": "TITEXT4","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT5","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT6","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT7","desc": "","object":
+            "","type": "","size": ""}, {"id": "TITEXT8","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT9","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT10","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT11","desc":
+            "","object": "","type": "","size": ""}, {"id": "TITEXT12","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT13","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT14","desc": "","object": "","type": "","size": ""}, {"id":
+            "TITEXT15","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT16","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT17","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT18","desc": "","object": "","type":
+            "","size": ""}, {"id": "TITEXT19","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT20","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT21","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT22","desc":
+            "","object": "","type": "","size": ""}, {"id": "TITEXT23","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT24","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT25","desc": "","object": "","type": "","size": ""}, {"id":
+            "TITEXT26","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT27","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT30","desc": "","object": "","type": "","size": ""}, {"id": "FULLTIME_TOTAL","desc": "","object": "","type":
+            "","size": ""}, {"id": "TOTAL","desc": "","object": "","type": "","size": ""}, {"id": "sort","desc": "","object": "","type": "","size": ""}, {"id": "seq","desc": "","object": "","type": "","size": ""} ] </header> <data data-uid="15">
+[]
+	</data> </i-dataset>
+    <i-binder id="binder_dataset0" src="dataset0" data-uid="16"> </i-binder>
+    <i-dataset data-uid="17" id="dataset1"></i-dataset>
+    <i-binder id="binder_dataset1" src="dataset1" data-uid="18">
+        <i-bind target="treegrid0" data-uid="19"></i-bind>
+    </i-binder>
+</head>
+
+<body id="grid_tree_sample" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="Tree Grid Sample" style="width: 1010px; height: 360px; position: absolute; top: 8px; left: 8px;" data-uid="20" id="group0" class="group-panel">
+        <i-treegrid treelinecolor="#CCCCCC" columns="[
+				{'name': ' ', 'fieldName':'icon','dataType':'text', 'width': 25},
+				{'name': '대출번호', 'fieldName':'loan_no','dataType':'text'},
+				{'name': '국가', 'fieldName':'country','dataType':'text'},
+				{'name': '이율', 'fieldName':'interest','dataType':'number'},
+				{'name': '통화', 'fieldName':'currency','dataType':'text'},
+				{'name': '프로젝트 아이디', 'fieldName': 'project_id', 'dataType':'text'},
+				]" style="width: 1000px; height: 320px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="21" id="treegrid0" sumrowshow="avg" sumrowtitle="" sumrowcolor="#EEF0F4" sumformat="#,##0.00" rowautocount="true" treecheckboxvisible="true"
+            linesvisible="true" treefield="icon"></i-treegrid>
+    </i-group>
+</body>
+
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/12/27 15:01" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="6">
+    <meta name="ixeb-studio:guide-vline" content="960,861," data-uid="7">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="8">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="9">
+    <meta name="created" content="2016/10/06 20:14" data-uid="10">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="11">
+    <title data-uid="12">grid detail search</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="13"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="14"></script>
+    <script type="text/javascript" data-uid="15">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-06
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            grid0.rowCount = 40;
+        }
+    </script>
+</head>
+
+<body id="grid detail search" data-uid="3" oninitscreen="onInitScreen_body();">
+    <div class="search-panel" style="top: 8.01042px; left: 8px; position: absolute; width: 857px; height: 68px; padding-left: 8px; padding-right: 8px;" data-uid="16" id="div0">
+        <i-text text="기준일자" style="position: absolute; top: 11.9826px; left: 7.98264px; color: rgb(113, 69, 41); font-weight: bold;" data-uid="17" id="text0"></i-text>
+        <i-edit style="width: 159px; position: absolute; top: 8.98264px; left: 77.9826px; height: 22px;" data-uid="18" id="edit0" showcalendarbutton="true" value="2016-10-06" required="required"></i-edit>
+        <i-text text="조직코드 / 명" style="position: absolute; top: 11.9826px; left: 399.983px; color: rgb(113, 69, 41); font-weight: bold;" data-uid="19" id="text1"></i-text>
+        <i-edit style="width: 110px; position: absolute; top: 7.01389px; left: 490px; height: 22px;" data-uid="20" id="edit1"></i-edit>
+        <i-button text="검색" style="position: absolute; top: 6.98264px; left: 605.983px; width: 60px; height: 22px; background-size: 100% 100%;" data-uid="21" id="button0"></i-button>
+        <i-button text="검색" style="position: absolute; top: 34.9826px; left: 176.983px; height: 22px; background-size: 100% 100%;" data-uid="22" id="button1"></i-button>
+        <i-edit style="width: 140px; position: absolute; top: 35px; left: 232.983px;" data-uid="23" id="edit4"></i-edit>
+        <i-combo style="width: 240px; position: absolute; top: 35px; left: 490px; height: 22px;" data-uid="24" id="combo0"></i-combo>
+        <i-button text="조회" style="position: absolute; top: 34.9826px; left: 791.98px; height: 22px; background-size: 100% 100%;" data-uid="25" id="button2"></i-button>
+    </div>
+    <i-edit style="width: 172px; position: absolute; top: 17px; left: 682px; height: 22px;" data-uid="26" id="edit2"></i-edit>
+    <i-text text="사번 / 성명" style="position: absolute; top: 49px; left: 21px; color: rgb(113, 69, 41); font-weight: bold;" data-uid="27" id="text2"></i-text>
+    <i-edit style="width: 96px; position: absolute; top: 45px; left: 88px; height: 22px;" data-uid="28" id="edit3" showcalendarbutton="false" required="required"></i-edit>
+    <i-text text="근무지역" style="position: absolute; top: 49px; left: 410px; color: rgb(113, 69, 41); font-weight: bold;" data-uid="29" id="text3"></i-text>
+    <i-group class="group-panel" text="타이틀" style="width: 857px; height: 320px; position: absolute; top: 100px; left: 8px;" data-uid="30" id="group0">
+        <i-grid columnlastextend="true" style="width: 840px; height: 280px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="31" id="grid0" columns="[{
+                'name': '진행상태',
+                'fieldName': 'process',
+                'width': 60
+            }, {
+                'name': '공사구분',
+                'fieldName': 'process1',
+                'width': 60
+            }, {
+                'name': '발주번호',
+                'fieldName': 'process2',
+                'width': 60
+            }, {
+                'name': '하도급명',
+                'fieldName': 'process3',
+                'width': 160
+            }, {
+                'name': '공사기간',
+                'showCalendarButton': true,
+                'fieldName': 'process4',
+                'width': 60
+            }, {
+                'name': '실행금액',
+                'type': 'number',
+                'fieldName': 'process5',
+                'width': 60
+            }, {
+                'name': '요청자',
+                'showCalendarButton': true,
+                'fieldName': 'process6',
+                'width': 60
+            }, {
+                'name': '요청일',
+                'fieldName': 'process7',
+                'width': 60
+            }, {
+                'name': '구분',
+                'fieldName': 'process8',
+                'width': 60
+            }]"></i-grid>
+    </i-group>
+    <i-button class="group-btn" text="엑셀다운로드" style="position: absolute; top: 106px; left: 751.67px; background-size: 100% 100%;" data-uid="32" id="button3"></i-button>
+    <table style="border: 1px solid rgb(209, 209, 207); table-layout: fixed; width: 857px; height: 255px; position: absolute; top: 458.002px; left: 10px;" data-uid="33" id="table0">
+        <tbody data-uid="34">
+            <tr data-uid="35" style="height: 30px;">
+                <td data-uid="36" style="position: relative; top: -0.0937805px; width: 100px; left: 0px; background:#f2f2ef;border: 1px solid #d1d1cf;">
+                    <i-text text="조직코드" style="width: 90px; position: relative; top: 4.0938px; left: 7px; height: 14px;" data-uid="37" id="text4"></i-text>
+                </td>
+                <td data-uid="38" style="border: 1px solid #d1d1cf; width: 153px;">
+                    <i-edit style="width: 144px; position: relative; top: 4.0156px; left: 4px; height: 21px;" data-uid="39" id="edit5" required="required"></i-edit>
+                </td>
+                <td data-uid="40" style="border: 1px solid #d1d1cf; width: 100px; background:#f2f2ef"> </td>
+                <td data-uid="41" style="border: 1px solid #d1d1cf; width: 162px;">
+                    <i-edit style="width: 152px; height: 21px; position: relative; top: 4.0156px; left: 4px;" data-uid="42" id="edit10" required="required"></i-edit>
+                </td>
+                <td data-uid="43" style="border: 1px solid #d1d1cf; width: 100px; background:#f2f2ef">
+                    <i-text text="영문명" style="width: 110px; height: 14px; position: relative; top: 4px; left: 6.52631px;" data-uid="44" id="text12"></i-text>
+                </td>
+                <td data-uid="45" style="border: 1px solid #d1d1cf;">
+                    <i-edit style="width: 232px; position: relative; top: 4.0114px; left: 4.00317px; height: 21px;" data-uid="46" id="edit13"></i-edit>
+                </td>
+            </tr>
+            <tr data-uid="47" style="height: 30px;">
+                <td data-uid="48" style="background:#f2f2ef;border: 1px solid #d1d1cf;">
+                    <i-text text="유효기간" style="width: 69px; top: 4.0156px; left: 6px; height: 14px; position: relative;" data-uid="49" id="text6"></i-text>
+                </td>
+                <td data-uid="50" style="border: 1px solid #d1d1cf; " colspan="3">
+                    <i-edit style="width: 160px; height: 21px; top: 35px; left: 115px; position: absolute;" data-uid="51" id="edit6" required="required" showcalendarbutton="true" value="2016-10-04"></i-edit>
+                    <i-edit style="width: 160px; height: 21px; top: 35px; left: 301px; position: absolute;" data-uid="52" id="edit7" required="required" showcalendarbutton="true" value="2016-10-06"></i-edit>
+                </td>
+                <td data-uid="53" style="border: 1px solid #d1d1cf; background:#f2f2ef">
+                    <i-text text="근무지역" style="width: 69px; position: relative; top: 5.2664px; left: 6.52631px; height: 13px;" data-uid="54" id="text13"></i-text>
+                </td>
+                <td data-uid="55" style="border: 1px solid #d1d1cf;">
+                    <i-combo style="width: 232px; position: relative; height: 21px; left: 4px; top: 4px;" data-uid="56" id="combo1"></i-combo>
+                </td>
+            </tr>
+            <tr data-uid="57" style="height: 30px;">
+                <td data-uid="58" style="background:#f2f2ef;border: 1px solid #d1d1cf;">
+                    <i-text text="순서 / 비과세" style="width: 78px; height: 14px; top: 3.0156px; left: 6px; position: relative;" data-uid="59" id="text7"></i-text>
+                </td>
+                <td data-uid="60" style="border: 1px solid #d1d1cf;">
+                    <i-edit style="width: 101px; height: 21px; position: absolute; top: 64.891px; left: 105px;" data-uid="61" id="edit8" required="required"></i-edit>
+                    <i-check text="" style="width: 77px; position: relative; top: 4.8906px; left: 114px; height: 15px;" data-uid="62" id="check0"></i-check>
+                </td>
+                <td data-uid="63" style="border: 1px solid #d1d1cf; background:#f2f2ef">
+                    <i-text text="신설일자" style="width: 107px; height: 14px; position: relative; top: 2.7927px; left: 7px;" data-uid="64" id="text10"></i-text>
+                    <i-text text="한글명" style="width: 141px; height: 14px; position: absolute; top: 8.0074px; left: 287px;" data-uid="65" id="text9"></i-text>
+                </td>
+                <td data-uid="66" style="border: 1px solid #d1d1cf;">
+                    <i-edit style="width: 152px; height: 21px; position: relative; top: 3.8024px; left: 3.52632px;" data-uid="67" id="edit12" showcalendarbutton="true" value="2016-10-06"></i-edit>
+                </td>
+                <td data-uid="68" style="border: 1px solid #d1d1cf; background:#f2f2ef">
+                    <i-text text="신설사유" style="width: 79px; position: relative; top: 4.5822px; left: 6.52631px; height: 13px;" data-uid="69" id="text14"></i-text>
+                </td>
+                <td data-uid="70" style="border: 1px solid #d1d1cf;">
+                    <i-combo style="width: 232px; top: 4px; height: 21px; left: 4px; position: relative;" data-uid="71" id="combo2"></i-combo>
+                </td>
+            </tr>
+            <tr data-uid="72" style="height: 30px;">
+                <td data-uid="73" style="background:#f2f2ef;border: 1px solid #d1d1cf;">
+                    <i-text text="폐쇠일자" style="width: 89px; height: 14px; position: relative; top: 4px; left: 7px;" data-uid="74" id="text5"></i-text>
+                </td>
+                <td data-uid="75" style="border: 1px solid #d1d1cf;">
+                    <i-edit style="width: 144px; height: 21px; position: relative; top: 3.8906px; left: 4px;" data-uid="76" id="edit9" showcalendarbutton="true" value="2016-10-04"></i-edit>
+                </td>
+                <td data-uid="77" style="border: 1px solid #d1d1cf; background:#f2f2ef">
+                    <i-text text="한글명" style="width: 101px; height: 14px; position: relative; top: 4px; left: 7px;" data-uid="78" id="text11"></i-text>
+                </td>
+                <td data-uid="79" style="border: 1px solid #d1d1cf;" colspan="3">
+                    <i-edit style="width: 266px; position: relative; top: 4px; left: 4px;" data-uid="80" id="edit11"></i-edit>
+                </td>
+            </tr>
+            <tr data-uid="81">
+                <td data-uid="82" style="background:#f2f2ef;border: 1px solid #d1d1cf;">
+                    <i-text text="비고" style="width: 77px; height: 14px; left: 7.00411px; position: relative; top: 10.009px;" data-uid="83" id="text8"></i-text>
+                </td>
+                <td data-uid="84" style="border: 1px solid #d1d1cf;" colspan="5">
+                    <i-multilineedit style="width: 747px; height: 121px; position: relative; top: 6.01553px; left: 4.00822px;" data-uid="85" id="multilineedit0"></i-multilineedit>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <i-button text="추가" style="position: absolute; top: 435px; left: 639px; background-size: 100% 100%;" data-uid="86" id="button4" class="group-btn"></i-button>
+    <i-button text="수정" style="position: absolute; top: 435px; left: 696px; background-size: 100% 100%;" data-uid="87" id="button5" class="group-btn"></i-button>
+    <i-button text="삭제" style="position: absolute; top: 435.052px; left: 752.95px; background-size: 100% 100%;" data-uid="88" id="button6" class="group-btn"></i-button>
+    <i-button text="저장" style="position: absolute; top: 435px; left: 810px; background-size: 100% 100%;" data-uid="89" id="button7" class="group-btn"></i-button>
+    <i-text text="~" style="position: absolute; top: 497px; left: 294px;" data-uid="90" id="text15"></i-text>
+</body>
+
+</html>

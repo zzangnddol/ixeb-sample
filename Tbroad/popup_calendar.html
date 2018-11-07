@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+    <meta name="modified" content="2018/05/14 19:58">
+    <meta name="generator" content="iXebStudio 2.0.0.2438">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="ixeb-studio:grid-size" content="10x10">
+    <meta name="ixeb-studio:screen-size" content="1280x1024">
+	<meta name="created" content="2018/05/14 18:04">
+	<title>달력--</title>
+	<script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.min.js"></script>
+	<script type="text/javascript" src="../ixeb/lib/ixebBase.min.js"></script>
+	<!-- From here, enter your script and style. -->
+	<script type="text/javascript">
+	function onInitScreen_body() {
+        //TODO:
+        $(calendar0).delegate('td.day',"click",getDate);
+        
+    }
+    
+	function onclick_button0(e) {
+        //TODO:
+        window.close();
+    }
+    function getDate(){
+        var currDay = ixeb.util.zerofill($(calendar0).find(".day.selected").html(),2),
+            currMonth =  ixeb.util.zerofill( parseInt($(calendar0).find("select.month").val(),10)+1,2),
+            currYear = $(calendar0).find("select.year").val();
+        var strDay = currYear + "-" + currMonth + "-" + currDay;
+        window.opener.setManageGridVal( window.rowIndex, strDay);
+        window.close();
+    }
+	
+	</script>
+</head>
+<body onInitScreen="onInitScreen_body()">
+
+    <i-calendar style="width: 16em; position: absolute; top: 30px; left: 40px;" id="calendar0"></i-calendar>
+    <i-button text="닫기" style="position: absolute; top: 240px; left: 100px;" id="button0" onclick="onclick_button0(arguments[0])"></i-button>
+</body>
+</html>

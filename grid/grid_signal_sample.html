@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/12/27 14:58">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="5">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="6">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="7">
+    <meta name="created" content="2016/10/10 16:47" data-uid="8">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="9">
+    <title data-uid="10">grid_signal_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="12"></script>
+    <script type="text/javascript" data-uid="13">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-10
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var fields = [{
+                fieldName: "continent",
+                dataType: "text"
+            }, {
+                fieldName: "country",
+                dataType: "text"
+            }, {
+                fieldName: "2000",
+                dataType: "number"
+            }, {
+                fieldName: "2001",
+                dataType: "number"
+            }, {
+                fieldName: "2002",
+                dataType: "number"
+            }, {
+                fieldName: "2003",
+                dataType: "number"
+            }, {
+                fieldName: "2004",
+                dataType: "number"
+            }, {
+                fieldName: "2005",
+                dataType: "number"
+            }, {
+                fieldName: "2006",
+                dataType: "number"
+            }, {
+                fieldName: "2007",
+                dataType: "number"
+            }, {
+                fieldName: "2008",
+                dataType: "number"
+            }, {
+                fieldName: "2009",
+                dataType: "number"
+            }, {
+                fieldName: "2010",
+                dataType: "number"
+            }];
+            grid0.setFields(fields);
+            var columns = [{
+                fieldName: "country",
+                width: 60,
+                styles: {
+                    textAlignment: "near"
+                },
+                header: {
+                    text: "Country"
+                }
+            }, {
+                "name": "2000",
+                "fieldName": "2000",
+                "width": 120,
+                "renderer": {
+                    "type": "signal",
+                    "maximum": 10,
+                    "detailed": true
+                },
+                "styles": {
+                    "textAlignment": "far",
+                    "shapeColor": "#b0008800"
+                }
+            }, {
+                fieldName: "2000",
+                width: 45,
+                styles: {
+                    textAlignment: "far"
+                },
+                header: {
+                    text: "2000"
+                }
+            }, {
+                "name": "2001",
+                "fieldName": "2001",
+                "width": 100,
+                "renderer": {
+                    "type": "signal",
+                    "maximum": 10
+                },
+                "styles": {
+                    "textAlignment": "far",
+                    "shapeColor": "#b0000088"
+                }
+            }, {
+                fieldName: "2001",
+                width: 45,
+                styles: {
+                    textAlignment: "far"
+                },
+                header: {
+                    text: "2001"
+                }
+            }, {
+                "name": "2002",
+                "fieldName": "2002",
+                "width": 80,
+                "renderer": {
+                    "type": "signal",
+                    "maximum": 10,
+                    "barCount": 5,
+                    "startRate": 1,
+                    "barRate": 0.6,
+                    "barGap": 5
+                },
+                "styles": {
+                    "textAlignment": "far",
+                    "shapeColor": "#b00088ff",
+                    "shapeInactiveColor": "#300088ff",
+                    "paddingLeft": 8,
+                    "paddingRight": 8
+                }
+            }, {
+                fieldName: "2002",
+                width: 45,
+                styles: {
+                    textAlignment: "far"
+                },
+                header: {
+                    text: "2002"
+                }
+            }, {
+                "name": "2003",
+                "fieldName": "2003",
+                "width": 100,
+                "renderer": {
+                    "type": "signal",
+                    "barCount": 7,
+                    "maximum": 10,
+                    "startRate": 1,
+                    "endRate": 0.4,
+                    "barGap": 3
+                },
+                "styles": {
+                    "textAlignment": "far",
+                    "shapeColor": "#b0cc8800",
+                    "shapeInactiveColor": "#20cc8800",
+                }
+            }, {
+                fieldName: "2003",
+                width: 45,
+                styles: {
+                    textAlignment: "far"
+                },
+                header: {
+                    text: "2003"
+                }
+            }, {
+                "name": "2004",
+                "fieldName": "2004",
+                "width": 100,
+                "renderer": {
+                    "type": "signal",
+                    "barCount": 7,
+                    "maximum": 10,
+                    "startRate": 1,
+                    "endRate": 0.4,
+                    "barGap": 3
+                },
+                "styles": {
+                    "textAlignment": "far",
+                    "shapeColor": "#20ff0000",
+                    "shapeInactiveColor": "#20cc8800",
+                }
+            }, {
+                fieldName: "2004",
+                width: 45,
+                styles: {
+                    textAlignment: "far"
+                },
+                header: {
+                    text: "2004"
+                }
+            }];
+            grid0.getView().setColumns(columns);
+            $.ajax({
+                url: 'grid_signal_sample.json',
+                success: function(ret) {
+                    grid0.setGridData(ret);
+                }
+            });
+        }
+    </script>
+</head>
+
+<body id="grid_signal_sample" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="Grid Signal Sample" style="width: 1010px; height: 360px; position: absolute; top: 8px; left: 8px;" data-uid="14" id="group0" class="group-panel">
+        <i-grid columnlastextend="true" style="width: 1000px; height: 320px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="15" id="grid0"></i-grid>
+    </i-group>
+</body>
+
+</html>

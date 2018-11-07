@@ -1,0 +1,29 @@
+{
+            "labels": ["10/30","10/31","11/1", "11/2", "11/3", "11/4", "11/5", "11/6"],
+            "datasets": [{
+                            "label": "정OO",
+                            "backgroundColor": "red",
+                            "data": [0, 50, 56, 30, 10, 22,0,0],
+                            "fill": false
+                        },{
+                            "label": "김OO",
+                            "backgroundColor": "blue",
+                            "data": [10, 26, 32, 15, 70,52,1,2],
+                            "fill": false
+                        },{
+                            "label": "최OO",
+                            "backgroundColor": "green",
+                            "data": [20, 16, 80, 33, 10,32,0,2],
+                            "fill": false
+                        },{
+                            "label": "차OO",
+                            "backgroundColor": "yellow",
+                            "data": [0, 76, 72, 14, 42,5,1,2],
+                            "fill": false
+                        },{
+                            "label": "서OO",
+                            "backgroundColor": "brown",
+                            "data": [10, 26, 32, 15, 70,52,1,2],
+                            "fill": false
+                        }]
+}

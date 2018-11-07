@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+    <meta name="modified" content="2018/05/15 06:51">
+    <meta name="generator" content="iXebStudio 2.0.0.2460">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="ixeb-studio:grid-size" content="10x10">
+    <meta name="ixeb-studio:screen-size" content="1280x1024">
+	<meta name="created" content="2018/05/14 13:19">
+	<title>부가세팝업[본부/본부]</title>
+	<script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.min.js"></script>
+	<script type="text/javascript" src="../ixeb/lib/ixebBase.min.js"></script>
+	
+	<!-- style -->
+    <link rel="stylesheet" href="assets/style/content.css">
+	<!-- //style -->
+	
+	<!-- From here, enter your script and style. -->
+	<script type="text/javascript">
+	function onInitScreen_body() {
+        //TODO:
+        var resData = window.opener.getVATData();
+        edt_calcDate.value = resData["calcDate"] ;
+        edt_voucherDate.value = resData["voucherDate"]; 
+        edt_voucherNo.value = resData["voucherNo"];
+        edt_voucherSubNo.value = resData["voucherSubNo"];
+        edt_clientName.value = resData["client"];
+        edt_clientNo.value = resData["clientNo"];
+        edt_detailInfo.value = resData["detailInfo"];
+        
+    }
+    
+	    
+	</script>
+</head>
+<body onInitScreen="onInitScreen_body()">
+    <header class="header">
+        <h1>부가세 입력</h1>
+    </header>
+    <div class="tax-buttons">
+        <i-button text="초기화"></i-button>
+        <i-button text="저장"></i-button>
+        <i-button text="출력"></i-button>
+    </div>
+    <table class="frm-table">
+        <colgroup>
+            <col style="width: 100px;">
+            <col>
+            <col style="width: 100px;">
+            <col>
+        </colgroup>
+        <tbody>
+            <tr>
+                <th scope="row">회계일자</th>
+                <td>
+                    <div class="inbox">
+                        <i-edit class="full" readonly="true" id="edt_calcDate"></i-edit>
+                    </div>
+                </td>
+                <th scope="row">전표번호</th>
+                <td>
+                    <div class="inbox">
+                        <i-edit class="full" readonly="true" id="edt_voucherDate"></i-edit>
+                        <span>-</span>
+                        <i-edit style="width: 50px;" readonly="true" id="edt_voucherNo"></i-edit>
+                        <i-edit style="width: 50px;" readonly="true" id="edt_voucherSubNo"></i-edit>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">작성일자</th>
+                <td>
+                    <div class="inbox">
+                        <i-edit class="full" showcalendarbutton="true" id="edt_makeDate"></i-edit>
+                    </div>
+                </td>
+                <th scope="row">계산서구분</th>
+                <td>
+                    <div class="inbox">
+                        <i-combo class="full" items=''></i-combo>
+                        <i-combo class="full" items=''></i-combo>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" rowspan="2">증빙구분</th>
+                <td rowspan="2">
+                    <div class="inbox">
+                        <i-combo class="full" items="[{'label':'매입일반세금계산서','value':'A'}]" index="0"></i-combo>
+                    </div>
+                </td>
+                <th scope="row">수정세금계산서<br>수정사유</th>
+                <td>
+                    <div class="inbox">
+                        <i-combo class="full" items=''></i-combo>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">원본승인번호</th>
+                <td>
+                    <div class="inbox">
+                        <i-edit class="full"></i-edit>
+                        <i-button text="<img src='assets/images/ico-search.png' alt='검색'>" class="search"></i-button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">거래처</th>
+                <td>
+                    <div class="inbox">
+                        <i-edit class="full" id="edt_clientName"></i-edit>
+                        <i-button text="<img src='assets/images/ico-search.png' alt='검색'>" class="search"></i-button>
+                    </div>
+                </td>
+                <th scope="row">사업자번호</th>
+                <td>
+                    <div class="inbox">
+                        <i-edit class="full" readonly="true" textAlign="center" id="edt_clientNo"></i-edit>
+                        <i-edit style="width: 70px;"></i-edit>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">공급가액</th>
+                <td>
+                    <div class="inbox">
+                        <i-edit class="full" textAlign="right" value="34,881,770"></i-edit>
+                    </div>
+                </td>
+                <th scope="row">부가세액</th>
+                <td>
+                    <div class="inbox">
+                        <i-edit class="full" textAlign="right" value="3,488,177"></i-edit>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">합계금액</th>
+                <td>
+                    <div class="inbox">
+                        <i-edit class="full" readonly="true" textAlign="right" value="38,369,947"></i-edit>
+                    </div>
+                </td>
+                <th scope="row">전자발행여부</th>
+                <td>
+                    <div class="inbox">
+                        <i-combo class="full" items="[{'label':'일반발행','value':'A'}]" index="0"></i-combo>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">카드번호정보<br>현금영수증번호</th>
+                <td colspan="3">
+                    <div class="inbox">
+                        <i-edit style="width: 150px;" readonly="true"></i-edit>
+                        <i-edit class="full" readonly="true"></i-edit>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">적요</th>
+                <td colspan="3">
+                    <div class="inbox">
+                        <i-edit class="full" id="edt_detailInfo"></i-edit>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <i-grid style="width: 100%; height: 180px;" columns="[{'name':'계정과목','colWidth':233},{'name':'표준적요','colWidth':233},{'name':'차변금액','colWidth':150},{'name':'대변금액','colWidth':150},{'name':'적요','colWidth':233}]" id="grid1" columncount="5" initrowcount="0" sumrowshow="none" columnlastextend="false" columnmove="true" columnresize="true" statebar="false" rowautocount="true" strippedpattern="true" sorted="true" griditem="[]"></i-grid>
+    
+</body>
+</html>

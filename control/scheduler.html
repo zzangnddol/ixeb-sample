@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-vline" content="82," data-uid="5">
+    <meta name="ixeb-studio:guide-hline" content="87," data-uid="6">
+    <meta name="modified" content="2017/01/24 13:47" data-uid="7">
+    <meta name="generator" content="iXebStudio 1.0.0.1320" data-uid="8">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="9">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="10">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="11">
+    <meta name="created" content="2017/01/02 10:09" data-uid="12">
+    <title data-uid="13">00</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="14"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="15"></script>
+    <style data-uid="16">
+        .event-wrapper {
+            max-height: 0.1em;
+        }
+    </style>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript" data-uid="17">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-01-05
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return
+         */
+        function onclick_grid0(args) {
+            //TODO:
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-01-05
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 더블클릭했을 때 발생하는 이벤트
+         * @return
+         */
+        function ondblclick_grid0(args) {
+            //TODO:
+            console.log("ondblclick_grid0")
+        }
+        /**
+        	 * @작성자 : {USER}
+        	 * @작성날짜 : 2017-01-05
+        	 * @description : cell 더블 클릭 이벤트
+        	 * @params:  {args0}: event객체
+        				 {args1}: grid 객체
+        				 {args2}: 클릭된 cell 객체
+        	 * @return
+        	 */
+        function onDataCellDblClicked_grid0(args) {
+            //TODO:
+            var e = args[0],
+                grid = args[1],
+                cell = args[2];
+            console.log("onDataCellDblClicked_grid0")
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-01-04
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return
+         */
+        function onclick_combo0() {
+            //TODO:
+            console.log('click...');
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-01-02
+         * @description :
+         * @return
+         */
+        function onInitScreen_00() {
+            //TODO:
+            var schedules = [{
+                date: '2017-01-26',
+                'title': '휴가',
+                'isVacation': true
+            }, {
+                date: '2017-01-26',
+                'title': '휴가',
+                'isVacation': false,
+                textColor: '#FF0000'
+            }, {
+                date: '2017-01-16',
+                'title': '회의',
+                'isVacation': false,
+                'bulletColor': '#00FF00'
+            }];
+            scheduler00.setSchedulerData(schedules);
+        }
+
+        function onSchedulerDblClick() {
+            var date = scheduler00.getDate();
+            var count = scheduler00.getSchedulerCount(date);
+            if (count > 0) {
+                openList();
+            } else {
+                openReg();
+            }
+        }
+
+        function openList() {
+            popScheduleList = window.open('./schedulerList.html', '_blank', 'width=685,height=250,location=no');
+        }
+
+        function sendschedules() {
+            return scheduler00.getSchedulerDatas(scheduler00.getDate());
+        }
+
+        function deleteSchedule(title) {
+            var currentDate = scheduler00.getDate();
+            scheduler00.deleteScheduler(currentDate, title);
+            scheduler00.setDate(currentDate);
+            if (typeof popScheduleList != 'undefined') {
+                popScheduleList.refreshList();
+            }
+        }
+
+        function openReg() {
+            window.open('./schedulerReg.html', '_blank', 'width=355,height=250,location=no');
+        }
+
+        function setSchedule(objData) {
+            var currentDate = scheduler00.getDate();
+            objData['date'] = currentDate
+            scheduler00.setSchedulerData(objData);
+            scheduler00.setDate(currentDate);
+            if (typeof popScheduleList != 'undefined') {
+                popScheduleList.refreshList();
+            }
+        }
+    </script>
+    <i-dataset data-uid="18" id="dataset0"></i-dataset>
+</head>
+
+<body id="00" data-uid="3" oninitscreen="onInitScreen_00();">
+    <i-scheduler id="scheduler00" oncelldblclick="onSchedulerDblClick()" style="width: 680px; height: 420px; position: absolute; top: 10px; left: 10px;" data-uid="19"></i-scheduler>
+</body>
+
+</html>

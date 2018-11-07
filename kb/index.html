@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-vline" content="278," data-uid="5">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="6">
+    <meta name="ixeb-studio:screen-size" content="1920x1080" data-uid="7">
+    <meta name="created" content="2016/10/11 16:08" data-uid="8">
+    <meta name="viewport" content="width=1280, user-scalable=no">
+    <title data-uid="9">index</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="10"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="11"></script>
+    <link rel="stylesheet" type="text/css" href="css/frame - ulli.css" data-uid="15">
+    <style>
+        ol.con_list .link_box  {
+            text-decoration: none;
+        }
+        i-text.active_txt{
+            text-decoration:none;
+        }
+        span.event-number {
+            font-size:32px;
+            color:rgb(226, 202, 189);
+            font-weight:600;
+            margin-right:5px;
+        }
+        span.event-title{
+            
+            font-family:NanumGothicBold;
+            font-size:15px;
+        }
+
+        span.event-title.gold{
+            color:rgb(167, 139, 139);
+        }
+
+        span.event-title.red{
+            color:rgb(215,71,0);
+        }
+        i-text span.text-subtitle{
+            color:#444;
+            font-size:20px;
+            font-weight:600;
+        }
+        i-text span.event-content{
+            font-family:NanumGothicBold;
+            font-size:14px;
+            line-height:1.4;
+
+        }
+    </style>
+    <script type="text/javascript" data-uid="16">
+        function oninitScreen_00(){
+            //비주얼 영역 롤링
+            $.fn.visual_2015 = function(){      
+                return $(this).each(function(){         
+                    var _this = $(this);
+                    /*var _h = [1745,1180,1460];*/
+                    var _h = [1275,1415,1255];
+                    var _h_min = 465;
+                    
+                    // random 추가 : 2016-08-11
+                    var len = _this.find(".visual_list").length;
+                    var ramdomIndex = Math.floor(Math.random()*len);
+                    $('#visual_container>ul>li').eq(ramdomIndex).addClass('on');
+                    var current = $('#visual_container>ul>li.on').index();
+                    
+                    // var current = 0;
+                    // var len = _this.find(".visual_list").length;
+
+                    // auto rolling 추가 : 2016-08-19
+                    var interval;
+                    var interval_time = 5000;
+                    //var effect_time = 1000;
+                    //var isPlay = true;
+                    var arrowClick = false;
+                    var viewTarget = _this.find(".visual_list");
+
+                    
+                    var is_expand = false;
+                    var is_move = true;
+                    _this.attr("tabIndex" , "-1");
+                    
+                    //이전 버튼 클릭 이벤트
+                    _this.find(".controller .btn_prev").bind("click",function(e){
+                        current--;
+                        if(current<0){
+                            current = len-1;
+                        }
+                        toRoll();
+                        toStop();
+                        e.preventDefault();
+                    });
+                    
+                    //다음 버튼 클릭 이벤트
+                    _this.find(".controller .btn_next").bind("click",function(e){
+                        current++;
+                        if(current>=len){
+                            current = 0;
+                        }
+                        toRoll();
+                        toStop();
+                        e.preventDefault();
+                    });
+
+
+                    //커버스토리 버튼 클릭 이벤트
+                    _this.find('.btn_cover_toggle').bind('click', function(e){
+                        var _this = $(this);
+                        var _list = $(this).closest('.visual_list');
+                        var _box = $(this).closest('.visual_list').find('.cover_box');
+                        var _wrap = $(this).closest('.visual_container');
+                        var _control = $(this).closest('.visual_container').find('.roll_controller_container, .controller');
+
+                        if(!_list.hasClass('active_cover')){
+                            _list.addClass('active_cover');
+                            _box.attr('tabindex', '0').focus();
+                            _control.hide();
+                            toStop();
+                        }
+
+                        e.preventDefault();
+                    });
+                    
+                    //커버스토리 돌아가기 버튼 이벤트
+                    _this.find('.btn_cover_back').bind('click', function(e){
+                        var _this = $(this);
+                        var _list = $(this).closest('.visual_list');
+                        var _toggleBtn = $(this).closest('.visual_list').find('.btn_cover_toggle');
+                        var _box = $(this).closest('.visual_list').find('.cover_box');
+                        var _wrap = $(this).closest('.visual_container');
+                        var _control = $(this).closest('.visual_container').find('.roll_controller_container, .controller');
+
+                        if(_list.hasClass('active_cover')){
+                            _list.removeClass('active_cover');
+                            _control.show();
+                            _toggleBtn.focus();
+                            toPlay();
+                            _box.removeAttr('tabindex');
+                        }
+                        e.preventDefault();
+                    });
+
+                    //롤링 이벤트
+                    function toRoll(){
+                        _this.find(".roll_controller_container .list").each(function(){
+                            $(this).removeClass("on");
+                            $(this).find(".readonly").remove();
+                            if($(this).index() == current){
+                                $(this).addClass("on");
+                                $(this).find("a").prepend('<span class="readonly">현재 선택 :</span>');
+                            };
+                        });
+                        
+                        //리스트 초기화
+                        _this.find(".visual_list").stop();
+                        _this.find(".visual_list").css("opacity",1);
+                        _this.find(".visual_list").css("display","none");
+
+                        //리스트 컨텐츠 초기화
+                        _this.find(".visual_list .visual_title").css({'display':'none', 'margin-top':40, 'opacity':0}).addClass('other');
+                        _this.find(".visual_list .visual_txt").css({'display':'none', 'margin-top':40, 'opacity':0}).addClass('other');
+                        _this.find(".visual_list .copy_pos_box a").css({'display':'none', 'margin-top':40, 'opacity':0}).addClass('other');
+
+                        //롤링될때 해당 컨텐츠 모션 ( 타이틀, 버튼 페이드인)
+                        _this.find(".visual_list").eq(current).fadeIn(500, function(){
+                            var _tit = $(this).find('.visual_title');
+                            var _txt = $(this).find('.visual_txt');
+                            var _btn = $(this).find('.copy_pos_box a');
+                            var otherTit = _this.siblings().find('.visual_title');
+                            var otherTxt = _this.siblings().find('.visual_txt');
+                            var otherBtn = _this.siblings().find('.copy_pos_box a');
+                            var titSpeed = 500;  //타이틀 움직임 속도
+                            var txtSpeed = 700;  //설명 움직임 속도
+                            var btnSpeed = 900;  //버튼 움직임 속도
+
+                            //타이틀 움직임 (opacity값을 1로 바꾸고 margin-top값을 0으로 바꾼다)
+                            _tit.show().stop(true, true).animate({
+                                opacity:1,
+                                marginTop:0
+                            }, titSpeed);
+
+                            //설명 움직임 (opacity값을 1로 바꾸고 margin-top값을 0으로 바꾼다)
+                            _txt.show().stop(true, true).animate({
+                                opacity:1,
+                                marginTop:0
+                            }, txtSpeed);
+
+                            //버튼 움직임 (opacity값을 1로 바꾸고 margin-top값을 0으로 바꾼다)
+                            _btn.show().stop(true, true).animate({
+                                opacity:1,
+                                marginTop:0
+                            }, btnSpeed);
+
+                            _tit.removeClass('other');
+                            _txt.removeClass('other');
+                            _btn.removeClass('other');
+                        });
+
+                        //motionControll();
+
+                        // 2016-08-19 추가 
+                        if(is_move){
+                            clearInterval(interval);
+                            interval = setInterval(interval_fun,interval_time);
+                        };
+                    }
+                    
+                    /****function motionControll(){
+                        if(current == 0){
+                            window.removeSnow();
+                            window.startSnow();
+                        }else if(current == 1){
+                            window.removeSnow();
+                            collectionMotion();
+                        }else if(current == 2){
+                            window.removeSnow();
+                        }
+                    }***/
+                    
+                    function defaultHeight(){
+                        for(var i=0; i<len; i++){
+                            _this.find(".visual_list").eq(i).find(".visual_box").height(_h_min);
+                        }
+                    }
+                    function init(){
+                        defaultHeight();
+                        //motionControll();
+                    };
+                    init();
+
+
+                    // 2016-08-19 추가 시작 
+                    function interval_fun(){
+                        if(_this.css("display") == "none" ){
+                            toStop();
+                            return;
+                        }
+                        if(current >= len-1){
+                            current = 0;
+                        }else{
+                            current++;
+                        }
+                        toRoll();
+                    }
+
+                    //멈춤 이벤트
+                    function toStop(){
+                        is_move = false;
+                        clearInterval(interval);
+                        ctl_container.find(".ctl_btn li").removeClass("on");
+                        ctl_container.find(".ctl_btn li").eq(1).addClass("on");
+                    }
+
+                    //재생 이벤트
+                    function toPlay(){
+                        if (!is_move){
+                            is_move = true;
+                            interval = setInterval(interval_fun,interval_time);
+                            ctl_container.find(".ctl_btn li").removeClass("on");
+                            ctl_container.find(".ctl_btn li").eq(0).addClass("on");
+                        }
+                    }
+                    
+                    var ctl_container = _this.find(".roll_controller_container .roll_controller_box");
+                    ctl_container.find(".ctl_box").empty();
+                    
+                    for(var i=0; i<len; i++){
+                        var tit = viewTarget.eq(i).find('.visual_title img').attr('alt');
+                        var $tagli = $('<li class="list"></li>');
+                        var $taga = $('<i-text href="#"><span class="readonly" style="display:none">현재 선택 : </span>' + tit + '</i-text>');
+                        $tagli.append($taga);
+                        
+                        ctl_container.find(".ctl_box").append($tagli);
+                        $taga.bind("click",function(e){
+                            if(current == $(this).parent().index() && arrowClick == false) return;
+                            current = $(this).parent().index();
+                            toStop();
+                            toRoll();
+                            e.preventDefault();
+                        });
+                    };
+                    
+                    var ctl_arr_container = _this.find(".roll_controller_arrow_box .roll_control_arrow_btn");
+                    
+                    /*ctl_arr_container.find(".btnRight a").bind("click",function(e){
+                        e.preventDefault();
+                        current++;
+                        if(current >= viewTarget.length){
+                            current = 0;
+                        };
+                        arrowClick = true;
+                        ctl_container.find(".ctl_box a").eq(current).trigger("click");
+                        arrowClick = false;
+                        toStop();
+                    });
+                    ctl_arr_container.find(".btnLeft a").bind("click",function(e){
+                        e.preventDefault();
+                        current--;
+                        if(current < 0){
+                            current = viewTarget.length-1;
+                        };
+                        arrowClick = true;
+                        ctl_container.find(".ctl_box a").eq(current).trigger("click");
+                        arrowClick = false;
+                        toStop();
+                    });*/
+
+                    ctl_container.find(".btn_stop").bind("click",function(e){
+                        toStop();
+                        e.preventDefault();
+                    });
+                    ctl_container.find(".btn_play").bind("click",function(e){
+                        toPlay();
+                        e.preventDefault();
+                    });
+                    interval = setInterval(interval_fun,interval_time);
+                    toRoll();
+                    // 2016-08-19 추가 끝
+
+                    //상품목록에 포커스가 들어갔을때 멈춤
+                    $('.visual_container .visual_list').bind('focusin', function(e){
+                        toStop();
+                    });
+                    
+                    //첫번째 상품목록에서 키보드 탭 + 시프트 이동시 재생
+                    $('.visual_container .visual_list a:first').keydown(function(e){
+                        var keycode = e.keyCode;
+                        if(keycode==9){
+                            if(e.shiftKey){
+                                toPlay();
+                            }
+                        }
+                    });
+                    //마지막 상품목록에서 키보드 탭 이동시 재생
+                    $('.visual_container .visual_list a:last').keydown(function(e){
+                        var keycode = e.keyCode;
+                        if(keycode==9){
+                            if(!e.shiftKey){
+                                toPlay();
+                            }
+                        }
+                    });
+                });
+            };
+            $('.visual_container').visual_2015();
+
+            //sticky (플로팅 헤더) 이벤트
+            var correct_sticky = function(){
+                $(window).scroll(function(){
+                    var _sticky = $('.contentWrap .marginSpace');
+                    var _header = $('.headerWrap');
+                    var sticky_t = parseInt($('.contentWrap .marginSpace').offset().top) - 50;
+                    var win_t = $(this).scrollTop();
+                    
+                    if(win_t > 0){
+                        $('.contentWrap').css('padding-top', '124px');
+                        _header.addClass('active_sticky');
+                    } else {
+                        $('.contentWrap').css('padding-top', 0);
+                        _header.removeClass('active_sticky');
+                    }
+                });
+            }
+            correct_sticky(); //함수실행
+
+            /***** gnb *****/
+            $.fn.gnb_2015 = function(){     
+                return $(this).each(function(){         
+                    var $this = $(this);            
+                    var aLen = $this.find('>li').size();
+                    
+                    $this.find('>li>h3>i-picture').bind('focusin mouseenter',function(){
+                        if($(this).hasClass("btn_gnb_search")) return;
+                        
+                        $(this).closest('li').siblings('li').css('z-index',0).end().css('z-index','9950');
+                        $this.find('div.dep2').hide();
+                        $('>li>h3>i-picutre.on',$this).removeClass('on');
+                        $(this).addClass('on');
+                        if($(this).parent().next().size() > 0){ 
+                            $(this).parent().next().show();
+                        }
+                    });
+                    $this.find('>li:not(.search)').bind('mouseleave',function(){
+                        $('div.dep2',$this).hide();
+                        $('>h3>i-picture',this).removeClass('on');
+                        $(this).css('z-index','0');
+                    });
+                    $this.find('>li>h3>i-picture').bind('focusout',function(){
+                        $('>li>h3>i-text.on',$this).removeClass('on');
+                    });
+                    $this.find('>li').eq(aLen-1).find('>h3>i-picture').bind('focusin',function(){
+                        $this.find(".dep2").hide();
+                    });
+                });
+            };
+            $('.gnbWrap_2015 #gnb_2015').gnb_2015();
+        }
+
+
+
+    </script>
+</head>
+
+<body id="index_2" data-uid="3" oninitScreen="oninitScreen_00();">
+    <div class="wrapAll">
+    <!-- headerWrap -->
+    <div class="headerWrap">
+        <!-- quick_box -->
+        <div class="quick_box">
+            <div class="quick_bg">
+                <div class="small" >
+                    <div class="u_list">
+                        <div><i-text href="https://obank.kbstar.com/quics?page=C019088" class="q1">전예금조회</i-text></div>
+                        <div><i-text href="https://obank.kbstar.com/quics?page=C018393" class="q2">계좌이체</i-text></div>
+                        <div><i-text href="#" class="q3" onclick="openPopup('https://obank.kbstar.com/quics?page=C025255&cc=b028364:b028702&QSL=F','빠른조회','720','650'); return false;">빠른조회</i-text></div>
+                        <div><i-text href="https://otalk.kbstar.com/quics?page=omember" class="q4">고객우대제도</i-text></div>
+                        <div><i-text href="https://obank.kbstar.com/quics?page=C016523" class="q5">휴먼계좌조회</i-text></div>
+                        <div><i-text href="https://obank.kbstar.com/quics?page=C036336" class="q6">소비자정보포털</i-text></div>
+                        <div class="end"><i-text href="https://obank.kbstar.com/quics?page=C035725" class="q7">인터넷대출</i-text></div>
+                        <div><i-text href="https://omoney.kbstar.com/quics?page=C027319" class="q8">노후설계</i-text></div>
+                        <div><i-text href="https://omoney.kbstar.com/quics?page=C016505" class="q9">지점안내</i-text></div>
+                        <div><i-text href="https://okbfex.kbstar.com/quics?page=C015690" class="q10">환율조회</i-text></div>
+                        <div><i-text href="https://oland.kbstar.com/quics?page=ohsubs" class="q11">주택청약</i-text></div>
+                        <div><i-text href="http://nland.kbstar.com/quics?page=rstar" class="q12">KB부동산</i-text></div>
+                        <div><i-text href="https://obank.kbstar.com/quics?page=C019763" class="q13">고객상담FAQ</i-text></div>
+                        <div class="end"><i-text href="https://obank.kbstar.com/quics?page=C016526" class="q14">공과금납부</i-text></div>
+                        <div><i-text href="https://okbfex.kbstar.com/quics?page=C018636" class="q15">해외은행송금</i-text></div>
+                        <div><i-text href="#" class="q16" onclick="openPopup('https://omoney.kbstar.com/quics?page=C019315&QSL=F','가계부','1010','740','scrollbars=no'); return false;">가계부</i-text></div>
+                        <div><i-text href="https://okbfex.kbstar.com/quics?page=opensn" class="q17">퇴직연금</i-text></div>
+                        <div><i-text href="https://obank.kbstar.com/quics?page=C025764" class="q18">빠른예금신규</i-text></div>
+                    </div>
+                    <a href="#" class="btn_quick_view"><i-picture image="./images/btn_quick_view.gif" alt="빠른메뉴 전체보기" ></i-picture></a>
+                </div>
+                <div class="large">
+                    <ul class="u_list">
+                        <li>
+                            <i-check id="setItem_1" name="quick_n" ></i-check>
+                            <i-text for="setItem_1" class="q1">전예금조회</i-text>
+                        </li>
+                        <li>
+                            <i-check id="setItem_2" name="quick_n"></i-check>
+                            <i-text for="setItem_2" class="q2">계좌이체</i-text>
+                        </li>
+                        <li>
+                            <i-check id="setItem_3" name="quick_n"></i-check>
+                            <i-text for="setItem_3" class="q3">빠른조회</i-text>
+                        </li>
+                        <li>
+                            <i-check id="setItem_4" name="quick_n"></i-check>
+                            <i-text for="setItem_4" class="q4">고객우대제도</i-text>
+                        </li>
+                        <li>
+                            <i-check id="setItem_5" name="quick_n"></i-check>
+                            <i-text for="setItem_5" class="q5">휴먼계좌조회</i-text>
+                        </li>
+                        <li>
+                            <i-check id="setItem_6" name="quick_n"></i-check>
+                            <i-text for="setItem_6" class="q6">소비자정보포털</i-text>
+                        </li>
+                        <li class="end">
+                            <i-check id="setItem_7" name="quick_n"></i-check>
+                            <i-text for="setItem_7" class="q7">인터넷대출</i-text>
+                        </li>
+                        <li>
+                            <i-check id="setItem_8" name="quick_n"></i-check>
+                            <i-text for="setItem_8" class="q8">노후설계</i-text>
+                        </li>
+                        <li>
+                            <i-check id="setItem_9" name="quick_n"></i-check>
+                            <i-text for="setItem_9" class="q9">지점안내</i-text>
+                        </li>
+                        <li>
+                            <i-check id="setItem_10" name="quick_n"></i-check>
+                            <i-text for="setItem_10" class="q10">환율조회</i-text>
+                        </li>
+                        <li>
+                            <i-check id="setItem_11" name="quick_n"></i-check>
+                            <i-text for="setItem_11" class="q11">주택청약</i-text>
+                        </li>
+                        <li>
+                            <i-check id="setItem_12" name="quick_n"></i-check>
+                            <i-text for="setItem_12" class="q12">KB부동산</i-text>
+                        </li>
+                        <li>
+                            <i-check id="setItem_13" name="quick_n"></i-check>
+                            <i-text for="setItem_13" class="q13">고객상담FAQ</i-text>
+                        </li>
+                        <li class="end">
+                            <i-check id="setItem_14" name="quick_n"></i-check>
+                            <i-text for="setItem_14" class="q14">공과금납부</i-text>
+                        </li>
+                        <li>
+                            <i-check id="setItem_15" name="quick_n"></i-check>
+                            <i-text for="setItem_15" class="q15">해외은행송금</i-text>
+                        </li>
+                        <li>
+                            <i-check id="setItem_16" name="quick_n"></i-check>
+                            <i-text for="setItem_16" class="q16">가계부</i-text>
+                        </li>
+                        <li>
+                            <i-check id="setItem_17" name="quick_n"></i-check>
+                            <i-text for="setItem_17" class="q17">퇴직연금</i-text>
+                        </li>
+                        <li>
+                            <i-check id="setItem_18" name="quick_n"></i-check>
+                            <i-text for="setItem_18" class="q18">빠른예금신규</i-text>
+                        </li>
+                    </ul>
+                    <div class="btn_box"><!-- 2016-10-28 이미지 교체 -->
+                        <i-text href="#" class="btn_quick_set space"><i-picture image="./images/btn_quick_set.png" alt="빠른메뉴 설정" ></i-picture></i-text>
+                        <div class="btn_set">
+                            <i-picture image="./images/quick_text.png" alt="아이콘 6개를 선택하신 후 저장 버튼을 누르세요." class="space" ></i-picture>
+                            <i-text href="#" class="btn_quick_save space"><i-picture image="./images/btn_quick_save.gif" alt="빠른메뉴 저장" ></i-picture></i-text>
+                            <i-text href="#" class="btn_quick_reset space"><i-picture image="./images/btn_quick_reset.gif" alt="빠른메뉴 초기화" ></i-picture></i-text>
+                            <!-- <i-text href="#" class="btn_quick_cancle space"><i-picture image="./images/btn_quick_cancel.gif" alt="빠른메뉴 취소" /></i-text> -->
+                        </div>
+                        <i-text href="#" class="btn_quick_close"><i-picture image="./images/btn_quick_close.png" alt="빠른메뉴 닫기" ></i-picture></i-text>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- //quick_box -->
+
+        <!-- headBox -->
+        <div class="headBox">
+            <div id="headArea">
+                <h1 class="logo"><i-picture image="./images/logo.png" alt="KB국민은행" ></i-picture></h1>
+                <div class="certMenu">
+                    <ul>
+                        <li><i-picture image="./images/btn_login.gif" alt="로그인" ></i-picture></li>
+                        <li><i-picture image="./images/btn_cert.gif" alt="공인인증센터" ></i-picture></li>
+                        <li><i-picture image="./images/btn_sec.gif" alt="보안센터" ></i-picture></li>
+                    </ul>
+                </div>
+
+                <!-- gnb -->
+                <div class="gnbWrap_2015">
+                    <h2 class="readonly">대표메뉴</h2>
+                    <ul id="gnb_2015" class="gnb_2015">
+                        <li>
+                            <h3><i-picture image="./images/gnb_bank.png" alt="개인" class="png24" ></i-picture></h3>
+                            <div class="gnbStandard dep2"><!-- 2016-08-18 추가 -->
+                                <span class="arrow"></span>
+                                <ul>
+                                    <li><i-text href="https://obank.kbstar.com/quics?page=C016511">조회</i-text></li>
+                                    <li><i-text href="https://obank.kbstar.com/quics?page=C016524">이체</i-text></li>
+                                    <li><i-text href="https://obank.kbstar.com/quics?page=C016526">공과금</i-text></li>
+                                    <li><i-text href="https://obank.kbstar.com/quics?page=C016528">예금/골드</i-text></li>
+                                    <li><i-text href="https://obank.kbstar.com/quics?page=C016529">펀드</i-text></li>
+                                    <li><i-text href="https://obank.kbstar.com/quics?page=C016530">대출</i-text></li>
+                                    <li><i-text href="https://obank.kbstar.com/quics?page=C016531">신탁</i-text></li>
+                                    <li><i-text href="https://obank.kbstar.com/quics?page=C040686">ISA</i-text></li>
+                                    <li><i-text href="https://obank.kbstar.com/quics?page=C016533">보험/공제</i-text></li>
+                                    <li><i-text href="https://obank.kbstar.com/quics?page=C016535">뱅킹관리</i-text></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <h3><i-picture image="./images/gnb_biz.png" alt="기업" class="png24" ></i-picture></h3>
+                            <div class="gnbStandard dep2"><!-- 2016-08-18 추가 -->
+                                <span class="arrow"></span>
+                                <ul>
+                                    <li><i-text href="https://obiz.kbstar.com/quics?page=C015658">조회</i-text></li>
+                                    <li><i-text href="https://obiz.kbstar.com/quics?page=C015746">이체</i-text></li>
+                                    <li><i-text href="https://obiz.kbstar.com/quics?page=C015747">공과금</i-text></li>
+                                    <li><i-text href="https://obiz.kbstar.com/quics?page=C016127">예금</i-text></li>
+                                    <li><i-text href="https://obiz.kbstar.com/quics?page=C016164">펀드</i-text></li>
+                                    <li><i-text href="https://obiz.kbstar.com/quics?page=C015749">대출</i-text></li>
+                                    <li><i-text href="https://obiz.kbstar.com/quics?page=C016220">신탁</i-text></li>
+                                    <li><i-text href="https://obiz.kbstar.com/quics?page=C027615">보험</i-text></li>
+                                    <li><i-text href="https://obiz.kbstar.com/quics?page=C015750">자금관리</i-text></li>
+                                    <li><i-text href="https://obiz.kbstar.com/quics?page=C015751">B2B</i-text></li>
+                                    <li><i-text href="https://obiz.kbstar.com/quics?page=C015753">뱅킹관리</i-text></li>
+                                    <li><i-text href="https://obiz.kbstar.com/quics?page=C015752">기업서비스</i-text></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <h3><i-picture image="./images/gnb_recomm.png" alt="추천상품" class="png24" ></i-picture></h3>
+                        </li>
+                        <li>
+                            <h3><i-picture image="./images/gnb_card.png" alt="카드" class="png24" ></i-picture></h3>
+                        </li>
+                        <li>
+                            <h3><i-picture image="./images/gnb_money.png" alt="자산관리" class="png24" ></i-picture></h3>
+                        </li>
+                        <li>
+                            <h3><i-picture image="./images/gnb_service.png" alt="전체서비스" class="png24" ></i-picture></h3>
+                            <div class="gnbAll dep2">
+                                <span class="arrow"></span>
+                                <ul>
+                                    <li class="cate w1">
+                                        <span class="tit">금융서비스</span>
+                                        <ul>
+                                            <li><i-text href="https://okbfex.kbstar.com/quics?page=ofex">외환</i-text></li>
+                                            <li><i-text href="https://okbfex.kbstar.com/quics?page=opensn">퇴직연금</i-text></li>
+                                            <li><i-text href="https://okbfex.kbstar.com/quics?page=oescrow">에스크로이체</i-text></li>
+                                            <li><i-text href="https://omoney.kbstar.com/quics?page=osenior">골든라이프뱅킹</i-text></li>
+                                            <li><i-text href="https://otalk.kbstar.com/quics?page=otalk">KB드림톡적금</i-text></li>
+                                            <li><i-text href="https://omoney.kbstar.com/quics?page=oshift">자동이체통합관리</i-text></li>
+                                            <li><i-text href="https://obank.kbstar.com/quics?page=osecure">보안센터</i-text></li>
+                                            <li><i-text href="https://obank.kbstar.com/quics?page=C018872">공인인증센터</i-text></li>
+                                            <li><i-text href="https://obank.kbstar.com/quics?page=C043279">KB마이머니</i-text></li>
+                                        </ul>
+                                    </li>
+                                    <li class="cate w2">
+                                        <span class="tit">특화서비스</span>
+                                        <ul>
+                                            <li><i-text href="http://nland.kbstar.com/quics?page=rstar">KB부동산</i-text></li>
+                                            <li><i-text href="https://oland.kbstar.com/quics?page=ohsubs">주택청약</i-text></li>
+                                            <li><i-text href="https://okbfex.kbstar.com/quics?page=onhbond">국민주택채권</i-text></li>
+                                            <li><i-text href="https://okbfex.kbstar.com/quics?page=onhouse">주택도시기금</i-text></li>
+                                            <li><i-text href="https://omoney.kbstar.com/quics?page=omobile">스마트금융서비스</i-text></li>
+                                        </ul>
+                                    </li>
+                                    <li class="cate w3">
+                                        <span class="tit">멤버십서비스</span>
+                                        <ul>
+                                            <li><i-text href="https://otalk.kbstar.com/quics?page=omember">KB고객우대제도</i-text></li>
+                                            <!--<li class="line2"><i-text href="https://omoney.kbstar.com/quics?page=omate">KB금융그룹통합멤버십<br>(Liiv Mate)</i-text></li>-->
+                                            <li><i-text href="http://www.kbrockstar.com" target="_blank" title="새창"><span class="link_blank">樂스타블로그</span></i-text></li>
+                                            <li><i-text href="https://omoney.kbstar.com/quics?page=ognw">GOLD&amp;WISE</i-text></li>
+                                        </ul>
+                                    </li>
+                                    <li class="cate w4">
+                                        <span class="tit">KB와 함께</span>
+                                        <ul>
+                                            <li><i-text href="https://omoney.kbstar.com/quics?page=oabout">은행소개</i-text></li>
+                                            <li><i-text href="https://omoney.kbstar.com/quics?page=C016505">지점안내</i-text></li>
+                                            <li><i-text href="https://obank.kbstar.com/quics?page=osupp">고객센터</i-text></li>
+                                            <li><i-text href="https://otalk.kbstar.com/quics?page=oblog">KB정보광장</i-text></li>
+                                            <li><i-text href="https://omoney.kbstar.com/quics?page=oevent">이벤트</i-text></li>
+                                            <li><i-text href="https://omoney.kbstar.com/quics?page=ohope">희망금융클리닉</i-text></li>
+                                            <li><i-text href="https://omoney.kbstar.com/quics?page=olovekr">나라사랑서비스</i-text></li>
+                                            <li><i-text href="http://www.kbgoodjob.com" target="_blank" title="새창"><span class="link_blank">KB굿잡</span></i-text></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <h3><i-picture image="./images/gnb_global.png" alt="Global" class="png24" ></i-picture></h3>
+                            <div class="gnbGlobal dep2">
+                                <span class="arrow"></span>
+                                <div>
+                                    <ul>
+                                        <li>
+                                            <h4>LANGAUGE</h4>
+                                            <ul>
+                                                <li><i-text href="https://omoney.kbstar.com/quics?page=oeng">English</i-text></li>
+                                                <li><i-text href="https://omoney.kbstar.com/quics?page=ochn">Chinese</i-text></li>
+                                                <li><i-text href="https://omoney.kbstar.com/quics?page=ojpn">Japanese</i-text></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <h4><i-text href="https://global.kbstar.com/quics?page=ogcom" target="_blank" title="새창">KB GLOBAL BANKING</i-text></h4>
+                                            <ul>
+                                                <li>
+                                                        <a href="https://global.kbstar.com/quics?page=ogtk" target="_blank" title="새창">
+                                                                <i-picture image="./images/icon_japan.png" alt="Japan" ></i-picture>
+                                                                <span class="link_blank">Japan</span>
+                                                        </a>
+                                                </li>
+                                                <li>
+                                                        <a href="https://global.kbstar.com/quics?page=ogauc" target="_blank" title="새창">
+                                                                <i-picture image="./images/icon_newzealand.png" alt="New Zealand" ></i-picture>
+                                                                <span class="link_blank">New Zealand</span>
+                                                        </a>
+                                                </li>
+                                                <li>
+                                                        <a href="http://www.kbstarchina.com/" target="_blank" title="새창">
+                                                                <i-picture image="./images/icon_china.png" alt="China" ></i-picture>
+                                                                <span class="link_blank">China</span>
+                                                        </a>
+                                                </li>
+                                                <li>
+                                                        <a href="https://global.kbstar.com/quics?page=oghk" target="_blank" title="새창">
+                                                            <i-picture image="./images/icon_hongkong.png" alt="Hong Kong" ></i-picture>
+                                                            <span class="link_blank">Hong Kong</span>
+                                                        </a>
+                                                </li>
+                                                <li class="lan_uk">
+                                                        <a href="https://global.kbstar.com/quics?page=ogld" target="_blank" title="새창">
+                                                                <i-picture image="./images/icon_uk.png" alt="UK" ></i-picture>
+                                                                <span class="link_blank">UK</span>
+                                                        </a>
+                                                </li>
+                                                <li class="lan_com">
+                                                        <a href="https://global.kbstar.com/quics?page=ogcbd" target="_blank" title="새창">
+                                                                <i-picture image="./images/icon_cambodia.png" alt="Cambodia" ></i-picture>
+                                                                <span class="link_blank">Cambodia</span>
+                                                        </a>
+                                                </li>
+                                                <li class="lan_viet">
+                                                        <a href="https://global.kbstar.com/quics?page=oghcm" target="_blank" title="새창">
+                                                                <i-picture image="./images/icon_vietnam.png" alt="Vietnam" ></i-picture>
+                                                                <span class="link_blank">Vietnam</span>
+                                                        </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="search">
+                            <h3><a href="#search_container_2015" class="btn_gnb_search"><i-picture image="./images/btn_search.png" alt="검색(통합검색)" class="png24" ></i-picture></a></h3>
+                            <div id="search_container_2015">
+                                <div class="marginSpace">
+                                    <div class="search_con_box">
+                                        <div class="search_form">
+                                            <ul class="tab_list">
+                                                <li class="tabList on">
+                                                    <i-text href="#" class="tab_search tabLink"><span class="readonly">키워드검색</span></i-text>
+                                                    <div class="tabCont">
+                                                        <form name="TopTotalSearchForm" id="TopTotalSearchForm" method="get" action="https://obank.kbstar.com/quics" onsubmit="return false;">
+                                                            <input type="hidden" name="page" value="C020697" />
+                                                            <input type="hidden" name="검색설정명" id="검색설정명" value="total" />
+                                                            <input type="hidden" name="검색출력량" id="검색출력량" value="3" />
+                                                            <input type="hidden" name="검색페이지번호" id="검색페이지번호" value="1" />
+
+                                                            <div class="search_inp_box">
+                                                                <i-edit type="text" name="검색어" id="검색어" title="검색어를 입력하세요." class="search_inp" onkeypress="if (event.keyCode==13) { TopTotalSearchFormSearch(); event.returnValue=false; }" value="검색어를 입력하세요" ></i-edit>
+                                                                <i-picture image="./images/btn_inp_search.png" alt="검색" ></i-picture>
+                                                            </div>
+                                                        </form>
+                                                        <div class="favor_word">
+                                                            <p class="head">인기검색어</p>
+                                                            <ul class="w_list_box">
+                                                                <li class="w_list"><i-text href="javascript:search('재형저축');">재형저축</i-text><span class="bg_list"></span></li>
+                                                                <li class="w_list"><i-text href="javascript:search('주택청약');">주택청약</i-text><span class="bg_list"></span></li>
+                                                                <li class="w_list"><i-text href="javascript:search('청약');">청약</i-text><span class="bg_list"></span></li>
+                                                                <li class="w_list"><i-text href="javascript:search('공인인증서');">공인인증서</i-text><span class="bg_list"></span></li>
+                                                                <li class="w_list"><i-text href="javascript:search('otp');">otp</i-text><span class="bg_list"></span></li>
+                                                                <li class="w_list"><i-text href="javascript:search('이체한도');">이체한도</i-text><span class="bg_list"></span></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="tabList">
+                                                    <i-text href="#" class="tab_info tabLink"><span class="readonly">지점안내</span></i-text>
+                                                    <form id="gnbBranchSearchForm" name="gnbBranchSearchForm" method="post" action="">
+                                                        <input type="hidden" id="gnbSearchData1" name="gnbSearchData1" value="" />
+                                                        <input type="hidden" id="gnbSearchData2" name="gnbSearchData2" value="" />
+                                                        <input type="hidden" id="선택검색번호" name="선택검색번호" value="3" />
+
+                                                        <div class="tabCont">
+                                                            <ul class="search_radio_box_2015">
+                                                                <li class="branch on">
+                                                                    <div class="search_radio">
+                                                                        <span class="radio_list on">
+                                                                            <i-text for="radio_s1">지점검색</i-text>
+                                                                            <i-radio id="radio_s1" name="inp_radio" checked="checked" ></i-radio>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="select_info">
+                                                                        <!-- <select name="searchSel2" id="searchSel2" class="selectBox_2015" title="지점검색 선택">
+                                                                            <option value="0">지역명(도로명)</option>
+                                                                            <option value="1">지역명(지번)</option>
+                                                                            <option value="2">가까운주소/지하철명</option>
+                                                                            <option value="3">지점명(점번코드)</option>
+                                                                        </select> -->
+                                                                            <i-combo name="searchSel2" id="searchSel2" class="selectBox_2015" title="지점검색선택" items="[{value:'0',label:'지역명(도로명)'},{value:'1',label:'지역명(지번)'},{value:'2',label:'가까운주소/지하철명'},{value:'3',label:'지점명(점번코드)'}]"></i-combo>
+                                                                        <i-text for="searName2" class="readonly">지점검색입력</i-text>
+                                                                        <i-edit type="text" name="searName2" id="searName2" onkeypress="if (event.keyCode==13) { goBranchInq('C016505',$('#searName2'),$('#searchSel2')); event.returnValue=false; }" value="" ></i-edit>
+                                                                        <i-button type="button" class="btn_search" onclick="goBranchInq('C016505',$('#searName2'),$('#searchSel2'));">검색</i-button>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="auto_corner">
+                                                                    <div class="search_radio">
+                                                                        <span class="radio_list">
+                                                                            <i-text for="radio_s2">자동화코너검색</i-text>
+                                                                            <i-radio type="radio" id="radio_s2" name="inp_radio" ></i-radio>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="select_info">
+                                                                        <!-- <select name="searchSel3" id="searchSel3" class="selectBox_2015" title="자동화코너 선택">
+                                                                            <option value="0">지역명(도로명)</option>
+                                                                            <option value="1">지역명(지번)</option>
+                                                                            <option value="2">가까운주소/지하철명</option>
+                                                                            <option value="3">자동화코너명</option>
+                                                                        </select> -->
+                                                                        <i-combo name="searchSel3" id="searchSel3" class="selectBox_2015" title="자동화코너 선택" items="[{value:'0',label:'지역명(도로명)'},{value:'1',label:'지역명(지번)'},{value:'2',label:'가까운주소/지하철명'},{value:'3',label:'자동화코너명'}]"></i-combo>
+                                                                        <i-text for="searName3" class="readonly">지점검색입력</i-text>
+                                                                        <input type="text" name="searName3" id="searName3" onkeypress="if (event.keyCode==13) { goBranchInq('C016506',$('#searName3'),$('#searchSel3')); event.returnValue=false; }" value="" />
+                                                                        <button type="button" class="btn_search" onclick="goBranchInq('C016506',$('#searName3'),$('#searchSel3'));">검색</button>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <i-text href="#" class="btn_close">검색 닫기</i-text>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- //gnb -->
+            </div>
+        </div>
+        <!-- //headBox -->
+    </div>
+    <!-- //headerWrap -->
+
+    <!-- contentWrap -->
+    <div id="content" class="contentWrap">
+        <div class="visual_container" id="visual_container">
+            <ul>
+                <!-- s: 2017-03-02 : 봄 -->
+                <li class="visual_list type_spring">
+                    <div class="visual_box">
+                        <div class="copy_pos_box">
+                            <h2 class="visual_title"><i-picture image="./images/img_visual_tit_spring.png" alt="언제나 봄" ></i-picture></h2>
+                            <span class="visual_txt"><i-picture image="./images/img_visual_txt_spring_n.png" alt="활짝 핀 미소로 국민과 함께 하겠습니다"></i-picture></span>
+                        </div>
+                    </div>
+                </li>
+                <!-- //e: 2017-03-02 : 봄 -->
+                <!-- s: 2017-02-21 : 리브통
+                <li class="visual_list type_liivTong">
+                    <div class="visual_box">
+                        <div class="copy_pos_box">
+                            <h2 class="visual_title"><i-picture image="./images/img_visual_tit_liivtong.png" alt="리브통 Liiv Tong" /></h2>
+                            <span class="visual_txt"><i-picture image="./images/img_visual_txt_liivtong.png" alt="온 가족의 사랑이 통하는 디지털저금통" /></span>
+                            <i-text href="https://omoney.kbstar.com/quics?page=C045893" class="btn_view"><span class="readonly">Liiv Tong</span> 자세히보기</i-text>
+                        </div>
+                    </div>
+                </li>
+                <!-- //e: 2017-02-21 : 리브통 -->
+                <!-- s : 2017-03-03 : 1코노믹 -->
+                <li class="visual_list type_1conomic">
+                    <div class="visual_box">
+                        <div class="copy_pos_box">
+                            <h2 class="visual_title"><i-picture image="./images/img_visual_tit_1conomic.png" alt="인생을 즐길 줄 아는 우아한 1인 가구를 위한 KB의 특별한 제안" ></i-picture></h2>
+                            <span class="visual_txt"><i-picture image="./images/img_visual_txt_1conomic.png" alt="KB 일코노미 청춘 패키지" ></i-picture></span>
+                            <i-text href="https://otalk.kbstar.com/quics?page=C019391&bbsMode=view&articleId=11035&QSL=F" class="btn_view"><span class="readonly">KB 일코노미 청춘 패키지</span> 자세히보기</i-text>
+                        </div>
+                    </div>
+                </li>
+                <!-- //e : 2017-03-03 : 1코노믹 -->
+                <!-- s: 2017-01-23 : 리브메이트 -->
+                <li class="visual_list type_liivmate">
+                    <div class="visual_box">
+                        <div class="copy_pos_box">
+                            <h2 class="visual_title"><i-picture image="./images/img_visual_tit04.png" alt="나만 몰랐던 포인트 알뜰히 챙기는 방법" ></i-picture></h2>
+                            <span class="visual_txt"><i-picture image="./images/img_visual_txt04.png" alt="KB금융그룹 통합포인트 LiivMate" ></i-picture></span>
+                            <i-text href="https://www.liivmate.com/katws/web/main.do" target="_blank" class="btn_view" title="새창열림"><span class="readonly">LiivMate</span> 자세히보기</i-text>
+                        </div>
+                    </div>
+                </li>
+                <!-- //e: 2017-01-23 : 리브메이트 -->
+                <li class="visual_list type_liiv">
+                    <div class="visual_box">
+                        <div class="copy_pos_box">
+                            <h2 class="visual_title"><i-picture image="./images/img_visual_tit02.png" alt="나만의 생활금융 플랫폼 Liiv(리브)" ></i-picture></h2>
+                            <span class="visual_txt"><i-picture image="./images/img_visual_txt02.png" alt="일상생활 곳곳에서 함께하는 금융라이프 스타일" ></i-picture></span>
+                            <i-text href="https://omoney.kbstar.com/quics?page=C041949#loading" class="btn_view"><span class="readonly">나만의 생활금융 플랫폼</span> 자세히보기</i-text>
+                        </div>
+                    </div>
+                </li>
+                <li class="visual_list type_asset">
+                    <div class="visual_box">
+                        <div class="copy_pos_box">
+                            <h2 class="visual_title"><i-picture image="./images/img_visual_tit03_201701.png" alt="my moeny KB마이머니 자동 가계부" ></i-picture></h2>
+                            <span class="visual_txt"><i-picture image="./images/img_visual_txt03_201701.png" alt="작심삼일 가계부 작성은 NO~NO~ 누구나 쉽고 간편하게~ 자동으로 기입되는 KB마이머니 가계부로 편리하게 지출관리하세요!" ></i-picture></span>
+                            <i-text href="https://omoney.kbstar.com/quics?page=C043279#loading" class="btn_view"><span class="readonly">my moeny KB마이머니</span> 자세히보기</i-text>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="roll_controller_container">
+                <div class="roll_controller_box">
+                    <ul class="ctl_box">
+                        <li></li>
+                    </ul>
+                    <ul class="ctl_btn">
+                        <li class="btn_stop on"><i-text href="#">스톱</i-text></li>
+                        <li class="btn_play"><i-text href="#">플레이</i-text></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="controller">
+                <i-picture image="./images/visual_arr_prev.png" alt="이전으로" class="btn_prev"></i-picture>
+                <i-picture image="./images/visual_arr_next.png" alt="다음으로" class="btn_next"></i-picture>
+            </div>
+        </div>
+
+        <div class="marginSpace">
+            <div class="inner_space">
+                <!-- 상단 컨텐츠 -->
+                <div class="container top_content">
+                    <!-- KB새소식 -->
+                    <div class="notice_new_box">
+                        <strong><i-picture image="./images/img_notice_tit.gif" alt="KB 새소식" /></strong>
+                        <ul class="notice_list">
+                            <!--<li><i-text href="https://kbstar.career.co.kr/jobs" target="_blank" title="새창으로 열림">2017년 상반기 파트타이머<br />(경력단절여성 우대) 채용 공고</i-text></li>-->
+                            <!--<li><i-text href="https://kbstar.career.co.kr/result/" target="_blank" title="새창으로 열림">2017년 동계인턴 채용 최종<br />합격자 발표</i-text></li>-->
+                            <li><i-text href="https://otalk.kbstar.com/quics?page=C019391&bbsMode=view&articleId=10888&QSL=F">KB든든간편인증 서비스 <br />확대시행 안내 </i-text></li>
+                            <li><i-text href="https://otalk.kbstar.com/quics?page=C019391&bbsMode=view&articleId=11087&QSL=F">해외주식투자 전용펀드<br /> 비과세 제도안내</i-text></li>
+                            <li><i-text href="https://otalk.kbstar.com/quics?page=C019391&bbsMode=view&articleId=10679&QSL=F#loading">&quot;펀드 포트폴리오 동시신규 <br />서비스&quot; 인터넷뱅킹 시행 안내</i-text></li>
+                            <li><i-text href="https://otalk.kbstar.com/quics?page=C019391&bbsMode=view&articleId=11140&QSL=F">통장(카드) 불법매매양도 <br />급증에 따른 주의안내</i-text></li>
+                            <li><i-text href="https://otalk.kbstar.com/quics?page=C019391&bbsMode=view&articleId=11034&QSL=F">2017 KB창작동화제 <br />작품공모전 안내 </i-text></li>
+                            <!-- <li><i-text href="https://otalk.kbstar.com/quics?page=C019391&bbsMode=view&articleId=10524&QSL=F">'지문인증 서비스' 시행 안내</i-text></li> -->
+                            <!-- <li><i-text href="https://kbstar.career.co.kr/result/" target="_blank" title="새창으로 열림">하반기 신입행원(L1) 채용 필기전형 합격자 발표<span class="new_list"><span class="readonly">신규 게시물</span></span></i-text></li> -->
+
+                        </ul>
+                        <i-text href="https://otalk.kbstar.com/quics?page=C019391&QSL=F" class="notice_more_view"><i-picture image="./images/img_notice_more.gif" alt="KB 새소식 더보기" /></i-text>
+                    </div>
+
+                    <!-- 배경 이미지 오브젝트 해당 오브젝트의 위치값, 너비, 높이를 인라인으로 적용-->
+                    <span class="obj_img img01" style="top:177px; left:860px; width:160px; height:155px;"><i-picture image="./images/img_obj01_1703.png" alt="" /></span>
+                    <span class="obj_img img02" style="top:473px; left:241px; width:154px; height:157px;"><i-picture image="./images/img_obj02_1703.png" alt="" /></span>
+
+                    <!-- mouse over 컨텐츠 -->
+                    <div class="numbering_content">
+                        <ol class="con_list">
+                            <li class="list01">
+                                <a href="https://omoney.kbstar.com/quics?page=C016559&cc=b033091:b032977&이벤트일련번호=253721" class="link_box">
+                                    <span class="con_box">
+                                        <!-- <i-picture image="./images/img_conList01_0113.gif" alt="1. 이벤트 숨은통장찾기 국민이벤트  숨어있는 통장도 찾고, 총 2017분께 드리는 福 포인트리 혜택도 잡으세요." class="default_txt"></i-picture>
+                                        <i-picture image="./images/img_conList01_0113_active.gif" alt="1. 이벤트 숨은통장찾기 국민이벤트  숨어있는 통장도 찾고, 총 2017분께 드리는 福 포인트리 혜택도 잡으세요. 자세히보기" class="active_txt" ></i-picture> -->
+                                        <i-text text="<span class='event-number'>1.</span><span class='event-title gold'>이벤트</span><br><br><span class='text-subtitle'>숨은통장찾기<br> 국민이벤트</span><br><br> <span class='event-content'> 숨어있는 통장도 찾고,<br> 총2017분께 드리는<br> 福 포인트리 혜택도 잡으세요.<br><br>12.22~3.31</span>" class="default_txt"></i-text>
+                                        <!--checkpoint-->
+                                        <i-text text="<span class='event-title red'>이벤트</span><br><br><span class='text-subtitle'>숨은통장찾기<br> 국민이벤트</span><br><br><span class='event-content'>  숨어있는 통장도 찾고,<br> 총2017분께 드리는<br> 福 포인트리 혜택도 잡으세요.<br><br>12.22~3.31<br><br></span>자세히보기 >" class="active_txt"></i-text>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list02">
+                            <a href="https://omoney.kbstar.com/quics?page=C016559&amp;cc=b033091:b032977&amp;이벤트일련번호=254922" class="link_box">
+                                    <span class="con_box">
+                                        <i-picture image="./images/img_conList02_0228.gif" alt="2. 이벤트 KB고객감사 환전이벤트 2016년 국가고객만족도(NCSI) 1위
+달성기념이벤트 이벤트기간 2016.12.20 ~ 2017.02.28" class="default_txt"></i-picture>
+                                        <i-picture image="./images/img_conList02_active_0228.gif" alt="이벤트 취향저격 KB 만들기 고객의견 설문이벤트 이벤트기간 2016.12.20 ~ 2017.02.28" class="active_txt"></i-picture>
+                                    </span>
+                                </a>
+                                <!--<i-text href="https://omoney.kbstar.com/quics?page=C016559&cc=b033091:b032977&이벤트일련번호=254922" class="link_box">
+                                    <span class="con_box">
+                                        <i-picture image="./images/img_conList02_0228.gif" alt="2. 이벤트 국민과 함께하는 새봄맞이 KB환전이벤트 다양한 이벤트 참여하고
+환율우대혜택 및 리브메이트 포인트리 받자 이벤트기간 2017.03.01 ~ 2017.05.31" class="default_txt"/>
+                                        <i-picture image="./images/img_conList02_active_0228.gif" alt="이벤트 국민과 함께하는 새봄맞이 KB환전이벤트 다양한 이벤트 참여하고 환율우대혜택 및 리브메이트 포인트리 받자 이벤트기간 2017.03.01 ~ 2017.05.31" class="active_txt" />
+                                    </span>
+                                </i-text>-->
+                            </li>
+                            <li class="list03">
+                                <a href="https://omoney.kbstar.com/quics?page=C045659" class="link_box">
+                                    <span class="con_box">
+                                        <i-picture image="./images/img_conList03_170208.gif" alt="3. 웹툰 나만의 생활금융플랫폼 Liiv 사용설명 웹툰, Liiv의 주요기능 설명을 아이오아이 멤버들의 재미있는 에피소드로 꾸민 웹툰이 탄생했습니다!" class="default_txt"></i-picture>
+                                        <i-picture image="./images/img_conList03_active_170208.gif" alt="3. 웹툰 나만의 생활금융플랫폼 Liiv 사용설명 웹툰, Liiv의 주요기능 설명을 아이오아이 멤버들의 재미있는 에피소드로 꾸민 웹툰이 탄생했습니다! 자세히보기" class="active_txt" ></i-picture>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list04"><!-- 2016-11-14 수정 -->
+                                <a href="https://www.liivmate.com/katws/web/main.do" target="_blank" class="link_box">
+                                    <span class="con_box">
+                                        <i-picture image="./images/img_conList07_170208.gif" alt="4. 서비스 KB금융그룹통합멤버십 Liiv Mate(리브메이트) 출시 KB금융그룹 통합포인트와 제휴사 포인트를 모아모아 현금처럼 사용하세요"  class="default_txt"></i-picture>
+                                        <i-picture image="./images/img_conList07_active_170208.gif" alt="서비스 KB금융그룹통합멤버십 Liiv Mate(리브메이트) 출시 KB금융그룹 통합포인트와 제휴사 포인트를 모아모아 현금처럼 사용하세요 자세히보기" class="active_txt" ></i-picture>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list05">
+                                <a href="https://obank.kbstar.com/quics?page=C034288" class="link_box">
+                                    <span class="con_box">
+                                        <i-picture image="./images/img_conList05.gif" alt="5. 금융사고예방 전자금융사기예방 서비스 안내 피싱·파밍 등 각종 금융사기 수법에 대비해 한층 강화된 전자금융사기예방서비스를 소개합니다." class="default_txt" ></i-picture>
+                                        <i-picture image="./images/img_conList05_active.gif" alt="금융사고예방 전자금융사기예방 서비스 안내 피싱·파밍 등 각종 금융사기 수법에 대비해 한층 강화된 전자금융사기예방서비스를 소개합니다. 자세히보기" class="active_txt" ></i-picture>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list06">
+                                <a href="https://omoney.kbstar.com/quics?page=C016559&amp;cc=b033091:b032977&amp;이벤트일련번호=255121" class="link_box">
+                                    <span class="con_box">
+                                        <i-picture image="./images/img_conList06_20170306.gif" alt="6. 이벤트  신상품 「KB 일코노미 청춘 패키지」 출시, 우아한 1코노미 고객님을 위한 KB의 특별한 제안!" class="default_txt" ></i-picture>
+                                        <i-picture image="./images/img_conList06_active_20170306.gif" alt="이벤트  신상품 「KB 일코노미 청춘 패키지」 출시, 우아한 1코노미 고객님을 위한 KB의 특별한 제안!  자세히보기" class="active_txt"></i-picture>
+                                    </span>
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
+<!--이미지버젼--->
+<div class="security_con">
+                        <div><i-text href="https://obiz.kbstar.com/quics?page=C039486"><i-picture image="./images/img_asset_move_txt_161215.gif" alt="미수령주식 찾아주기 캠페인"></i-text></div>
+                        <div><i-text href="https://obank.kbstar.com/quics?page=C034305&amp;boardId=722&amp;compId=b035718&amp;articleId=1489&amp;bbsMode=view&amp;viewPage=2&amp;articleClass=&amp;searchCondition=title&amp;searchStr=#loading"><i-picture image="./images/img_prohibit_txt.gif" alt="사진촬영·QR스캔 절대금지 OTP번호/보안카드 전체, 일부 (2개초과)요구는 금융사기니 절대 응하지 마십시오."></i-text></div>
+                    </div>
+
+                    <!--텍스트버젼
+
+                    <div class="security_con">
+                        <div class="con_box">
+                            <strong class="tit"><i-picture image="./images/img_asset_move_tit.gif" alt="계좌이동(자동이체 통합관리)" /></strong>
+                            <p class="txt">KB국민은행으로 자동이체 변경하고<br />혜택 받으세요!</p>
+                            <i-text href="https://omoney.kbstar.com/quics?page=oshift#loading"><i-picture image="./images/img_detail_view.gif" alt="계좌이동(자동이체 통합관리) 자세히 보기" /></i-text>
+                        </div>
+                        <div class="con_box">
+                            <strong class="tit"><i-picture image="./images/img_prohibit_tit.gif" alt="사진촬영·QR스캔 절대금지" /></strong>
+                            <p class="txt">OTP번호/ 보안카드 전체·일부<br />(2개 초과)요구는 금융사기니<br />절대 응하지 마십시오.</p>
+                            <i-text href="https://obank.kbstar.com/quics?page=C034305&boardId=722&compId=b035718&articleId=1489&bbsMode=view&viewPage=2&articleClass=&searchCondition=title&searchStr=#loading"><i-picture image="./images/img_detail_view.gif" alt="사진촬영·QR스캔 절대금지 자세히 보기" /></i-text>
+                        </div>
+                    </div>
+                    --->
+                </div>
+                <!-- //상단 컨텐츠 -->
+
+                <!-- 하단 배너영역 -->
+                <div class="container smart_quick_banner">
+                    <div class="title_area">
+                        <span class="top_txt"><i-picture image="./images/img_smart_top.png" alt="KB추천상품" /></span>
+                        <strong class="smart_title active"><i-picture image="./images/img_smart_quick_tit.png" alt="당신의 더 나은 내일을 위해" /></strong>
+                        <strong class="smart_title"><i-picture image="./images/img_smart_quick_tit02.png" alt="가까이에서 든든한 힘이 되겠습니다." /></strong>
+                        <div class="controller">
+                            <button class="btn_prev"><i-picture image="./images/btn_smart_prev.png" alt="이전 메뉴 상품보기" /></button>
+                            <button class="btn_next"><i-picture image="./images/btn_smart_next.png" alt="다음 메뉴 상품보기" /></button>
+                        </div>
+                    </div>
+                    <div class="prod_list_wrap">
+                        <!-- 첫번째 탭 활성화시 class active -->
+                        <div class="prod_list active">
+                            <div class="list">
+                                <a href="https://obank1.kbstar.com/quics?page=C018415&cc=b030646:b029684&%EC%9B%B9%EC%83%81%ED%92%88%EC%BD%94%EB%93%9C=DP000821&%EB%85%B8%EB%93%9C%EC%BD%94%EB%93%9C=00007#loading" class="link_con">
+                                    <i-picture image="./images/img_smart_list01.jpg" alt="" ></i-picture>
+                                    <span class="info_box">
+                                        <strong class="prod_name"><i-picture image="./images/img_smart_list01_tit.gif" alt="KB내맘대로 적금" ></i-picture></strong>
+                                        <i-picture image="./images/img_smart_list01_txt.gif" alt="금액도 기간도 우대금리도 내맘대로 DIY형 적금" ></i-picture>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="list">
+                                <a href="https://obank1.kbstar.com/quics?page=C018415&cc=b030646:b029684&%EC%9B%B9%EC%83%81%ED%92%88%EC%BD%94%EB%93%9C=DP000228&%EB%85%B8%EB%93%9C%EC%BD%94%EB%93%9C=00007#loading" class="link_con">
+                                    <i-picture image="./images/img_smart_list02.jpg" alt="" ></i-picture>
+                                    <span class="info_box">
+                                        <strong class="prod_name"><i-picture image="./images/img_smart_list02_tit.gif" alt="직장인우대적금" ></i-picture></strong>
+                                        <i-picture image="./images/img_smart_list02_txt.gif" alt="잘 나가는 직장인의 알짜배기 재테크" ></i-picture>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="list">
+                                <a href="https://obank1.kbstar.com/quics?page=C018415&cc=b030646:b029684&%EC%9B%B9%EC%83%81%ED%92%88%EC%BD%94%EB%93%9C=DP000160&%EB%85%B8%EB%93%9C%EC%BD%94%EB%93%9C=00007" class="link_con">
+                                    <i-picture image="./images/img_smart_list03.jpg" alt="" ></i-picture>
+                                    <span class="info_box">
+                                        <strong class="prod_name"><i-picture image="./images/img_smart_list03_tit.gif" alt="e파워정기예금" ></i-picture></strong>
+                                        <i-picture image="./images/img_smart_list03_txt.gif" alt="KB Star*통장, KB樂Star통장, KB국군장병우대통장이 있으면 우대이율" ></i-picture>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="list"><!-- 2017-03-09 -->
+                                <a href="https://obank.kbstar.com/quics?page=C040464" class="link_con">
+                                    <i-picture image="./images/img_smart_list08.jpg" alt="해외주식 투자전용펀드(해외주식비과세펀드)" ></i-picture>
+                                    <span class="info_box">
+                                        <strong class="prod_name"><i-picture image="./images/img_smart_list08_tit.gif" alt="누구나 가입 가능 효과적인 증여 수단 최장 10년동안 비과세 혜택" ></i-picture></strong>
+                                        <i-picture image="./images/img_smart_list08_txt.gif" alt="" ></i-picture>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 두번째 탭 -->
+                        <div class="prod_list">
+                            <div class="list">
+                                <a href="https://obank1.kbstar.com/quics?page=C036317" class="link_con">
+                                    <i-picture image="./images/img_smart_list04.jpg" alt="" ></i-picture>
+                                    <span class="info_box">
+                                        <strong class="prod_name"><i-picture image="./images/img_smart_list04_tit.gif" alt="KB급여이체신용대출" ></i-picture></strong>
+                                        <i-picture image="./images/img_smart_list04_txt.gif" alt="12개월 이상 급여이체 실적이 있는 고객" ></i-picture>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="list">
+                                <a href="https://obank1.kbstar.com/quics?page=C019478&cc=b029925:b030008&%EC%9B%B9%EC%83%81%ED%92%88%EC%BD%94%EB%93%9C=LN000088&QSL=F" class="link_con">
+                                    <i-picture image="./images/img_smart_list05.jpg" alt="" > </i-picture>
+                                    <span class="info_box">
+                                        <strong class="prod_name"><i-picture image="./images/img_smart_list05_tit.gif" alt="KB무보증약속드림" ></i-picture></strong>
+                                        <i-picture image="./images/img_smart_list05_txt.gif" alt="당행 우량 신용고객 중에서 대출대상자로 선정되신 고객" ></i-picture>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="list">
+                                <a href="https://obank1.kbstar.com/quics?page=C019481" class="link_con">
+                                    <i-picture image="./images/img_smart_list06.jpg" alt="" ></i-picture>
+                                    <span class="info_box">
+                                        <strong class="prod_name"><i-picture image="./images/img_smart_list06_tit.gif" alt="예·부적금담보대출" ></i-picture></strong>
+                                        <i-picture image="./images/img_smart_list06_txt.gif" alt="당행 예·부적금, 신탁 등 보유고객" ></i-picture>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //하단 배너영역 -->
+
+                <!-- 사이트 링크 영역 -->
+
+                <div class="container site_link_content">
+                    <strong class="btn_total_link"><i-picture image="./images/img_total.gif" alt="KB APP" /></strong>
+                    <ul class="horizon_list">
+                        <li class="list01"><a href="https://omoney.kbstar.com/quics?page=C028156"><i-picture image="./images/img_mobank.gif" alt="KB스타뱅킹 앱 바로가기" ></i-picture></a></li>
+                        <li class="list02"><a href="https://omoney.kbstar.com/quics?page=C030160"><i-picture image="./images/img_mobiz.gif" alt="KB기업뱅킹 앱 바로가기" ></i-picture></a></li>
+                        <li class="list03"><a href="https://omoney.kbstar.com/quics?page=C043279"><i-picture image="./images/img_momoney.gif" alt="KB마이머니 앱" ></i-picture></a></li>
+                        <li class="list04"><a href="https://obank.kbstar.com/quics?page=C040663"><i-picture image="./images/img_moalarm.gif" alt="KB스타알림 앱 바로가기" ></i-picture></a></li>
+                        <li class="list05"><a href="https://omoney.kbstar.com/quics?page=C041949"><i-picture image="./images/img_liiv.gif" alt="Liiv 앱 안내페이지 바로가기" ></i-picture></a></li>
+                        <li class="list06"><a href="https://omoney.kbstar.com/quics?page=C045013"><i-picture image="./images/img_liivmate.gif" alt="Liiv Mate 앱 바로가기" ></i-picture></a></li>
+                        <li class="list07"><a href="http://nland.kbstar.com/quics?page=B027515"><i-picture image="./images/img_estate.gif" alt="KB부동산 앱 바로가기" ></i-picture></a></li>
+                        <li class="list08"><a href="https://omoney.kbstar.com/quics?page=C045893"><i-picture image="./images/img_liivtong.gif" alt="liiv tong 안내페이지 바로가기" ></i-picture></a></li>
+                    </ul>
+                    <div class="side_link">
+                        <ul>
+                            <li><a href="https://obank1.kbstar.com/quics?page=C022180"><i-picture image="./images/img_side_link01.gif" alt="상품공시실 바로가기" ></i-picture></a></li>
+                            <li><a href="http://www.fss.or.kr/fss/kr/main.html" target="_blank"><i-picture image="./images/img_side_link02.gif" alt="금융감독원 바로가기" ></i-picture></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //contentWrap -->
+
+    <!-- footer -->
+    <div class="footWrap">
+        <div id="FOOTER">
+            <div class="foot_area_2015">
+                <ul class="foot_info" style="display: inline-block;width: 580px;">
+                    <li><i-text href="https://obank.kbstar.com/quics?page=C019763">이용상담</i-text></li>
+                    <li><i-text href="https://obank.kbstar.com/quics?page=C040531">보안프로그램</i-text></li>
+                    <li><i-text href="https://obank.kbstar.com/quics?page=C019935">사고신고</i-text></li>
+                    <li><i-text href="https://obank.kbstar.com/quics?page=C023000">보호금융상품등록부</i-text></li>
+                    <li><i-text href="https://obank.kbstar.com/quics?page=C036346"><strong>전자민원접수</strong></i-text></li>
+                    <li><i-text href="https://obank.kbstar.com/quics?page=C042306"><strong>개인정보처리방침</strong></i-text></li>
+                    <li style="line-height:30px;"><i-text href="https://omoney.kbstar.com/quics?page=C017681" style="padding-left: 0;background:none;"><strong>경영공시</strong></i-text></li>
+                    <li style="line-height:30px;"><i-text href="https://obank.kbstar.com/quics?page=C040593">그룹 내 고객정보 제공안내</i-text></li>
+                </ul>
+                <p class="foot_call"><strong class="tits">대표전화</strong> 1588-9999, 1599-9999, 1644-9999  외국인전용 1599-4477 (해외 +82-2-6300-9999)</p><!-- 2017-02-16 수정 -->
+                <p class="foot_call mt5"><em class="tits">ACS센터</em>  1588-9008 (해외전화 82-42-603-0711)</p><!-- 2017-02-16 추가 -->
+                <p class="copy">Copyright KB Kookmin Bank. All Rights Reserved.</p>
+                <div class="foot_combo_box">
+                    <!-- <div class="select_combo_2015">
+                        <div class="select_combo_open"> <i-text href="javascript:;"><span>KB금융그룹네트워크</span><span class="readonly">링크 열기</span></i-text></div>
+                        <div class="select_combo_box up" style="display: none;">
+                            <ul class="select_style">
+                                <li><i-text href="https://www.kbfg.com" target="_blank">KB금융그룹</i-text></li>
+                                <li><i-text href="http://www.kbinsure.co.kr" target="_blank">KB손해보험</i-text></li>
+                                <li><i-text href="https://www.kbcard.com" target="_blank">KB국민카드</i-text></li>
+                                <li><i-text href="http://www.kbsec.co.kr" target="_blank">KB투자증권</i-text></li>
+                                <li><i-text href="https://www.kbli.co.kr" target="_blank">KB생명보험</i-text></li>
+                                <li><i-text href="http://www.kbam.co.kr" target="_blank">KB자산운용</i-text></li>
+                                <li><i-text href="http://www.kbcapital.co.kr" target="_blank">KB캐피탈</i-text></li>
+                                <li><i-text href="https://www.kbsavings.com" target="_blank">KB저축은행</i-text></li>
+                                <li><i-text href="http://www.kbret.co.kr" target="_blank">KB부동산신탁</i-text></li>
+                                <li><i-text href="http://www.kbic.co.kr" target="_blank">KB인베스트먼트</i-text></li>
+                                <li><i-text href="http://www.kbci.co.kr" target="_blank">KB신용정보</i-text></li>
+                                <li><i-text href="http://www.kds.co.kr" target="_blank">KB데이타시스템</i-text></li>
+                                <li><i-text href="https://www.kbfg.com/kbresearch/main.do" target="_blank">KB경영연구소</i-text></li>
+                            </ul>
+                        </div>
+                    </div> -->
+                    <i-combo items="[{value:'1',label:'KB금융그룹'},{value:'2',label:'KB손해보험'},{value:'3',label:'KB국민카드'},{value:'4',label:'KB투자증권'}]">
+                </div>
+
+                <div class="foot_gra"> <i-picture image="./images/img_award_201201_n5_new_5_n2_n.gif" alt="제11회 웹어워드 코리아 금융부문 통합대상" ></i-picture> <a href="https://www.facebook.com/kbkookminbank" target="_blank" title="새창"><i-picture image="./images/icon_facebook_n.gif" alt="KB국민은행공식페이스북" ></i-picture></a> </div>
+            </div>
+        </div>
+    </div>
+    <!-- //footer -->
+</div>
+
+</body>
+
+</html>

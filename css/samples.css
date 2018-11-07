@@ -1,0 +1,73 @@
+/*i-switch.checked .button {
+	background-color: #FFFFFF;
+	border : 1px solid #32C5D2;
+}
+i-switch.checked .button:before {
+	border: 1px solid #32C5D2;
+	background-color: #32C5D2;
+}
+i-switch.checked .button:after {
+	color: #32C5D2;
+}
+
+i-combo .fa-caret-down:before {
+	color :#32C5D2;
+}*/
+.search-panel {
+	background-color:#D2EBFF;
+	border: 2px solid #6EB7EF;
+}
+.search-panel i-button {
+	background-color: #32C5D2;
+	border: none;
+	color : #FFFFFF;
+}
+/* div */
+.div-group-panel {
+	border-left: 2px solid #D0DAE7;
+	background-color: #EEF1F5;
+}
+.div-group-panel i-button {
+	background-color: #588DCC;
+	border: none;
+	color : #FFFFFF;
+}
+.group-panel {
+	border-left: 2px solid #D0DAE7;
+}
+/* group box header */
+.group-panel .wrapper .title-area {
+	background-color: #D0DAE7;
+	border-bottom: none;
+	align-items: center;
+}
+.group-panel .icon {
+	display: none;
+}
+/* group box content */
+.group-panel .wrapper .contents-area {
+    background-color: #EEF1F5;
+    border: none;
+}
+.group-panel .wrapper .contents-area i-button{
+	background-color: #588DCC;
+	border: none;
+	color : #FFFFFF;
+}
+
+.bottom-panel {
+	border: none;
+	background-color: #AEAEAE;
+}
+
+.bottom-panel i-button{
+	background-color: #313131;
+	border: none;
+	color : #76D7FF;
+}
+
+.group-btn {
+	background-color: #588DCC;
+	border: none;
+	color : #FFFFFF;
+}

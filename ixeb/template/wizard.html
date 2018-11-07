@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<htmllang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="modified" content="2018/04/12 15:47">
+    <meta name="generator" content="iXebStudio 1.0.0.1713">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="ixeb-studio:grid-size" content="10x10">
+    <meta name="ixeb-studio:screen-size" content="650x200">
+    <meta name="created" content="2018/04/11 10:41">
+    <title>New File Wizard</title>
+    <script type="text/javascript" src="../ext/jquery/2.2.1/jquery-2.2.1.min.js"></script>
+    <script type="text/javascript" src="../lib/ixebBase.min.js"></script>
+    <!-- From here, enter your script and style. -->
+    <link type="text/css" rel="stylesheet" href="../css/common.css">
+    <style>
+        body {
+            overflow: auto;
+            background-color: RGB(70, 77, 83);
+        }
+
+        i-text {
+            color: #889DB2;
+        }
+
+        i-button {
+            background-color: RGB(34, 34, 34);
+            color: RGB(167, 167, 167);
+            border: 1px solid RGB(34, 34, 34);
+        }
+
+        .selected {
+            /*background-color: #000000!important;*/
+        }
+
+        hr {
+            border-top: 1px solid #2D3135;
+        }
+
+        .btn-designer {
+            vertical-align: middle;
+            opacity: 0.4;
+            border: 0;
+        }
+
+        .btn-designer:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+        /* 스크롤 전체 영역 */
+
+         ::-webkit-scrollbar {
+            background-color: rgb(44, 48, 53);
+            padding: 2px;
+        }
+        /* 스크롤 바탕 영역 */
+
+         ::-webkit-scrollbar-track {
+            background: rgb(44, 48, 53);
+        }
+        /* 이동 스크롤 영역 */
+
+         ::-webkit-scrollbar-thumb {
+            background: rgb(68, 68, 68);
+            border: 2px solid rgb(44, 48, 53);
+        }
+        /* [SIS 2016-09-01] 스크롤바 수평 영역 좌향 버튼
+        ::-webkit-scrollbar-button:horizontal:increment {
+            color: rgb(68, 68, 68);
+        }
+
+        /* [SIS 2016-09-01] 스크롤바 수평 영역 우향 버튼
+        ::-webkit-scrollbar-button:horizontal:decrement {
+            color: rgb(68, 68, 68);
+        }
+
+        /* [SIS 2016-09-01] 스크롤바 수직 영역 상향 버튼
+        ::-webkit-scrollbar-button:vertical:increment {
+            color: rgb(68, 68, 68);
+        }
+
+        /* [SIS 2016-09-01] 스크롤바 수직 영역 하향 버튼
+        ::-webkit-scrollbar-button:vertical:decrement {
+            color: rgb(68, 68, 68);
+        } */
+        /* [SIS 2016-09-01] 스크롤바 우측 최하단 교차영역 */
+
+         ::-webkit-scrollbar-corner {
+            background: rgb(68, 68, 68);
+        }
+    </style>
+
+    <script type="text/javascript">
+        var init_path;
+
+        function onAfterInitScreen_body() {
+            init();
+        }
+
+        function onchange_combo_fileType(e) {
+            setFileTemplate();
+        }
+
+        function localHandler() {
+            this.handlers = {};
+            this.eventListeners = {};
+
+            this.registHandler = function(name, callback) {
+                this.handlers[name] = callback;
+            };
+
+            this.addEventListener = function(id, functor) {
+                this.eventListeners[id] = functor;
+            };
+
+            this.handler = function(buffer) {
+                var response = JSON.parse(buffer);
+                var id = response["id"];
+                var method = response["method"];
+
+
+                if (typeof id != "undefined" &&
+                    typeof this.eventListeners[id] === "function") {
+                    var functor = this.eventListeners[id];
+                    functor(response);
+                    delete this.eventListeners[id];
+                } else if (typeof method != "undefined" &&
+                    typeof this.handlers[method] === "function") {
+                    var functor = this.handlers[method];
+                    functor(method, response);
+                }
+            };
+
+            this.request = function(r) {
+                var self = this;
+                return new Promise(function(resolve, reject) {
+                    if ("undefined" != typeof r.id) {
+                        self.addEventListener(r.id, function(res) {
+                            resolve(res);
+                        });
+                    } else {
+                        reject(Error("message handler is not defined."));
+                    }
+
+                    messageChain.invokeMessage(JSON.stringify(r));
+                });
+            };
+        }
+
+        var commander = new localHandler();
+
+        //민영준 : type 리스트
+        var comboList;
+
+        //민영준 : 입력된 data 가져오기
+        function getFileData() {
+            var _cursor1 = combo_fileType.getCurSel();
+            var _cursor2 = combo_fileTemplate.getCurSel();
+            var _data = this.comboList.type[_cursor1];
+            var _tmpl = _data.template[_cursor2];
+
+            var defualtExt = _data.ext ? _data.ext : null;
+            var ext = _tmpl.ext ? _tmpl.ext : null;
+
+            var params = {
+                dir: edit_folderDir.getCaption(),
+                type: ext ? ext : defualtExt,
+                template: combo_fileTemplate.getSelectedValue(),
+                title: edit_fileTitle.getCaption(),
+                name: edit_fileName.getCaption()
+            }
+            return params;
+        }
+
+        function create_script() {
+            var request = {
+                    id: 1,
+                    method: 'request.newFile',
+                    params: getFileData()
+                }
+            messageChain.invokeMessage(JSON.stringify(request));
+            closePanel();
+        }
+
+        //민영준 : onAfterInitScreen_body 시 기본 함수들 호출
+        function init() {
+            loadCombo();
+            edit_folderDir.value = init_path;
+            edit_fileTitle.value = "newFile";
+            edit_fileName.value = "newFile";
+            edit_fileName.focus();
+        }
+
+        //민영준 : JSON을 불러와 전역변수에 저장
+        function loadCombo() {
+            var request = {
+                id: 62515,
+                method: "request.fileRead",
+                params:{
+                    filepath:"ixeb/template/tmpl.json",
+                    charset:"UTF-8"
+                }
+            };
+            commander.request(request).then(function (response) {
+                //console.error(response);
+                //console.error("loadCombo result = " + response.params.result);
+                if( response.params.result == true ){
+                    console.warn("loadCombo path = " + response.params.contents);
+                    comboList = JSON.parse(response.params.contents);
+                    setFileType();
+                }
+            });
+        }
+
+        //민영준 : fileType combo list 생성
+        function setFileType() {
+            var _data = this.comboList.type;
+            var typeList = [];
+            for (key in _data) {
+                typeList = typeList.concat({
+                    value: _data[key].type,
+                    label: _data[key].type
+                });
+            }
+            combo_fileType.setItems(typeList);
+            combo_fileType.setCurSel(0);
+            singleCombo(typeList, combo_fileType)
+            setFileTemplate();
+        }
+
+        //민영준 : fileTemplate combo list 생성 fileType변경 시 호출
+        function setFileTemplate() {
+            var _cursor = combo_fileType.getCurSel();
+            var _data = this.comboList.type[_cursor];
+            var _tmpl = _data.template;
+            var templateList = [];
+            for (key1 in _tmpl) {
+                templateList = templateList.concat({
+                    value: Object.values(_tmpl[key1])[0],
+                    label: Object.keys(_tmpl[key1])[0]
+                })
+            }
+            combo_fileTemplate.setItems(templateList);
+            combo_fileTemplate.setCurSel(0);
+            singleCombo(templateList, combo_fileTemplate);
+        }
+
+        //민영준 : 싱글콤보 검사
+        function singleCombo(list, combo) {
+            if (list.length <= 1) {
+                combo.enable = false;
+            } else {
+                combo.enable = true;
+            }
+        }
+
+        function closePanel() {
+            var params = {
+                id: 1,
+                method: "context.Dialog.close"
+            };
+            messageChain.invokeMessage(JSON.stringify(params));
+        }
+
+        commander.registHandler("request.init", function(method, doc) {
+            //민영준 : folder dir 기본 입력
+            init_path = doc.params.dir;
+        });
+
+        function onclick_btn_selectFolder(e) {
+            var request = {
+                id: 62511,
+                method: "request.selectFolder",
+                params:{
+                    path:edit_folderDir.getCaption()
+                }
+            };
+            commander.request(request).then(function (response) {
+                if( response.params.result == true ){
+                    edit_folderDir.value = response.params.path;
+                }
+            });
+        }
+
+    </script>
+</head>
+
+<body onafterinitscreen="onAfterInitScreen_body()">
+
+    <i-text text="Folder :" style="position: absolute; top: 10px; left: 30px;" id="text0"></i-text>
+    <i-edit style="position: absolute;left: 100px;top: 10px;width: 418px" id="edit_folderDir"></i-edit>
+    <i-button text="Select Folder" style="position: absolute;left: 530px;top: 10px" id="btn_selectFolder" onclick="onclick_btn_selectFolder(arguments[0])"></i-button>
+    <i-text text="Type :" style="position: absolute; top: 40px; left: 30px;" id="text0"></i-text>
+    <i-combo style="position: absolute;top: 40px;left: 100px;width: 249px" id="combo_fileType" onchange="onchange_combo_fileType(arguments[0])"></i-combo>
+    <i-combo style="position: absolute;width: 238px;left: 360px;top: 40px" id="combo_fileTemplate"></i-combo>
+    <i-text text="File Name :" style="position: absolute; top: 70px; left: 30px;" id="text1"></i-text>
+    <i-edit style="position: absolute;top: 70px;left: 100px;width: 500px" id="edit_fileName"></i-edit>
+    <i-text text="File Title :" style="position: absolute; top: 100px; left: 30px;" id="text2"></i-text>
+    <i-edit style="position: absolute;top: 100px;left: 100px;width: 500px" id="edit_fileTitle"></i-edit>
+
+    <i-button text="OK" style="position: absolute; width: 94px; height: 19px; top: 140px; left: 222px; background-size: 100% 100%;" id="button1" onclick="create_script();"></i-button>
+    <i-button text="Cancel" style="position: absolute; width: 82px; height: 19px; top: 140px; left: 337px; background-size: 100% 100%;" id="button2" onclick="closePanel();"></i-button>
+
+</body>
+
+</html>

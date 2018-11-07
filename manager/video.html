@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-hline" content="" data-uid="5">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="6">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="7">
+    <meta name="created" content="2016/11/03 17:32" data-uid="8">
+    <title data-uid="9">video</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="10"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="11"></script>
+    <style data-uid="12">
+        #div2 {
+            height: calc(100% - 135px);
+        }
+        
+        #grid0 {
+            width: calc(100% - 20px);
+        }
+        
+        div>div>i-button {
+            background-color: #2E4255;
+            color: #ffffff;
+        }
+    </style>
+    <script type="text/javascript" data-uid="13">
+        function onInitScreen_body() {
+            video0.play();
+        }
+    </script>
+</head>
+
+<body id="user" data-uid="3" oninitscreen="onInitScreen_body();">
+    <div style="width: 100%; height: 100%; top: 0px; left: 0px; position: relative; background: rgb(230, 230, 230);" data-uid="14" id="div0">
+        <i-text text="사용자 정보" style="position: absolute; top: 10px; left: 10px;" data-uid="15" id="text0"></i-text>
+        <div style="height: 752px; top: 31px; left: 9px; position: relative; width : calc( 100% - 20px); background: rgb(255, 255, 255);" data-uid="16" id="div1">
+            <video controls="" style="width: 900px; position: absolute; top: 14px; left: 53px; background-color: black;" data-uid="17" id="video0">
+                <source src="../images/inzent.mp4" type="video/mp4" data-uid="18" style="position: relative; top: 0px; left: 0px;">Your browser does not support the video tag.</video>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2017/04/17 16:21" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1544" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="9">
+    <meta name="created" content="2017/04/13 13:38" data-uid="10">
+    <title data-uid="11">totalBalanceSearch</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="13"></script>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript" data-uid="14">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-04-13
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_totalBalanceSearch() {
+            //TODO:
+            var datas = grid0.gridItem;
+            grid0.getView().body().setStyleCallback(function(index, styles) {
+                if (index.column.index() === 5 || index.column.index() === 6) {
+                    var value = index.getValue();
+                    if (value < 0) {
+                        styles.extend({
+                            color: '#056ab2'
+                        });
+                    } else if (value > 0) {
+                        styles.extend({
+                            color: '#ee2200'
+                        });
+                    }
+                }
+            });
+            grid0.getView().getColumn(5).footer().setCallback(function(scope) {
+                var value = scope.sum();
+                if (value < 0) {
+                    this._styles.extend({
+                        color: '#056ab2'
+                    });
+                } else if (value > 0) {
+                    this._styles.extend({
+                        color: '#ee2200'
+                    });
+                }
+                return scope.sum();
+            });
+            grid0.getView().getColumn(6).footer().setCallback(function(scope) {
+                return;
+            });
+            grid0.setGridData(ixeb.util.parseJSON(datas));
+        }
+    </script>
+</head>
+
+<body id="totalBalanceSearch" data-uid="3" oninitscreen="onInitScreen_totalBalanceSearch();">
+    <i-grid style="width: 100%;height: 100vh;top: 0px;left: 0px;position: absolute;opacity: 0.99;" columns="[{'fieldName':'col0','name':'계좌번호','colType':'maskedit','type':'number','minusSign':'','maxLength':'12','minLength':'0','textAlignment':'left','pattern':'ZZZ-ZZ-ZZZZZZZ'},{'fieldName':'col1','name':'계좌유형'},{'fieldName':'col2','name':'D+2예수금','colType':'maskedit','type':'number','minusSign':'false','maxLength':'15','minLength':'0','textAlignment':'right','pattern':'ZZ,ZZZ,ZZZ,ZZZ.ZZZZ'},{'fieldName':'col3','name':'순자산총액','colType':'maskedit','textAlignment':'right','type':'number','minusSign':'false','maxLength':'15','minLength':'0','pattern':'ZZ,ZZZ,ZZZ,ZZZ.ZZZZ'},{'fieldName':'col4','name':'평가금액','colType':'maskedit','type':'number','minusSign':'false','maxLength':'15','minLength':'0','textAlignment':'right','pattern':'ZZ,ZZZ,ZZZ,ZZZ.ZZZZ'},{'fieldName':'col5','name':'평가손익','minusSign':'true','colType':'maskedit','type':'number','maxLength':'31','minLength':'0','textAlignment':'right','pattern':'-ZZZ,ZZZ,ZZZ,ZZZ,ZZZ,ZZZ,ZZZ,ZZZ,ZZZ,ZZ9'},{'fieldName':'col6','name':'손익율','minusSign':'true','colType':'maskedit','type':'number','maxLength':'6','minLength':'0','textAlignment':'right','pattern':'-ZZZ.ZZ','colAutoMerge':false}]"
+        data-uid="15" id="grid0" columncount="7" initrowcount="0" sumrowshow="sum" columnlastextend="true" columnmove="false" columnresize="false" statebar="false" rowautocount="true" strippedpattern="true" sorted="false" checkbar="false" griditem="[
+	[ '00177001320', '개인CMA',	'1', '119713', '119712', '50', 0.04 ],
+	[ '01199021320', '위탁', '212', '212', '0', '0', '0.00' ],
+	[ '01199011340', '위탁', '87', '87', '0', '0', '0' ],
+	[ '03174401320', '일반적립식', 14, 14, '0', '0', '0' ],
+	[ '03171001320', '연금저축투자신탁', '20447', '41346', '20899', '899', '4.50' ],
+	[ '03176501320', '개인CMA', '0', '484225', '484225', '10416', '2.18' ],
+	[ '31173041720', '개인CMA', '209', '1505924', '1505715', '-2568660', '-1514' ],
+	[ '33113121427', '일반적립식', '0', '0', '0', '0', '0' ],
+	[ '41112401324', '개인CMA', '0', '0', '0', '0', '0' ],
+	[ '53134001320', '일반적립식', '0', '0', '0', '0', '0' ],
+	[ '78234503320', '위탁', '0', '0', '0', '0', '0' ],
+	[ '45179331420', '개인CMA', '0', '0', '0', '0', '0' ],
+	[ '00187341332', '일반적립식', '0', '0', '0', '0', '0' ],
+	[ '23457044120', '위탁', '0', '0', '0', '0', '0' ],
+	[ '04172012341', '일반적립식', '0', '0', '0', '0', '0' ]
+]" autosize="false" sumrowtitle="합계" currencysign="" decimallength="0" maxlength="12" minlength="0" minussign="" pattern="ZZZ-ZZ-ZZZZZZZ" textalign="left" type="number" unitdecimal="" unitinsert="false" unitposition="" unitsymbol="" colheadtextcolor="#121212"
+        sumrowcolor="#FFFFFF"></i-grid>
+</body>
+
+</html>

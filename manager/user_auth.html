@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-vline" content="1437," data-uid="5">
+    <meta name="modified" content="2017/01/02 11:12" data-uid="6">
+    <meta name="generator" content="iXebStudio 1.0.0.1172" data-uid="7">
+    <meta name="ixeb-studio:guide-hline" content="" data-uid="8">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="9">
+    <meta name="ixeb-studio:screen-size" content="1024x705" data-uid="10">
+    <meta name="created" content="2016/11/03 17:32" data-uid="11">
+    <title data-uid="12">user_auth</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="13"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="14"></script>
+    <style data-uid="15" id="style1">
+        #div2 {
+            height: calc(100% - 135px);
+        }
+        
+        #grid0 {
+            width: calc(100% - 20px);
+        }
+        
+        .selected {
+            background: #ffffff;
+        }
+    </style>
+    <script type="text/javascript" data-uid="16">
+        // onInitScreen_body
+        function onInitScreen_body() {
+            grid0.setColumnProperty(0, 'colWidth', 80);
+            grid0.setColumnProperty(0, 'readOnly', true);
+            grid0.setColumnProperty(1, 'colWidth', 80);
+            grid0.setColumnProperty(1, 'readOnly', true);
+            grid0.setColumnProperty(2, 'colWidth', 80);
+            grid0.setColumnProperty(2, 'readOnly', true);
+            grid0.setColumnProperty(3, 'colWidth', 80);
+            grid0.setColumnProperty(3, 'readOnly', true);
+            grid0.setColumnProperty(4, 'colWidth', 80);
+            grid0.setColumnProperty(4, 'readOnly', true);
+            grid0.setColumnProperty(5, 'colType', 'check');
+            grid0.setColumnProperty(6, 'colType', 'check');
+            grid0.setColumnProperty(7, 'colType', 'check');
+            grid0.setColumnProperty(8, 'colType', 'check');
+            grid0.setColumnProperty(9, 'colType', 'check');
+            grid0.setColumnProperty(10, 'colType', 'check');
+            grid0.getView().body().setStyles({
+                borderBottom: '#e6e6e6'
+            });
+            grid0.getView().setStyles({
+                border: '#e6e6e6,1px,solid'
+            });
+            grid0.getColumns().forEach(function(column) {
+                column.styles().setTextAlignment('center');
+            });
+        }
+        // 조회
+        function replaceAll(str, searchStr, replaceStr) {
+            return str.split(searchStr).join(replaceStr);
+        }
+
+        function onclick_btn_select0() {
+            debugger;
+            // Param 추가
+            var comboData = combo0.value;
+            if ('Manager' == comboData) {
+                comboData = '1';
+            }
+            dataset0.setParams({
+                SEARCH_TOTAL_COMBO: comboData
+            });
+            if ("" != edit0.value) { // 통합검색
+                var str = edit0.value;
+                str = replaceAll(str, "*", "%25");
+                dataset0.setParams({
+                    SEARCH_TOTAL: str
+                });
+            } else if ("" != edit1.value || "" != edit2.value || "" != edit3.value || "" != edit4.value || "" != edit5.value) { // 상세검색
+                // 사번
+                var str = edit1.value;
+                str = replaceAll(str, "*", "%25");
+                dataset0.setParams({
+                    SEARCH_USER_ID: str
+                });
+                // 성명
+                str = edit2.value;
+                str = replaceAll(str, "*", "%25");
+                dataset0.setParams({
+                    SEARCH_USER_NAME: str
+                });
+                // 직급
+                str = edit3.value;
+                str = replaceAll(str, "*", "%25");
+                dataset0.setParams({
+                    SEARCH_USER_RANK: str
+                });
+                // 부서코드
+                str = edit4.value;
+                str = replaceAll(str, "*", "%25");
+                dataset0.setParams({
+                    SEARCH_OFFICE_CODE: str
+                });
+                // 접속시스템
+                str = edit5.value;
+                str = replaceAll(str, "*", "%25");
+                dataset0.setParams({
+                    SEARCH_USER_TYPE: str
+                });
+            } else {}
+            ixeb.comm.transaction({
+                "async": true,
+                "out": [dataset0.serviceId + '=>dataset0'],
+                //"url": "http://localhost:8080/ixeb-manager/service.ixeb",
+                "url": "http://localhost:8080/SpringFramework2/userAuth.list.ixeb", // spring 사용
+                "params": {}
+            }).done(function(r) {
+                debugger;
+                console.log("success");
+                text7.text = '총 <strong style=\'color:#FF0000; font-size: 15px\'>' + grid0.getGridData().length + '</strong>건이 조회되었습니다.';
+            }).fail(function(r) {
+                console.log("error", r);
+            }).always(function() {
+                console.log("always");
+            });
+            grid0.getColumns().forEach(function(column) {
+                column.styles().setTextAlignment('center');
+            });
+        }
+        // 상세조회
+        function onclick_button1() {
+            edit1.clear();
+            edit2.clear();
+            edit3.clear();
+            edit4.clear();
+            edit5.clear();
+            var state = $('#div3').css('display');
+            if (state == 'none') {
+                $('#div3').show();
+                $('#picture0').css({
+                    "background-image": "url(./images/bt2.png)"
+                });
+                $('#btn_total_search').hide();
+                text_search.text = "상세검색";
+            } else {
+                $('#div3').hide();
+                $('#picture0').css({
+                    "background-image": "url(./images/bt.png)"
+                });
+                $('#btn_total_search').show();
+                text_search.text = "통합검색";
+            }
+            edit1.focus();
+        }
+        // 엑셀저장
+        function onclick_btn_excelExport0() {
+            grid0.exportData("export.xlsx");
+        }
+        // 엑셀입력
+        function onclick_btn_excelImport0() {
+            var self = this;
+            var input = $('<input type="file" accept="*.xlsx, *.xls">');
+            $(input).change(function(e) {
+                self._importFromExcel(this.files[0]);
+            });
+            $(input).click();
+        }
+
+        function _importFromExcel(file) {
+            var filename = file.name;
+            var self = this,
+                reader = new FileReader();
+            reader.onload = function(e) {
+                var data = e.target.result,
+                    arr = String.fromCharCode.apply(null, new Uint8Array(data)),
+                    wb = XLSX.read(btoa(arr), {
+                        type: 'base64'
+                    }),
+                    _data = self._process_wb(wb);
+                self.setGridData(_data);
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function _process_wb(workbook) {
+            var result = {},
+                sheetName = workbook.SheetNames[0],
+                roa = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+            if (roa.length > 0) {
+                result[sheetName] = roa;
+            }
+            return result;
+        }
+
+        function findColumn(data) {
+            var dataObj = new Object();
+            var columnLength = grid0.getColumns().length;
+            for (var i = 0; i < columnLength; i++) {
+                dataObj[grid0.getColumn(i).fieldName()] = data[grid0.getColumn(i).name()];
+            }
+            return dataObj;
+        }
+
+        function setGridData(_data) {
+            for (key in _data) {
+                var data = _data[key];
+                for (var i = 0; i < data.length; i++) {
+                    var dataObj = findColumn(data[i]);
+                    dataset0.appendRow(dataObj);
+                }
+            }
+        }
+        // 인쇄
+        function onclick_btn_print0() {
+            alert("인쇄");
+        }
+        // 설정
+        function onclick_btn_clear0() {
+            // 상위 라인
+            var lineDiv4 = $(window.top.document).find('#div4');
+            lineDiv4.css('display', 'none');
+            // 신규 사용자 등록
+            $('#div_del_user').show();
+            var gridCheck = 0;
+            var gridLength = grid0.getGridData().length;
+            for (var i = 0; i < gridLength; i++) {
+                if (grid0.isCheckedRow(i)) {
+                    gridCheck++;
+                }
+            }
+            text17.text = '총 <strong style=\'color:rgb(174, 209, 54); font-size: 30px;\'>' + gridCheck + '</strong>건이 선택되었습니다. 설정하시겠습니까?';
+        }
+        // 설정 - 취소
+        function onclick_btn_del_user_cancel() {
+            // 신규 사용자 등록
+            $('#div_del_user').hide();
+            // 상위 라인
+            var lineDiv4 = $(window.top.document).find('#div4');
+            lineDiv4.css('display', 'block');
+        }
+        // 설정 - 변경
+        function onclick_btn_del_user_ok() {
+            debugger;
+            // 신규 사용자 등록
+            $('#div_del_user').hide();
+            // 상위 라인
+            var lineDiv4 = $(window.top.document).find('#div4');
+            lineDiv4.css('display', 'block');
+            var comboData = combo0.value;
+            if ('Manager' == comboData) {
+                comboData = '1';
+            }
+            dataset0.setParams({
+                SEARCH_TOTAL_COMBO: comboData
+            });
+            ixeb.comm.transaction({
+                "async": true,
+                "in": ['dataset0=>' + dataset0.serviceId],
+                "out": [dataset0.serviceId + '=>dataset0'],
+                //"url": "http://localhost:8080/ixeb-manager/service.ixeb",
+                "url": "http://localhost:8080/SpringFramework2/userAuth.list.ixeb", // spring 사용
+                "params": {}
+            }).done(function(r) {
+                console.log("success");
+                text7.text = '총 <strong style=\'color:#FF0000; font-size: 15px\'>' + grid0.getGridData().length + '</strong>건이 조회되었습니다.';
+            }).fail(function(r) {
+                console.log("error", r);
+            }).always(function() {
+                console.log("always");
+            });
+        }
+
+        function onclick_btn_exec0() {
+            var checkCount = 0;
+            var gridLength = grid0.getGridData().length;
+            for (var i = 0; i < gridLength; i++) {
+                if (grid0.isCheckedRow(i)) {
+                    checkCount++;
+                } else {
+                    dataset0.setRowStatus(i, 'R');
+                }
+            }
+            // 상위 라인
+            var lineDiv4 = $(window.top.document).find('#div4');
+            lineDiv4.css('display', 'none');
+            // 신규 사용자 등록
+            $('#div_del_user').show();
+            text17.text = '총 <strong style=\'color:rgb(174, 209, 54); font-size: 30px;\'>' + checkCount + '</strong>건이 선택되었습니다. 설정하시겠습니까?';
+        }
+    </script>
+    <i-dataset data-uid="17" id="dataset0" serviceid="service_TBH_USER_AUTH2">
+        <header data-uid="18"> [ {"id": "USER_ID","desc": "","object": "","type": "","size": ""}, {"id": "USER_NAME","desc": "","object": "","type": "","size": ""}, {"id": "USER_RANK","desc": "","object": "","type": "","size": ""}, {"id": "OFFICE_CODE","desc": "","object":
+            "","type": "","size": ""}, {"id": "USER_TYPE","desc": "","object": "","type": "","size": ""}, {"id": "AUTH_USER","desc": "","object": "","type": "","size": ""}, {"id": "AUTH_NOTICE","desc": "","object": "","type": "","size": ""}, {"id": "AUTH_CONFIGURATION","desc":
+            "","object": "","type": "","size": ""}, {"id": "AUTH_DEPLOYMENT","desc": "","object": "","type": "","size": ""}, {"id": "AUTH_SERVER_API","desc": "","object": "","type": "","size": ""}, {"id": "AUTH_SET","desc": "","object": "","type": "","size":
+            ""} ] </header> <data data-uid="19">
+[]
+	</data>
+        <i-bind bindtype="recordset" target="grid0" data-uid="20"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="user" data-uid="3" oninitscreen="onInitScreen_body();">
+    <div style="width: 100%; height: calc(100% - 7px); top: 7px; left: 0px; position: relative; background: rgb(230, 230, 230);" data-uid="21" id="div0">
+        <i-text text="사용자 권한조회" style="position: absolute; top: 10px; left: 14px; font-size: 13pt; letter-spacing: 0.5px;" data-uid="22" id="text0"></i-text>
+        <div style="height: 60px; top: 40px; left: 14px; position: relative; width: calc(100% - 28px); background: rgb(255, 255, 255);" data-uid="23" id="div1">
+            <i-text text="통합검색" style="width: 52px; position: absolute; top: 22.5px; left: 43px; height: 15px; border: 0px; background: none;" data-uid="24" id="text_search"></i-text>
+            <i-combo style="width: 97px; position: absolute; top: 18px; left: 103px; height: 22px; border: 0px; background: none; border: 2px solid rgb(174, 209, 54);" data-uid="25" id="combo0" items="[{'label':'Studio','value':'Studio'},{'label':'Manager','value':'Manager'}]"
+                value="Manager"></i-combo>
+            <i-edit style="width: 398px; position: absolute; top: 18px; left: 208px; height: 22px; border: 2px solid rgb(174, 209, 54);" data-uid="26" id="edit0"></i-edit>
+            <i-picture style="position: absolute; top: 18px; left: 608px; width: 22px; height: 22px; cursor: pointer; background-image: url(&quot;./images/bt.png&quot;); background-repeat: no-repeat;" data-uid="27" id="picture0" image="./images/bt.png"
+                onclick="onclick_button1();"></i-picture>
+            <i-button id="btn_total_search" text="조회" onclick="onclick_btn_select0();" style="position: absolute; right: 12px; top: 10px; width: 58px; height: 40px; color: white; background: rgb(111, 206, 0); pointer-events: auto!important; cursor: pointer;"
+                data-uid="28" showfocusrect="true"></i-button>
+        </div>
+        <div style="width : calc(100% - 28px); position: absolute; top: 126px; left: 14px; background: rgb(255, 255, 255);" data-uid="29" id="div2">
+            <div style="width: 481px; height: 32px; position: absolute; top: 3px; right: 0px;" data-uid="30" id="div7">
+                <i-button id="btn_excelExport" text="엑셀저장" onclick="onclick_btn_excelExport0();" style="position: absolute;top: 0px;left: 139px;width: 78px;height: 32px;cursor: pointer;color: rgb(255, 255, 255);text-indent: 19px;background-image: url('./images/gridMbtn_15.png');background-attachment: initial;background-color: rgb(46, 66, 85);background-origin: initial;background-clip: initial;background-position: 13% 50%;background-repeat: no-repeat;font-size: 9pt;"
+                    data-uid="31" imagefit="false" enableimage="./images/gridMbtn_15.png"></i-button>
+                <i-button id="btn_excelImport" text="엑셀입력" onclick="onclick_btn_excelImport0();" style="position: absolute;top: 0px;left: 222px;width: 78px;height: 32px;cursor: pointer;color: rgb(255, 255, 255);text-indent: 19px;background-image: url('./images/gridMbtn_17.png');background-attachment: initial;background-color: rgb(46, 66, 85);background-origin: initial;background-clip: initial;background-position: 13% 50%;background-repeat: no-repeat;font-size: 9pt;"
+                    data-uid="32" imagefit="false" enableimage="./images/gridMbtn_17.png"></i-button>
+                <i-button id="btn_print0" text="인쇄" onclick="onclick_btn_print0();" style="position: absolute;top: 0px;left: 305px;width: 78px;height: 32px;cursor: pointer;color: rgb(255, 255, 255);text-indent: 19px;font-size: 9pt;background-image: url('./images/gridMbtn_19.png');background-attachment: initial;background-color: rgb(46, 66, 85);background-origin: initial;background-clip: initial;background-position: 29% 50%;background-repeat: no-repeat;"
+                    data-uid="33" imagefit="false" enableimage="./images/gridMbtn_19.png"></i-button>
+                <i-button id="btn_exec0" text="저장" onclick="onclick_btn_exec0();" style="position: absolute;top: 0px;left: 397px;width: 78px;height: 32px;cursor: pointer;color: rgb(255, 255, 255);text-indent: 19px;background-image: url('./images/gridMbtn_25.png');background-attachment: initial;background-color: rgb(0, 17, 44);background-origin: initial;background-clip: initial;background-position: 29% 50%;background-repeat: no-repeat;font-size: 9pt;"
+                    data-uid="34" imagefit="false" enableimage="./images/gridMbtn_25.png"></i-button>
+            </div>
+            <i-text text="" style="position: absolute; top: 10px; left: 9px;" data-uid="35" id="text7"></i-text>
+            <!--
+            <i-grid id="grid0" style="position: absolute; width : calc( 100% - 10px); height: 369px; top: 37px; left: 5px; opacity: 0.99;" columnlastextend="true" rowautocount="true" statebar="true" columncount="0" columns="[
+                    {'fieldName':'USER_ID','name':'사번','type':'','size':''},
+                    {'fieldName':'USER_NAME','name':'성명','type':'','size':''},
+                    {'fieldName':'USER_RANK','name':'직급','type':'','size':''},
+                    {'fieldName':'OFFICE_CODE','name':'부서코드','type':'','size':''},
+                    {'fieldName':'USER_TYPE','name':'접속시스템','type':'','size':''},
+                    {'fieldName':'AUTH_1','name':'사용자','type':'','size':''},
+                    {'fieldName':'AUTH_2','name':'공지','type':'','size':''},
+                    {'fieldName':'AUTH_3','name':'형상','type':'','size':''},
+                    {'fieldName':'AUTH_4','name':'배포','type':'','size':''},
+                    {'fieldName':'AUTH_5','name':'서버API','type':'','size':''},
+                    {'fieldName':'AUTH_6','name':'설정','type':'','size':''}
+                ]" griditem="[]" data-uid="35" colheadbackcolor="#A2A2A2" colheadtextcolor="#ffffff" datatextcolor="#222222" rowheight="24" usepage="true" pagingtype="number" rowheaderheight="24" selectbackcolor="#ECFFAB" selectbordercolor="#2AAAAF"
+                controltypeshow="true" pagepercount="14" checkbar="true" fixframecol="5" fixframecolor="#efefef" emptydatamessage=" " gridbackcolor="#FFFFFF"></i-grid>\
+            -->
+            <i-grid id="grid0" style="position: absolute; width : calc( 100% - 10px); height: 369px; top: 37px; left: 5px; opacity: 0.99;" columnlastextend="true" rowautocount="true" statebar="true" columncount="0" columns="[
+                    {'fieldName':'USER_ID','name':'사번','type':'','size':''},
+                    {'fieldName':'USER_NAME','name':'성명','type':'','size':''},
+                    {'fieldName':'USER_RANK','name':'직급','type':'','size':''},
+                    {'fieldName':'OFFICE_CODE','name':'부서코드','type':'','size':''},
+                    {'fieldName':'USER_TYPE','name':'접속시스템','type':'','size':''},
+                    {'fieldName':'AUTH_USER','name':'사용자','type':'','size':''},
+                    {'fieldName':'AUTH_NOTICE','name':'공지','type':'','size':''},
+                    {'fieldName':'AUTH_CONFIGURATION','name':'형상','type':'','size':''},
+                    {'fieldName':'AUTH_DEPLOYMENT','name':'배포','type':'','size':''},
+                    {'fieldName':'AUTH_SERVER_API','name':'서버API','type':'','size':''},
+                    {'fieldName':'AUTH_SET','name':'설정','type':'','size':''}
+                ]" griditem="[]" data-uid="36" colheadbackcolor="#A2A2A2" colheadtextcolor="#ffffff" datatextcolor="#222222" rowheight="24" usepage="true" pagingtype="number" rowheaderheight="24" selectbackcolor="#ECFFAB" selectbordercolor="#2AAAAF"
+                controltypeshow="true" pagepercount="14" checkbar="true" fixframecol="5" fixframecolor="#efefef" emptydatamessage=" " gridbackcolor="#FFFFFF"></i-grid>
+        </div>
+        <div id="div3" style="height: 63px;position: absolute;top: 100px;left: 14px;width: calc(100% - 28px);background: white;display: none" data-uid="37">
+            <div style="height: 62px;position: absolute;top: 0px;left: 5px;width: calc( 100% - 10px);background: rgb(230, 230, 230);" data-uid="38" id="div4">
+                <i-text text="사번" style="position: absolute; top: 9.5px; left: 130px;" data-uid="39" id="text1"></i-text>
+                <i-edit style="width: 150px;position: absolute;top: 5px;left: 163px;height: 22px;" data-uid="40" id="edit1"></i-edit>
+                <i-text text="성명" style="position: absolute; top: 9.5px; left: 402px;" data-uid="41" id="text2"></i-text>
+                <i-edit style="width: 150px; position: absolute; top: 5px; left: 431px; height: 22px;" data-uid="42" id="edit2"></i-edit>
+                <i-text text="직급" style="position: absolute; top: 9.5px; left: 670px;" data-uid="43" id="text3"></i-text>
+                <i-edit style="width: 150px; position: absolute; top: 5px; left: 701px; height: 22px;" data-uid="44" id="edit3"></i-edit>
+                <i-text text="부서코드" style="position: absolute; top: 39.5px; left: 105px;" data-uid="45" id="text6"></i-text>
+                <i-edit style="width: 150px;position: absolute;left: 163px;height: 22px;top: 35px;" data-uid="46" id="edit4"></i-edit>
+                <i-text text="접속시스템" style="position: absolute; top: 39.5px; left: 364px;" data-uid="47" id="text8"></i-text>
+                <i-edit style="width: 150px; position: absolute; left: 431px; height: 22px; top: 35px;" data-uid="48" id="edit5"></i-edit>
+                <i-button text="조회" id="btn_detail_search" onclick="onclick_btn_select0();" style="position: absolute; left: 917px; top: 11.5px; width: 58px; height: 40px; color: white; background: rgb(111, 206, 0);" data-uid="49" showfocusrect="true"></i-button>
+            </div>
+        </div>
+        <div id="div_del_user" style="display: none" data-uid="50">
+            <div style="width: 1024px; height: 132px; position: absolute; top: -7px; left: 0px; background: rgb(58, 58, 58);" data-uid="51" id="div0">
+                <div style="width: 1024px; height: 43px; position: absolute; top: 0px; left: 0px; background: rgb(35, 35, 35);" data-uid="52" id="div1">
+                    <i-picture style="position: absolute; top: 8px; left: 360px; width: 33px; height: 30px; background-image: url('./images/newUser.png'); background-repeat: no-repeat;" data-uid="53" id="picture2" image="./images/newUser.png"></i-picture>
+                    <i-text text="사용자 권한변경" style="position: absolute; top: 12px; left: 396px; color: white; font-size: 20px; letter-spacing: -1.5px;" data-uid="54" id="text2"></i-text>
+                    <i-text text="시스템 사용자 사용권한을 설정합니다." style="position: absolute; top: 18px; left: 535px; color: rgb(115, 134, 53); font-size: 11px;" data-uid="55" id="text3"></i-text>
+                </div>
+                <i-button id="btn_del_user_cancel" text="취소" onclick="onclick_btn_del_user_cancel();" style="width: 73px; height: 37px; position: absolute; top: 90px; left: 454px; border: 0px; color: white; background-color: rgb(63, 155, 17);" data-uid="56"></i-button>
+                <i-button id="btn_del_user_ok" text="설정" onclick="onclick_btn_del_user_ok();" style="width: 73px; height: 37px; position: absolute; top: 90px; left: 533px; border: 0px; color: white; background-color: rgb(114, 206, 3);" data-uid="57"></i-button>
+                <i-text text="" style="position: absolute;top: 46px;left: 118px;color: white;font-size: 20px;letter-spacing: -1.5px;" data-uid="58" id="text17"></i-text>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

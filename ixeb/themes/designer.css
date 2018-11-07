@@ -1,0 +1,203 @@
+body {
+	overflow: hidden;
+}
+
+div {
+	border: 1px dotted red;
+}
+
+div.loader
+, i-accordion div
+, i-barchart div
+, i-button div
+, i-calendar div
+, i-check div
+, i-combo div
+, i-contextmenu div
+, i-dataset div
+, i-edit div
+, i-fromtocalendar div
+, i-grid div
+, i-linechart div
+, i-listbox div
+, i-maskedit div
+, i-menu div
+, i-multilineedit div
+, i-panel div
+, i-picture div
+, i-piechart div
+, i-progress div
+, i-radio div
+, i-scheduler div
+, i-simplegrid div
+, i-slider div
+, i-spinner div
+, i-switch div
+, i-table div
+, i-text div
+, i-tree div
+, i-treegrid div
+, i-grid2 div
+, div#_ixebstudio_tmp_div_ {
+	border: none;
+}
+
+i-group .wrapper
+, i-group .title-area
+, i-group .title-area div
+, i-tabs .tabbuttons
+, i-tabs .tabscroller
+, i-tabs .tabpages {
+	border: none;
+}
+
+div:before {
+	content: "div";
+	padding: 1px 7px 1px 7px;
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	font-size: small;
+	position: absolute;
+	top: -1em;
+	border-radius: 3px;
+}
+div.loader:before
+, i-accordion div:before
+, i-barchart div:before
+, i-button div:before
+, i-calendar div:before
+, i-check div:before
+, i-combo div:before
+, i-contextmenu div:before
+, i-dataset div:before
+, i-edit div:before
+, i-fromtocalendar div:before
+, i-grid div:before
+, i-linechart div:before
+, i-listbox div:before
+, i-maskedit div:before
+, i-menu div:before
+, i-multilineedit div:before
+, i-panel div:before
+, i-picture div:before
+, i-piechart div:before
+, i-progress div:before
+, i-radio div:before
+, i-scheduler div:before
+, i-simplegrid div:before
+, i-slider div:before
+, i-spinner div:before
+, i-switch div:before
+, i-table div:before
+, i-text div:before
+, i-tree div:before
+, i-treegrid div:before
+, i-grid2 div:before
+, div#_ixebstudio_tmp_div_:before {
+	content: none;
+}
+i-switch div:before {
+	padding: 0px;
+}
+i-group .wrapper:before
+, i-group .title-area:before
+, i-group .title-area div:before
+, i-group .contents-area:before
+, i-tabs > div:before
+, i-tabs .tabbuttons:before
+, i-tabs .tabbuttons > div:before
+, i-tabs .tabscroller:before
+, i-tabs .tabpages:before
+, i-tabs .tabpages > div:before {
+	content: none;
+}
+
+i-panel {
+	border: 1px dotted red;
+	background-color: white;
+}
+i-panel:before {
+	content: "i-panel";
+	padding: 1px 7px 1px 7px;
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	font-size: small;
+	position: absolute;
+	top: -1em;
+	border-radius: 3px;
+}
+
+i-picture {
+	border: 1px dotted red;
+	/*background-color: white;*/
+}
+i-picture:before {
+	content: "Picture";
+	word-wrap: break-word;
+	display: table;
+	padding: 1px 7px 1px 7px;
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	font-size: small;
+	position: relative;
+	top: -1em;
+	border-radius: 3px;
+}
+
+video {
+	border: 1px dotted red;
+	/*background-color: white;*/
+}
+/*
+video:before {
+	content: "Video";
+	word-wrap: break-word;
+	display: table;
+	padding: 1px 7px 1px 7px;
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	font-size: small;
+	position: relative;
+	top: -1em;
+	border-radius: 3px;
+}
+*/
+table {
+	border: 1px dotted red;
+}
+i-calendar table
+, i-scheduler table {
+	border: none;
+}
+
+table td,
+table th {
+	border: 1px dotted red;
+}
+i-calendar table td
+, i-calendar table th
+, i-scheduler td
+, i-scheduler table th {
+	border: none;
+}
+
+table:after {
+	content: "table";
+	padding: 1px 7px 1px 7px;
+	background-color: red;
+	color: white;
+	font-weight: bold;
+	font-size: small;
+	position: absolute;
+	top: -1em;
+	border-radius: 3px;
+}
+i-calendar table:after
+, i-scheduler table:after
+, i-radio table:after{
+	content: none;
+}

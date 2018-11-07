@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2017/04/17 15:28" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1528" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="9">
+    <meta name="created" content="2017/03/28 10:24" data-uid="10">
+    <title data-uid="11">5</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="13"></script>
+    <!-- From here, enter your script and style. -->
+    <style type="text/css" data-uid="14">
+        i-piechart canvas,
+        i-barchart canvas {
+            width: 100%!important;
+            height: 100%!important;
+        }
+    </style>
+    <script type="text/javascript" data-uid="15">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-03-28
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_5() {
+            //TODO:
+            var data = [{
+                'location': '김포한강',
+                'value': 6
+            }, {
+                'location': '반포자이',
+                'value': 10
+            }, {
+                'location': '문양자이',
+                'value': 9
+            }, {
+                'location': '등촌자이',
+                'value': 17
+            }, {
+                'location': '등촌자이1',
+                'value': 27
+            }, {
+                'location': '등촌자이2',
+                'value': 37
+            }, {
+                'location': '등촌자이3',
+                'value': 47
+            }];
+            dataset0.appendRows(data);
+        }
+
+        function onComplete_pie0() {
+            var chart = piechart0.getView().chart;
+            var data = piechart0.getView().data;
+            var ctx = chart.ctx;
+            var labels = chart.config.data.labels;
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+            var seperater = " - \n"
+            data.datasets.forEach(function(dataset) {
+                /*변경부분 20170403*/
+                var keys = Object.keys(dataset._meta);
+                var tempKey = keys[keys.length - 1];
+                for (var i = 0; i < dataset.data.length; i++) {
+                    if (dataset._meta[tempKey].data[i].hidden == true) continue
+                    var model = dataset._meta[tempKey].data[i]._model,
+                        total = dataset._meta[tempKey].total,
+                        /*변경부분 끝 20170403*/
+                        mid_radius = model.innerRadius + (model.outerRadius - model.innerRadius) / 2,
+                        start_angle = model.startAngle,
+                        end_angle = model.endAngle,
+                        mid_angle = start_angle + (end_angle - start_angle) / 2;
+                    //console.log(labels[i], model, start_angle, end_angle, mid_angle);
+                    var x = mid_radius * Math.cos(mid_angle);
+                    var y = mid_radius * Math.sin(mid_angle);
+                    // 파이 크기 체크로 라벨의 위치 변경
+                    // x나 y 에 곱하는 값이 클수록 원 중심에서 벗어남
+                    // 파이의 크기는 아래 비교식 오른쪽 항의 크기로 정한다
+                    if (model.circumference * 2 < 1) {
+                        x = x * 2.3;
+                        y = y * 2.3;
+                    }
+
+                    ctx.fillStyle = '#444';
+                    if (i == 3) { // Darker text color for lighter background
+                        //ctx.fillStyle = '#FFF';
+                    }
+                    var percent = String(Math.round(dataset.data[i] / total * 100)) + "%";
+                    //ctx.beginPath();
+                    //ctx.moveTo(model.x + x, model.y + y);
+                    //ctx.lineTo(model.x + x * 2.1, model.y + y * 2.1);
+                    //ctx.stroke();
+                    ctx.fillText(labels[i], model.x + x, model.y + y);
+                    ctx.fillText(percent, model.x + x, model.y + y + 15);
+                }
+            });
+        }
+
+        function onComplete_bar0() {
+            var ctx = barchart0.getView().chart.ctx;
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+            //console.log('---------')
+            barchart0.getView().data.datasets.forEach(function(dataset) {
+                for (var i = 0; i < dataset.data.length; i++) {
+                    /*변경부분 20170403*/
+                    var tempKeys = Object.keys(dataset._meta);
+                    var key = tempKeys[tempKeys.length - 1];
+                    var model = dataset._meta[key].data[i]._model;
+                    /*변경부분끝 20170403*/
+                    /*글자색 변경및 위치 변경 20170403*/
+                    var valY = model.y + 20;
+                    if (valY > model.base) {
+                        ctx.fillStyle = "#444";
+                        valY -= 25;
+                    } else {
+                        ctx.fillStyle = "#FFF"
+                    }
+                    /*글자색 변경끝 20170403*/
+                    ctx.fillText(dataset.data[i], model.x, valY);
+                }
+            });
+        }
+
+        function test1() {
+            var data = [{
+                'location': '김포한강',
+                'value': 6
+            }, {
+                'location': '반포자이',
+                'value': 10
+            }, {
+                'location': '문양자이',
+                'value': 9
+            }, {
+                'location': '등촌자이',
+                'value': 17
+            }, {
+                'location': '등촌자이1',
+                'value': 27
+            }, {
+                'location': '등촌자이2',
+                'value': 37
+            }, {
+                'location': '등촌자이3',
+                'value': 47
+            }, {
+                'location': '문양자이',
+                'value': 9
+            }, {
+                'location': '등촌자이',
+                'value': 17
+            }, {
+                'location': '등촌자이1',
+                'value': 27
+            }, {
+                'location': '등촌자이2',
+                'value': 37
+            }, {
+                'location': '등촌자이3',
+                'value': 47
+            }, {
+                'location': '김포한강',
+                'value': 6
+            }, {
+                'location': '반포자이',
+                'value': 10
+            }, {
+                'location': '문양자이',
+                'value': 9
+            }, {
+                'location': '등촌자이',
+                'value': 17
+            }, {
+                'location': '등촌자이1',
+                'value': 27
+            }, {
+                'location': '등촌자이2',
+                'value': 37
+            }, {
+                'location': '등촌자이3',
+                'value': 47
+            }, {
+                'location': '문양자이',
+                'value': 9
+            }, {
+                'location': '등촌자이',
+                'value': 17
+            }, {
+                'location': '등촌자이1',
+                'value': 27
+            }, {
+                'location': '등촌자이2',
+                'value': 37
+            }, {
+                'location': '등촌자이3',
+                'value': 47
+            }, {
+                'location': '김포한강',
+                'value': 6
+            }, {
+                'location': '등촌자이3',
+                'value': 47
+            }, {
+                'location': '문양자이',
+                'value': 9
+            }, {
+                'location': '등촌자이',
+                'value': 17
+            }, {
+                'location': '등촌자이1',
+                'value': 27
+            }, {
+                'location': '등촌자이2',
+                'value': 37
+            }, {
+                'location': '등촌자이3',
+                'value': 47
+            }, {
+                'location': '김포한강',
+                'value': 6
+            }];
+            dataset0.clearData();
+            piechart0.titleText = "bbb";
+            barchart0.titleText = "bbb";
+            dataset0.appendRows(data);
+            dataset0.clearData();
+            dataset0.appendRows(data);
+        }
+
+        function test2() {
+            var data = [{
+                'location': '김포한강',
+                'value': 6
+            }];
+            dataset0.clearData();
+            piechart0.titleText = "";
+            barchart0.titleText = "";
+            dataset0.appendRows(data);
+            //test1();
+        }
+    </script>
+    <i-dataset data-uid="16" id="dataset0" serviceid="">
+        <header data-uid="17"> [{"id":"location","object":"edit","type":"char","size":"256","desc":"location"},{"id":"value","object":"edit","type":"char","size":"256","desc":"value"}]</header> <data data-uid="18"> [] </data>
+        <i-bind bindtype="recordset" property="" target="piechart0"
+            column="" data-uid="19" oncomplete="onComplete()"></i-bind>
+        <i-bind bindtype="recordset" property="" target="barchart0" column="" data-uid="20"></i-bind>
+        <i-bind bindtype="recordset" target="grid0" data-uid="21"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="5" data-uid="3" oninitscreen="onInitScreen_5();">
+    <i-grid id="grid0" style="width: 480px; height: 320px;opacity: 0.99;" columns="[{'fieldName':'location','name':'item0','colType':'edit','type':'char','size':'256'},{'fieldName':'value','name':'item1','colType':'edit','type':'char','size':'256'}]" griditem="[]"
+        data-uid="22"></i-grid>
+    <i-button text="click1" onclick="test1()" data-uid="23"></i-button>
+    <i-button text="click2" onclick="test2()" data-uid="24"></i-button><br data-uid="25">
+    <i-piechart style="width: 50%;" data="{'labelField':'location',labels: ['김포한강', '반포자이', '문양자이', '등촌자이'],datasets: [{'dataField':'value','label': '',backgroundColor:[],data: [6,10,9,17], fill: false }]}" data-uid="26"
+        yaxis1scalepattern="${value}" oncomplete="onComplete_pie0(arguments)" id="piechart0" titletext="CNT" xaxisgridshow="false" xaxislabelshow="false" legendshow="true" legendposition="bottom" yaxis1title="인구" xaxistitle="지역"> </i-piechart>
+    <i-barchart style="width: 50%;" data="{'labelField':'location',labels: ['김포한강', '반포자이', '문양자이', '등촌한강'],datasets: [{'label': '',backgroundColor:['red','blue','green'],'dataField':'value',data: [6,10,9,17], fill: false }]}" data-uid="27"
+        id="barchart0" yaxis1gridshow="true" showgridline="true" yaxis1scalepattern="${value}" yaxis2labelshow="false" xaxisgridshow="false" titletext="CNT" yaxis1gridcolor="#CCCCCC" xaxisgridcolor="#CCCCCC" yaxis1title="인구" xaxistitle="지역" legendposition="bottom"
+        legendshow="true" singledatalegend="true" oncomplete="onComplete_bar0()"></i-barchart>
+</body>
+
+</html>

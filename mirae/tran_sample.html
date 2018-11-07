@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2017/04/05 10:03" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1534" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="9">
+    <meta name="created" content="2017/04/04 15:52" data-uid="10">
+    <title data-uid="11">tran_sample</title>
+    <script type="text/javascript" src="../../lib/config.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="13"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="14"></script>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript" data-uid="15">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-04-04
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_tran_sample() {
+            //TODO:
+            var doc = '{result=display, o_pur_amt_tot=0000000002693286, Q21OI10_GRID_OUT_REC=[{o_pur_amt=0000000000000000, o_asst_sect_cd=01, o_estm_pl=0000000000000000, o_goods_sect_nm=추정예수금, o_estm_amt=0000000000020985, o_estm_pl_rt=0000000.00, o_goods_sect=01, o_asst_grp_nm=투자자산, o_weight=0000000.87}, {o_pur_amt=0000000000778990, o_asst_sect_cd=01, o_estm_pl=-000000000301490, o_goods_sect_nm=주식, o_estm_amt=0000000000472885, o_estm_pl_rt=-000038.70, o_goods_sect=03, o_asst_grp_nm=투자자산, o_weight=0000019.57}, {o_pur_amt=0000000001000000, o_asst_sect_cd=01, o_estm_pl=-000000000006153, o_goods_sect_nm=ELS/DLS, o_estm_amt=0000000000993847, o_estm_pl_rt=-000000.61, o_goods_sect=07, o_asst_grp_nm=투자자산, o_weight=0000041.13}, {o_pur_amt=0000000000674634, o_asst_sect_cd=01, o_estm_pl=0000000000013940, o_goods_sect_nm=펀드, o_estm_amt=0000000000688574, o_estm_pl_rt=0000002.07, o_goods_sect=08, o_asst_grp_nm=투자자산, o_weight=0000028.50}, {o_pur_amt=0000000000239662, o_asst_sect_cd=01, o_estm_pl=0000000000000117, o_goods_sect_nm=RP, o_estm_amt=0000000000239779, o_estm_pl_rt=0000000.05, o_goods_sect=13, o_asst_grp_nm=투자자산, o_weight=0000009.92}], o_ann_asst_tot=000000000000041337, o_estm_pl_rt=-000010.90, isPErr=0, message=조회 완료. 마지막 자료입니다, msgNo=02875, o_GRID_Attr=, o_hts_id=clientos, o_crdt_loan_amt=0000000000000, o_GRID_Cnt=0005, o_estm_amt_tot=0000000002395085, msgType=N, o_assm_dep_asst_amt2=000000000020985.000, o_dpst_asst_amt=0000002416070, o_GRID_Size=0152, o_dep_asst_tot=0000000002416070, o_estm_pl_tot_amt=-000000293586.000000000000}';
+            var grid_doc = doc.substring(doc.indexOf('Q21OI10_GRID_OUT_REC=['), doc.indexOf('}], ')).split('Q21OI10_GRID_OUT_REC=[')[1].trim() + '}';
+            var arr_doc = getGridDoc(grid_doc, []);
+            grid0.getColumn(5).styles().setSuffix('%');
+            grid0.getView().body().setStyleCallback(function(index, styles) {
+                if (index.column.index() === 3 || index.column.index() === 4) {
+                    var value = index.getValue();
+                    if (value < 0) {
+                        styles.extend({
+                            color: '#056ab2'
+                        });
+                    } else if (value > 0) {
+                        styles.extend({
+                            color: '#ee2200'
+                        });
+                    }
+                }
+            });
+            grid0.getColumn(5).footer().styles().setSuffix('%')
+            dataset0.beginBulkLoad();
+            dataset0.appendRows(arr_doc);
+            dataset0.endBulkLoad();
+        }
+
+        function getGridDoc(doc, arr) {
+            var arr_doc = doc.split('}');
+            for (var i = 0; i < arr_doc.length; i++) {
+                var _doc = arr_doc[i];
+                if (_doc.length > 0) {
+                    var _doc_keys = _doc.split(',');
+                    var gobj = {};
+                    for (var j = 0; j < _doc_keys.length; j++) {
+                        var key = _doc_keys[j];
+                        if (key.length > 0) {
+                            key = key.replace('{', '');
+                            var _key = key.split('=');
+                            gobj[_key[0].trim()] = _key[1];
+                        }
+                    }
+                    arr.push(gobj);
+                }
+            }
+            return arr;
+        }
+    </script>
+    <i-dataset data-uid="16" id="dataset0" serviceid="">
+        <header data-uid="17"> [{"id":"o_goods_sect_nm","object":"edit","type":"char","size":"256","desc":"상품구분"},{"id":"o_pur_amt","object":"edit","type":"char","size":"256","desc":"매입금액"},{"id":"o_estm_amt","object":"edit","type":"char","size":"256","desc":"평가금액"},{"id":"o_estm_pl","object":"edit","type":"char","size":"256","desc":"평가손익"},{"id":"o_estm_pl_rt","object":"edit","type":"char","size":"256","desc":"평가손익률"},{"id":"o_weight","object":"edit","type":"char","size":"256","desc":"상품비중"},{"id":"o_goods_sect","object":"edit","type":"char","size":"256","desc":"sect"},{"id":"o_asst_sect_cd","object":"edit","type":"char","size":"256","desc":"sect2"},{"id":"item8","object":"edit","type":"char","size":"256","desc":"group_nm"}]</header>
+        <data data-uid="18"> [] </data>
+        <i-bind bindtype="recordset" target="grid0" data-uid="19"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="tran_sample" data-uid="3" oninitscreen="onInitScreen_tran_sample();">
+    <i-grid id="grid0" style="position: absolute; width: 552px; height: 320px; top: 49px; left: 29px; opacity: 0.99;" columns="[{'fieldName':'o_goods_sect_nm','name':'상품구분','colType':'edit','type':'char','size':'256'},{'fieldName':'o_pur_amt','name':'매입금액','colType':'maskedit','type':'number','size':'256','pattern':'ZZZ,ZZZ','minusSign':'false','maxLength':'6','minLength':'0','textAlignment':'right'},{'fieldName':'o_estm_amt','name':'평가금액','colType':'maskedit','type':'number','size':'256','pattern':'ZZZ,ZZZ','minusSign':'false','maxLength':'6','minLength':'0','textAlignment':'right'},{'fieldName':'o_estm_pl','name':'평가손익','colType':'maskedit','type':'number','size':'256','pattern':'-ZZ,ZZZ','minusSign':'true','maxLength':'6','minLength':'0','textAlignment':'right'},{'fieldName':'o_estm_pl_rt','name':'평가손익률','colType':'maskedit','type':'number','size':'256','pattern':'-ZZ,ZZZ','minusSign':'true','maxLength':'6','minLength':'0','textAlignment':'right'},{'fieldName':'o_weight','name':'상품비중','colType':'edit','type':'number','size':'256', textAlignment: 'right'},{'fieldName':'o_goods_sect','name':'sect','colType':'edit','type':'char','size':'256','colVisible':false},{'fieldName':'o_asst_sect_cd','name':'sect2','colType':'edit','type':'char','size':'256','colVisible':false},{'fieldName':'item8','name':'group_nm','colType':'edit','type':'char','size':'256','colVisible':false}]"
+        griditem="[]" data-uid="20" initrowcount="0" currencysign="" decimallength="3" maxlength="6" minlength="0" minussign="false" pattern="ZZZ.ZZZ" textalign="right" type="number" unitdecimal="." unitinsert="true" unitposition="" unitsymbol="," columncount="9"
+        columnlastextend="true" columnmove="true" columnresize="true" statebar="false" rowautocount="true" strippedpattern="true" sorted="true" checkbar="false" sumrowshow="sum" sumrowtitle="합계ⓘ" sumrowcolor="#FEEFE2" rowautowidth="45"></i-grid>
+</body>
+
+</html>

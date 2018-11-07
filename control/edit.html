@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="4x4" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="6">
+    <meta name="created" content="2016/10/01 19:35" data-uid="7">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="8">
+    <title data-uid="9">edit_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="10"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="11"></script>
+    <script type="text/javascript" data-uid="12">
+    </script>
+</head>
+
+<body id="edit_sample" data-uid="3">
+    <div style="width: 1032px; height: 45px; position: absolute; top: 8px; left: 20px;" data-uid="52" id="div0" class="search-panel">
+        <i-text text="Edit Sample" style="position: absolute; top: 9px; left: 9px; font-size: 25px;" data-uid="53" id="Edit Sample"></i-text>
+    </div>
+    <i-group text="입력 TYPE" style="width: 1032px; height: 80px; position: absolute; top: 59px; left: 20px;" data-uid="13" id="group0" class="group-panel">
+        <i-text text="숫자 입력모드(number)" style="position: absolute; top: 13px; left: 13px; width: 144px; height: 13px;" data-uid="14" id="text0" autosize="false"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 9px; left: 194px; text-align: right;" data-uid="15" id="edit0" value="12345678" type="number"></i-edit>
+        <i-edit style="width: 140px; position: absolute; top: 9px; left: 534px; text-align: right;" data-uid="16" id="edit1" value="ABCD!@#$" type="ascii"></i-edit>
+        <i-text text="영문 입력모드(ascii)" style="position: absolute; top: 13px; left: 373px; width: 144px; height: 13px;" data-uid="17" id="text1"></i-text>
+        <i-text text="한글 입력모드(none)" style="position: absolute; top: 13px; left: 713px; width: 144px; height: 13px;" data-uid="18" id="text2"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 9px; left: 874px; text-align: right;" data-uid="19" id="edit2" value="123ABC가나다!@#" type="none"></i-edit>
+    </i-group>
+    <i-group text="Edit 검증" style="width: 1032px; height: 80px; position: absolute; top: 147px; left: 20px;" data-uid="20" id="group1" class="group-panel">
+        <i-edit style="width: 140px; position: absolute; top: 12px; left: 193px; text-align: right;" data-uid="23" id="edit5" value="12345678" type="number" maxlength="5"></i-edit>
+        <i-text text="MaxLength 5" style="position: absolute; top: 18.666px; left: 12px; width: 144px; height: 13px;" data-uid="24" id="text6"></i-text>
+        <i-text text="MinLength 1" style="position: absolute; top: 18.666px; left: 372px; width: 144px; height: 13px;" data-uid="21" id="text4"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 12px; left: 533px; text-align: right;" data-uid="22" id="edit4" value="ABCD!@#$" type="ascii" minlength="1"></i-edit>
+        <i-text text="required (true)" style="position: absolute; top: 18.666px; left: 712px; width: 144px; height: 13px;" data-uid="25" id="text3"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 12px; left: 874px; text-align: right;" data-uid="26" id="edit3" value="12345678" required="required"></i-edit>
+    </i-group>
+    <i-group text="CharCasing" style="width: 1032px; height: 80px; position: absolute; top: 235px; left: 20px;" data-uid="27" id="group2" class="group-panel">
+        <i-edit style="width: 140px; position: absolute; top: 13px; left: 195px; text-align: right;" data-uid="30" id="edit8" value="abcdABCD"></i-edit>
+        <i-text text="charcasing (none)" style="position: absolute; top: 19.666px; left: 14px; width: 144px; height: 13px;" data-uid="31" id="text11"></i-text>
+        <i-text text="charcasing (upper)" style="position: absolute; top: 20.01px; left: 374px; width: 116px; height: 13px;" data-uid="28" id="text9"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 13px; left: 535px; text-align: right;" data-uid="29" id="edit7" value="abcdABCD" charcasing="upper"></i-edit>
+        <i-text text="charcasing (lower)" style="position: absolute; top: 19.666px; left: 714px; width: 144px; height: 13px;" data-uid="33" id="text16"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 13px; left: 875px; text-align: right;" data-uid="32" id="edit11" value="abcdABCD" charcasing="lower"></i-edit>
+    </i-group>
+    <i-group text="ReadOnly" style="width: 1032px; height: 80px; position: absolute; top: 323px; left: 20px;" data-uid="34" id="group3" class="group-panel">
+        <i-text text="readonly (true)" style="position: absolute; top: 17.777px; left: 13px; width: 144px; height: 13px;" data-uid="35" id="text13"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 12px; left: 194px; text-align: right;" data-uid="36" id="edit9" value="12345678" readonly="readonly"></i-edit>
+        <i-text text="readonly (false)" style="position: absolute; top: 17.777px; left: 373px; width: 144px; height: 13px;" data-uid="38" id="text15"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 12px; left: 534px; text-align: right;" data-uid="37" id="edit10" value="ABCD!@#$"></i-edit>
+    </i-group>
+    <i-group text="selectAll" style="width: 1032px; height: 80px; position: absolute; top: 411px; left: 20px;" data-uid="39" id="group4" class="group-panel">
+        <i-text text="selectAll (true)" style="position: absolute; top: 16.889px; left: 12px; width: 144px; height: 13px;" data-uid="43" id="text19"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 12px; left: 193px; text-align: right;" data-uid="42" id="edit13" value="12345678"></i-edit>
+        <i-text text="selectAll (false)" style="position: absolute; top: 17.777px; left: 372px; width: 144px; height: 13px;" data-uid="40" id="text17"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 12px; left: 533px; text-align: right;" data-uid="41" id="edit12" value="ABCD!@#$" selectall="false"></i-edit>
+    </i-group>
+    <i-group text="Enable" style="width: 1032px; height: 80px; position: absolute; top: 499px; left: 19px;" data-uid="44" id="group5" class="group-panel">
+        <i-edit style="width: 140px; position: absolute; top: 12px; left: 194px; text-align: right;" data-uid="46" id="edit14" value="12345678"></i-edit>
+        <i-text text="enable (true)" style="position: absolute; top: 16px; left: 13px; width: 144px; height: 12px;" data-uid="45" id="text20"></i-text>
+        <i-text text="enable (false)" style="position: absolute; top: 17.777px; left: 373px; width: 144px; height: 13px;" data-uid="48" id="text22"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 12px; left: 534px; text-align: right;" data-uid="47" id="edit15" value="ABCD!@#$" enable="false"></i-edit>
+    </i-group>
+    <i-group text="ShowCalendarButton" style="width: 1032px; height: 80px; position: absolute; top: 587px; left: 19px;" data-uid="49" id="group6" class="group-panel">
+        <i-edit style="width: 140px; position: absolute; top: 13px; left: 214px; text-align: right;" data-uid="50" id="edit16" value="12345678" showcalendarbutton="true"></i-edit>
+        <i-text text="showcalenarbutton(true)" style="position: absolute; top: 17px; left: 13px; width: 143px; height: 13px;" data-uid="51" id="text23"></i-text>
+    </i-group>
+</body>
+
+</html>

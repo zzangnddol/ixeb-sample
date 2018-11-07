@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-hline" content="" data-uid="5">
+    <meta name="ixeb-studio:guide-vline" content="10,805,277,101,659," data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="9">
+    <meta name="ixeb-studio:screen-size" content="1920x1080" data-uid="8">
+    <meta name="created" content="2016/10/07 14:02" data-uid="9">
+    <title data-uid="10">loan</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="15"></script>
+    <link rel="stylesheet" type="text/css" href="../css/samples.css" data-uid="16">
+    <script type="text/javascript" data-uid="17">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-13
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button0() {
+            //TODO:
+            //var url = document.location.href;
+            //url = url.substring(0, url.lastIndexOf('/')+1);
+
+            ixeb.window.openModal({
+                width: 810,
+                height: 250,
+                WindowType: 'modal',
+                //WindowType : 'popup',
+                url: '../screen_type/grid_popup_sample.html'
+            },  []);
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-12
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button18() {
+            //TODO:
+            parent.messageHandler.request({
+                method: 'runtime.exec',
+                params: {
+                    execPath: '/Applications/Dictionary.app'
+                }
+            });
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-12
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button19() {
+            //TODO:
+            parent.messageHandler.request({
+                method: 'runtime.kill',
+                params: {}
+            });
+        }
+    </script>
+</head>
+
+<body id="loan" data-uid="3">
+    <i-group class="group-panel" text="기타정보" style="width: 805px; height: 119px; position: absolute; top: 409px; left: 10px;" data-uid="18" id="group1" tabindex="-1">
+        <i-text text="지점장번호" style="position: absolute; top: 11.5px; left: 7px; width: 63px;" data-uid="19" id="text42"></i-text>
+        <i-text text="보증서구분" style="position: absolute; top: 37.5px; left: 7px; width: 63px;" data-uid="20" id="text43"></i-text>
+        <i-button text="보증료" style="position: absolute; top: 59px; left: 7px; width: 70px; height: 20px; background-size: 100% 100%;" data-uid="21" id="button8" tabindex="-1"></i-button>
+        <i-edit style="width: 87px; position: absolute; top: 7px; left: 89px; height: 22px;" data-uid="22" id="edit28" tabindex="59"></i-edit>
+        <i-button text="S" style="position: absolute; top: 7px; left: 178px; height: 22px; width: 21px; background-size: 100% 100%;" data-uid="23" id="button9" tabindex="-1"></i-button>
+        <i-edit style="width: 57px; position: absolute; top: 7px; left: 209px; height: 22px;" data-uid="24" id="edit29" tabindex="60"></i-edit>
+        <i-edit style="width: 140px; position: absolute; top: 58px; left: 89px;" data-uid="25" id="edit30" infomsg="고객부담전자보증" type="number" tabindex="67"></i-edit>
+        <i-text text="책임자번호" style="position: absolute; top: 11.5px; left: 307px;" data-uid="26" id="text40"></i-text>
+        <i-text text="보증기관연동입금계좌" style="position: absolute; top: 37.5px; left: 245px;" data-uid="27" id="text41"></i-text>
+        <i-text text="경영지도수수료" style="position: absolute; top: 62.5px; left: 282px;" data-uid="28" id="text44"></i-text>
+        <i-edit style="width: 120px; position: absolute; top: 7px; left: 379px; height: 22px;" data-uid="29" id="edit31" type="ascii" tabindex="61"></i-edit>
+        <i-button text="S" style="position: absolute; top: 7px; left: 500px; height: 22px; width: 21px; background-size: 100% 100%;" data-uid="30" id="button10" tabindex="-1"></i-button>
+        <i-edit style="width: 89px; position: absolute; top: 7px; left: 528px; height: 22px;" data-uid="31" id="edit32" type="ascii" tabindex="62"></i-edit>
+        <i-edit style="width: 120px; position: absolute; top: 33px; left: 378px; height: 22px;" data-uid="32" id="edit33" type="number" tabindex="64"></i-edit>
+        <i-button text="불균등상환계획" style="position: absolute; top: 8px; left: 619px; width: 175px; height: 20px; background-size: 100% 100%;" data-uid="33" id="button11" tabindex="-1"></i-button>
+        <i-text text="자금배정년도" style="position: absolute; top: 37.5px; left: 518px;" data-uid="34" id="text45"></i-text>
+        <i-edit style="width: 46px; position: absolute; top: 33px; left: 602px; height: 22px;" data-uid="35" id="edit34" infomsg="YYYY" type="number" tabindex="65"></i-edit>
+        <i-text text="선입금" style="position: absolute; top: 37.5px; left: 655px; width: 38px; height: 13px;" data-uid="36" id="text46"></i-text>
+        <i-edit style="width: 67px; position: absolute; top: 33px; left: 697px; height: 22px;" data-uid="37" id="edit35" infomsg="" type="number" tabindex="66"></i-edit>
+        <i-button text="S" style="position: absolute; top: 33px; left: 765px; height: 22px; width: 29px; background-size: 100% 100%;" data-uid="38" id="button12" tabindex="-1"></i-button>
+        <i-edit style="width: 120px; position: absolute; top: 59px; left: 379px; height: 22px;" data-uid="39" id="edit36" infomsg="고객부담경영지도" type="number" tabindex="68"></i-edit>
+        <i-text text="MCI보증료(수협부담)" style="position: absolute; top: 62.5px; left: 518px;" data-uid="40" id="text47"></i-text>
+        <i-edit style="width: 147px; position: absolute; top: 58px; left: 647px; height: 22px;" data-uid="41" id="edit37" infomsg="수협부담MCI보증료" type="number" tabindex="69"></i-edit>
+        <i-combo style="width: 140px; position: absolute; top: 33px; left: 89px;" data-uid="42" id="combo18" items="[{'label':'채무인수','value':'1'},{'label':'갱신보증','value':'2'},{'label':'e-보증','value':'4'},{'label':'집단승인','value':'5'}]" itemall="true"
+            tabindex="63"></i-combo>
+    </i-group>
+    <i-group class="group-panel" text="약정정보" style="width: 805px; height: 176px; position: absolute; top: 59px; left: 10px;" data-uid="43" id="group0" tabindex="-1">
+        <i-text text="고객명" style="position: absolute; top: 9.5px; left: 32px;" data-uid="44" id="text4"></i-text>
+        <i-text text="운용구분" style="position: absolute; top: 36.5px; left: 20px;" data-uid="45" id="text5"></i-text>
+        <i-text text="상환방법" style="position: absolute; top: 63.5px; left: 20px;" data-uid="46" id="text6"></i-text>
+        <i-text text="이수조건" style="position: absolute; top: 90.5px; left: 20px;" data-uid="47" id="text7"></i-text>
+        <i-text text="금리구분" style="position: absolute; top: 117.5px; left: 20px;" data-uid="48" id="text8"></i-text>
+        <i-edit style="width: 58px; position: absolute; top: 5px; left: 89px; height: 22px;" data-uid="49" id="edit3" infomsg="고객번호" type="number" tabindex="6"></i-edit>
+        <i-edit style="width: 70px; position: absolute; top: 5px; left: 149px; height: 22px;" data-uid="50" id="edit4" infomsg="고객명" tabindex="7"></i-edit>
+        <i-edit style="width: 45px; position: absolute; top: 5px; left: 221px; height: 22px;" data-uid="51" id="edit5" infomsg="관리점" tabindex="8"></i-edit>
+        <i-edit style="width: 18px; position: absolute; top: 32px; left: 213px; height: 22px;" data-uid="52" id="edit6" infomsg="1" type="number" tabindex="12"></i-edit>
+        <i-edit style="width: 18px; position: absolute; top: 32px; left: 233px; height: 22px;" data-uid="53" id="edit7" infomsg="" type="number" tabindex="13"></i-edit>
+        <i-text text="개월" style="position: absolute; top: 36.5px; left: 253px;" data-uid="54" id="text10"></i-text>
+        <i-edit style="width: 23px; position: absolute; top: 86px; left: 228px; height: 22px;" data-uid="55" id="edit8" infomsg="" type="number" tabindex="22"></i-edit>
+        <i-text text="개월" style="position: absolute; top: 90.5px; left: 254px;" data-uid="56" id="text11"></i-text>
+        <i-edit style="width: 117px; position: absolute; top: 113px; left: 149px; height: 22px;" data-uid="57" id="edit9" infomsg="금리코드" type="ascii" tabindex="27"></i-edit>
+        <i-edit style="width: 130px; position: absolute; top: 113px; left: 268px; height: 22px;" data-uid="58" id="edit10" infomsg="금리코드명" tabindex="28"></i-edit>
+        <i-edit style="width: 23px; position: absolute; top: 113px; left: 474px; height: 22px;" data-uid="59" id="edit11" infomsg="" type="number" tabindex="30"></i-edit>
+        <i-text text="개월" style="position: absolute; top: 117.5px; left: 500px;" data-uid="60" id="text12"></i-text>
+        <i-text text="약적금리" style="position: absolute; top: 117.5px; left: 539px;" data-uid="61" id="text13"></i-text>
+        <i-maskedit style="width: 58px; position: absolute; top: 114px; left: 600px; height: 20px;" data-uid="62" id="maskedit0" infomsg="기준금리" type="number" tabindex="31"></i-maskedit>
+        <i-maskedit style="width: 58px; position: absolute; top: 114px; left: 660px; height: 20px;" data-uid="63" id="maskedit1" infomsg="가산금리" type="number" tabindex="32"></i-maskedit>
+        <i-maskedit style="width: 58px; position: absolute; top: 114px; left: 720px; height: 20px;" data-uid="64" id="maskedit2" infomsg="적용금리" type="number" tabindex="33"></i-maskedit>
+        <i-text text="%" style="position: absolute; top: 117.5px; left: 779px;" data-uid="65" id="text14"></i-text>
+        <i-text text="승인번호" style="position: absolute; top: 9.5px; left: 320px;" data-uid="66" id="text15"></i-text>
+        <i-text text="상품명" style="position: absolute; top: 36.5px; left: 332px;" data-uid="67" id="text16"></i-text>
+        <i-text text="약정일자" style="position: absolute; top: 63.5px; left: 320px;" data-uid="68" id="text17"></i-text>
+        <i-text text="약정만기일자" style="position: absolute; top: 90.5px; left: 295px;" data-uid="69" id="text18"></i-text>
+        <i-edit style="width: 156px; position: absolute; top: 5px; left: 378px; height: 22px;" data-uid="70" id="edit12" type="number" tabindex="9"></i-edit>
+        <i-edit style="width: 416px; position: absolute; top: 32px; left: 378px; height: 22px;" data-uid="71" id="edit13" type="none" tabindex="14"></i-edit>
+        <i-maskedit style="width: 156px; position: absolute; top: 60px; left: 378px; height: 20px;" data-uid="72" id="maskedit3" type="number" tabindex="17"></i-maskedit>
+        <i-edit style="width: 156px; position: absolute; top: 86px; left: 378px; height: 22px;" data-uid="73" id="edit14" type="number" tabindex="23"></i-edit>
+        <i-text text="상품코드" style="position: absolute; top: 9.5px; left: 591px;" data-uid="74" id="text19"></i-text>
+        <i-edit style="width: 147px; position: absolute; top: 5px; left: 647px; height: 22px;" data-uid="75" id="edit15" type="ascii" tabindex="10"></i-edit>
+        <i-text text="약정금액" style="position: absolute; top: 63.5px; left: 591px;" data-uid="76" id="text20"></i-text>
+        <i-text text="대출가능잔액" style="position: absolute; top: 90.5px; left: 566px;" data-uid="77" id="text21"></i-text>
+        <i-edit style="width: 83px; position: absolute; top: 60px; left: 711px; height: 22px;" data-uid="78" id="edit16" type="number" tabindex="19"></i-edit>
+        <i-edit style="width: 83px; position: absolute; top: 86px; left: 711px;" data-uid="79" id="edit17" type="number" tabindex="25"></i-edit>
+        <i-text text="대출거치" style="position: absolute; top: 36.5px; left: 157px;" data-uid="80" id="text9"></i-text>
+        <i-combo style="width: 58px; position: absolute; top: 113px; left: 89px; height: 22px;" data-uid="81" id="combo8" items="[{'label':'신규 Cofix','value':'1'},{'label':'잔액 Cofix','value':'2'},{'label':'CD','value':'3'},{'label':'FTP(만기대응)','value':'4'},{'label':'예금담보 FTP','value':'5'},{'label':'외화대출 가산금리','value':'F'}]"
+            tabindex="26"></i-combo>
+        <i-combo style="width: 58px; position: absolute; top: 86px; left: 89px; height: 22px;" data-uid="82" id="combo6" items="[{'label':'수료','value':'0'},{'label':'미수료','value':'1'},{'label':'연수중','value':'2'}]" tabindex="20"></i-combo>
+        <i-combo style="width: 77px; position: absolute; top: 86px; left: 149px; height: 22px;" data-uid="83" id="combo7" items="[{'label':'이관신청번호','value':'1'},{'label':'신용카드번호','value':'2'},{'label':'사후관리번호','value':'3'}]" tabindex="21"></i-combo>
+        <i-combo style="width: 62px; position: absolute; top: 86px; left: 647px; height: 22px;" data-uid="84" id="combo11" items="[{'label':'대출 가능 여부 검증','value':'01'},{'label':'이수관','value':'02'},{'label':'수신 당좌개설 가능 여부 검증','value':'03'},{'label':'조건 변경 검증','value':'04'},{'label':'최종거래에 따른 상태코드 변경','value':'05'},{'label':'신규시 총액한도로 전행취급된건의 연기','value':'06'},{'label':'소호품의구분검증','value':'07'},{'label':'대출관리 텔러 취소','value':'09'}]"
+            tabindex="24"></i-combo>
+        <i-combo style="width: 73px; position: absolute; top: 113px; left: 400px; height: 22px;" data-uid="85" id="combo9" items="[{'label':'고정금리','value':'01'},{'label':'변동금리','value':'02'},{'label':'연동금리','value':'03'}]" itemall="true" tabindex="29"></i-combo>
+        <i-combo style="width: 62px; position: absolute; top: 60px; left: 647px; height: 22px;" data-uid="86" id="combo10" items="[{'label':'약전번호채번용','value':'0'},{'label':'전자채권','value':'1'},{'label':'현금결제','value':'2'},{'label':'기업구매자금','value':'3'},{'label':'외상매추채권','value':'4'},{'label':'B2B기업구매자금','value':'5'}]"
+            tabindex="18"></i-combo>
+        <i-combo style="width: 117px; position: absolute; top: 59px; left: 149px; height: 22px;" data-uid="87" id="combo5" items="[{'label':'일시상환','value':'01'},{'label':'비거치식 분할상환','value':'02'},{'label':'거치식 분할상환','value':'03'},{'label':'만기일시지정 분할상환','value':'04'},{'label':'자유분할상환','value':'05'}]"
+            tabindex="16"></i-combo>
+        <i-combo style="width: 58px; position: absolute; top: 59px; left: 89px; height: 22px;" data-uid="88" id="combo4" items="[{'label':'해당사항없음','value':'00'},{'label':'원금균등','value':'02'},{'label':'원리균등','value':'04'}]" tabindex="15"></i-combo>
+        <i-combo style="width: 58px; position: absolute; top: 32px; left: 89px; height: 22px;" data-uid="89" id="combo2" items="[{'label':'해당없음','value':'0000'},{'label':'단독','value':'0001'},{'label':'합동','value':'0002'}]" tabindex="11"></i-combo>
+    </i-group>
+    <div class="div-group-panel" style="width: 805px; height: 166px; position: absolute; top: 241px; left: 10px;" data-uid="90" id="div1" tabindex="-1">
+        <i-text text="고객명" style="position: absolute; top: 7.5px; left: 33px;" data-uid="91" id="text22"></i-text>
+        <i-text text="운용구분" style="position: absolute; top: 33.5px; left: 21px;" data-uid="92" id="text23"></i-text>
+        <i-text text="상환방법" style="position: absolute; top: 59.5px; left: 21px;" data-uid="93" id="text24"></i-text>
+        <i-text text="이수조건" style="position: absolute; top: 85.5px; left: 21px;" data-uid="94" id="text25"></i-text>
+        <i-text text="금리구분" style="position: absolute; top: 111.5px; left: 21px;" data-uid="95" id="text26"></i-text>
+        <i-text text="구속성예금예외사유" style="position: absolute; top: 137.5px; left: 7px;" data-uid="96" id="text27"></i-text>
+        <i-maskedit style="width: 118px; position: absolute; top: 4px; left: 149px; height: 20px;" data-uid="97" id="maskedit4" type="none" tabindex="35"></i-maskedit>
+        <i-maskedit style="width: 118px; position: absolute; top: 30px; left: 149px; height: 20px;" data-uid="98" id="maskedit5" type="none" tabindex="41"></i-maskedit>
+        <i-edit style="width: 90px; position: absolute; top: 55px; left: 90px; height: 22px;" data-uid="99" id="edit18" type="none" tabindex="44"></i-edit>
+        <i-button text="S" style="position: absolute; top: 55px; left: 181px; height: 22px; width: 29px; background-size: 100% 100%;" data-uid="100" id="button1" tabindex="-1"></i-button>
+        <i-edit style="width: 90px; position: absolute; top: 81px; left: 90px; height: 22px;" data-uid="101" id="edit19" tabindex="48"></i-edit>
+        <i-button text="S" style="position: absolute; top: 81px; left: 181px; height: 22px; width: 21px; background-size: 100% 100%;" data-uid="102" id="button2" tabindex="-1"></i-button>
+        <i-edit style="width: 90px; position: absolute; top: 107px; left: 90px; height: 22px;" data-uid="103" id="edit20" tabindex="52"></i-edit>
+        <i-button text="S" style="position: absolute; top: 107px; left: 181px; height: 22px; width: 21px; background-size: 100% 100%;" data-uid="104" id="button3" tabindex="-1"></i-button>
+        <i-edit style="width: 55px; position: absolute; top: 107px; left: 211px; height: 22px;" data-uid="105" id="edit21" tabindex="53"></i-edit>
+        <i-maskedit style="width: 147px; position: absolute; top: 82px; left: 648px; height: 20px;" data-uid="106" id="maskedit6" infomsg="고객부담수입인지합계" type="number" tabindex="51"></i-maskedit>
+        <i-text text="만기일자" style="position: absolute; top: 7.5px; left: 321px;" data-uid="107" id="text28"></i-text>
+        <i-text text="거치만기일자" style="position: absolute; top: 33.5px; left: 296px;" data-uid="108" id="text29"></i-text>
+        <i-text text="수수료우대구분" style="position: absolute; top: 59.5px; left: 283px;" data-uid="109" id="text30"></i-text>
+        <i-text text="자동이체일/주기" style="position: absolute; top: 85.5px; left: 278px;" data-uid="110" id="text31"></i-text>
+        <i-text text="계산서출력" style="position: absolute; top: 111.5px; left: 308px;" data-uid="111" id="text32"></i-text>
+        <i-text text="거래장출력" style="position: absolute; top: 137.5px; left: 308px;" data-uid="112" id="text33"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 3px; left: 379px;" data-uid="113" id="edit22" showcalendarbutton="true" type="number" tabindex="36"></i-edit>
+        <i-edit style="width: 140px; position: absolute; top: 29px; left: 379px;" data-uid="114" id="edit23" showcalendarbutton="true" type="number" tabindex="42"></i-edit>
+        <i-button text="S" style="position: absolute; top: 55px; left: 436px; height: 22px; width: 29px; background-size: 100% 100%;" data-uid="115" id="button4" tabindex="-1"></i-button>
+        <i-maskedit style="width: 182px; position: absolute; top: 56px; left: 466px; height: 20px;" data-uid="116" id="maskedit7" infomsg="면제/할인사유" tabindex="46"></i-maskedit>
+        <i-edit style="width: 49px; position: absolute; top: 81px; left: 379px; height: 22px;" data-uid="117" id="edit24" infomsg="DD" type="number" tabindex="49"></i-edit>
+        <i-text text="일/" style="position: absolute; top: 85.5px; left: 429px;" data-uid="118" id="text34"></i-text>
+        <i-edit style="width: 49px; position: absolute; top: 81px; left: 447px; height: 22px;" data-uid="119" id="edit25" infomsg="" type="number" tabindex="50"></i-edit>
+        <i-text text="개월" style="position: absolute; top: 85.5px; left: 499px;" data-uid="120" id="text35"></i-text>
+        <i-text text="기준/가감/적용이율" style="position: absolute; top: 7.5px; left: 532px;" data-uid="121" id="text36"></i-text>
+        <i-text text="이자수입일자" style="position: absolute; top: 33.5px; left: 567px;" data-uid="122" id="text37"></i-text>
+        <i-maskedit style="width: 40px; position: absolute; top: 4px; left: 648px; height: 20px;" data-uid="123" id="maskedit8" type="number" tabindex="37"></i-maskedit>
+        <i-maskedit style="width: 40px; position: absolute; top: 4px; left: 690px;" data-uid="124" id="maskedit9" type="number" tabindex="38"></i-maskedit>
+        <i-maskedit style="width: 40px; position: absolute; top: 4px; left: 732px;" data-uid="125" id="maskedit10" type="number" tabindex="39"></i-maskedit>
+        <i-text text="%" style="position: absolute; top: 7.5px; left: 780px;" data-uid="126" id="text38"></i-text>
+        <i-edit style="width: 147px; position: absolute; top: 29px; left: 648px; height: 22px;" data-uid="127" id="edit26" showcalendarbutton="true" type="number" tabindex="43"></i-edit>
+        <i-text text="이자수입지정일" style="position: absolute; top: 59.5px; left: 669px;" data-uid="128" id="text39"></i-text>
+        <i-edit style="width: 27px; position: absolute; top: 55px; left: 768px; height: 22px;" data-uid="129" id="edit27" infomsg="00" type="number" tabindex="47"></i-edit>
+        <i-button text="수입인지" style="position: absolute; top: 82px; left: 528px; width: 104px; background-size: 100% 100%;" data-uid="130" id="button5" tabindex="-1"></i-button>
+        <i-button text="대출수수료" style="position: absolute; top: 108px; left: 528px; width: 104px; background-size: 100% 100%;" data-uid="131" id="button6" tabindex="-1"></i-button>
+        <i-button text="비용연동입금" style="position: absolute; top: 134px; left: 528px; width: 104px; background-size: 100% 100%;" data-uid="132" id="button7" tabindex="-1"></i-button>
+        <i-maskedit style="width: 147px; position: absolute; top: 110px; left: 648px; height: 20px;" data-uid="133" id="maskedit11" infomsg="고객/은행부담수수료합계" type="number" tabindex="55"></i-maskedit>
+        <i-maskedit style="width: 147px; position: absolute; top: 134px; left: 648px; height: 20px;" data-uid="134" id="maskedit12" infomsg="고객부담비용합계" type="number" tabindex="58"></i-maskedit>
+        <i-combo style="width: 56px; position: absolute; top: 3px; left: 90px; height: 22px;" data-uid="135" id="combo12" itemall="true" items="[{'label':'해당사항없음','value':'00'},{'label':'계약자','value':'01'},{'label':'보증인','value':'02'},{'label':'담보제공인','value':'04'}]"
+            tabindex="34"></i-combo>
+        <i-combo style="width: 56px; position: absolute; top: 29px; left: 90px; height: 22px;" data-uid="136" id="combo13" itemall="true" items="[{'label':'해당없음','value':'0000'},{'label':'단독','value':'0001'},{'label':'합동','value':'0002'}]"
+            tabindex="40"></i-combo>
+        <i-combo style="width: 134px; position: absolute; top: 133px; left: 133px; height: 22px;" data-uid="137" id="combo14" items="[{'label':'재가입분','value':'01'},{'label':'여유자금','value':'02'},{'label':'금리감면','value':'03'},{'label':'타기관제공담보','value':'04'},{'label':'기타 부득이한 경우','value':'05'}]"
+            itemall="true" tabindex="56"></i-combo>
+        <i-combo style="width: 140px; position: absolute; top: 133px; left: 379px;" data-uid="138" id="combo17" items="[{'label':'해당없음','value':'0'},{'label':'기동(단말거래)','value':'1'},{'label':'연동(대체거래)','value':'2'},{'label':'전문(타발성대외망거래)','value':'3'},{'label':'복원(당발성대외망거래중응답전문)','value':'4'}]"
+            itemall="true" tabindex="57"></i-combo>
+        <i-combo style="width: 140px; position: absolute; top: 107px; left: 379px;" data-uid="139" id="combo16" items="[{'label':'등록','value':'1'},{'label':'삭제','value':'9'}]" itemall="true" tabindex="54"></i-combo>
+        <i-combo style="width: 56px; position: absolute; top: 55px; left: 379px; height: 22px;" data-uid="140" id="combo15" itemall="true" items="[{'label':'면제','value':'1'},{'label':'우대','value':'2'}]" tabindex="45"></i-combo>
+    </div>
+    <div class="search-panel" style="width: 805px; height: 41px; position: absolute; top: 10.5px; left: 10px;" data-uid="141" id="div0" tabindex="-1">
+        <i-text text="거래구분" style="position: absolute; top: 12.5px; left: 9px;" data-uid="142" id="text0"></i-text>
+        <i-text text="처리구분" style="position: absolute; top: 12.5px; left: 194px;" data-uid="143" id="text1"></i-text>
+        <i-text text="계좌번호" style="position: absolute; top: 12.5px; left: 339px;" data-uid="144" id="text2"></i-text>
+        <i-edit style="width: 111px; position: absolute; top: 8px; left: 392px; height: 22px;" data-uid="145" id="edit0" type="number" tabindex="3"></i-edit>
+        <i-button text="S" style="position: absolute; top: 8px; left: 505px; height: 22px; width: 21px; background-size: 100% 100%;" data-uid="146" id="button0" tabindex="-1" onclick="onclick_button0();"></i-button>
+        <i-edit style="width: 58px; position: absolute; top: 8px; left: 534px; height: 22px;" data-uid="147" id="edit1" tabindex="4"></i-edit>
+        <i-text text="기산일자" style="position: absolute; top: 11px; left: 601px; width: 58px; height: 16px;" data-uid="148" id="text3"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 8px; left: 649px;" data-uid="149" id="edit2" showcalendarbutton="true" type="number" tabindex="5"></i-edit>
+        <i-combo style="width: 115px; position: absolute; top: 7px; left: 70px; height: 22px;" data-uid="150" id="combo0" dropdownstyle="dropdown" items="[{'label':'해당없음','value':'00'},{'label':'단말수납이체분','value':'01'},{'label':'단말수납지급분','value':'02'},{'label':'자동이제입금분','value':'11'},{'label':'자동이체지급분','value':'12'},{'label':'서손등록','value':'20'},{'label':'단순서손','value':'21'},{'label':'자금이체입금분','value':'22'},{'label':'자금이체지급분','value':'23'},{'label':'서손정리','value':'30'},{'label':'창구 사용 취소','value':'40'},{'label':'인사지원부 중요증표 이수관','value':'60'},{'label':'카드사업부 카드류 반환','value':'65'},{'label':'파출점발송','value':'80'},{'label':'파출점발송 취소','value':'81'},{'label':'군산대학교 발송','value':'82'},{'label':'용도품 서손등록/단순서손 승인신청 및 취소','value':'90'}]"
+            tabindex="1"></i-combo>
+        <i-combo style="width: 78px; position: absolute; top: 8px; left: 249px; height: 22px;" data-uid="151" id="combo1" items="[{'label':'등록금','value':'201'},{'label':'등록금외','value':'202'}]" tabindex="2"></i-combo>
+    </div>
+    <div class="bottom-panel" style="width: 805px; height: 32px; position: absolute; top: 540px; left: 10px;" data-uid="152" id="div2" tabindex="-1">
+        <i-button text="승인정보" style="position: absolute; top: 5px; left: 330px; width: 83px; height: 20px; background-size: 100% 100%;" data-uid="153" id="button13" tabindex="-1"></i-button>
+        <i-button text="담보정보" style="position: absolute; top: 5px; left: 415px; width: 83px; height: 20px; background-size: 100% 100%;" data-uid="154" id="button14" tabindex="-1"></i-button>
+        <i-button text="계좌별조회" style="position: absolute; top: 5px; left: 500px; width: 104px; height: 20px; background-size: 100% 100%;" data-uid="155" id="button15" tabindex="-1"></i-button>
+        <i-button text="상환계획조회" style="position: absolute; top: 5px; left: 606px; width: 104px; height: 20px; background-size: 100% 100%;" data-uid="156" id="button16" tabindex="-1"></i-button>
+        <i-button text="한도조회" style="position: absolute; top: 5px; left: 712px; width: 83px; height: 20px; background-size: 100% 100%;" data-uid="157" id="button17" tabindex="-1"></i-button>
+        <i-button text="스캔실행" style="position: absolute; top: 6px; left: 5px; background-size: 100% 100%;" data-uid="158" id="button18" onclick="onclick_button18();" tabindex="-1"></i-button>
+        <i-button text="스캔중지" style="position: absolute; top: 6px; left: 85px; background-size: 100% 100%;" data-uid="159" id="button19" onclick="onclick_button19();" tabindex="-1"></i-button>
+    </div>
+</body>
+
+</html>

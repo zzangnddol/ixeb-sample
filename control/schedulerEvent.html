@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1280x1300" data-uid="6">
+    <meta name="created" content="2016/10/03 17:53" data-uid="7">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="8">
+    <title data-uid="9">tree_sample</title>
+    <script type="text/javascript" src="../../ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="10"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="11"></script>
+    <script type="text/javascript" data-uid="12">
+		function onEvntClick(args){
+            console.log( 'schedulerDataClick',args[1].date,args[1].text );
+        }
+        function onCellClick(args){
+			console.log( 'cellClick',args[1] );
+		}
+        function onCellDblClick(args){
+			console.log( 'cellDblClick',args[1] );
+		}
+		function onInitScreen_body(){
+			id0.setSchedulerData({'date':'2017-02-10',"title":"testSchedule"});
+		}
+    </script>
+</head>
+
+<body id="tree_sample" data-uid="3" oninitScreen="onInitScreen_body();">
+    <i-scheduler id="id0" todaybutton="false" onSchedulerDataClick="onEvntClick(arguments);" onCellClick="onCellClick(arguments);" onCellDblClick="onCellDblClick(arguments);" style="width:100%;height:100%;"></i-scheduler>
+</body>
+
+</html>

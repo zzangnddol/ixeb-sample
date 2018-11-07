@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-vline" content="8," data-uid="5">
+    <meta name="ixeb-studio:guide-hline" content="8," data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1920x1080" data-uid="8">
+    <meta name="created" content="2016/11/07 11:50" data-uid="9">
+    <title data-uid="10">projectList</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="12"></script>
+    <script type="text/javascript" data-uid="13">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-11-07
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            var parameter = document.location.href.split('?')[1];
+            var key = "";
+            if (parameter) {
+                key = decodeURI(parameter).split('=')[1].replace(/%22/g, '\'').replace(/%7B/g, '\{').replace(/%7D/g, '\}');
+            }
+            //TODO:
+            $.ajax({
+                url: './data/projectList.json',
+                success: function(ret) {
+                    var data = ret.data;
+                    var items = [];
+                    for (var i = 0; i < data.length; i++) {
+                        var item = {
+                            "value": data[i].identifier,
+                            "label": data[i].identifier
+                        };
+                        items.push(item);
+                    }
+                    combo0.items = JSON.stringify(items);
+                    combo0.value = key;
+                }
+            });
+            search_grid(key);
+        }
+
+        function onchange_combo0() {
+            var val = combo0.value;
+            search_grid(val);
+        }
+
+        function search_grid(val) {
+            $.ajax({
+                url: './data/history.json',
+                success: function(ret) {
+                    var data = ret[val];
+                    treegrid0.setGridData(data);
+                }
+            });
+            $.ajax({
+                url: './data/revision.json',
+                success: function(ret) {
+                    var data = ret[val];
+                    grid0.setGridData(data);
+                }
+            });
+        }
+    </script>
+    <style data-uid="14">
+        body {
+            background: #E6E6E6;
+        }
+        
+        .projectList {
+            background: #FFFFFF!important;
+            min-width: 990px;
+            width: calc(100% - 28px)!important;
+            border: none!important;
+        }
+    </style>
+</head>
+
+<body id="projectList" data-uid="3" oninitscreen="onInitScreen_body();">
+    <h3 style="font-weight: bold; left: 14px; top:8px; position:absolute;" data-uid="15">프로젝트 목록</h3>
+    <i-combo style="width: 140px; position: absolute; top: 29px; left: 14px;" data-uid="16" onchange="onchange_combo0();" id="combo0"></i-combo>
+    <i-treegrid id="treegrid0" treefield="name" treelinecolor="#CCCCCC" style="width: 1296px; height: 311px; position: absolute; top: 60px; left: 14px; opacity: 0.99;" data-uid="17" columns="[{'fieldName':'name', 'name':'이름'},{'fieldName':'size', 'name':'크기'},{'fieldName':'version', 'name':'개정판'},{'fieldName':'date', 'name':'마지막 수정일'},{'fieldName':'user', 'name':'저자'},{'fieldName':'info', 'name':'설명'}]"
+        strippedpattern="false" class="projectList"></i-treegrid>
+    <i-text text="최근 개정판" style="position: absolute; top: 395px; left: 14px; font-weight: bold;" data-uid="18" id="text0"></i-text>
+    <i-grid style="width: 480px; height: 245px; position: absolute; top: 419px; left: 14px; opacity: 0.99;" data-uid="19" id="grid0" class="projectList" columns="[{'name':'#','fieldName':'no', 'width': 30},{'name':' ','fieldName':'prev', 'width': 14, 'dataType' : 'check'},{'name':' ','fieldName':'next', 'width': 14, 'dataType' : 'check'},{'name':'날짜','fieldName':'date', 'width': 120},{'name':'저자','fieldName':'user', 'width': 100},{'name':'설명','fieldName':'info', 'width': 500}]"
+        rowautocount="false" strippedpattern="false"></i-grid>
+    <i-button style="position: absolute; top:670px; left: 14px;" text="차이점보기" id="button0" data-uid="20"></i-button>
+    <!-- <i-text style="position: absolute; top:814px; left: 8px;" text="모든 개정판 표시" id="text1" data-uid="21"></i-text> -->
+</body>
+
+</html>

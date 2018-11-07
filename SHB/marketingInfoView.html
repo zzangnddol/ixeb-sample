@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-hline" content="1074," data-uid="5">
+    <meta name="ixeb-studio:guide-vline" content="" data-uid="6">
+    <meta name="modified" content="2017/04/17 12:32" data-uid="7">
+    <meta name="generator" content="iXebStudio 1.0.0.1544" data-uid="8">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="9">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="10">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="11">
+    <meta name="created" content="2017/04/14 16:53" data-uid="12">
+    <title data-uid="13">maketingInfoView1</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="14"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="15"></script>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript" data-uid="16">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-04-17
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_maketingInfoView1() {
+            //TODO:
+            var items = ixeb.util.parseJSON(grid1.gridItem);
+            grid1.setGridData(items)
+            $('.chart-label').on("click", function() {
+                var title = this.text,
+                    popup = $(div12);
+                text49.text = title;
+                popup.show();
+                popup.focus();
+                window.setTimeout(function() {
+                    popup.hide();
+                }, 5000);
+            });
+        }
+    </script>
+    <style data-uid="17">
+        i-group .wrapper .title-header-area {
+            margin-top: 7px;
+            margin-left: 5px;
+            width: 18px;
+            height: 18px;
+            background-image: url(./images/bullet.png);
+            background-size: 18px;
+        }
+        
+        i-group .wrapper .title-area {
+            background-color: #F5F5F5;
+            border: 1px solid #DDDDDD;
+            height: 47px;
+            align-items: center;
+        }
+        
+        i-group .wrapper .title-area .icon {
+            background-image: url(./images/add.png);
+            width: 29px;
+            height: 29px;
+            margin-top: 3px;
+            position: absolute;
+            right: 10px;
+        }
+        
+        i-group .wrapper .title-area .icon::before {
+            display: none;
+        }
+        
+        i-group .wrapper .title-content-area {
+            font-weight: bold;
+            font-size: 15px;
+            padding-top: 7px;
+        }
+        
+        i-group .wrapper .contents-area {
+            height: calc(100% - 47px);
+        }
+        
+        i-group .wrapper .contents-area {
+            border-top: none;
+            border-right: 1px solid #DDDDDD;
+            border-bottom: 1px solid #DDDDDD;
+            border-left: 1px solid #DDDDDD;
+        }
+        
+        i-tabs>div {
+            border: 1px solid transparent;
+            background: none;
+        }
+        
+        i-tabs .tabbuttons>div {
+            border-color: #DCDCDE;
+            background: #F8F9FB;
+            color: #9D9E9F;
+            border-radius: 0px;
+            margin-right: 0px;
+            border-bottom: 1px solid #273751;
+        }
+        
+        i-tabs div.tabpages>div {
+            border-top: 1px solid #273751;
+            border-right: none;
+            border-bottom: none;
+            border-left: none;
+        }
+        
+        i-tabs>.top .tabbuttons div.tab-button-wrapper.selected {
+            border-color: #273751;
+            border-bottom: 1px solid #FFFFFF;
+            color: #2A3E7D;
+            background: #FFFFFF;
+            box-shadow: none;
+            font-weight: bold;
+        }
+        
+        .label-value,
+        .label-title {
+            height: 22px!important;
+            border-bottom: 1px solid #BCC1C7;
+            padding-top: 4px;
+            padding-left: 2px;
+        }
+        
+        .label-title {
+            background-color: #7595CD;
+            color: #FFFFFF;
+            text-align: center;
+        }
+        
+        i-button {
+            height: 24px;
+            color: rgb(255, 255, 255);
+            background: rgb(56, 76, 103);
+            border: none;
+        }
+        
+        .group-btn {
+            border: 1px solid #004FC6;
+            color: #004FC6;
+            background: #FFFFFF;
+            border-radius: 4px;
+        }
+        
+        .fa.fa-angle-right {
+            font-size: 12px;
+            color: #9FB7E2;
+        }
+        /* 화면에서만 사용하는 css */
+        
+        table th {
+            background-color: #E6F3FC;
+            border: 1px solid #c6c6c6;
+            color: #1E272C;
+            font-weight: bold;
+            height: 22px !important;
+        }
+        
+        table td {
+            border: 1px solid #c6c6c6;
+            text-align: center;
+        }
+        
+        .chart-label {
+            text-align: center;
+            background: #E1AB4B;
+            color: #FFFFFF;
+            width: 60px !important;
+            padding: 5px 3px 0px 5px;
+            cursor: pointer;
+            /*height: 20px !important;*/
+        }
+        
+        .chart-label.empty {
+            color: #666;
+            background: #FFFFFF;
+            pointer-events: none;
+        }
+        
+        .popup {
+            display: none;
+        }
+    </style>
+</head>
+
+<body id="maketingInfoView1" data-uid="3" style="background-color:#EDF0F5;" oninitscreen="onInitScreen_maketingInfoView1();">
+    <i-group text="고객정보" style="width: 509px; height: 194px; position: absolute; top: 10px; left: 9px;" data-uid="18" id="group0">
+        <i-tabs style="width: 97.1081%; height: 131px; position: absolute; top: -7px; left: -6px; margin: 10px;" data-uid="19" id="tabs0">
+            <i-tabpage title="기본정보" data-uid="20" headercolor="" backcolor="#FFFFFF">
+                <i-text class="label-title" text="자택주소" style="position: absolute; top: 62px; left: 6px; width: 70px; height: 16px;" data-uid="21" id="text1"></i-text>
+                <i-text class="label-title" text="직장명" style="position: absolute; top: 84px; left: 6px; width: 70px; height: 16px;" data-uid="22" id="text2"></i-text>
+                <i-text class="label-title" text="직장주소" style="position: absolute; top: 106px; left: 6px; width: 70px; height: 16px;" data-uid="23" id="text3"></i-text>
+                <i-text class="label-title" text="성명" style="position: absolute; top: 40px; left: 6px; width: 70px; height: 16px;" data-uid="24" id="text0"></i-text>
+                <i-text text="1988.06.24" style="position: absolute; top: 40px; left: 290px; height: 16px;" data-uid="25" id="text6" class="label-value"></i-text>
+                <i-text text="김춘향(여, 30)" style="position: absolute; top: 40px; left: 76px; width: 179px; height: 22px;" data-uid="26" id="text4" class="label-value"></i-text>
+                <i-text text="생일" style="position: absolute; top: 40px; left: 255px; width: 35px; height: 16px; text-align: center;" data-uid="27" id="text5" class="label-title"></i-text>
+                <i-text text="+" style="position: absolute; top: 40px; left: 365px; height: 16px; width: 19px;" data-uid="28" id="text8" class="label-value"></i-text>
+                <i-text text="29" style="position: absolute; top: 40px; left: 435px; width: 50px; height: 16px; text-align: center;" data-uid="29" id="text9" class="label-value"></i-text>
+                <i-text text="" style="position: absolute; top: 62px; left: 76px; width: 410px; height: 16px;" data-uid="30" id="text10" class="label-value"></i-text>
+                <i-text text="" style="position: absolute; top: 106px; left: 76px; width: 410px; height: 22px;" data-uid="31" id="text11" class="label-value"></i-text>
+                <i-text text="무역과" style="position: absolute; top: 84px; left: 290px; width: 93px; height: 22px;" data-uid="32" id="text12" class="label-value"></i-text>
+                <i-text text="(주) 신한데이터시스템" style="position: absolute; top: 84px; left: 76px; width: 179px; height: 16px;" data-uid="33" id="text13" class="label-value"></i-text>
+                <i-text text="부서" style="position: absolute; top: 84px; left: 255px; width: 35px; height: 16px; text-align: center;" data-uid="34" id="text14" class="label-title"></i-text>
+                <i-text text="직위" style="position: absolute; top: 84px; left: 384px; width: 51px; height: 16px; text-align: center;" data-uid="35" id="text15" class="label-title"></i-text>
+                <i-text text="대리" style="position: absolute; top: 84px; left: 435px; width: 50px; height: 16px; text-align: center;" data-uid="36" id="text16" class="label-value"></i-text>
+                <i-button text="<i class='fa fa-check' aria-hidden='true'></i> 구속성 체크" style="position: absolute; top: 5px; left: 389px; width: 93px; height: 24px; color: rgb(255, 255, 255); border: none; border-radius: 4px; background: rgb(56, 76, 103);"
+                    data-uid="37" id="button0"></i-button>
+                <i-text text="만나이" style="position: absolute; top: 40px; left: 384px; width: 51px; height: 16px; text-align: center;" data-uid="38" id="text7" class="label-title"></i-text>
+            </i-tabpage>
+            <i-tabpage title="부가정보" data-uid="39" headercolor="" backcolor="#FFFFFF"></i-tabpage>
+        </i-tabs>
+    </i-group>
+    <i-group text="마케팅동의" style="width: 509px; height: 91px; position: absolute; top: 210px; left: 9px;" data-uid="40" id="group1">
+        <i-text class="label-title" text="개인(신용)정보 (동의여부/BPR SCAN여부)" style="position: absolute; top: 11px; left: 11px; width: 275px; height: 18px; color: rgb(42, 62, 125); font-weight: bold; border-bottom-style: none; background-image: linear-gradient(45deg, rgba(188, 193, 199, 0) 0%, rgba(188, 193, 199, 0) 44%, rgba(188, 193, 199, 0.298039) 45%, rgba(188, 193, 199, 0.298039) 55%, rgba(188, 193, 199, 0) 56%, rgba(188, 193, 199, 0) 100%); background-color: rgb(254, 254, 254); background-size: 4px 4px; background-repeat: repeat;"
+            data-uid="41" id="text18"></i-text>
+        <i-text text="동의함" style="position: absolute; top: 11px; left: 293px; width: 97px; height: 16px;" data-uid="42" id="text19" class="label-value"></i-text>
+        <i-text text="미확인" style="position: absolute; top: 11px; left: 393px; width: 97px; height: 16px;" data-uid="43" id="text20" class="label-value"></i-text>
+    </i-group>
+    <i-group text="전담직원" style="width: 249px; height: 146px; position: absolute; top: 306px; left: 10px;" data-uid="44" id="group3">
+        <i-text class="label-title" text="자택주소" style="position: absolute; top: 26px; left: 11px; width: 70px; height: 16px;" data-uid="45" id="text21"></i-text>
+        <i-text class="label-title" text="직장명" style="position: absolute; top: 48px; left: 11px; width: 70px; height: 16px;" data-uid="46" id="text22"></i-text>
+        <i-text class="label-title" text="직장주소" style="position: absolute; top: 70px; left: 11px; width: 70px; height: 16px;" data-uid="47" id="text23"></i-text>
+        <i-text class="label-title" text="성명" style="position: absolute; top: 4px; left: 11px; width: 70px; height: 16px;" data-uid="48" id="text24"></i-text>
+        <i-text text="1101" style="position: absolute; top: 4px; left: 81px; height: 16px;" data-uid="49" id="text25" class="label-value"></i-text>
+        <i-text text="김춘향(여, 30)" style="position: absolute; top: 4px; left: 115px; width: 113px; height: 16px;" data-uid="50" id="text26" class="label-value"></i-text>
+        <i-text text="" style="position: absolute; top: 26px; left: 81px; width: 148px; height: 16px;" data-uid="51" id="text31" class="label-value"></i-text>
+        <i-text text="임헌수" style="position: absolute; top: 70px; left: 148px; width: 80px; height: 16px;" data-uid="52" id="text32" class="label-value"></i-text>
+        <i-text text="(주) 신한데이터시스템" style="position: absolute; top: 48px; left: 81px; width: 148px; height: 22px;" data-uid="53" id="text34" class="label-value"></i-text>
+        <i-text text="6222579" style="position: absolute; top: 70px; left: 81px; width: 67px; height: 16px; text-align: center;" data-uid="54" id="text37" class="label-value"></i-text>
+    </i-group>
+    <i-group text="Tops Club 정보" style="width: 253px; height: 146px; position: absolute; top: 306px; left: 265px;" data-uid="55" id="group4">
+        <i-text class="label-title" text="자택주소" style="position: absolute; top: 26px; left: 7px; width: 102px; height: 16px;" data-uid="56" id="text21"></i-text>
+        <i-text class="label-title" text="직장명" style="position: absolute; top: 48px; left: 7px; width: 102px; height: 16px;" data-uid="57" id="text22"></i-text>
+        <i-text class="label-title" text="활동성고객" style="position: absolute; top: 4px; left: 7px; width: 102px; height: 16px;" data-uid="58" id="text24"></i-text>
+        <i-text text="비활동성" style="position: absolute; top: 4px; left: 109px; width: 113px; height: 16px;" data-uid="59" id="text26" class="label-value"></i-text>
+        <i-text text="Premier" style="position: absolute; top: 26px; left: 109px; width: 113px; height: 16px;" data-uid="60" id="text31" class="label-value"></i-text>
+        <i-text text="Premier" style="position: absolute; top: 48px; left: 109px; width: 113px; height: 16px;" data-uid="61" id="text34" class="label-value"></i-text>
+        <i-button text="Mint레이디클럽  <i class='fa fa-angle-right' aria-hidden='true'></i>" style="position: absolute; top: 73px; left: 8px; width: 111px; height: 20px; border-radius: 3px; background-size: 100% 100%;" data-uid="62" id="button4"
+            class="group-btn"></i-button>
+        <i-button text="$20 <i class='fa fa-angle-right' aria-hidden='true'></i>" style="position: absolute; top: 73px; left: 122px; width: 50px; height: 20px; border-radius: 3px; background-size: 100% 100%;" data-uid="63" id="button5" class="group-btn"></i-button>
+        <i-button text="FAN <i class='fa fa-angle-right' aria-hidden='true'></i>" style="position: absolute; top: 73px; left: 174px; width: 50px; height: 20px; border-radius: 3px; background-size: 100% 100%;" data-uid="64" id="button6" class="group-btn"></i-button>
+    </i-group>
+    <i-group text="일정/접촉현황" style="width: 509px; height: 247px; position: absolute; top: 457px; left: 9px;" data-uid="65" id="group2">
+        <i-radio items="[{'disable':false,'label':'섭외/밀착/메모(0)','value':'1'},{'disable':false,'label':'일정/상담예약(0)','value':'2'}]" style="position: absolute; top: 5px; left: 249px;" data-uid="66" id="radio0"></i-radio>
+        <i-grid style="width: 486px; height: 160px; position: absolute; top: 27px; left: 11px; opacity: 0.99;" columns="[{'fieldName':'col0','name':'일자','colWidth':113},{'fieldName':'col1','name':'구분','colWidth':46},{'fieldName':'col2','name':'섭외/밀착/메모 내용','colWidth':300}]"
+            data-uid="67" id="grid0" columncount="3" initrowcount="0" sumrowshow="none" columnlastextend="true" columnmove="true" columnresize="true" statebar="false" rowautocount="false" strippedpattern="false" sorted="true" checkbar="false" griditem="[]"
+            emptydatamessage="최근 2년간 접속이력이 없습니다." colheadbackcolor="#e6f3fc" colheadtextcolor="#1e272c" colheadfontfamilybold="true" selectbordercolor="#F9C42A" selectbackcolor="#FFD47F"></i-grid>
+    </i-group>
+    <i-group text="일정/접촉현황" style="width: 509px; height: 178px; position: absolute; top: 710px; left: 10px;" data-uid="68" id="group5">
+        <table data-uid="69" style="width: 491px; height: 113px; position: absolute; top: 8px; left: 9px; opacity: 0.99;" id="table0">
+            <tbody data-uid="70">
+                <tr data-uid="71">
+                    <th data-uid="72" style="position: relative; top: 0px; left: 0px; width: 76px; height: 27px;">고객군</th>
+                    <th data-uid="73" style="position: relative; top: 0px; left: 0px; width: 110px; height: 27px;">추천상품(군)</th>
+                    <th data-uid="74" style="position: relative; top: 0px; left: 0px; width: 198px; height: 27px;">추천사유</th>
+                    <th data-uid="75" style="width: 70px;">관심여부</th>
+                </tr>
+                <tr data-uid="76">
+                    <td data-uid="77" style="position: relative; top: 0px; left: 0px;">우수고객</td>
+                    <td data-uid="78" style="position: relative; top: 0px; left: 0px;">투자상품</td>
+                    <td data-uid="79" style="position: relative; top: 0px; left: 0px;">고객님의 자산 포트폴리오를 다양하게 구성할 필요가 있습니다.</td>
+                    <td data-uid="80">
+                        <i-button text="관심" data-uid="81" style="border-radius: 3px;width: 50px;background-size: 100% 100%;"></i-button>
+                        <i-button text="무관심" data-uid="82" style="border-radius: 3px;width: 50px;position: relative;top: 0px;left: 0px;height: 24px;background-size: 100% 100%;margin: 5px;"></i-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </i-group>
+    <i-group text="고객정보" style="width: 529px; height: 194px; position: absolute; top: 10px; left: 530px;" data-uid="83" id="group6">
+        <i-text class="label-title" text="거래기간" style="position: absolute; top: 46px; left: 11px; width: 175px; text-align: left;" data-uid="84" id="text18"></i-text>
+        <i-text text="0 년" style="position: absolute; top: 46px; left: 186px; width: 330px; height: 22px;" data-uid="85" id="text19" class="label-value"></i-text>
+        <i-text class="label-title" text="1년간 재예치현황(신규/해지)" style="position: absolute; top: 68px; left: 11px; width: 175px; text-align: left;" data-uid="86" id="text36"></i-text>
+        <i-text text="3회/4회" style="position: absolute; top: 68px; left: 186px; width: 330px; height: 22px;" data-uid="87" id="text40" class="label-value"></i-text>
+        <i-text class="label-title" text="3개월간 상품신규 (건수/금액)" style="position: absolute; top: 90px; left: 11px; width: 175px; height: 18px; text-align: left;" data-uid="88" id="text38"></i-text>
+        <i-text text="1회/50,000,000원" style="position: absolute; top: 90px; left: 186px; width: 330px; height: 22px;" data-uid="89" id="text41" class="label-value"></i-text>
+        <i-text class="label-title" text="최근(1년)가입상품" style="position: absolute; top: 110px; left: 11px; width: 175px; height: 18px; text-align: left;" data-uid="90" id="text39"></i-text>
+        <i-text text="신한 S드림 정기예금(온라인특별금리-II)/50,000,000원" style="position: absolute; top: 110px; left: 186px; width: 330px; height: 22px;" data-uid="91" id="text42" class="label-value"></i-text>
+        <i-button text="<i class='fa fa-search' aria-hidden='true'></i> 예근해지 내역조회" style="position: absolute; top: 9px; left: 369px; width: 140px; height: 24px; color: rgb(255, 255, 255); border: none; border-radius: 4px; background: rgb(56, 76, 103);"
+            data-uid="92" id="button1"></i-button>
+    </i-group>
+    <i-group text="금융거래패턴" style="width: 529px; height: 387px; position: absolute; top: 209px; left: 530px;" data-uid="93" id="group7">
+        <i-barchart style="width: 502px; height: 286px; position: absolute; top: 44px; left: 8px;" data="{labels: ['적금', '보험', '증권', '비과세','청약', '적립식', '펀드', '대출', '카드결제'],datasets: [{label: '한글',backgroundColor:'#FEC341',data:[150000, 60000, 40000, 30000, 20000, 17000, 3000], fill: false }]}"
+            direction="horizontal" data-uid="94" id="barchart0" xaxisgridshow="true" xaxislabelshow="true" yaxis1labelshow="true" yaxis1gridshow="true" showgridline="false" singledatalegend="false" legendposition="top" autosize="false"></i-barchart>
+        <i-text class="chart-label" text="적금" style="position: absolute; top: 78px; left: 12px; height: 22px;" data-uid="95" id="text28"></i-text>
+        <i-text class="chart-label" text="보험" style="position: absolute; top: 101px; left: 12px; height: 22px;" data-uid="96" id="text29"></i-text>
+        <i-text class="chart-label" text="증권" style="position: absolute; top: 124px; left: 11px; height: 22px;" data-uid="97" id="text30"></i-text>
+        <i-text class="chart-label" text="비과세" style="position: absolute; top: 147px; left: 11px; height: 22px;" data-uid="98" id="text33"></i-text>
+        <i-text class="chart-label" text="청약" style="position: absolute; top: 170px; left: 11px; height: 22px;" data-uid="99" id="text35"></i-text>
+        <i-text class="chart-label" text="적립식" style="position: absolute; top: 193px; left: 11px; height: 22px;" data-uid="100" id="text43"></i-text>
+        <i-text class="chart-label" text="펀드" style="position: absolute; top: 216px; left: 11px; height: 22px;" data-uid="101" id="text44"></i-text>
+        <i-button text="<i class='fa fa-print' aria-hidden='true'></i> 상담용 인쇄" style="position: absolute; top: 13px; left: 404px; width: 105px; height: 24px; color: rgb(255, 255, 255); border: none; border-radius: 4px; background: rgb(56, 76, 103);"
+            data-uid="102" id="button2"></i-button>
+        <i-text text="[ 단위 :  천원 ]" style="position: absolute; top: 52px; left: 430px;" data-uid="103" id="text45"></i-text>
+        <i-text class="chart-label empty" text="카드결제" style="position: absolute; top: 262px; left: 11px; width: 101px; height: 22px;" data-uid="104" id="text17"></i-text>
+        <i-text class="chart-label empty" text="대출" style="position: absolute; top: 239px; left: 11px; height: 22px;" data-uid="105" id="text27"></i-text>
+    </i-group>
+    <i-group text="금융거래유형" style="width: 261px; height: 103px; position: absolute; top: 600px; left: 530px;" data-uid="106" id="group8">
+        <i-text text="거래성숙형" style="position: absolute; top: 14px; left: 11px; height: 22px; width: 226px;" data-uid="107" id="text26" class="label-value"></i-text>
+    </i-group>
+    <i-group text="금융거래유형" style="width: 261px; height: 103px; position: absolute; top: 600px; left: 798px;" data-uid="108" id="group9">
+        <i-text text="3040직장인" style="position: absolute; top: 14px; left: 11px; height: 22px; width: 226px;" data-uid="109" id="text26" class="label-value"></i-text>
+    </i-group>
+    <i-group text="채널이용패턴" style="width: 529px; height: 180px; position: absolute; top: 710px; left: 530px;" data-uid="110" id="group10">
+        <i-grid style="width: 505px; height: 113px; position: absolute; top: 8px; left: 9px; opacity: 0.99;" columns="[{'fieldName':'col0','name':'채널','colWidth':74,'textAlignment':'center'},{'fieldName':'col1','name':'가입여부','colWidth':77,'textAlignment':'center'},{'fieldName':'col2','name':'가입점','colWidth':64,'textAlignment':'center'},{'fieldName':'col3','name':'최종접속일','colWidth':91,'textAlignment':'center'},{'fieldName':'col4','name':'최종이체일','colWidth':88,'textAlignment':'center'},{'fieldName':'col5','name':'상품신규일','colWidth':91,'textAlignment':'center'}]"
+            data-uid="111" id="grid1" columncount="6" initrowcount="4" sumrowshow="none" columnlastextend="true" columnmove="true" columnresize="true" statebar="false" rowautocount="false" strippedpattern="false" sorted="true" checkbar="false" griditem="[ 	['영업점', '-',' -', '2016-06-03', '-', '2016-06-03'], 	['영업점', 'Y', '1101', '2017-01-22', '-', '-'], 	['영업점', 'Y', '1101', '2013-09-30', '-', '-'], 	['영업점', 'Y', '1101', '-', '-', '-'] ]"
+            colheadbordercolor="#BBBBBB" colheadbackcolor="#e6f3fc" rowheaderheight="22" colheadtextcolor="#1e272c" colheadfontfamilybold="true" selectbordercolor="#F9C42A" selectbackcolor="#FFD47F"></i-grid>
+    </i-group>
+    <div style="width: 344px; height: 132px; position: absolute; top: 260px; left: 540px; border-radius: 4px; border: 1px solid rgb(68, 68, 68); background: rgb(255, 255, 255);" data-uid="112" id="div12" class="popup">
+        <i-text text="<i class='fa fa-credit-card-alt' aria-hidden='true'></i>" style="position: absolute; top: 7.5px; left: 9px; font-size: 15px;" data-uid="113" id="text48"></i-text>
+        <i-text text="적립식" style="position: absolute; top: 8.5px; left: 33px;" data-uid="114" id="text49" class="popup-title"></i-text>
+        <div style="width: 322px; height: 4px; position: absolute; top: 28px; left: 9px; border: 2px solid rgb(102, 102, 102);" data-uid="115" id="div13"></div>
+        <i-text class="label-title" text="총수신" style="position: absolute; top: 40px; left: 9px; width: 118px; height: 18px;" data-uid="116" id="text50"></i-text>
+        <i-text class="label-title" text="적립식(계좌수/금액)" style="position: absolute; top: 62px; left: 9px; width: 118px; height: 18px;" data-uid="117" id="text51"></i-text>
+        <i-text text="203,033,534" style="position: absolute; top: 40px; left: 127px; width: 185px; height: 18px; text-align: right;" data-uid="118" id="text52" class="label-value"></i-text>
+        <i-text text="1좌/9,570,000원(5%)" style="position: absolute; top: 62px; left: 127px; width: 202px; height: 18px; text-align: right;" data-uid="119" id="text53" class="label-value"></i-text>
+        <i-text text="원" style="position: absolute; top: 44px; left: 314px; width: 14px; height: 18px;" data-uid="120" id="text54" class=""></i-text>
+        <i-text text="● 보유 비율 = 해당상품/총 수신 * 100" style="position: absolute; top: 89px; left: 2px;" data-uid="121" id="text55"></i-text>
+        <i-text text="● 총수신=적립+거치+청약+방카(일시납)+펀드의 잔액합계" style="position: absolute; top: 109px; left: 2px; width: 339px; height: 17px;" data-uid="122" id="text56"></i-text>
+    </div>
+</body>
+
+</html>

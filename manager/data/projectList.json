@@ -1,0 +1,21 @@
+{
+    "data": [
+        {
+            "identifier": "ixebstudio",
+            "project_id": "Subversion",
+            "description": "http://10.1.21.143/svn/ixeb-studio2_1/ixebstudio/trunk/"
+        },{
+            "identifier": "ixeb-api",
+            "project_id": "Subversion",
+            "description": "http://10.1.21.143/svn/ixeb-api/ixeb-api/trunk/"
+        },{
+            "identifier": "ixeb-framework",
+            "project_id": "Subversion",
+            "description": "http://10.1.21.143/svn/ixeb-framework/trunk/"
+        },{
+            "identifier": "ixeb-manager",
+            "project_id": "Subversion",
+            "description": "http://10.1.21.143/svn/ixeb-api/ixeb-manager/trunk/"
+        }
+    ]
+}

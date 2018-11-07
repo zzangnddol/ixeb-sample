@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2017/01/24 13:25" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1463" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="9">
+    <meta name="created" content="2017/01/24 11:17" data-uid="10">
+    <title data-uid="11">schedulerReg</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="14"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="15"></script>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript" data-uid="14">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-01-24
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button1() {
+            //TODO:
+            window.close();
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-01-24
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button0() {
+            //TODO:
+            var tempObj = {
+                isVacation: switch0.value,
+                title: title.value
+            };
+            if (textColor.value != "") tempObj['textColor'] = textColor.value;
+            if (bulletColor.value != "") tempObj['bulletColor'] = bulletColor.value;
+            window.opener.setSchedule(tempObj);
+            window.close();
+        }
+    </script>
+</head>
+
+<body id="schedulerReg" data-uid="3">
+    <i-text text="title" style="position: absolute; top: 49.5px; left: 104px;" data-uid="15" id="text0"></i-text>
+    <i-text text="isVacation" style="position: absolute; top: 84.5px; left: 64px;" data-uid="16" id="text2"></i-text>
+    <i-edit style="width: 140px; position: absolute; top: 45px; left: 160px;" data-uid="17" id="title"></i-edit>
+    <i-switch style="position: absolute; top: 79px; left: 160px; width: 85px;" data-uid="18" id="switch0" ontext="true" offtext="false" onvalue="true" offvalue="false" value="false"></i-switch>
+    <i-text text="textColor" style="position: absolute; top: 129.5px; left: 70px;" data-uid="19" id="text1"></i-text>
+    <i-text text="bulletColor" style="position: absolute; top: 169.5px; left: 59px;" data-uid="20" id="text3"></i-text>
+    <i-edit style="width: 140px; position: absolute; top: 125px; left: 160px;" data-uid="21" id="textColor"></i-edit>
+    <i-edit style="width: 140px; position: absolute; top: 165px; left: 160px;" data-uid="22" id="bulletColor"></i-edit>
+    <i-button text="취소" style="position: absolute; top: 210px; left: 246px; background-size: 100% 100%;" data-uid="23" id="button1" onclick="onclick_button1();"></i-button>
+    <i-button text="확인" style="position: absolute; top: 210px; left: 185px; background-size: 100% 100%;" data-uid="24" id="button0" onclick="onclick_button0();"></i-button>
+</body>
+
+</html>

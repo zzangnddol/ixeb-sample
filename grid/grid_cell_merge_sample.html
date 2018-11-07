@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2017/11/22 16:47" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1920x1080" data-uid="8">
+    <meta name="created" content="2016/10/03 16:42" data-uid="9">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="10">
+    <title data-uid="11">merge</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="13"></script>
+    <script type="text/javascript" data-uid="14">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-03
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var data = [
+                ['차세대', '은행', '온라인', '경비예산', '유지비용'],
+                ['차세대', '은행', '온라인', '경비예산', '유지비용'],
+                ['차세대', '은행', '온라인', '경비예산', '임차료'],
+                ['차세대', '은행', 'DR', '리스자본', '리스 H/W 교체비용'],
+                ['차세대', '은행', 'DR', '경비예산', '유지비용'],
+                ['차세대', '은행', 'DR', '경비예산', '유지 보수 비용'],
+                ['차세대', '은행', 'DR', '경비예산', '임차료'],
+                ['차세대', '카드', '온라인', '리스자본', '유지비용'],
+                ['차세대', '카드', '온라인', '리스자본', '리스 H/W'],
+                ['AS-IS', '카드', '온라인', '리스자본', '리스 S/W'],
+                ['차세대', '카드', '온라인', '리스자본', '유지비용'],
+                ['AS-IS', '카드', '온라인', '리스자본', '리스 H/W'],
+                ['AS-IS', '카드', '온라인', '리스자본', '리스 S/W']
+            ];
+            grid0.setGridData(data);
+        }
+    </script>
+</head>
+
+<body id="merge" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="병합 Sample" style="width: 1265px; height: 360px; position: absolute; top: 8px; left: 8px;" data-uid="15" id="group0" class="group-panel">
+        <i-grid initrowcount="1" columnlastextend="true" columns="[
+        {fieldName: 'col1', name: '차세대구분', colAutoMerge: true},
+        {fieldName: 'col2', name: '사용구분', colAutoMerge: true},
+        {fieldName: 'col3',name: '운영구분', colAutoMerge: true},
+        {fieldName: 'col4', name: '예산구분', colAutoMerge: true},
+        {fieldName: 'col5', name: '집행구분', colAutoMerge: true}
+        ]" style="width: 1256px; height: 320px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="16" id="grid0" mergeuse="true" strippedgap="1" strippedpattern="false"></i-grid>
+    </i-group>
+    <i-text text="grid의 mergeUse가 true로 설정된 상태에서<br><br>컬럼의 colAutoMerge속성이 true로 설정되면 행간 병합이 일어난다." style="position: absolute; top: 380px; left: 20px;" data-uid="17" id="text0"></i-text>
+</body>
+
+</html>

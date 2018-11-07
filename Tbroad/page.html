@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+    <meta name="modified" content="2018/05/15 09:42">
+    <meta name="generator" content="iXebStudio 2.0.0.2460">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="ixeb-studio:grid-size" content="10x10">
+    <meta name="ixeb-studio:screen-size" content="1280x1024">
+	<meta name="created" content="2018/05/14 10:26">
+	<title>회계전표 작성 -- </title>
+	<script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.min.js"></script>
+	<script type="text/javascript" src="../ixeb/lib/ixebBase.min.js"></script>
+	
+	<!-- style -->
+    <link rel="stylesheet" href="assets/style/content.css">
+	<!-- //style -->
+	
+	<!-- From here, enter your script and style. -->
+	<script type="text/javascript">
+	// 행삭제 클릭시
+	function onclick_btn_deleteRow(e) {
+        //TODO:
+        //상세그리드 focusRow 삭제
+        grid1.deleteRow( grid1.getFocusedCell( ).rowIndex, true  );
+        // 조회후 삭제시 전표 저장버튼 활성화
+        if(ds_voucher.getRowCount( )>0 && !ixeb.util.toBoolean(btn_saveAcc.enable) ){
+            btn_saveAcc.enable = true;
+        }
+        setCountText();
+    }
+	// 삭제 버튼 클릭시 
+	function onclick_btn_deleteAcc(e) {
+        //TODO:
+        ds_voucher.deleteRow(0);
+        ixeb.comm.transaction({
+    		"params": {},
+    		"in": ["ds_voucher=>service_Detail"],
+    		"out": [],
+    		"url": "http://localhost:8080/ixeb-manager/service.ixeb"
+    	})
+    	.done(function(r){
+            resetHeader();
+            resetDetail();
+    	})
+    	.fail(function(r){
+    		alert("Error:\n" + r.message);
+    	})
+    	.always(function(){
+    		
+    	});
+        
+    }
+    
+	//행취소 클릭시
+	function onclick_btn_cancelRow(e) {
+        //TODO:
+        //입력중인 상세 내용 삭제
+        resetDetail();
+        
+    }
+    
+	//행복사 클릭시
+	function onclick_btn_copyRow(e) {
+        //TODO:
+        //grid1에 복사한 행을 입력한다...
+        grid1.appendRow( grid1.getRowData(grid1.getFocusedCell().rowIndex) );
+        //저장 활성화
+        btn_saveAcc.enable = true;
+        setCountText();
+    }
+    
+	
+	// 전표저장
+	function onclick_btn_saveAcc(e) {
+        //TODO:
+        var detailList = JSON.stringify( grid1.getGridData() ).replace(/"/g,"'");
+        // ds_voucher.setParams( {
+        //     VOUCHER_DATE : edt_voucherDate.value+"_"+edt_voucherNo.value,
+        //     ACCOUNT_DATE : edt_calcDate.value,
+        //     VOUCHER_TYPE : cbo_accType.value,
+        //     OCCU_TYPE : cbo_genType.value,
+        //     DETAIL_LIST : detailList
+        // }  );
+        
+        
+        // ds_voucher.clearData();
+        if(ds_voucher.getRowCount() > 0){
+            ds_voucher.setValue(0, "DETAIL_LIST",JSON.stringify( grid1.getGridData() ).replace(/"/g,"'"));
+        }else{
+            ds_voucher.appendRow({
+                VOUCHER_DATE : edt_voucherDate.value+"_"+edt_voucherNo.value,
+                ACCOUNT_DATE : edt_calcDate.value,
+                VOUCHER_TYPE : cbo_accType.value,
+                OCCU_TYPE : cbo_genType.value,
+                DETAIL_LIST : detailList
+            });
+        }
+        
+        ixeb.comm.transaction({
+    		"params": {},
+    		"in": ["ds_voucher=>service_Detail"],
+    		"out": [],
+    		"url": "http://localhost:8080/ixeb-manager/service.ixeb"
+    	})
+    	.done(function(r){
+            resetHeader();
+            resetDetail();
+    	})
+    	.fail(function(r){
+    		alert("Error:\n" + r.message);
+    	})
+    	.always(function(){
+    		
+    	});
+    }
+    // 상세내용 상세그리드에 저장
+	function onclick_btn_saveRow(e) {
+        //TODO:
+        
+        grid1.appendRow([ edt_acctype_name.value, edt_accdefault_name.value, edt_cha.value, edt_dae.value, edt_detailInfo.value ]);
+        setCountText();
+        resetDetail();
+        
+        btn_saveAcc.enable = true;
+    }
+    
+	// 전체 초기화
+	function onclick_btn_reset(e) {
+        //TODO:
+        resetDetail();
+        resetHeader();
+        
+    }
+    
+	// 조회 클릭시 전표번호로 검색
+	function onclick_btn_search(e) {
+        //TODO:
+        ds_voucher.setParams( {
+            VOUCHER_DATE : edt_accDate.value+"_"+edt_accNo.value
+        }  );
+        ixeb.comm.transaction({
+    		"params": {},
+    		"in": [],
+    		"out": ["service_Detail=>ds_voucher"],
+    		"url": "http://localhost:8080/ixeb-manager/service.ixeb"
+    	})
+    	.done(function(r){
+            setVOUCHER();
+            // 삭제버튼 활성화
+            btn_deleteAcc.enable = true;
+    	})
+    	.fail(function(r){
+    		alert("Error:\n" + r.message);
+    	})
+    	.always(function(){
+    		
+    	});
+        
+    }
+    // 관리항목입력 클릭시
+	function onclick_btn_insertManage(e) {
+        //TODO:
+        // VAT 팝업 호출
+        window.open("./popup_VAT.html","VAT","width=620,height=580");
+        // 관리항목 그리드 데이터 호출
+        getManageList();
+        
+    }
+    
+	function onCellButtonClicked_grid0(e, grid, cell) {
+        //TODO:
+        var rowIndex = grid0.getFocusedCell().rowIndex;
+        var rowData = manageList.getRow( grid0.getDataIndex( rowIndex ) );
+         
+        if(rowData.INPUT_TYPE == "P01"){
+            var pop = window.open("./popup_common.html","common","width=420,height=550");
+            pop.header_text = rowData.GRID_HEAD_TEXT.split(","),
+            pop.col_width  =  rowData.GRID_COL_WIDTH.split(",");    
+            
+        }else  if(rowData.INPUT_TYPE =="C01"){
+            var pop = window.open("./popup_calendar.html","calendar","width=320,height=300");
+            pop.rowIndex = rowIndex;
+        }
+        
+        
+    }
+    
+	function onInitScreen_body() {
+        //TODO:
+        grid0.getColumn(1).setButtonDisplayCallback(function(index) {
+            var flag = manageList.getRow(index.rowIndex).INPUT_TYPE;
+            if( flag == 'P01' || flag == 'C01'){
+                return true;    
+            }else{
+                return false;
+            }
+            
+          //return index.rowIndex != 1
+        });
+    }
+    
+	function onclick_btn_searchAccDefault(e) {
+        //TODO:
+        var pop = window.open('./popup_accDefault.html','default',"width=420,height=430");
+        pop.paramCode = parseInt( edt_acctype_code.value ,10);
+    }
+    
+	function onclick_btn_searchAccType(e) {
+        //TODO:
+        edt_accdefault_name.value = "";
+        edt_accdefault_code.value = "";
+        window.open('./popup_accType.html','type',"width=420,height=430");
+    }
+    // 계정과목 팝업에서 메인에 값을 입력
+    function setAccTypeData (objData){
+        //차변 readonly 설정
+        edt_cha.readOnly = true;
+        
+        edt_acctype_name.value = objData.ACC_NAME;
+        edt_acctype_code.value = objData.ACC_CODE;
+        if(objData.DL_CLS == '대변'){
+            edt_dae.readOnly = false;
+        }else{
+            edt_cha.readOnly = false;
+            edt_dae.readOnly = false;
+        }
+        
+    }
+    // 표준적요 팝업에서 메인에 값을 입력
+    function setAccDefaultData (objData){
+        edt_accdefault_name.value = objData.EPIT_NAME;
+        edt_accdefault_code.value = objData.EPIT_CODE;
+        // getManageList();
+    }
+    // 관리항목 불러오기..
+    function getManageList(){
+        manageList.setParams({
+            ACC_CODE : parseInt( edt_acctype_code.value ,10)
+        });
+        ixeb.comm.transaction({
+    		"params": {},
+    		"in": [],
+    		"out": ["service_MANAGELIST=>manageList"],
+    		"url": "http://localhost:8080/ixeb-manager/service.ixeb"
+    	})
+    	.done(function(r){
+            // 		console.log("Success.");
+            //관리항목 데이터가 없어서 임의의 데이터를 넣습니다..
+            setManageGridVal(0,"신일기업(주)");
+            setManageGridVal(1,"201800499");
+            setManageGridVal(2,"34,881,770");
+            setManageGridVal(3,"매입일반세금계산서");
+            setManageGridVal(4,"2018-05-02");
+            
+    	})
+    	.fail(function(r){
+    		alert("Error:\n" + r.message);
+    	})
+    	.always(function(){
+    		
+    	});
+    
+    }
+    
+    function setManageGridVal(rowIndex, data){
+        grid0.setCellData( rowIndex, 1, data);
+    }
+    // 관리항목입력팝업에 넣을 데이터 조합
+    function getVATData(){
+        var retObj = {};
+        retObj["calcDate"] = edt_calcDate.value;
+        retObj["voucherDate"] = edt_voucherDate.value;
+        retObj["voucherNo"] = edt_voucherNo.value;
+        retObj["voucherSubNo"] = ixeb.util.zerofill(grid1.getGridData().length+1,3);
+        retObj["client"] = "신일기업(주)";
+        retObj["clientNo"] = "2018100499";
+        retObj["detailInfo"] = edt_detailInfo.value;
+        return retObj;
+    }
+    // 조회 결과를 페이지에 세팅
+    function setVOUCHER(){
+        var data = ds_voucher.getRow(0);
+        if( data == null) return false;
+        
+        arrDate = data.VOUCHER_DATE.split("_")
+        edt_voucherDate.value = arrDate[0];
+        edt_voucherNo.value = arrDate[1];
+        
+        edt_calcDate.value = data.ACCOUNT_DATE;
+        
+        cbo_accType.value = data.VOUCHER_TYPE;
+        cbo_genType.value = data.OCCU_TYPE;
+        
+        grid1.setGridData( ixeb.util.parseJSON(data.DETAIL_LIST) );
+        setCountText();
+        
+    }
+    // 상세부 초기화
+    function resetDetail(){
+        
+        edt_acctype_name.value = "";
+        edt_acctype_code.value = "";
+        
+        edt_cha.readOnly = true;
+        edt_dae.readOnly = true;
+        
+        edt_cha.value = "";
+        edt_dae.value = "";
+        
+        edt_accdefault_name.value = "";
+        edt_accdefault_code.value = "";
+        
+        edt_detailInfo.value = "";
+        
+        grid0.setGridData();
+        
+
+    }
+    // 헤더부 초기화
+    function resetHeader(){
+        edt_voucherDate.value = "";
+        edt_voucherNo.value = "";
+        edt_calcDate.value = "";
+        cbo_accType.value = "";
+        cbo_genType.value = "";
+        
+        edt_accDate.value = "";
+        edt_accNo.value ="";
+        edt_accAuthor = "";
+        grid1.setGridData();
+        txt_cha.text = "0";
+        txt_dae.text = "0";
+        txt_minus.text = "0";
+        
+        
+        btn_saveAcc.enable = false;
+        btn_deleteAcc.enable = false;
+        ds_voucher.clearData();
+    }
+    // 차변, 대변, 차액 세팅
+    function setCountText (){
+        var data = grid1.getGridData();
+        var sumCha = 0;
+        var sumDae = 0;
+        data.forEach(function(elem){
+            sumCha += elem[2];
+            sumDae+=elem[3]
+        });
+        // console.log(sumCha);
+        // console.log(sumDae);
+        msk_hide.value = sumCha;
+        txt_cha.text = msk_hide.getCaption( );
+        msk_hide.value = sumDae;
+        txt_dae.text = msk_hide.getCaption( );
+        msk_hide.value = Math.abs(sumCha-sumDae);
+        txt_minus.text = msk_hide.getCaption( );
+    }
+	</script>
+    <i-dataset id="manageList" serviceId="service_MANAGELIST">
+        <header>
+            [{"id":"ACC_NAME","object":"","type":"","size":"","desc":""},{"id":"MGMT_CLS","object":"","type":"","size":"","desc":""},{"id":"MGMT_NAME","object":"","type":"","size":"","desc":""},{"id":"ORD","object":"","type":"","size":"","desc":""},{"id":"MGMT_DEF","object":"","type":"","size":"","desc":""},{"id":"INPUT_TYPE","object":"","type":"","size":"","desc":""},{"id":"POP_URL","object":"","type":"","size":"","desc":""},{"id":"GRID_HEAD_TEXT","object":"","type":"","size":"","desc":""},{"id":"GRID_COL_WIDTH","object":"","type":"","size":"","desc":""}]
+        </header><data>
+                	[]
+                </data>
+        <i-bind bindtype="recordset" property="" target="grid0" column=""></i-bind>
+    </i-dataset>
+    <i-dataset id="ds_voucher" serviceId="service_Detail">
+        <header>
+            [{"id":"VOUCHER_DATE","object":"","type":"","size":"","desc":""},{"id":"ACCOUNT_DATE","object":"","type":"","size":"","desc":""},{"id":"VOUCHER_TYPE","object":"","type":"","size":"","desc":""},{"id":"OCCU_TYPE","object":"","type":"","size":"","desc":""},{"id":"DETAIL_LIST","object":"","type":"","size":"","desc":""}]
+        </header>
+        <data>
+        	[]
+        </data>
+    </i-dataset>
+</head>
+<body onInitScreen="onInitScreen_body()">
+    <!-- title -->
+    <header class="header">
+        <h1>회계전표</h1>
+        <div class="util">
+            <div class="inbox right">
+                <i-text text="결제단계"></i-text>
+                <i-combo style="width: 76px;"></i-combo>
+                <i-button text="상신취소"></i-button>
+                <i-button text="상신" enable="false"></i-button>
+            </div>
+            <div class="inbox right">
+                <i-button text="<span style='display: none;'>증빙서감춤</span>" class="headutil1"></i-button>
+                <i-button text="<span style='display: none;'>홈</span>" class="headutil2"></i-button>
+                <i-button text="<span style='display: none;'>도구</span>" class="headutil3"></i-button>
+                <i-button text="연결"></i-button>
+                <i-button text="취소"></i-button>
+                <i-button text="자동스캔"></i-button>
+            </div>
+        </div>
+    </header>
+    <!-- //title -->
+    
+    <!-- info -->
+    <table class="frm-table">
+        <colgroup>
+            <col style="width: 108px;">
+            <col style="width: 150px;">
+            <col>
+        </colgroup>
+        <tbody>
+            <tr>
+                <th scope="row">전표번호</th>
+                <td>
+                    <div class="inbox">
+                        <i-edit class="full" showCalendarButton="true" id="edt_accDate"></i-edit>
+                        <i-edit style="width: 50px;" id="edt_accNo"></i-edit>
+                    </div>
+                </td>
+                <td style="text-align: right;">
+                    <div class="inbox right">
+                        <i-button text="초기화" id="btn_reset" onclick="onclick_btn_reset(arguments[0])"></i-button>
+                        <i-button text="조회" id="btn_search" onclick="onclick_btn_search(arguments[0])"></i-button>
+                        <i-button text="저장" enable="false" id="btn_saveAcc" onclick="onclick_btn_saveAcc(arguments[0])"></i-button>
+                        <i-button text="삭제" enable="false" id="btn_deleteAcc" onclick="onclick_btn_deleteAcc(arguments[0])"></i-button>
+                        <i-button text="전표복사"></i-button>
+                        <i-button text="출력"></i-button>
+                        <i-button text="전체화면"></i-button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr />
+    <table class="frm-table">
+        <colgroup>
+            <col style="width: 82px;">
+            <col>
+            <col style="width: 82px;">
+            <col>
+            <col style="width: 82px;">
+            <col>
+        </colgroup>
+        <tbody>
+            <tr>
+                <th scope="row">전표번호</th>
+                <td>
+                    <div class="inbox">
+                        <i-edit class="full" readOnly="false" textAlign="center" value="" showCalendarButton="true" id="edt_voucherDate"></i-edit>
+                        <i-edit readOnly="false" style="width: 70px;" textAlign="center" value="" id="edt_voucherNo"></i-edit>
+                    </div>
+                </td>
+                <th scope="row">전표상태</th>
+                <td>
+                    <div class="inbox">
+                        <i-edit class="full" readonly="true" textAlign="center" value="승인전표"></i-edit>
+                    </div>
+                </td>
+                <th scope="row">회계일자</th>
+                <td>
+                    <div class="inbox">
+                        <i-edit class="full" style="max-width: 130px;" showcalendarbutton="true" id="edt_calcDate"></i-edit>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">작성자</th>
+                <td>
+                    <div class="inbox">
+                        <i-edit class="full" required="true" id="edt_accAuthor"></i-edit>
+                        <i-button text="<img src='assets/images/ico-search.png' alt='검색'>" class="search"></i-button>
+                    </div>
+                </td>
+                <th scope="row">작성부서</th>
+                <td colspan="3">
+                    <div class="inbox">
+                        <i-edit class="full" readonly="true" style="max-width: 130px;" textAlign="center" value="인사관리팀"></i-edit>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">전표구분</th>
+                <td>
+                    <div class="inbox">
+                        <i-combo items="[{'label':'회계','value':'A'},{'label':'자금요청(SO)','value':'B'},{'label':'지출','value':'C'},{'label':'현업전표','value':'D'},{'label':'자금요청(본부)','value':'E'}]" class="full" id="cbo_accType"></i-combo>
+                    </div>
+                </td>
+                <th scope="row">발생구분</th>
+                <td>
+                    <div class="inbox">
+                        <i-combo items="[{'label':'입력','value':'A'},{'label':'광고매출','value':'B'},{'label':'PP사용료입금','value':'C'},{'label':'본부외주비정산','value':'D'},{'label':'본부매출정산','value':'E'}]" class="full" id="cbo_genType"></i-combo>
+                    </div>
+                </td>
+                <th scope="row">거래처</th>
+                <td>
+                    <div class="inbox">
+                        <i-edit class="full" readonly="true"></i-edit>
+                        <i-button text="<img src='assets/images/ico-search.png' alt='검색'>" class="search"></i-button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">적요</th>
+                <td colspan="5">
+                    <div class="inbox">
+                        <i-edit class="full"></i-edit>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr />
+    <div class="detail">
+        <table class="frm-table">
+            <colgroup>
+                <col style="width: 82px;">
+                <col>
+                <col style="width: 72px;">
+                <col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th scope="row">계정과목</th>
+                    <td colspan="3">
+                        <div class="inbox">
+                            <i-edit class="full" id="edt_acctype_name"></i-edit>
+                            <i-edit style="max-width: 80px;" readonly="true" textAlign="center" value="" id="edt_acctype_code"></i-edit>
+                            <i-button text="<img src='assets/images/ico-search.png' alt='검색'>" class="search" id="btn_searchAccType" onclick="onclick_btn_searchAccType(arguments[0])"></i-button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">표준적요</th>
+                    <td colspan="3">
+                        <div class="inbox">
+                            <i-edit class="full" id="edt_accdefault_name"></i-edit>
+                            <i-edit style="max-width: 80px;" readonly="true" textAlign="center" value="" id="edt_accdefault_code"></i-edit>
+                            <i-button text="<img src='assets/images/ico-search.png' alt='검색'>" class="search" id="btn_searchAccDefault" onclick="onclick_btn_searchAccDefault(arguments[0])"></i-button>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">차변금액</th>
+                    <td>
+                        <div class="inbox">
+                            <i-edit class="full" readonly="true" textAlign="right" id="edt_cha"></i-edit>
+                        </div>
+                    </td>
+                    <th scope="row">대변금액</th>
+                    <td>
+                        <div class="inbox">
+                            <i-edit class="full" readonly="true" textAlign="right" id="edt_dae"></i-edit>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">상세적요</th>
+                    <td colspan="3">
+                        <div class="inbox">
+                            <i-edit class="full" id="edt_detailInfo"></i-edit>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <i-grid columns="[{'name':'관리항목','colWidth':22,'fieldName':'MGMT_NAME'},{'name':'관리항목값','colType':'button','buttonType':'popup'}]" id="grid0" columncount="2" initrowcount="0" sumrowshow="none" columnlastextend="true" columnmove="true" columnresize="true" statebar="false" rowautocount="true" strippedpattern="true" sorted="true" griditem="[]" onCellButtonClicked="onCellButtonClicked_grid0(arguments[0], arguments[1], arguments[2])"></i-grid>
+    </div>
+    <!-- //info -->
+    
+    <!-- detail info -->
+    <div class="header">
+        <div class="text">
+            차변 : <i-text text="0" id="txt_cha"></i-text>
+            대변 : <i-text text="0" id="txt_dae"></i-text>
+            차액 : <i-text text="0" id="txt_minus"></i-text>
+        </div>
+        <div class="util">
+            <div class="inbox right">
+                <i-button text="관리항목입력" class="management" id="btn_insertManage" onclick="onclick_btn_insertManage(arguments[0])"></i-button>
+                <i-button text="행복사" id="btn_copyRow" onclick="onclick_btn_copyRow(arguments[0])"></i-button>
+                <i-button text="행취소" id="btn_cancelRow" onclick="onclick_btn_cancelRow(arguments[0])"></i-button>
+                <i-button text="행저장" id="btn_saveRow" onclick="onclick_btn_saveRow(arguments[0])"></i-button>
+                <i-button text="행삭제" id="btn_deleteRow" onclick="onclick_btn_deleteRow(arguments[0])"></i-button>
+            </div>
+            <div class="inbox right">
+                <i-button text="연결" enable="false"></i-button>
+                <i-button text="취소" enable="false"></i-button>
+                <i-button text="일반스캔" enable="false"></i-button>
+                <i-button text="자동스캔" enable="false"></i-button>
+            </div>
+        </div>
+    </div>
+    <!-- //detail info -->
+    
+    <!-- detail grid -->
+    <i-grid style="width: 100%; height: 180px;" columns="[{'name':'계정과목','colWidth':233},{'name':'표준적요','colWidth':233},{'name':'차변금액','colWidth':150,'colType':'maskedit','type':'number','pattern':'ZZ,ZZZ,ZZZ,ZZZ,ZZZ,ZZZ,ZZ9.99','minusSign':false,'maxLength':22,'minLength':0,'textAlignment':'right'},{'name':'대변금액','colWidth':150,'colType':'maskedit','pattern':'ZZ,ZZZ,ZZZ,ZZZ,ZZZ,ZZZ,ZZ9.99','type':'number','minusSign':false,'maxLength':22,'minLength':0,'textAlignment':'right'},{'name':'적요','colWidth':233}]" id="grid1" columncount="5" initrowcount="0" sumrowshow="none" columnlastextend="false" columnmove="true" columnresize="true" statebar="false" rowautocount="true" strippedpattern="true" sorted="true" griditem="[]"></i-grid>
+    <!-- //detail grid -->
+    <i-maskedit style="width: 140px;position: absolute;top: 30px;left: 260px;display:none;" id="msk_hide" currencySign="" decimalLength="" maxLength="16" minLength="0" minusSign="false" pattern="Z,ZZZ,ZZZ,ZZZ,ZZZ,ZZZ" textAlign="right" type="number" unitDecimal="." unitInsert="true" unitPosition="3" unitSymbol=","></i-maskedit>
+</body>
+</html>

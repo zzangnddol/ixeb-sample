@@ -1,0 +1,2256 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2017/04/17 17:03" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1546" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="9">
+    <meta name="created" content="2017/04/14 09:55" data-uid="10">
+    <title data-uid="11">Mirae Asset Sample</title>
+    <link rel="stylesheet" type="text/css" href="./css/theme.css" data-uid="12">
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="13"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="14"></script>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript" data-uid="15">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-04-14
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_large_grid() {
+            //TODO:
+            right_text.text = "기준일: " + edit0.__implInput.val() + '&nbsp;&nbsp;&nbsp;&nbsp;단위: (원)';
+            var fields = ['acc_number', 'acc_name', {
+                dataType: 'number',
+                fieldName: 'total_asset'
+            }, {
+                dataType: 'number',
+                fieldName: 'loan_balance'
+            }, '총자산', {
+                dataType: 'number',
+                fieldName: 'WM'
+            }, 'BK', {
+                dataType: 'number',
+                fieldName: 'loan'
+            }, '대출잔고', {
+                dataType: 'number',
+                fieldName: '펀드'
+            }, {
+                dataType: 'number',
+                fieldName: '국내주식형'
+            }, {
+                dataType: 'number',
+                fieldName: '해외주식형'
+            }, {
+                dataType: 'number',
+                fieldName: '국내채권형'
+            }, {
+                dataType: 'number',
+                fieldName: '해외채권형'
+            }, {
+                dataType: 'number',
+                fieldName: '주식혼합형'
+            }, {
+                dataType: 'number',
+                fieldName: '채권혼합형'
+            }, {
+                dataType: 'number',
+                fieldName: '파생상품형'
+            }, {
+                dataType: 'number',
+                fieldName: '부동산'
+            }, {
+                dataType: 'number',
+                fieldName: '특별자산'
+            }, {
+                dataType: 'number',
+                fieldName: '혼합자산'
+            }, {
+                dataType: 'number',
+                fieldName: '재간접'
+            }, {
+                dataType: 'number',
+                fieldName: 'MMF'
+            }, {
+                dataType: 'number',
+                fieldName: '파생결합상품'
+            }, {
+                dataType: 'number',
+                fieldName: 'ELS'
+            }, {
+                dataType: 'number',
+                fieldName: 'DLS'
+            }, {
+                dataType: 'number',
+                fieldName: 'ELB'
+            }, {
+                dataType: 'number',
+                fieldName: 'DLB'
+            }, {
+                dataType: 'number',
+                fieldName: '신탁'
+            }, {
+                dataType: 'number',
+                fieldName: '국내 주식형'
+            }, {
+                dataType: 'number',
+                fieldName: '해외 주식형'
+            }, {
+                dataType: 'number',
+                fieldName: '국내 채권형'
+            }, {
+                dataType: 'number',
+                fieldName: '해외 채권형'
+            }, {
+                dataType: 'number',
+                fieldName: '혼합형'
+            }, {
+                dataType: 'number',
+                fieldName: 'ELT / DLT'
+            }, {
+                dataType: 'number',
+                fieldName: 'MMT'
+            }, {
+                dataType: 'number',
+                fieldName: '기타 금전신탁'
+            }, {
+                dataType: 'number',
+                fieldName: '재산신탁'
+            }, {
+                dataType: 'number',
+                fieldName: '채권 등'
+            }, {
+                dataType: 'number',
+                fieldName: '원화채권'
+            }, {
+                dataType: 'number',
+                fieldName: '외화채권'
+            }, {
+                dataType: 'number',
+                fieldName: '전단채'
+            }, {
+                dataType: 'number',
+                fieldName: 'CD'
+            }, {
+                dataType: 'number',
+                fieldName: 'CP'
+            }, {
+                dataType: 'number',
+                fieldName: '원화RP'
+            }, {
+                dataType: 'number',
+                fieldName: '외화RP'
+            }, {
+                dataType: 'number',
+                fieldName: 'CMA'
+            }, {
+                dataType: 'number',
+                fieldName: 'Wrap'
+            }, {
+                dataType: 'number',
+                fieldName: 'RP'
+            }, {
+                dataType: 'number',
+                fieldName: '랩'
+            }, {
+                dataType: 'number',
+                fieldName: '주식운용'
+            }, {
+                dataType: 'number',
+                fieldName: '채권운용'
+            }, {
+                dataType: 'number',
+                fieldName: '자산배분'
+            }, {
+                dataType: 'number',
+                fieldName: '펀드운용'
+            }, {
+                dataType: 'number',
+                fieldName: '해외투자'
+            }, {
+                dataType: 'number',
+                fieldName: '주식자문'
+            }, {
+                dataType: 'number',
+                fieldName: '지점운용'
+            }, {
+                dataType: 'number',
+                fieldName: 'ISA'
+            }, {
+                dataType: 'number',
+                fieldName: 'MMW'
+            }, {
+                dataType: 'number',
+                fieldName: '기타'
+            }, {
+                dataType: 'number',
+                fieldName: '기타 운용 자산'
+            }, {
+                dataType: 'number',
+                fieldName: '기타자산(WM)'
+            }, {
+                dataType: 'number',
+                fieldName: '국내주식'
+            }, {
+                dataType: 'number',
+                fieldName: '거래소'
+            }, {
+                dataType: 'number',
+                fieldName: '코스닥'
+            }, {
+                dataType: 'number',
+                fieldName: '코넥스'
+            }, {
+                dataType: 'number',
+                fieldName: '비상장'
+            }, {
+                dataType: 'number',
+                fieldName: 'ETF'
+            }, {
+                dataType: 'number',
+                fieldName: 'ETN'
+            }, {
+                dataType: 'number',
+                fieldName: 'ELW'
+            }, {
+                dataType: 'number',
+                fieldName: '해외주식'
+            }, {
+                dataType: 'number',
+                fieldName: '금현물'
+            }, {
+                dataType: 'number',
+                fieldName: '옵션'
+            }, {
+                dataType: 'number',
+                fieldName: '권리평가'
+            }, {
+                dataType: 'number',
+                fieldName: '예수금'
+            }, {
+                dataType: 'number',
+                fieldName: '예수금2'
+            }, {
+                dataType: 'number',
+                fieldName: '기타자산(BK)'
+            }, {
+                dataType: 'number',
+                fieldName: '신용융자'
+            }, {
+                dataType: 'number',
+                fieldName: '담보대출'
+            }, {
+                dataType: 'number',
+                fieldName: '기타자산(대출)'
+            }, {
+                dataType: 'number',
+                fieldName: '대차잔고'
+            }]
+            grid0.setFields(fields);
+            var columns = [{
+                fieldName: 'acc_number',
+                header: {
+                    text: '계좌번호'
+                },
+                editor: {
+                    type: 'mask',
+                    mask: 'aaa-aaa-aaaaaa'
+                },
+                width: 100,
+                footer: {
+                    styles: {
+                        background: '#BABABA'
+                    }
+                },
+                displayCallback: function(index, value) {
+                    var arr_value = value.split('');
+                    arr_value.splice(6, 0, '-');
+                    arr_value.splice(3, 0, '-');
+                    return arr_value.join('');
+                }
+            }, {
+                fieldName: 'acc_name',
+                width: 110,
+                header: {
+                    text: '계좌명'
+                },
+                footer: {
+                    styles: {
+                        background: '#BABABA'
+                    }
+                }
+            }, {
+                header: {
+                    text: '총자산'
+                },
+                width: 240,
+                layout: 'horizontal',
+                columns: [{
+                    fieldName: 'total_asset',
+                    header: {
+                        text: '전체'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: 'loan_balance',
+                    header: {
+                        text: '대출잔고 차감'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }]
+            }, {
+                fieldName: 'WM',
+                width: 100,
+                styles: {
+                    textAlignment: 'far',
+                    numberFormat: '#,##0'
+                },
+                header: {
+                    text: 'WM'
+                },
+                footer: {
+                    expression: 'sum',
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    }
+                }
+            }, {
+                fieldName: 'BK',
+                width: 100,
+                styles: {
+                    textAlignment: 'far',
+                    numberFormat: '#,##0'
+                },
+                header: {
+                    text: 'BK'
+                },
+                footer: {
+                    expression: 'sum',
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    }
+                }
+            }, {
+                fieldName: 'loan',
+                width: 100,
+                styles: {
+                    textAlignment: 'far',
+                    numberFormat: '#,##0'
+                },
+                header: {
+                    text: '대출'
+                },
+                footer: {
+                    expression: 'sum',
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    }
+                }
+            }, {
+                header: {
+                    text: 'WM'
+                },
+                width: 3360,
+                layout: 'horizontal',
+                columns: [{
+                    fieldName: '펀드',
+                    header: {
+                        text: '펀드'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '국내주식형',
+                    header: {
+                        text: '국내주식형'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '해외주식형',
+                    header: {
+                        text: '해외주식형'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '국내채권형',
+                    header: {
+                        text: '국내채권형'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '해외채권형',
+                    header: {
+                        text: '해외채권형'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '주식혼합형',
+                    header: {
+                        text: '주식혼합형'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '채권혼합형',
+                    header: {
+                        text: '채권혼합형'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '파생상품형',
+                    header: {
+                        text: '파생상품형'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '부동산',
+                    header: {
+                        text: '부동산'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '특별자산',
+                    header: {
+                        text: '특별자산'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '혼합자산',
+                    header: {
+                        text: '혼합자산'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '재간접',
+                    header: {
+                        text: '재간접'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: 'MMF',
+                    header: {
+                        text: 'MMF'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '기타',
+                    header: {
+                        text: '기타'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '파생결합상품',
+                    header: {
+                        text: '파생결합상품'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: 'ELS',
+                    header: {
+                        text: 'ELS'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: 'DLS',
+                    header: {
+                        text: 'DLS'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: 'ELB',
+                    header: {
+                        text: 'ELB'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: 'DLB',
+                    header: {
+                        text: 'DLB'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '신탁',
+                    header: {
+                        text: '신탁'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '국내 주식형',
+                    header: {
+                        text: '국내 주식형'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '해외 주식형',
+                    header: {
+                        text: '해외 주식형'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '국내 채권형',
+                    header: {
+                        text: '국내 채권형'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '해외 채권형',
+                    header: {
+                        text: '해외 채권형'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '혼합형',
+                    header: {
+                        text: '혼합형'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: 'ELT / DLT',
+                    header: {
+                        text: 'ELT / DLT'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: 'MMT',
+                    header: {
+                        text: 'MMT'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '기타 금전신탁',
+                    header: {
+                        text: '기타 금전신탁'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '재산신탁',
+                    header: {
+                        text: '재산신탁'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: 'ISA',
+                    header: {
+                        text: 'ISA'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '채권 등',
+                    header: {
+                        text: '채권 등'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '원화채권',
+                    header: {
+                        text: '원화채권'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '외화채권',
+                    header: {
+                        text: '외화채권'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '전단채',
+                    header: {
+                        text: '전단채'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: 'CD',
+                    header: {
+                        text: 'CD'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        textAlignment: 'far',
+                        expression: 'sum',
+                        styles: {
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: 'CP',
+                    header: {
+                        text: 'CP'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '원화RP',
+                    header: {
+                        text: '원화RP'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '외화RP',
+                    header: {
+                        text: '외화RP'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: 'CMA',
+                    header: {
+                        text: 'CMA'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: 'Wrap',
+                    header: {
+                        text: 'Wrap'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: 'RP',
+                    header: {
+                        text: 'RP'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '예수금',
+                    header: {
+                        text: '예수금'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '랩',
+                    header: {
+                        text: '랩'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '주식운용',
+                    header: {
+                        text: '주식운용'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '채권운용',
+                    header: {
+                        text: '채권운용'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '자산배분',
+                    header: {
+                        text: '자산배분'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '펀드운용',
+                    header: {
+                        text: '펀드운용'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '해외투자',
+                    header: {
+                        text: '해외투자'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '주식자문',
+                    header: {
+                        text: '주식자문'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '지점운용',
+                    header: {
+                        text: '지점운용'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: 'ISA',
+                    header: {
+                        text: 'ISA'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: 'MMW',
+                    header: {
+                        text: 'MMW'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '기타',
+                    header: {
+                        text: '기타'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '기타 운용 자산',
+                    header: {
+                        text: '기타 운용 자산'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }, {
+                    fieldName: '기타자산(WM)',
+                    header: {
+                        text: '기타자산(WM)'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0',
+                            background: '#BABABA'
+                        }
+                    }
+                }]
+            }, {
+                header: {
+                    text: 'BK'
+                },
+                width: 800,
+                layout: 'horizontal',
+                columns: [{
+                    fieldName: '국내주식',
+                    header: {
+                        text: '국내주식'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: '거래소',
+                    header: {
+                        text: '거래소'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: '코스닥',
+                    header: {
+                        text: '코스닥'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: '코넥스',
+                    header: {
+                        text: '코넥스'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: '비상장',
+                    header: {
+                        text: '비상장'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: 'ETF',
+                    header: {
+                        text: 'ETF'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: 'ETN',
+                    header: {
+                        text: 'ETN'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: 'ELW',
+                    header: {
+                        text: 'ELW'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: '해외주식',
+                    header: {
+                        text: '해외주식'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: '금현물',
+                    header: {
+                        text: '금현물'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: '옵션',
+                    header: {
+                        text: '옵션'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: '권리평가',
+                    header: {
+                        text: '권리평가'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: '예수금2',
+                    header: {
+                        text: '예수금'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: '기타자산(BK)',
+                    header: {
+                        text: '기타자산(BK)'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }]
+            }, {
+                header: {
+                    text: '대출잔고'
+                },
+                width: 200,
+                layout: 'horizontal',
+                columns: [{
+                    fieldName: '신용융자',
+                    header: {
+                        text: '신용융자'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: '담보대출',
+                    header: {
+                        text: '담보대출'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }, {
+                    fieldName: '기타자산(대출)',
+                    header: {
+                        text: '기타자산(대출)'
+                    },
+                    editor: {
+                        type: 'number'
+                    },
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    },
+                    dynamicStyle: {
+                        expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                        background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                    },
+                    footer: {
+                        expression: 'sum',
+                        styles: {
+                            textAlignment: 'far',
+                            numberFormat: '#,##0'
+                        }
+                    }
+                }]
+            }, {
+                fieldName: '대차잔고',
+                header: {
+                    text: '대차잔고'
+                },
+                editor: {
+                    type: 'number'
+                },
+                styles: {
+                    textAlignment: 'far',
+                    numberFormat: '#,##0'
+                },
+                dynamicStyle: {
+                    expression: 'row % ' + (this.strippedGap + 1) + ' == 1',
+                    background: grid0.strippedPattern === true ? grid0.strippedColor : grid0.dataBackColor
+                },
+                footer: {
+                    expression: 'sum',
+                    styles: {
+                        textAlignment: 'far',
+                        numberFormat: '#,##0'
+                    }
+                }
+            }];
+            grid0.getView().setColumns(columns);
+            grid0.getColumn(2).header().setStyles({
+                background: '#E1E6EE',
+                color: '#202122',
+                borderTop: '#3b82c5'
+            });
+            grid0.getColumn(6).header().setStyles({
+                background: '#E1E6EE',
+                color: '#202122',
+                borderTop: '#3b82c5'
+            });
+            grid0.getColumn(7).header().setStyles({
+                background: '#E1E6EE',
+                color: '#202122',
+                borderTop: '#3b82c5'
+            });
+            grid0.getColumn(8).header().setStyles({
+                background: '#E1E6EE',
+                color: '#202122',
+                borderTop: '#3b82c5'
+            });
+            var bk_cols = grid0.getColumn(6).columns();
+            var wm_cols = grid0.getColumn(7).columns();
+            var loan_cols = grid0.getColumn(8).columns();
+            var last = grid0.getColumn(9);
+            bk_cols.forEach(function(_column) {
+                _column.footer().styles().setBackground('#BABABA');
+                _column.header().styles().setBorderTop(null);
+            });
+            wm_cols.forEach(function(_column) {
+                _column.footer().styles().setBackground('#BABABA');
+                _column.header().styles().setBorderTop(null);
+            });
+            loan_cols.forEach(function(_column) {
+                _column.footer().styles().setBackground('#BABABA');
+                _column.header().styles().setBorderTop(null);
+            });
+            last.footer().styles().setBackground('#BABABA');
+            grid0.getColumn(0).footer().setText('합계');
+            grid0.getColumn(0).footer().styles().setTextAlignment('center');
+            grid0.getColumn(2).footer().styles().setBackground('#FFF8D7');
+            grid0.getColumn(2).header().styles().setBorderTop(null);
+            grid0.getColumn(2).columns()[0].header().styles().setBorderTop(null);
+            grid0.getColumn(2).columns()[1].header().styles().setBorderTop(null);
+            grid0.getColumn(2).columns()[0].footer().styles().setBackground('#FFF8D7');
+            grid0.getColumn(2).columns()[1].footer().styles().setBackground('#FFF8D7');
+            grid0.getColumn(3).footer().styles().setBackground('#FFF8D7');
+            grid0.getColumn(4).footer().styles().setBackground('#FFF8D7');
+            grid0.getColumn(5).footer().styles().setBackground('#FFF8D7');
+            grid0.getColumn(6).header().setStyles({
+                background: '#E1E6EE',
+                color: '#202122',
+                borderTop: null
+            });
+            grid0.getColumn(7).header().styles().setBorderTop(null);
+            grid0.getColumn(8).header().styles().setBorderTop(null);
+            grid0.getColumn(3).footer().styles().setPrefix(null);
+            grid0.getColumn(4).footer().styles().setPrefix(null);
+            grid0.getColumn(5).footer().styles().setPrefix(null);
+            $.ajax('data.json').done(function(ret) {
+                var data = ret;
+                grid0.setGridData(data);
+            });
+        }
+    </script>
+    <style data-uid="16">
+        i-text li {
+            list-style: disc inside;
+        }
+        
+        #div1 i-button {
+            background: #2B58C5;
+            /* For browsers that do not support gradients */
+            background: -webkit-linear-gradient(#8ea3e3, #2B58C5);
+            /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(#8ea3e3, #2B58C5);
+            /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(#8ea3e3, #2B58C5);
+            background: linear-gradient(#8ea3e3, #2B58C5);
+            /* Standard syntax */
+        }
+    </style>
+</head>
+
+<body id="large_grid" data-uid="3" oninitscreen="onInitScreen_large_grid();">
+    <div style="width: 1028px;height: 100%;" data-uid="17" id="div0">
+        <div style="width: 100%;height: 35px;background: #E7ECF6;vertical-align: middle;display: inline-block;padding-top: 5px;border: 1px solid #83a3cb;border-radius: 3px;" data-uid="18" id="div1">
+            <i-text text="ㆍ고객" data-uid="19" style="margin-right: 5px;"> </i-text>
+            <i-combo data-uid="20" style="width: 4em;" itemall="true" index="0"></i-combo>
+            <i-combo data-uid="21" style="width: 6em;" itemalllabel="전체" index="1" itemall="true" items="[{'label':'자산조회','value':'asset'}]"></i-combo>
+            <i-combo data-uid="22" style="width: 6em;" items="[{'label':'말잔','value':'value1'}]" index="1" itemall="true"></i-combo>
+            <i-edit id="edit0" showcalendarbutton="true" data-uid="23" value="2017-04-08" style="width: 109px; position: relative; top: 0px; left: 0.203125px; height: 23px;"></i-edit>
+            <i-combo data-uid="24" index="1" items="[{'label':'탭개별자산포함','value':'value1'}]" itemall="true"></i-combo>
+            <i-combo data-uid="25" style="width: 4em;" index="1" items="[{'label':'원','value':'won'}]" itemall="true"></i-combo>
+            <i-button data-uid="26" text="<div><span class='fa fa-search' style='margin-right: 5px;'></span>조회</div>" style="background-size: 100% 100%;width: 4em;height: 22px;color: #FFFFFF;"></i-button>
+            <i-text id="right_text" text="right" data-uid="27" style="float: right;margin-top: 5px;margin-right: 5px;"></i-text>
+        </div>
+        <div style="float: right;text-align: right;width: 35%;height: 20px;margin-top: 2px;margin-bottom: 2px;" data-uid="28">
+            <i-button text="화면안내" data-uid="29" style="background-size: 100% 100%;width: 5em;"></i-button>
+            <i-button data-uid="30" text="전직원다운로드" style="background-size: 100% 100%;width: 7.5em;"></i-button>
+            <i-button data-uid="31" text="<span class='fa fa-circle-o'></span>   다운로드" style="background-size: 100% 100%;width: 6em;"></i-button>
+            <i-button data-uid="32" text="상세보기" style="background-size: 100% 100%;width: 5em;"></i-button>
+        </div>
+        <i-grid columns="[{fieldName:'a'},{fieldName:'a'},{fieldName:'a'},{fieldName:'a'},{fieldName:'a'},{fieldName:'a'},{fieldName:'a'},{fieldName:'a'}]" style="width:100%;height: 700px;opacity: 0.99;" id="grid0" data-uid="33" columncount="7" initrowcount="1"
+            sumrowshow="sum" columnlastextend="false" columnmove="true" columnresize="true" statebar="false" rowautocount="false" strippedpattern="true" sorted="true" griditem="[]" checkbar="false" currencysign="" decimallength="" maxlength="13" minlength="0"
+            minussign="" pattern="AAA-AAA-AAAAAAA" textalign="left" type="ascii" unitdecimal="" unitinsert="false" unitposition="" unitsymbol="" sumrowtitle="" rowautowidth="0" rowheaderheight="35" colheadbackcolor="#E1E6EE" colheadtextcolor="#202122" sumrowcolor="#BABABA"
+            gridoutlinecolor="#5B87BB" colheadbordercolor=""></i-grid>
+    </div>
+</body>
+
+</html>

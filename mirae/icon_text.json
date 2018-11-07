@@ -1,0 +1,52 @@
+{
+	"data": [
+		{
+			"product_gubun": "추정예수금",
+			"purchase_price": 0,
+			"estimation_price": 26271,
+			"estimate_profit_and_lose": 0,
+			"estimate_rate": "0.00%",
+			"product_rate": "1.03%"
+		},
+		{
+			"product_gubun": "매입금액",
+			"purchase_price": 778990,
+			"estimation_price": 728945,
+			"estimate_profit_and_lose": -45430,
+			"estimate_rate": "-5.83%",
+			"product_rate": "28.44%"
+		},
+		{
+			"product_gubun": "ELS/DLS",
+			"purchase_price": 1000000,
+			"estimation_price": 999849,
+			"estimate_profit_and_lose": -151,
+			"estimate_rate": "-0.01%",
+			"product_rate": "39.01%"
+		},
+		{
+			"product_gubun": "평가금액",
+			"purchase_price": 674634,
+			"estimation_price": 687677,
+			"estimate_profit_and_lose": 13043,
+			"estimate_rate": "1.93%",
+			"product_rate": "26.83%"
+		},
+		{
+			"product_gubun": "RP",
+			"purchase_price": 120000,
+			"estimation_price": 120032,
+			"estimate_profit_and_lose": 32,
+			"estimate_rate": "0.03%",
+			"product_rate": "4.68%"
+		},
+		{
+			"product_gubun": "기타",
+			"purchase_price": 20,
+			"estimation_price": 20,
+			"estimate_profit_and_lose": 0,
+			"estimate_rate": "0.00%",
+			"product_rate": "0.00%"
+		}
+	]
+}

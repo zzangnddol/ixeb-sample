@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-hline" content="567," data-uid="5">
+    <meta name="ixeb-studio:guide-vline" content="1585," data-uid="6">
+    <meta name="modified" content="2017/04/17 14:59" data-uid="7">
+    <meta name="generator" content="iXebStudio 1.0.0.1544" data-uid="8">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="9">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="10">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="11">
+    <meta name="created" content="2017/04/17 12:59" data-uid="12">
+    <title data-uid="13">profitabilityAnalysis1</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="14"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="15"></script>
+    <style data-uid="16">
+        i-button {
+            height: 24px;
+            color: #135CCA;
+        }
+        
+        i-button.disable {
+            background: #384C67;
+            color: #FFFFFF;
+        }
+        
+        .container-btn {
+            background: #FFFFFF;
+            border: 1px solid #0552C6;
+        }
+        
+        .search-btn span:before {
+            content: "\f002";
+            font-family: FontAwesome;
+            padding-left: 4px;
+        }
+        
+        .file-btn span:before {
+            content: "\f0f6";
+            font-family: FontAwesome;
+        }
+        
+        i-text {
+            color: #434142;
+            height: 22px!important;
+            padding-top: 4px;
+            padding-left: 2px;
+        }
+    </style>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript" data-uid="17">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-04-12
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_profitabilityAnalysis() {
+            //TODO:
+            var fields = ["code"];
+            for (var i = 0; i < 19; i++) {
+                fields.push('f' + i);
+            }
+            treegrid0.setFields(fields);
+            var datas = [{
+                code: "1",
+                f0: "서울지점"
+            }, {
+                code: "1-1",
+                f0: "대림점",
+                f3: "10,000",
+                f4: "11,000",
+                f5: "2,000",
+                f15: "3,000",
+                f16: "2,000",
+                f17: "4,000",
+                f18: "2,000",
+                f9: "3,000",
+                f10: "0.75%",
+                f13: "580"
+            }, {
+                code: "1-2",
+                f0: "구로점",
+                f3: "10,000",
+                f4: "11,000",
+                f5: "2,000",
+                f15: "3,000",
+                f16: "2,000",
+                f17: "4,000",
+                f18: "2,000",
+                f9: "3,000",
+                f10: "0.75%",
+                f13: "580"
+            }, {
+                code: "1-3",
+                f0: "가산점",
+                f3: "10,000",
+                f4: "11,000",
+                f5: "2,000",
+                f15: "3,000",
+                f16: "2,000",
+                f17: "4,000",
+                f18: "2,000",
+                f9: "3,000",
+                f10: "0.75%",
+                f13: "580"
+            }, {
+                code: "2",
+                f0: "경기지점"
+            }, {
+                code: "2-1",
+                f0: "부천지점"
+            }, {
+                code: "2-1-1",
+                f0: "중동점",
+                f3: "10,000",
+                f4: "11,000",
+                f5: "2,000",
+                f15: "3,000",
+                f16: "2,000",
+                f17: "4,000",
+                f18: "2,000",
+                f9: "3,000",
+                f10: "0.75%",
+                f13: "580"
+            }, {
+                code: "2-1-2",
+                f0: "상동점",
+                f3: "10,000",
+                f4: "11,000",
+                f5: "2,000",
+                f15: "3,000",
+                f16: "2,000",
+                f17: "4,000",
+                f18: "2,000",
+                f9: "3,000",
+                f10: "0.75%",
+                f13: "580"
+            }, {
+                code: "2-1-3",
+                f0: "신중동점",
+                f3: "10,000",
+                f4: "11,000",
+                f5: "2,000",
+                f15: "3,000",
+                f16: "2,000",
+                f17: "4,000",
+                f18: "2,000",
+                f9: "3,000",
+                f10: "0.75%",
+                f13: "580"
+            }, {
+                code: "2-2",
+                f0: "인천지점"
+            }, {
+                code: "2-2-1",
+                f0: "계양점",
+                f3: "10,000",
+                f4: "11,000",
+                f5: "2,000",
+                f15: "3,000",
+                f16: "2,000",
+                f17: "4,000",
+                f18: "2,000",
+                f9: "3,000",
+                f10: "0.75%",
+                f13: "580"
+            }, {
+                code: "2-2-2",
+                f0: "남인천점",
+                f3: "10,000",
+                f4: "11,000",
+                f5: "2,000",
+                f15: "3,000",
+                f16: "2,000",
+                f17: "4,000",
+                f18: "2,000",
+                f9: "3,000",
+                f10: "0.75%",
+                f13: "580"
+            }, {
+                code: "2-2-3",
+                f0: "동인천점",
+                f3: "10,000",
+                f4: "11,000",
+                f5: "2,000",
+                f15: "3,000",
+                f16: "2,000",
+                f17: "4,000",
+                f18: "2,000",
+                f9: "3,000",
+                f10: "0.75%",
+                f13: "580"
+            }];
+            var columns = [{
+                name: "code",
+                fieldName: "code",
+                width: 170,
+                header: {
+                    text: "코드",
+                    visible: false
+                },
+                layout: "vertical",
+                columns: [{
+                    name: "f0",
+                    fieldName: "f0",
+                    header: {
+                        text: "영업점",
+                        styles: {
+                            background: "#e6f3fc",
+                            borderRight: "#CCDCE9, 1px",
+                            borderBottom: '#CCDCE9, 1px'
+                        }
+                    }
+                }]
+            }, {
+                name: "f2",
+                fieldName: "f2",
+                width: 210,
+                header: {
+                    text: "외형",
+                    styles: {
+                        background: "#e6f3fc",
+                        borderBottom: '#CCDCE9, 1px',
+                        borderRight: '#CCDCE9, 1px'
+                    }
+                },
+                layout: "horizontal",
+                columns: [{
+                    name: "f3",
+                    fieldName: "f3",
+                    header: {
+                        text: "평잔",
+                        styles: {
+                            background: "#e6f3fc",
+                            borderRight: '#CCDCE9, 1px',
+                            borderBottom: '#CCDCE9, 1px'
+                        }
+                    }
+                }, {
+                    name: "f4",
+                    fieldName: "f4",
+                    header: {
+                        text: "평잔(조정)",
+                        styles: {
+                            background: "#e6f3fc",
+                            borderRight: '#CCDCE9, 1px',
+                            borderBottom: '#CCDCE9, 1px'
+                        }
+                    }
+                }, {
+                    name: "f5",
+                    fieldName: "f5",
+                    header: {
+                        text: "밑잔",
+                        styles: {
+                            background: "#e6f3fc",
+                            borderRight: '#CCDCE9, 1px',
+                            borderBottom: '#CCDCE9, 1px'
+                        }
+                    }
+                }]
+            }, {
+                name: "f6",
+                fieldName: "f6",
+                width: 460,
+                header: {
+                    text: "이자손익",
+                    styles: {
+                        background: "#e6f3fc",
+                        borderRight: '#CCDCE9, 1px',
+                        borderBottom: '#CCDCE9, 1px'
+                    }
+                },
+                layout: "horizontal",
+                columns: [{
+                    name: "f7",
+                    fieldName: "f7",
+                    width: 160,
+                    header: {
+                        text: "대고객",
+                        styles: {
+                            background: "#e6f3fc",
+                            borderRight: '#CCDCE9, 1px',
+                            borderBottom: '#CCDCE9, 1px'
+                        }
+                    },
+                    layout: "horizontal",
+                    columns: [{
+                        name: "f15",
+                        fieldName: "f15",
+                        header: {
+                            text: "수익",
+                            styles: {
+                                borderRight: '#CCDCE9, 1px',
+                                borderBottom: '#CCDCE9, 1px'
+                            }
+                        }
+                    }, {
+                        name: "f16",
+                        fieldName: "f16",
+                        header: {
+                            text: "비용",
+                            styles: {
+                                borderBottom: '#CCDCE9, 1px',
+                                borderRight: '#CCDCE9, 1px'
+                            }
+                        }
+                    }]
+                }, {
+                    name: "f8",
+                    fieldName: "f8",
+                    width: 160,
+                    header: {
+                        text: "FTP",
+                        styles: {
+                            background: "#e6f3fc",
+                            borderRight: '#CCDCE9, 1px',
+                            borderBottom: '#CCDCE9, 1px'
+                        }
+                    },
+                    layout: "horizontal",
+                    columns: [{
+                        name: "f17",
+                        fieldName: "f17",
+                        header: {
+                            text: "수익",
+                            styles: {
+                                borderRight: '#CCDCE9, 1px',
+                                borderBottom: '#CCDCE9, 1px'
+                            }
+                        }
+                    }, {
+                        name: "f18",
+                        fieldName: "f18",
+                        header: {
+                            text: "비용",
+                            styles: {
+                                borderRight: '#CCDCE9, 1px',
+                                borderBottom: '#CCDCE9, 1px'
+                            }
+                        }
+                    }]
+                }, {
+                    name: "f9",
+                    fieldName: "f9",
+                    width: 70,
+                    header: {
+                        text: "이자마진",
+                        styles: {
+                            borderRight: '#CCDCE9, 1px',
+                            borderBottom: '#CCDCE9, 1px'
+                        }
+                    }
+                }, {
+                    name: "f10",
+                    fieldName: "f10",
+                    width: 70,
+                    header: {
+                        text: "이자마진률",
+                        styles: {
+                            borderRight: '#CCDCE9, 1px',
+                            borderBottom: '#CCDCE9, 1px'
+                        }
+                    }
+                }]
+            }, {
+                name: "f11",
+                fieldName: "f11",
+                width: 120,
+                header: {
+                    text: "서비스손익",
+                    styles: {
+                        background: "#e6f3fc",
+                        borderBottom: '#CCDCE9, 1px'
+                    }
+                },
+                layout: "vertical",
+                columns: [{
+                    name: "f12",
+                    fieldName: "f12",
+                    header: {
+                        text: "수수료",
+                        styles: {
+                            background: "#e6f3fc",
+                            borderBottom: '#CCDCE9, 1px'
+                        }
+                    },
+                    layout: "horizontal",
+                    columns: [{
+                        name: "f13",
+                        fieldName: "f13",
+                        width: 100,
+                        header: {
+                            text: "수익",
+                            styles: {
+                                borderBottom: '#CCDCE9, 1px',
+                                borderRight: '#CCDCE9, 1px'
+                            }
+                        },
+                    }, {
+                        name: "f14",
+                        fieldName: "f14",
+                        width: 20,
+                        header: {
+                            text: "",
+                            styles: {
+                                borderBottom: '#CCDCE9, 1px'
+                            }
+                        },
+                    }]
+                }]
+            }];
+            treegrid0.getView().setColumns(columns);
+            for (var j = 0, leng = datas.length; j < leng; j++) {
+                dataset0.appendRow(datas[j]);
+            }
+        }
+    </script>
+    <i-dataset data-uid="18" id="dataset0" serviceid="">
+        <header data-uid="19"> [{"id":"code","object":"edit","type":"char","size":"256","desc":"item0"},{"id":"f1","object":"edit","type":"char","size":"256","desc":"item0"},{"id":"f2","object":"edit","type":"char","size":"256","desc":"item1"},{"id":"f3","object":"edit","type":"char","size":"256","desc":"item2"},{"id":"f4","object":"edit","type":"char","size":"256","desc":"item3"},{"id":"f5","object":"edit","type":"char","size":"256","desc":"item4"},{"id":"f6","object":"edit","type":"char","size":"256","desc":"item5"},{"id":"f7","object":"edit","type":"char","size":"256","desc":"item6"},{"id":"f8","object":"edit","type":"char","size":"256","desc":"item7"},{"id":"f9","object":"edit","type":"char","size":"256","desc":"item8"},{"id":"f10","object":"edit","type":"char","size":"256","desc":"item9"},{"id":"f11","object":"edit","type":"char","size":"256","desc":"item10"},{"id":"f12","object":"edit","type":"char","size":"256","desc":"item11"},{"id":"f13","object":"edit","type":"char","size":"256","desc":"item12"},{"id":"f14","object":"edit","type":"char","size":"256","desc":"item13"},{"id":"f15","object":"edit","type":"char","size":"256","desc":"item14"},{"id":"f16","object":"edit","type":"char","size":"256","desc":"item15"},
+            {"id":"f17","object":"edit","type":"char","size":"256","desc":"item16"}, {"id":"f18","object":"edit","type":"char","size":"256","desc":"item17"}]</header> <data data-uid="20"> [] </data>
+        <i-bind bindtype="recordset" property="" target="treegrid0"
+            column="" data-uid="21"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="profitabilityAnalysis1" oninitscreen="onInitScreen_profitabilityAnalysis();" style="background:#EDF0F5;" data-uid="3">
+    <div style="width: 992px;height: 94px;position: absolute;top: 10px;left: 10px;border: 1px solid rgb(215, 216, 218);background: #FFFFFF;" data-uid="22" id="div0">
+        <i-combo style="width: 75px; position: absolute; top: 8.5px; left: 9px; height: 23px;" data-uid="23" id="combo0" items="[{'label':'고객번호','value':'no'}]" value="고객번호" index="0"></i-combo>
+        <i-maskedit style="width: 79px; position: absolute; top: 8.5px; left: 86px; height: 23px; border: 1px solid rgb(143, 214, 246);" data-uid="24" id="maskedit0"></i-maskedit>
+        <i-button text="" style="position: absolute; top: 8.5px; left: 165px; padding: 0px; width: 23px; height: 23px; background-size: 100% 100%;" data-uid="25" id="button0" class="search-btn"></i-button>
+        <i-maskedit style="width: 156px; position: absolute; top: 33.5px; left: 9px; height: 23px;" data-uid="26" id="maskedit1" enable="false"></i-maskedit>
+        <i-button text="" style="position: absolute; top: 33.5px; left: 165px; padding: 0px; width: 23px; height: 23px; background-size: 100% 100%;" data-uid="27" id="button1" class="search-btn"></i-button>
+        <i-text text="이자구분" style="position: absolute; top: 60px; left: 9px; font-weight: 900;" data-uid="28" id="text0" class="label-title"></i-text>
+        <i-combo style="width: 103px; position: absolute; top: 59.5px; left: 62px; height: 23px;" data-uid="29" id="combo1"></i-combo>
+        <i-text text="기준년월" style="position: absolute; top: 9px; left: 219px; font-weight: 900;" data-uid="30" id="text1" class="label-title"></i-text>
+        <i-text text="분석기간" style="position: absolute; top: 34px; left: 219px; font-weight: 900;" data-uid="31" id="text2" class="label-title"></i-text>
+        <i-text text="향후구분" style="position: absolute; top: 60px; left: 219px; font-weight: 900;" data-uid="32" id="text3" class="label-title"></i-text>
+        <i-combo style="width: 54px; position: absolute; top: 8.5px; left: 349px; height: 23px;" data-uid="33" id="combo2" items="[{'label':'01월','value':'value1'},{'label':'02월','value':'value2'},{'label':'03월','value':'value3'},{'label':'04월','value':'value4'},{'label':'05월','value':'value5'},{'label':'06월','value':'value6'},{'label':'07월','value':'value7'},{'label':'08월','value':'value8'},{'label':'09월','value':'value9'},{'label':'10월','value':'value10'},{'label':'11월','value':'value11'},{'label':'12월','value':'value12'}]"
+            index="5"></i-combo>
+        <i-combo style="width: 71px; position: absolute; top: 8.5px; left: 276px; height: 23px;" data-uid="34" id="combo3" items="[{'label':'2014년','value':'value1'},{'label':'2015년','value':'value2'},{'label':'2016년','value':'value3'},{'label':'2017년','value':'value4'},{'label':'2018년','value':'value5'}]"
+            index="3"></i-combo>
+        <i-edit style="width: 3em; position: absolute; top: 33.5px; left: 276px;" data-uid="35" id="edit0" type="number" maxlength="2" value="12"></i-edit>
+        <i-text text="개월" style="position: absolute; top: 34px; left: 317px;" data-uid="36" id="text4"></i-text>
+        <i-check text="월별" style="position: absolute; top: 37.5px; left: 352px; width: 47px; height: 15px;" data-uid="37" id="check0"></i-check>
+        <i-combo style="width: 127px; position: absolute; top: 59.5px; left: 276px; height: 23px;" data-uid="38" id="combo4" items="[{'label':'과거수익성','value':'value1'}]" index="0"></i-combo>
+        <i-text text="영 업 점" style="position: absolute; top: 9px; left: 427px; font-weight: 900;" data-uid="39" id="text5" class="label-title"></i-text>
+        <i-text text="상품레벨" style="position: absolute; top: 34px; left: 427px; font-weight: 900;" data-uid="40" id="text6" class="label-title"></i-text>
+        <i-text text="고객/상품" style="position: absolute; top: 60px; left: 427px; font-weight: 900;" data-uid="41" id="text7" class="label-title"></i-text>
+        <i-edit style="width: 4em; position: absolute; top: 8.5px; left: 489px;" data-uid="42" id="edit1"></i-edit>
+        <i-button text="" style="position: absolute; top: 8.5px; left: 539px; padding: 0px; width: 23px; height: 23px; background-size: 100% 100%;" data-uid="43" id="button2" class="search-btn"></i-button>
+        <i-edit style="width: 76px; position: absolute; top: 8.5px; left: 564px; height: 23px;" data-uid="44" id="edit2" value="ICT기획부" enable="false"></i-edit>
+        <i-check text="전점" style="position: absolute; top: 12.5px; left: 642px;" data-uid="45" id="check1"></i-check>
+        <i-combo style="width: 73px; position: absolute; top: 33.5px; left: 489px; height: 23px;" data-uid="46" id="combo5" items="[{'label':'Level 1','value':'value1'},{'label':'Level 2','value':'value2'},{'label':'Level 3','value':'value3'},{'label':'Level 4','value':'value4'}]"
+            index="3"></i-combo>
+        <i-combo style="width: 76px; position: absolute; top: 33.5px; left: 564px; height: 23px;" data-uid="47" id="combo6" index="0" items="[{'label':'거래걔졍','value':'value1'}]"></i-combo>
+        <i-combo style="width: 5em; position: absolute; top: 59.5px; left: 515px;" data-uid="48" id="combo7" items="[{'label':'고객별','value':'value1'}]" index="0"></i-combo>
+        <i-text text="합산여부" style="position: absolute; top: 9px; left: 707px; font-weight: 900;" data-uid="49" id="text8" class="label-title"></i-text>
+        <i-text text="금액구분" style="position: absolute; top: 34px; left: 707px; font-weight: 900;" data-uid="50" id="text9" class="label-title"></i-text>
+        <i-combo style="width: 79px; position: absolute; top: 8.5px; left: 759px; height: 23px;" data-uid="51" id="combo8" items="[{'label':'해당 CIF','value':'value1'}]" index="0"></i-combo>
+        <i-combo style="width: 79px; position: absolute; top: 33.5px; left: 759px;" data-uid="52" id="combo9" items="[{'label':'원','value':'value1'},{'label':'천','value':'value2'},{'label':'만','value':'value3'}]" index="0"></i-combo>
+        <i-text text="정책지원" style="position: absolute; top: 9px; left: 869px; font-weight: 900;" data-uid="53" id="text10" class="label-title"></i-text>
+        <i-text text="사업지원" style="position: absolute; top: 34px; left: 869px; font-weight: 900;" data-uid="54" id="text11" class="label-title"></i-text>
+        <i-combo style="width: 53px; position: absolute; top: 8.5px; left: 929px; height: 23px;" data-uid="55" id="combo10" items="[{'label':'제외','value':'value1'},{'label':'해당','value':'value2'}]" index="0"></i-combo>
+        <i-combo style="width: 53px; position: absolute; top: 33.5px; left: 929px; height: 23px;" data-uid="56" id="combo11" items="[{'label':'제외','value':'value1'},{'label':'해당','value':'value2'}]" index="0"></i-combo>
+    </div>
+    <div style="width: 992px;height: 458px;position: absolute;top: 110px;left: 10px;background: #FFFFFF;border: 1px solid rgb(215, 216, 218);" data-uid="57" id="div1">
+        <i-button text="<i class='fa fa-print' aria-hidden='true'></i>" style="position: absolute; top: 9px; left: 965px; padding: 0px; height: 22px; width: 20px; border-radius: 4px; background-size: 100% 100%;" data-uid="58" id="button5" class="container-btn"></i-button>
+        <i-button text="<i class='fa fa-file-excel-o' aria-hidden='true'></i>" style="position: absolute; top: 9px; left: 941px; padding: 0px; height: 22px; width: 20px; border-radius: 4px; background-size: 100% 100%;" data-uid="59" id="button7"
+            class="container-btn"></i-button>
+        <i-text text="※영업점 번호 5개까지 직접 입력 가능 ( 예:1100, 1101)" style="position: absolute; top: 9px; left: 9px; color: rgb(255, 125, 43); height: 22px;" data-uid="60" id="text12"></i-text>
+        <i-button text=" 조회" style="position: absolute; top: 9px; left: 789px; width: 53px; border-radius: 4px; height: 22px; background-size: 100% 100%;" data-uid="61" id="button3" class="search-btn container-btn"></i-button>
+        <i-button text=" 요약보기" style="position: absolute; top: 9px; left: 699px; width: 86px; border-radius: 4px; height: 22px; background-size: 100% 100%;" data-uid="62" id="button4" class="file-btn container-btn"></i-button>
+        <i-button text="<i class='fa fa-braille' aria-hidden='true'></i> 시물레이션" style="position: absolute; top: 9px; left: 846px; width: 91px; border-radius: 4px; height: 22px; background-size: 100% 100%;" data-uid="63" id="button6" enable="false"
+            class="disable container-btn"></i-button>
+        <i-treegrid treelinecolor="#CCCCCC" columns="[]" rowheaderheight="50" style="width: 971px; height: 408px; position: absolute; top: 39px; left: 9px; opacity: 0.99;" data-uid="64" id="treegrid0" initrowcount="1" columncount="1" columnlastextend="true"
+            columnmove="false" columnresize="false" statebar="false" rowautocount="false" strippedpattern="true" checkbar="false" treefield="code" colheadfontfamilybold="true" colheadbackcolor="#e6f3fc" colheadbordercolor="" selectbackcolor="#FFD47F" selectbordercolor="#F9C42A"></i-treegrid>
+    </div>
+</body>
+
+</html>

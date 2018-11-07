@@ -1,0 +1,260 @@
+* {
+    font-size: 12px;
+}
+
+body {
+    padding: 8px 10px;
+}
+
+i-text {
+    color: #000;
+}
+
+i-button {
+    height: 23px;
+    border-radius: 0 !important;
+    border-color: #707070 !important;
+    background: #ececec !important;
+    background: linear-gradient(to bottom, #ececec 0%,#e2e2e2 48%,#d8d8d8 100%) !important;
+    box-shadow: inset 0px 0px 0px 1px rgba(240,240,240,1) !important;
+    cursor: pointer;
+    color: #000 !important;
+    vertical-align: middle;
+}
+
+i-button.mousedown {
+    border-color: #000 !important;
+    box-shadow: inset 0px 0px 0px 1px rgba(112,112,112,1) !important;
+}
+
+i-button[enable="false"] {
+    border-color: #bababa !important;
+    box-shadow: inset 0px 0px 0px 1px rgba(240,240,240,1) !important;
+    background: #ededed !important;
+    background: linear-gradient(to bottom, #ececec 0%,#e9e9e9 48%,#e6e6e6 100%) !important;
+    color: #a0a0a0 !important;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 1);
+}
+
+i-button.search {
+    padding: 4px !important;
+    background: transparent !important;
+    border-width: 0 !important;
+    box-shadow: none !important;
+}
+
+i-edit, i-maskedit, i-combo {
+    border-radius: 0;
+    border-color: #999 !important;
+    height: 23px;
+    color: #a0a0a0;
+}
+
+i-edit[readonly="true"], i-maskedit[readonly="true"], i-combo[readonly="true"] {
+    background: #eee !important;
+    color: blue !important;
+}
+
+i-edit[required="true"], i-maskedit[required="true"], i-combo[required="true"] {
+    background: #fffcda !important;
+    color: #666 !important;
+}
+
+i-edit[required="true"] .requireflag, i-maskedit[required="true"] .requireflag, i-combo[required="true"] .requireflag {
+    display: none;
+}
+
+i-edit[required="true"] .input, i-maskedit[required="true"] .input, i-combo[required="true"] .input {
+    width: calc(100% - 1.4em) !important;
+}
+
+hr {
+    margin: 4px 0;
+    padding: 0;
+    border-top: 1px dotted #666;
+}
+
+.inbox {
+    display: flex;
+    align-items: center;
+}
+
+.inbox.right {
+    justify-content: flex-end;
+}
+
+.inbox > * {
+    flex: none;
+    margin-right: 6px;
+}
+
+.inbox > *:nth-last-child(1) {
+    margin-right: 0;
+}
+
+.inbox .full {
+    width: auto !important;
+    flex: 1 1 0px;
+}
+
+.frm-table {
+    border-width: 4px 1px 1px 1px;
+    border-style: solid;
+    border-color: #497fae;
+    table-layout: fixed;
+    border-spacing: 0px;
+    width: 100%;
+}
+
+.frm-table > tbody > tr > th, .frm-table > tbody > tr > td {
+    padding: 3px;
+}
+
+.frm-table > tbody > tr > th {
+    border: 1px solid #497fae;
+    background: #bcd6ed;
+    color: #000;
+}
+
+.frm-table > tbody > tr > td {
+    border-bottom: 1px solid #497fae;
+}
+
+.frm-table > tbody > tr > td > i-edit, .frm-table > tbody > tr > td > i-maskedit, .frm-table > tbody > tr > td > i-combo {
+    max-width: 100%;
+}
+
+div.header, header.header {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+}
+
+div.header .text, header.header .text {
+    flex: 1 1 0px;
+    color: #000;
+}
+
+div.header .text i-text, header.header .text i-text {
+    color: blue;
+}
+
+div.header h1, header.header h1 {
+    flex: 1 1 0px;
+    padding: 0 13px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+}
+
+div.header h1:before, header.header h1:before {
+    content: " ";
+    display: inline-block;
+    position: relative;
+    top: -1px;
+    margin-right: 10px;
+    width: 6px;
+    height: 6px;
+    border: 4px solid #0296d4;
+    vertical-align: middle;
+}
+
+div.header .util, header.header .util {
+    flex: none;
+}
+
+div.header .util .inbox, header.header .util .inbox {
+    margin-bottom: 8px;
+}
+
+div.header .util .inbox:nth-last-child(1), header.header .util .inbox:nth-last-child(1) {
+    margin-bottom: 0;
+}
+
+div.header .util i-button.headutil1, header.header .util i-button.headutil1 {
+    margin-right: -1px;
+    width: 92px;
+    border-color: #6e86a5 !important;
+    background: url(../images/btn-header-util1.gif) !important;
+}
+
+div.header .util i-button.headutil2, header.header .util i-button.headutil2 {
+    margin-right: -1px;
+    width: 28px;
+    border-color: #6e86a5 !important;
+    background: url(../images/btn-header-util2.gif) !important;
+}
+
+div.header .util i-button.headutil3, header.header .util i-button.headutil3 {
+    width: 28px;
+    border-color: #6e86a5 !important;
+    background: url(../images/btn-header-util3.gif) !important;
+}
+
+div.header .util i-button.management, header.header .util i-button.management  {
+    border-color: #fff #696969 #696969 #fff !important;
+    box-shadow: inset 1px 0px 0px 0px rgba(240,240,240,1), inset 0px 1px 0px 0px rgba(240,240,240,1), inset 0px -1px 0px 0px rgba(160,160,160,1), inset -1px 0px 0px 0px rgba(160,160,160,1) !important;
+    background: yellow !important;
+    color: #000 !important;
+}
+div.header:nth-child(1), header.header:nth-child(1) {
+    padding-top: 0;
+}
+
+.detail {
+    display: flex;
+}
+
+.detail .frm-table {
+    margin-right: 10px;
+    border-top-width: 1px;
+    width: 400px;
+}
+
+.detail i-grid {
+    flex: 1 1 0px;
+    width: auto !important;
+    height: auto !important;
+}
+
+.popup-search {
+    display: flex;
+    padding: 4px;
+    border: 1px solid #666;
+    background: #f5f5f5;
+}
+
+.popup-search i-edit {
+    margin-right: 10px;
+    flex: 1 1 0px;
+    width: auto !important;
+}
+
+.popup-search i-button {
+    border-radius: 2px !important;
+    border-color: #4d4d4d #121212 #121212 #4d4d4d !important;
+    color: #121212 !important;
+    line-height: 16px;
+    background: #f4f4f4 !important;
+}
+
+.popup-search i-button * {
+    vertical-align: top;
+}
+
+.tax-buttons {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 8px;
+    margin-bottom: 8px;
+    border-top: 3px solid #497fae;
+}
+
+.tax-buttons i-button {
+    margin-right: 6px;
+    height: 30px;
+}
+
+.tax-buttons i-button:nth-last-child(1) {
+    margin-right: 0;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2017/04/04 11:20" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1534" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="9">
+    <meta name="created" content="2017/04/04 10:24" data-uid="10">
+    <title data-uid="11">image_text</title>
+    <script type="text/javascript" src="../../lib/config.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="13"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="14"></script>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript" data-uid="15">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-04-04
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_image_text() {
+            //TODO:
+            grid0.getView().registerImageList({
+                name: "images1",
+                root: "./images/",
+                items: ["at.png", "be.png", "br.png", "dk.png", "de.png", "it.png", "jp.png", "fr.png", "fi.png", "et.png"]
+            });
+            var iconMap = {
+                'Algeria': 'dz.png',
+                'Brazil': 'br.png',
+                'Chile': 'cl.png',
+                'Denmark': 'dk.png',
+                'France': 'fr.png',
+                'Luxembourg': 'lu.png',
+                'Mexico': 'mx.png',
+                'Netherlands': 'al.png',
+                'Netherlands2': 'nl.png'
+            };
+            var columns = [{
+                'fieldName': 'product_gubun',
+                'name': '상품구분',
+                imageList: 'images1',
+                renderer: {
+                    type: 'icon'
+                },
+                styleCallback: function(index, styles) {
+                    styles.setIconIndex(index.rowIndex);
+                }
+            }, {
+                'fieldName': 'purchase_price',
+                'name': '매입금액'
+            }, {
+                'fieldName': 'estimation_price',
+                'name': '평가금액'
+            }, {
+                'fieldName': 'estimate_profit_and_lose',
+                'name': '평가손익'
+            }, {
+                'fieldName': 'estimate_rate',
+                'name': '평가손익률'
+            }, {
+                'fieldName': 'product_rate',
+                'name': '상품비중'
+            }];
+            grid0.getView().setColumns(columns);
+            $.ajax({
+                url: 'icon_text.json',
+                success: function(ret) {
+                    grid0.setGridData(ret.data);
+                }
+            });
+        }
+    </script>
+</head>
+
+<body id="image_text" data-uid="3" oninitscreen="onInitScreen_image_text();">
+    <i-grid style="width: 961px; height: 416px; position: absolute; top: 40px; left: 40px;" columns="[{'fieldName':'product_gubun','name':'상품구분'},{'fieldName':'purchase_price','name':'매입금액'},{'fieldName':'estimation_price','name':'평가금액'},{'fieldName':'estimate_profit_and_lose','name':'평가손익'},{'fieldName':'estimate_rate','name':'평가손익률'},{'fieldName':'product_rate','name':'상품비중'}]"
+        data-uid="16" id="grid0" columncount="6" initrowcount="1" sumrowshow="sum" columnlastextend="true" columnmove="true" columnresize="true" statebar="false" rowautocount="true" strippedpattern="false" sorted="true" checkbar="false" griditem="[]" sumrowtitle="합계ⓘ"
+        rowautowidth="45" sumrowcolor="#FEEFE2"></i-grid>
+</body>
+
+</html>

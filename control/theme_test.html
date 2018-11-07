@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2017/01/27 14:50" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1463" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x3024" data-uid="8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="9">
+    <meta name="created" content="2017/01/26 16:15" data-uid="10">
+    <title data-uid="11">theme_test</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="13"></script>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript" data-uid="14">
+    </script>
+    <style data-uid="15">
+        .text-bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body id="theme_test" data-uid="3">
+    <i-text text="페이지 타이틀" style="position: absolute; top: 60px; left: 80px;" data-uid="16" id="text0" class="text-bold"></i-text>
+    <i-tabs style="width: 604px; height: 132px; position: absolute; top: 30px; left: 280px;" data-uid="17" id="tabs0">
+        <i-tabpage title="회원정보등록관리" data-uid="18" headercolor="#FFFFFF"></i-tabpage>
+        <i-tabpage title="배정등록관리" data-uid="19" headercolor="#FFFFFF"></i-tabpage>
+    </i-tabs>
+    <i-text text="Static" style="position: absolute; top: 290px; left: 80px;" data-uid="20" id="text1" class="text-bold"></i-text>
+    <i-text text="사업자정보" style="position: absolute; top: 290px; left: 280px;" data-uid="21" id="text2"></i-text>
+    <i-text text="Edit" style="position: absolute; top: 410px; left: 80px;" data-uid="22" id="text3" class="text-bold"></i-text>
+    <i-edit style="width: 140px; position: absolute; top: 410px; left: 280px;" data-uid="23" id="edit0" value="ixeb아이젭"></i-edit>
+    <i-text text="normal" style="position: absolute; top: 390px; left: 280px;" data-uid="24" id="text4"></i-text>
+    <i-edit style="width: 140px; position: absolute; top: 410px; left: 460px;" data-uid="25" id="edit1" value="ixeb아이젭" enable="false"></i-edit>
+    <i-text text="disabled" style="position: absolute; top: 390px; left: 460px;" data-uid="26" id="text5"></i-text>
+    <i-edit style="width: 140px; position: absolute; top: 410px; left: 630px;" data-uid="27" id="edit2" value="ixeb아이젭" readonly="readonly"></i-edit>
+    <i-text text="readonly" style="position: absolute; top: 390px; left: 630px;" data-uid="28" id="text6"></i-text>
+    <i-edit style="width: 140px; position: absolute; top: 410px; left: 810px;" data-uid="29" id="edit3" value="ixeb아이젭" required="required"></i-edit>
+    <i-text text="required" style="position: absolute; top: 390px; left: 810px;" data-uid="30" id="text7"></i-text>
+    <i-text text="Mask Edit" style="position: absolute; top: 520px; left: 80px;" data-uid="31" id="text8" class="text-bold"></i-text>
+    <i-maskedit style="width: 140px; position: absolute; top: 520px; left: 280px;" data-uid="32" id="maskedit0" value="20.133"></i-maskedit>
+    <i-text text="normal" style="position: absolute; top: 500px; left: 280px;" data-uid="33" id="text9"></i-text>
+    <i-maskedit style="width: 140px; position: absolute; top: 520px; left: 460px;" data-uid="34" id="maskedit1" value="20.133" enable="false"></i-maskedit>
+    <i-text text="disabled" style="position: absolute; top: 500px; left: 460px;" data-uid="35" id="text10"></i-text>
+    <i-maskedit style="width: 140px; position: absolute; top: 520px; left: 630px;" data-uid="36" id="maskedit2" value="20.133" readonly="readonly"></i-maskedit>
+    <i-text text="readonly" style="position: absolute; top: 500px; left: 630px;" data-uid="37" id="text11"></i-text>
+    <i-maskedit style="width: 140px; position: absolute; top: 520px; left: 810px;" data-uid="38" id="maskedit3" value="20.133" required="required"></i-maskedit>
+    <i-text text="required" style="position: absolute; top: 500px; left: 810px;" data-uid="39" id="text12"></i-text>
+    <i-text text="Edit 박스와 <br> 함께쓰이는 조회" style="position: absolute; top: 630px; left: 80px;" data-uid="40" id="text13" class="text-bold"></i-text>
+    <i-edit style="width: 140px;position: absolute;top: 630px;left: 280px;height: 22px;border-top-right-radius:0px;border-bottom-right-radius:0px;" data-uid="41" id="edit4"></i-edit>
+    <i-button text="<span class=&quot;fa fa-search&quot;></span>" style="position: absolute;top: 630px;left: 420px;background-size: 100% 100%;height: 22px;border-width:" data-uid="42" id="button0" class="search"></i-button>
+    <i-edit style="width: 140px;position: absolute;top: 630px;left: 510px;height: 22px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;" data-uid="43" id="edit5" value="ixeb 아이젭" enable="false"></i-edit>
+    <i-button text="<span class=&quot;fa fa-search&quot;></span>" style="position: absolute;top: 630px;left: 650px;height: 22px;background-size: 100% 100%;border-top-left-radius: 0px;border-bottom-left-radius: 0px;padding: 3px;" data-uid="44"
+        id="button1" enable="false"></i-button>
+    <i-text text="enabled" style="position: absolute; top: 610px; left: 280px;" data-uid="45" id="text14"></i-text>
+    <i-text text="disabled" style="position: absolute; top: 610px; left: 510px;" data-uid="46" id="text15"></i-text>
+    <i-text text="TextArea" style="position: absolute; top: 770px; left: 90px;" data-uid="47" id="text16" class="text-bold"></i-text>
+    <i-text text="normal" style="position: absolute; top: 740px; left: 280px;" data-uid="48" id="text17"></i-text>
+    <i-text text="disabled" style="position: absolute; top: 740px; left: 460px;" data-uid="49" id="text18"></i-text>
+    <i-text text="readonly" style="position: absolute; top: 740px; left: 630px;" data-uid="50" id="text19"></i-text>
+    <i-text text="required" style="position: absolute; top: 740px; left: 810px;" data-uid="51" id="text20"></i-text>
+    <i-multilineedit style="width: 99px; height: 90px; position: absolute; top: 760px; left: 280px;" data-uid="52" id="multilineedit0" value="아토스01"></i-multilineedit>
+    <i-multilineedit style="width: 99px; height: 90px; position: absolute; top: 760px; left: 460px;" data-uid="53" id="multilineedit1" value="아토스01" enable="false"></i-multilineedit>
+    <i-multilineedit style="width: 99px; height: 90px; position: absolute; top: 760px; left: 630px;" data-uid="54" id="multilineedit2" value="아토스01" readonly="readonly"></i-multilineedit>
+    <i-multilineedit style="width: 99px; height: 90px; position: absolute; top: 760px; left: 810px;" data-uid="55" id="multilineedit3" value="아토스01" required="required"></i-multilineedit>
+    <i-text text="Combo" style="position: absolute; top: 960px; left: 90px;" data-uid="56" id="text21" class="text-bold"></i-text>
+    <i-text text="normal" style="position: absolute; top: 940px; left: 280px;" data-uid="57" id="text22"></i-text>
+    <i-text text="disabled" style="position: absolute; top: 940px; left: 460px;" data-uid="58" id="text23"></i-text>
+    <i-text text="readonly" style="position: absolute; top: 940px; left: 630px;" data-uid="59" id="text24"></i-text>
+    <i-text text="required" style="position: absolute; top: 940px; left: 810px;" data-uid="60" id="text25"></i-text>
+    <i-combo style="width: 140px; position: absolute; top: 960px; left: 280px;" data-uid="61" id="combo0" items="[{'label':'label1','value':'value1'},{'label':'label2','value':'value2'},{'label':'label3','value':'value3'},{'label':'label4','value':'value4'},{'label':'label5','value':'value5'}]"
+        index="0"></i-combo>
+    <i-combo style="width: 140px; position: absolute; top: 960px; left: 460px;" data-uid="62" id="combo1" enable="false" items="[{'label':'label1','value':'value1'},{'label':'label2','value':'value2'},{'label':'label3','value':'value3'},{'label':'label4','value':'value4'},{'label':'label5','value':'value5'}]"
+        index="0"></i-combo>
+    <i-combo style="width: 140px; position: absolute; top: 960px; left: 630px;" data-uid="63" id="combo2" readonly="readonly" items="[{'label':'label1','value':'value1'},{'label':'label2','value':'value2'},{'label':'label3','value':'value3'},{'label':'label4','value':'value4'},{'label':'label5','value':'value5'}]"
+        index="0"></i-combo>
+    <i-combo style="width: 140px; position: absolute; top: 960px; left: 810px;" data-uid="64" id="combo3" required="required" items="[{'label':'label1','value':'value1'},{'label':'label2','value':'value2'},{'label':'label3','value':'value3'},{'label':'label4','value':'value4'},{'label':'label5','value':'value5'}]"
+        index="0"></i-combo>
+    <i-text text="Listbox" style="position: absolute; top: 1130px; left: 90px;" data-uid="65" id="text26" class="text-bold"></i-text>
+    <i-text text="normal" style="position: absolute; top: 1110px; left: 280px;" data-uid="66" id="text27"></i-text>
+    <i-text text="disabled" style="position: absolute; top: 1110px; left: 460px;" data-uid="67" id="text28"></i-text>
+    <i-listbox style="width: 140px; height: 150px; position: absolute; top: 1130px; left: 280px; overflow-y: auto;" items="[{value:'value1', label:'Listbox 1'},{value:'value2', label:'Listbox 2'},{value:'value3', label:'Listbox 3'}]" data-uid="68"
+        id="listbox0"></i-listbox>
+    <i-listbox style="width: 140px; height: 150px; position: absolute; top: 1130px; left: 460px; overflow-y: auto;" items="[{value:'value1', label:'Listbox 1'},{value:'value2', label:'Listbox 2'},{value:'value3', label:'Listbox 3'}]" data-uid="69"
+        id="listbox1" enable="false"></i-listbox>
+    <i-text text="Calendar" style="position: absolute; top: 1490px; left: 100px;" data-uid="70" id="text29" class="text-bold"></i-text>
+    <i-text text="normal" style="position: absolute; top: 1470px; left: 280px;" data-uid="71" id="text30"></i-text>
+    <i-text text="disabled" style="position: absolute; top: 1470px; left: 460px;" data-uid="72" id="text31"></i-text>
+    <i-text text="readonly" style="position: absolute; top: 1470px; left: 630px;" data-uid="73" id="text32"></i-text>
+    <i-text text="required" style="position: absolute; top: 1470px; left: 810px;" data-uid="74" id="text33"></i-text>
+    <i-edit style="width: 140px; position: absolute; top: 1490px; left: 280px;" data-uid="75" id="edit6" value="ixeb아이젭" showcalendarbutton="true"></i-edit>
+    <i-edit style="width: 140px; position: absolute; top: 1490px; left: 460px;" data-uid="76" id="edit7" value="ixeb아이젭" enable="false" showcalendarbutton="true"></i-edit>
+    <i-edit style="width: 140px; position: absolute; top: 1490px; left: 630px;" data-uid="77" id="edit8" value="ixeb아이젭" readonly="readonly" showcalendarbutton="true"></i-edit>
+    <i-edit style="width: 140px; position: absolute; top: 1490px; left: 810px;" data-uid="78" id="edit9" value="ixeb아이젭" required="required" showcalendarbutton="true"></i-edit>
+    <i-text text="Spin" style="position: absolute; top: 1380px; left: 100px;" data-uid="79" id="text34" class="text-bold"></i-text>
+    <i-spinner style="width: 140px; position: absolute; top: 1380px; left: 280px;" data-uid="80" id="spinner0"></i-spinner>
+    <i-spinner style="width: 140px; position: absolute; top: 1380px; left: 460px;" data-uid="81" id="spinner1" enable="false"></i-spinner>
+    <i-text text="normal" style="position: absolute; top: 1360px; left: 280px; width: 44px; height: 13px;" data-uid="82" id="text35"></i-text>
+    <i-text text="disabled" style="position: absolute; top: 1360px; left: 460px; width: 51px; height: 13px;" data-uid="83" id="text36"></i-text>
+    <i-text text="readonly" style="position: absolute; top: 1360px; left: 630px; width: 53px; height: 13px;" data-uid="84" id="text37"></i-text>
+    <i-text text="required" style="position: absolute; top: 1360px; left: 810px; width: 52px; height: 13px;" data-uid="85" id="text38"></i-text>
+    <i-spinner style="width: 140px; position: absolute; top: 1380px; left: 630px;" data-uid="86" id="spinner2"></i-spinner>
+    <i-spinner style="width: 140px; position: absolute; top: 1380px; left: 810px;" data-uid="87" id="spinner3" required="required"></i-spinner>
+    <i-text text="Checkbox" style="position: absolute; top: 1590px; left: 100px;" data-uid="88" id="text39" class="text-bold"></i-text>
+    <i-text text="normal" style="position: absolute; top: 1570px; left: 280px;" data-uid="89" id="text40"></i-text>
+    <i-text text="disabled" style="position: absolute; top: 1570px; left: 460px;" data-uid="90" id="text41"></i-text>
+    <i-check text="Check" style="position: absolute; top: 1590px; left: 280px;" data-uid="91" id="check0"></i-check>
+    <i-check text="Check" style="position: absolute; top: 1590px; left: 460px;" data-uid="92" id="check1" enable="false"></i-check>
+    <i-check text="Check" style="position: absolute; top: 1610px; left: 460px;" data-uid="93" id="check2" enable="false" value="on"></i-check>
+    <i-check text="Check" style="position: absolute; top: 1610px; left: 280px;" data-uid="94" id="check3" value="on"></i-check>
+    <i-text text="Radio" style="position: absolute; top: 1690px; left: 100px;" data-uid="95" id="text42" class="text-bold"></i-text>
+    <i-text text="normal" style="position: absolute; top: 1670px; left: 280px;" data-uid="96" id="text43"></i-text>
+    <i-text text="disabled" style="position: absolute; top: 1670px; left: 460px;" data-uid="97" id="text44"></i-text>
+    <i-radio items="[{'disable':false,'label':'Radio 1','value':'value1'},{'disable':false,'label':'Radio 2','value':'value2'}]" style="position: absolute; top: 1700px; left: 280px;" data-uid="98" id="radio0" index="0"></i-radio>
+    <i-radio items="[{'disable':false,'label':'Radio 1','value':'value1'},{'disable':false,'label':'Radio 2','value':'value2'}]" style="position: absolute; top: 1700px; left: 460px;" data-uid="99" id="radio1" index="0" enable="false"></i-radio>
+    <i-text text="페이지 제어버튼" style="position: absolute; top: 1770px; left: 100px;" data-uid="100" id="text45" class="text-bold"></i-text>
+    <i-text text="normal" style="position: absolute; top: 1750px; left: 280px; width: 44px; height: 13px;" data-uid="101" id="text46"></i-text>
+    <i-button text="Button" style="position: absolute; top: 1770px; left: 280px;" data-uid="102" id="button2"></i-button>
+    <i-text text="hover" style="position: absolute; top: 1750px; left: 360px; width: 51px; height: 13px;" data-uid="103" id="text47"></i-text>
+    <i-button text="Button" style="position: absolute; top: 1770px; left: 360px; background-size: 100% 100%;" data-uid="104" id="button3"></i-button>
+    <i-text text="disabled" style="position: absolute; top: 1750px; left: 440px; width: 53px; height: 13px;" data-uid="105" id="text48"></i-text>
+    <i-button text="Button" style="position: absolute; top: 1770px; left: 440px; background-size: 100% 100%;" data-uid="106" id="button4" enable="false"></i-button>
+    <i-button text="<span class=&quot;fa fa-user-plus&quot; style=&quot;margin-right:5px;&quot;></span>신규" style="position: absolute; top: 1770px; left: 550px; background-size: 100% 100%;" data-uid="107" id="button5"></i-button>
+    <i-text text="아이콘*버튼" style="position: absolute; top: 1750px; left: 550px; width: 75px; height: 13px;" data-uid="108" id="text49"></i-text>
+    <i-button text="<span class=&quot;fa fa-save&quot; style=&quot;margin-right:5px;&quot;></span>저장" style="position: absolute; top: 1770px; left: 640px; background-size: 100% 100%;" data-uid="109" id="button7"></i-button>
+    <i-button text="<span class=&quot;fa fa-times&quot; style=&quot;margin-right:5px;&quot;></span>삭제" style="position: absolute; top: 1770px; left: 730px; background-size: 100% 100%;" data-uid="110" id="button6"></i-button>
+    <i-button text="<span class=&quot;fa fa-file-excel-o&quot; style=&quot;margin-right:5px;&quot;></span>엑셀다운" style="position: absolute; top: 1770px; left: 820px; background-size: 100% 100%;" data-uid="111" id="button8"></i-button>
+    <i-button text="<span class=&quot;fa fa-download&quot; style=&quot;margin-right:5px;&quot;></span>다운로드" style="position: absolute; top: 1770px; left: 930px; background-size: 100% 100%;" data-uid="112" id="button9"></i-button>
+    <i-button text="<span class=&quot;fa fa-upload&quot; style=&quot;margin-right:5px;&quot;></span>업로드" style="position: absolute; top: 1770px; left: 1040px; background-size: 100% 100%;" data-uid="113" id="button10"></i-button>
+    <i-button text="<span class=&quot;fa fa-plus&quot; style=&quot;margin-right:5px;&quot;></span>추가" style="position: absolute; top: 1800px; left: 550px; background-size: 100% 100%;" data-uid="114" id="button11"></i-button>
+    <i-button text="<span class=&quot;fa fa-minus&quot; style=&quot;margin-right:5px;&quot;></span>삭제" style="position: absolute; top: 1800px; left: 640px; background-size: 100% 100%;" data-uid="115" id="button12"></i-button>
+    <i-button text="<span class=&quot;fa fa-refresh&quot; style=&quot;margin-right:5px;&quot;></span>초기화" style="position: absolute; top: 1800px; left: 730px; background-size: 100% 100%;" data-uid="116" id="button13"></i-button>
+</body>
+
+</html>

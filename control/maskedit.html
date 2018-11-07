@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-vline" content="" data-uid="5">
+    <meta name="ixeb-studio:grid-size" content="20x20" data-uid="6">
+    <meta name="ixeb-studio:screen-size" content="1280x1100" data-uid="7">
+    <meta name="created" content="2016/10/01 20:08" data-uid="8">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="9">
+    <title data-uid="10">maskEdit_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="12"></script>
+    <script type="text/javascript" data-uid="13">
+    </script>
+</head>
+
+<body id="maskEdit_sample" data-uid="3">
+
+    <div style="width: 1045px; height: 45px; position: absolute; top: 8px; left: 20px;" data-uid="66" id="div0" class="search-panel">
+        <i-text text="Mask Edit Sample" style="position: absolute; top: 8px; left: 4px; font-size: 25px;" data-uid="67" id="text11"></i-text>
+    </div>
+
+    <!-- 입력 Type -->
+     <i-group text="입력 TYPE" style="width: 1045px; height: 80px; position: absolute; top: 59px; left: 20px;" data-uid="46" id="group6" class="group-panel">    
+        <i-text text="숫자 입력모드(number)" style="position: absolute; top: 19px; left: 13px; width: 144px; height: 13px;" data-uid="52" id="text13" autosize="false"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 13px; left: 192px; text-align: right;" data-uid="55" id="maskedit01" value="12345678" type="number"></i-maskedit>
+
+        <i-text text="영문 입력모드(ascii)" style="position: absolute; top: 19px; left: 373px; width: 144px; height: 13px;" data-uid="49" id="text10"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 13px; left: 554px; text-align: right;" data-uid="54" id="maskedit02" value="ABCD!@#$" type="ascii"></i-maskedit>
+
+        <i-text text="한글 입력모드(none)" style="position: absolute; top: 19px; left: 733px; width: 144px; height: 13px;" data-uid="48" id="text9"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 13px; left: 894px; text-align: right;" data-uid="47" id="maskedit6" value="123ABC가나다!@#" type="none"></i-maskedit>
+    </i-group>
+    
+    <!-- 패턴타입 -->
+    <i-group text="패턴타입" style="width: 1045px; height: 80px; position: absolute; top: 148px; left: 20px;" data-uid="56" id="group7" class="group-panel">
+        <i-text text="계좌번호" style="position: absolute; top: 19px; left: 13px; width: 144px; height: 13px;" data-uid="62" id="text13" autosize="false"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 13px; left: 192px; text-align: right;" data-uid="65" id="maskedit04" value="1234567890123" type="number" pattern="ZZZZ-ZZZ-ZZZZZZ"></i-maskedit>
+
+        <i-text text="금액" style="position: absolute; top: 19px; left: 373px; width: 144px; height: 13px;" data-uid="59" id="text10"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 13px; left: 554px; text-align: right;" data-uid="64" id="maskedit05" value="12345678901" type="number" currencysingn="\" pattern="ZZZ,ZZZ,ZZ9.99" unitinsert="true"></i-maskedit>
+
+        <i-text text="마이너스" style="position: absolute; top: 19px; left: 733px; width: 144px; height: 13px;" data-uid="58" id="text9"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 13px; left: 894px; text-align: right;" data-uid="63" id="maskedit06" value="-123123" type="number" minussign="true" unitinsert="true" maxlength="0" pattern="ZZZ,ZZ9.99"></i-maskedit>        
+    </i-group>
+
+    <!-- Edit 검증 -->
+    <i-group text="Edit 검증" style="width: 1045px; height: 80px; position: absolute; top: 237px; left: 20px;" data-uid="39" id="group5" class="group-panel">
+        <i-text text="MaxLength 5" style="position: absolute; top: 18.666px; left: 12px; width: 144px; height: 13px;" data-uid="43" id="text6"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 12px; left: 193px; text-align: right;" data-uid="42" id="maskedit07" value="12345678" type="number" maxlength="5"></i-maskedit>
+        <i-text text="MinLength 1" style="position: absolute; top: 18.666px; left: 372px; width: 144px; height: 13px;" data-uid="40" id="text4"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 12px; left: 533px; text-align: right;" data-uid="41" id="maskedit08" value="ABCD!@#$" type="ascii" minlength="1"></i-maskedit>
+        <i-text text="required (true)" style="position: absolute; top: 18.666px; left: 712px; width: 144px; height: 13px;" data-uid="44" id="text3"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 12px; left: 874px; text-align: right;" data-uid="45" id="maskedit09" value="12345678" required="required"></i-maskedit>
+    </i-group>
+
+    <!-- CharCasing -->
+    <i-group text="CharCasing" style="width: 1045px; height: 80px; position: absolute; top: 325px; left: 20px;" data-uid="32" id="group4" class="group-panel">
+        <i-text text="charcasing (none)" style="position: absolute; top: 19.666px; left: 14px; width: 144px; height: 13px;" data-uid="36" id="text11"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 13px; left: 195px; text-align: right;" data-uid="35" id="maskedit10" value="abcdABCD"></i-maskedit>
+        <i-text text="charcasing (upper)" style="position: absolute; top: 20.01px; left: 374px; width: 116px; height: 13px;" data-uid="33" id="text9"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 13px; left: 535px; text-align: right;" data-uid="34" id="maskedit11" value="abcdABCD" charcasing="upper"></i-maskedit>
+        <i-text text="charcasing (lower)" style="position: absolute; top: 19.666px; left: 714px; width: 144px; height: 13px;" data-uid="38" id="text16"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 13px; left: 875px; text-align: right;" data-uid="37" id="maskedit12" value="abcdABCD" charcasing="lower"></i-maskedit>
+
+    </i-group>
+
+    <!-- ReadOnly -->
+    <i-group text="ReadOnly" style="width: 1045px; height: 80px; position: absolute; top: 413px; left: 20px;" data-uid="27" id="group3" class="group-panel">
+        <i-text text="readonly (true)" style="position: absolute; top: 17.777px; left: 13px; width: 144px; height: 13px;" data-uid="28" id="text13"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 12px; left: 194px; text-align: right;" data-uid="29" id="maskedit13" value="12345678" readonly="readonly"></i-maskedit>
+        <i-text text="readonly (false)" style="position: absolute; top: 17.777px; left: 373px; width: 144px; height: 13px;" data-uid="31" id="text15"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 12px; left: 534px; text-align: right;" data-uid="30" id="maskedit14" value="ABCD!@#$"></i-maskedit>
+    </i-group>
+
+    <!-- selectAll -->
+    <i-group text="selectAll" style="width: 1045px; height: 80px; position: absolute; top: 501px; left: 20px;" data-uid="22" id="group2" class="group-panel">
+        <i-text text="selectAll (true)" style="position: absolute; top: 16.889px; left: 12px; width: 144px; height: 13px;" data-uid="26" id="text19"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 12px; left: 193px; text-align: right;" data-uid="25" id="maskedit15" value="12345678"></i-maskedit>
+        <i-text text="selectAll (false)" style="position: absolute; top: 17.777px; left: 372px; width: 144px; height: 13px;" data-uid="23" id="text17"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 12px; left: 533px; text-align: right;" data-uid="24" id="maskedit16" value="ABCD!@#$" selectall="false"></i-maskedit>
+    </i-group>
+
+    <!-- Enable -->
+    <i-group text="Enable" style="width: 1045px; height: 80px; position: absolute; top: 589px; left: 20px;" data-uid="17" id="group1" class="group-panel">
+        <i-text text="enable (true)" style="position: absolute; top: 16px; left: 13px; width: 144px; height: 12px;" data-uid="18" id="text20"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 12px; left: 194px; text-align: right;" data-uid="19" id="maskedit17" value="12345678"></i-maskedit>
+        <i-text text="enable (false)" style="position: absolute; top: 17.777px; left: 373px; width: 144px; height: 13px;" data-uid="21" id="text22"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 12px; left: 534px; text-align: right;" data-uid="20" id="maskedit18" value="ABCD!@#$" enable="false"></i-maskedit>
+    </i-group>
+
+    <!-- ShowCalendarButton -->
+    <i-group text="ShowCalendarButton" style="width: 1045px; height: 80px; position: absolute; top: 677px; left: 20px;" data-uid="14" id="group0" class="group-panel">
+        <i-text text="showcalenarbutton(true)" style="position: absolute; top: 17px; left: 13px; width: 143px; height: 13px;" data-uid="16" id="text23"></i-text>
+        <i-maskedit style="width: 140px; position: absolute; top: 13px; left: 193px; text-align: right;" data-uid="15" id="maskedit19" value="12345678" showcalendarbutton="true"></i-maskedit>
+    </i-group>
+
+</body>
+
+</html>

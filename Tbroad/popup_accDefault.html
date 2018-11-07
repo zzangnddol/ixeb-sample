@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+    <meta name="modified" content="2018/05/14 17:36">
+    <meta name="generator" content="iXebStudio 2.0.0.2460">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="ixeb-studio:grid-size" content="10x10">
+    <meta name="ixeb-studio:screen-size" content="1280x1024">
+	<meta name="created" content="2018/05/14 12:13">
+	<title>계정과목조회--</title>
+	<script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.min.js"></script>
+	<script type="text/javascript" src="../ixeb/lib/ixebBase.min.js"></script>
+    <link rel="stylesheet" href="assets/style/content.css">
+	<script type="text/javascript">
+    	function onDataCellDblClicked_grid0(e, grid, cell) {
+            //TODO:
+            // 부모 채워야하는 값 세팅...
+            var rowData = account_default.getRow( grid0.getDataIndex(grid0.getFocusedCell().rowIndex) );
+            window.opener.setAccDefaultData( rowData );
+            window.close();
+        }
+    
+    	function onInitScreen_body() {
+            //TODO:
+            // 부모창에서 넘어온 값세팅..
+            var ACC_CODE = window.paramCode;
+            account_default.setParams({
+                
+                "ACC_CODE" : ACC_CODE
+            });
+            
+            ixeb.comm.transaction({
+                "in": ['account_default=>' + account_default.serviceId],
+                "out": [account_default.serviceId + '=>account_default'],
+                "url": "http://localhost:8080/ixeb-manager/service.ixeb"
+            }).done(function(r) {
+                console.log("Success.");
+            }).fail(function(r) {
+                alert("Error:\n" + r.message);
+            }).always(function() {
+                // console.log("always");
+            });    
+        }
+    </script>
+    <i-dataset id="account_default" serviceId="service_ACCDEFAULT">
+        <header>
+            [{"id":"ACC_CODE","object":"","type":"","size":"","desc":""},{"id":"EPIT_CODE","object":"","type":"","size":"","desc":""},{"id":"EPIT_NAME","object":"","type":"","size":"","desc":""}]
+        </header>
+        <data>
+        	[]
+        </data>
+        <i-bind bindtype="recordset" target="grid0">
+        </i-bind>
+    </i-dataset>
+</head>
+<body onInitScreen="onInitScreen_body()">
+    <div class="popup-search">
+        <i-edit value="" required="true" id="company"></i-edit>
+        <i-button text="<img src='assets/images/ico-search.png'> 조회"></i-button>
+    </div>
+    <hr />
+    <i-grid style="width: 100%; height: 355px;" columns="[{'fieldName':'EPIT_CODE','name':'EPIT_CODE','colType':'','type':'','headerText':'표준적요코드','colWidth':56,'readOnly':true},{'fieldName':'EPIT_NAME','name':'EPIT_NAME','colType':'','type':'','headerText':'표준적요명','readOnly':true}]" id="grid0" columncount="2" initrowcount="0" columnlastextend="true" selectType="rows" onDataCellDblClicked="onDataCellDblClicked_grid0(arguments[0], arguments[1], arguments[2])"></i-grid>
+</body>
+</html>

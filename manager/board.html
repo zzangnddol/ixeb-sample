@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1024x705" data-uid="6">
+    <meta name="created" content="2016/11/17 13:44" data-uid="7">
+    <title data-uid="8">board</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="9"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="10"></script>
+    <style data-uid="11" id="style1">
+        #div2 {
+            /*
+            height: calc(100% - 135px);
+            */
+            left: 14px!important;
+            top: 40px!important;
+            width: calc(100% - 28px)!important;
+            height: calc(100% - 49px)!important;
+        }
+        
+        #grid0 {
+            width: calc(100% - 20px);
+        }
+    </style>
+    <script type="text/javascript" data-uid="12">
+        function onDataCellDblClicked_grid0(args) {
+            alert("onDataCellDblClicked_grid0");
+        }
+        // onInitScreen_body
+        function onInitScreen_body() {
+            grid0.setColumnProperty(0, 'colWidth', 10);
+            grid0.setColumnProperty(0, 'colEnable', false);
+            grid0.setColumnProperty(1, 'colWidth', 50);
+            grid0.setColumnProperty(1, 'colEnable', false);
+            grid0.setColumnProperty(2, 'colWidth', 10);
+            grid0.setColumnProperty(2, 'colEnable', false);
+            grid0.setColumnProperty(3, 'colWidth', 10);
+            grid0.setColumnProperty(3, 'colEnable', false);
+            grid0.setColumnProperty(4, 'colWidth', 10);
+            grid0.setColumnProperty(4, 'colEnable', false);
+            grid0.setColumnProperty(5, 'colWidth', 10);
+            grid0.setColumnProperty(5, 'colEnable', false);
+            onclick_btn_select0();
+        }
+        // 조회
+        function onclick_btn_select0() {
+            $.ajax({
+                url: './data/board.json',
+                success: function(ret) {
+                    var data = ret["grid0"];
+                    /*
+                    for (var i = 0; i < data.length; i++) {
+                        data[i].unshift(i + 1);
+                    }
+                    */
+                    grid0.setGridData(data);
+                }
+            });
+        }
+        // 새글쓰기
+        function onclick_btn_addBoard0() {
+            window.parent.onclick_board_add();
+        }
+    </script>
+    <i-dataset data-uid="13" id="dataset0" serviceid="service_user">
+        <header data-uid="14"> [ {"id": "BOARD_IDX","desc": "글번호","object": "","type": "","size": ""}, {"id": "BOARD_TITLE","desc": "제목","object": "","type": "","size": ""}, {"id": "BOARD_USER","desc": "작성자","object": "","type": "","size": ""}, {"id": "BOARD_DATE","desc": "작성일","object":
+            "","type": "","size": ""}, {"id": "BOARD_FILE","desc": "첨부","object": "","type": "","size": ""}, {"id": "BOARD_READ","desc": "열람","object": "","type": "","size": ""} ] </header> <data data-uid="15">
+[]
+	</data>
+        <i-bind bindtype="recordset" target="grid0" data-uid="16"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="user" data-uid="3" oninitscreen="onInitScreen_body();">
+    <div style="width: 100%; height: 100%; top: 0px; left: 0px; position: relative; background: rgb(230, 230, 230);" data-uid="17" id="div0">
+        <i-text text="공지 메시지조회" style="position: absolute; top: 10px; left: 14px; font-size: 13pt; letter-spacing: 0.5px;" data-uid="18" id="text0"></i-text>
+        <div style="width : calc(100% - 28px); position: absolute; top: 40px; left: 14px; background: rgb(255, 255, 255);" data-uid="19" id="div2">
+            <div style="width: 481px; height: 32px; position: absolute; top: 3px; right: 0px;" data-uid="20" id="div7">
+                <i-button id="btn_addBoard0" text="새글쓰기" onclick="onclick_btn_addBoard0();" style="position: absolute; top: 0px; left: 405px; width: 71px; height: 29px; background-size: 100% 100%; cursor: pointer; background-color: rgb(0, 17, 44); color: #ffffff;"
+                    data-uid="21"></i-button>
+            </div>
+            <i-grid id="grid0" style="position: absolute; width : calc( 100% - 10px); height: 580px; top: 37px; left: 5px; opacity: 0.99;" columnlastextend="true" rowautocount="true" statebar="false" columncount="0" columns="[
+                    {'fieldName':'BOARD_IDX','name':'글번호','dataType':'','type':'','size':''},
+                    {'fieldName':'BOARD_TITLE','name':'제목','dataType':'','type':'','size':''},
+                    {'fieldName':'BOARD_USER','name':'작성자','dataType':'','type':'','size':''},
+                    {'fieldName':'BOARD_DATE','name':'작성일','dataType':'','type':'','size':''},
+                    {'fieldName':'BOARD_FILE','name':'첨부','dataType':'','type':'','size':''},
+                    {'fieldName':'BOARD_READ','name':'열람','dataType':'','type':'','size':''}
+                ]" griditem="[]" data-uid="22" colheadbackcolor="#A2A2A2" colheadtextcolor="#ffffff" datatextcolor="#222222" rowheight="24" usepage="true" pagingtype="number" rowheaderheight="24" selectbackcolor="#ECFFAB" selectbordercolor="#2AAAAF"
+                controltypeshow="true" pagepercount="23" checkbar="false" ondatacelldblclicked="onDataCellDblClicked_grid0(arguments);"></i-grid>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+    <meta name="generator" content="iXebStudio Platform 2.2018.0907.2795">
+    <meta name="ixeb-studio:SaveZOrder" content="undefined">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="ixeb-studio:grid-size" content="10x10">
+    <meta name="ixeb-studio:screen-size" content="1280x1024">
+	<meta name="created" content="2018/11/06 16:19">
+	<title>File title</title>
+	<script type="text/javascript" src="./ixeb/ext/jquery/2.2.1/jquery-2.2.1.min.js"></script>
+	<script type="text/javascript" src="./ixeb/lib/ixebBase.min.js"></script>
+	<!-- From here, enter your script and style. -->
+	<script type="text/javascript">
+    	function onchange_edit2(e) {
+    	    console.log('grid data change', edit2.value);
+        }
+    
+    	function onchange_edit1(e) {
+    	    console.log('changed value', edit1.value);
+    	    maskedit0.value = edit1.value;
+        }
+    
+    	function onchange_maskedit0(e) {
+    	    console.log('changed value', maskedit0.value);
+    	    edit1.value = maskedit0.value;
+        }
+    
+    	function onAfterInitScreen_body() {
+    	    console.log('maskedit value', maskedit0.value);
+    	    edit1.value = maskedit0.value;
+        }
+    
+    	function onchange_radio0(e) {
+            console.log('radio value', radio0.value);
+            edit0.enable = radio0.value;
+        }
+	
+
+        function onclick_btn_status0() {
+            alert(dataset0.getRowStatus(dataset0.getRowPosition()));
+        }
+
+        function onclick_btn_exec0() {
+            ixeb.comm.transaction({
+                "in": ['dataset0=>' + dataset0.serviceId],
+                "out": [dataset0.serviceId + '=>dataset0'],
+                "url": "http://localhost:8080/ixeb-manager/service.ixeb"
+            }).done(function(r) {
+                console.log("Success.");
+            }).fail(function(r) {
+                alert("Error:\n" + r.message);
+            }).always(function() {
+                // console.log("always");
+            });
+        }
+
+        function onclick_btn_clear0() {
+            dataset0.clear();
+        }
+
+        function onclick_btn_print0() {
+            alert("프린트 기능은 준비 중입니다.");
+        }
+
+        function onclick_btn_excelimort0() {
+                grid1.importData();
+        }
+
+        function onclick_btn_excelexport0() {
+            grid1.exportData("export.xlsx");
+        }
+
+        function onclick_button1() {
+            grid1.deleteRow(grid1.getView().focusedRowIndex(), true);
+        }
+
+        function onclick_button0() {
+            var row = dataset0.appendRow({});
+            grid1.setFocusedCell(row, 0);
+            grid1.focus();
+        }
+    </script>
+    <i-dataset id="dataset0" serviceId="">
+        <header>
+            [{"id":"no","object":"","type":"","size":"","desc":"item0"},{"id":"registrationNumber","object":"","type":"","size":"","desc":"item1"},{"id":"amount","object":"","type":"","size":"","desc":"item2"}]
+        </header>
+        <data>
+        	[{"no":"홍길동","registrationNumber":"1111111111111","amount":"100000"},{"no":"임꺽정","registrationNumber":"2222222222222","amount":"50000"}]
+        </data>
+        <i-bind bindtype="recordset" target="grid1">
+        </i-bind>
+            <i-bind bindtype="attribute" property="value" target="edit2" column="no"></i-bind>
+        <i-bind bindtype="attribute" property="value" target="edit3" column="registrationNumber"></i-bind>
+        <i-bind bindtype="attribute" property="value" target="edit4" column="amount"></i-bind>
+</i-dataset>
+</head>
+<body onAfterInitScreen="onAfterInitScreen_body()">
+
+    <i-edit style="width: 140px;position: absolute;left: 70px;top:30px" id="edit0" tabIndex="1"></i-edit>
+    <i-radio items="[{'disable':false,'label':'enable','value':'true'},{'disable':false,'label':'disable','value':'false'}]" style="position: absolute;left: 240px;top:34.5px" id="radio0" value="true" onchange="onchange_radio0(arguments[0])" tabIndex="2"></i-radio>
+    <i-maskedit style="width: 140px;position: absolute;left:140px;top:80px" id="maskedit0" value="1234561234567" currencySign="" decimalLength="" maxLength="13" minLength="0" minusSign="" pattern="ZZZZZZ-ZZZZZZZ" textAlign="left" type="number" unitDecimal="" unitInsert="false" unitPosition="" unitSymbol="" tabIndex="3" onchange="onchange_maskedit0(arguments[0])"></i-maskedit>
+    <i-text text="주민번호" style="position: absolute;left: 70px;top:85px" id="text0"></i-text>
+    <i-edit style="width: 140px;position: absolute;left: 330px;top:80px" id="edit1" onchange="onchange_edit1(arguments[0])" tabIndex="4"></i-edit>
+    <i-text text="금액" style="position: absolute;left: 500px;top:85px" id="text1"></i-text>
+    <i-maskedit style="width: 140px;position: absolute;left: 540px;top:80px" id="maskedit1" value="1000000" textAlign="right" currencySign="\" decimalLength="" maxLength="10" minLength="0" minusSign="false" pattern="Z,ZZZ,ZZZ,ZZ9" type="number" unitDecimal="." unitInsert="true" unitPosition="3" unitSymbol="," tabIndex="5"></i-maskedit>
+    <i-grid id="grid1" style="position: absolute;left:70px;top:120px;width:376px;undefined:null;height:144px" columns="[{'fieldName':'no','name':'item0','colType':'','type':'','headerText':'이름'},{'fieldName':'registrationNumber','name':'item1','colType':'maskedit','type':'number','headerText':'주민번호','colWidth':120,'pattern':'ZZZZZZ-ZZZZZZZ','minusSign':false,'maxLength':13,'minLength':0,'textAlignment':'left'},{'fieldName':'amount','name':'item2','colType':'maskedit','type':'number','headerText':'금액','colWidth':120,'pattern':'Z,ZZZ,ZZZ,ZZ9','minusSign':false,'maxLength':10,'minLength':0,'textAlignment':'right'}]" tabIndex="6" columncount="3" initrowcount="0"></i-grid>
+    <i-edit style="width: 140px;position: absolute;left: 490px;top:120px" id="edit2" onchange="onchange_edit2(arguments[0])"></i-edit>
+    <i-edit style="width: 140px;position: absolute;left: 660px;top:120px" id="edit3"></i-edit>
+    <i-edit style="width: 140px;position: absolute;left: 820px;top:120px" id="edit4"></i-edit>
+    <i-button text="추가" style="position: absolute;left: 490px;top:160px" id="button0" onclick="onclick_button0(arguments[0])"></i-button>
+    <i-button text="제거" style="position: absolute;left: 560px;top:160px" id="button1" onclick="onclick_button1(arguments[0])"></i-button>
+</body>
+</html>

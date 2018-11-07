@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2017/11/22 16:49" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta name="created" content="2016/10/19 11:28" data-uid="9">
+    <title data-uid="10">grid_context_extend</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="12"></script>
+    <script type="text/javascript" data-uid="13">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-19
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            var data = [{
+                name: '보통예금(IBK 급여통장',
+                number: 0,
+                gubun: 'P',
+                accountName: '072-997793-**-***',
+                currency: 'KRW',
+                remain: 2000000
+            }, {
+                name: '보통예금',
+                accountName: '149-0867763-**-***',
+                number: 1,
+                gubun: 'Q',
+                currency: 'USD',
+                remain: 1200
+            }, {
+                name: '보통예금',
+                accountName: '072-997793-**-***',
+                number: 2,
+                gubun: 'P',
+                currency: 'USD',
+                remain: 10000
+            }, {
+                name: '정기적금',
+                accountName: '149-0866063-**-***',
+                number: 2,
+                gubun: 'O',
+                currency: 'JPY',
+                remain: 11000
+            }, {
+                name: '보통예금(IBK 급여통장',
+                accountName: '077-987793-**-***',
+                number: 0,
+                gubun: 'P',
+                currency: 'JPY',
+                remain: 1085001
+            }, {
+                name: '보통예금',
+                accountName: '149-0866063-**-***',
+                number: 3,
+                gubun: 'Q',
+                currency: 'USD',
+                remain: 12500
+            }, {
+                name: '보통예금(IBK 급여통장',
+                accountName: '072-997793-**-***',
+                number: 0,
+                gubun: 'Q',
+                currency: 'EUR',
+                remain: 12520
+            }, {
+                name: '보통예금',
+                accountName: '149-0866063-**-***',
+                number: 1,
+                gubun: 'P',
+                currency: 'USD',
+                remain: 15650
+            }, {
+                name: '보통예금(IBK 급여통장',
+                accountName: '072-997793-**-***',
+                number: 1,
+                gubun: 'P',
+                currency: 'JPY',
+                remain: 1380
+            }, {
+                name: '보통예금',
+                accountName: '072-997793-**-***',
+                number: 0,
+                gubun: 'P',
+                currency: 'KRW',
+                remain: 12125600
+            }];
+            grid1.setGridData(data);
+            grid1.getView().setContextMenu([{
+                label: "열 추가",
+                callback: function() {
+                    grid1.addColumn();
+                }
+            }, {
+                label: "열 왼쪽 삽입",
+                callback: function() {
+                    var idx = grid1.getView().focusedColumn().index();
+                    grid1.addColumn(idx);
+                }
+            }, {
+                label: "열 오른쪽 삽입",
+                callback: function() {
+                    var idx = grid1.getView().focusedColumn().index() + 1;
+                    grid1.addColumn(idx);
+                }
+            }, {
+                label: "열 삭제",
+                callback: function() {
+                    grid1.removeColumn();
+                }
+            }, {
+                label: "열 변경",
+                callback: function() {
+                    var obj = grid1.getColumnObject(grid1.getView().focusedColumn().index())
+                    ixeb.window.openModal({
+                        width: 510,
+                        height: 685,
+                        WindowType: 'modal',
+                        //WindowType : 'popup',
+                        url: 'grid_column_property.html'
+                    }, obj);
+                }
+            }, {
+                label: "-" /* menu separator */
+            }, {
+                label: "행 추가",
+                callback: function() {
+                    dataset0.appendRow({});
+                }
+            }, {
+                label: "행 삽입",
+                callback: function() {
+                    dataset0.insertRow(grid1.getView().focusedRow().index(), {});
+                }
+            }, {
+                label: "행 삭제",
+                callback: function() {
+                    dataset0.deleteRow(grid1.getView().focusedRowIndex());
+                }
+            }, {
+                label: "-" /* menu separator */
+            }, {
+                label: "열 폭 조정",
+                callback: function() {
+                    var columns = grid1.getColumns();
+                    var colLen = columns.length;
+                    var wSum = 0;
+                    for (var i = 0; i < colLen; i++) {
+                        var width = columns[i].width();
+                        wSum += width;
+                    }
+                    var wAvg = wSum / colLen;
+                    for (var i = 0; i < colLen; i++) {
+                        columns[i].setWidth(wAvg);
+                    }
+                }
+            }, {
+                label: "열 폭 자동 조정",
+                callback: function() {
+                    grid1.columnLastExtend = !grid1.columnLastExtend;
+                }
+            }, {
+                label: "행 높이 조정",
+                callback: function() {
+                    var rows = grid1.getView().getRows();
+                    grid1.getView().setOptions({
+                        display: {
+                            rowHeight: 22,
+                            variableRowHeight: false
+                        }
+                    });
+                    for (var i = 0; i < rows.length; i++) {
+                        var row = rows[i];
+                        grid1.getView().setRowHeight(row);
+                    }
+                    grid1.getView().setOptions({
+                        display: {
+                            variableRowHeight: true
+                        }
+                    });
+                }
+            }, {
+                label: "-" /* menu separator */
+            }, {
+                label: "자동 병합",
+                children: [{
+                    label: "그리드 영역 전체",
+                    callback: function() {
+                        grid1.mergeUse = true;
+                        grid1.setMerge(true);
+                    }
+                }, {
+                    label: "컬럼 영역",
+                    callback: function() {
+                        grid1.mergeUse = true;
+                        var colIdx = grid1.getView().focusedColumn().index();
+                        grid1.setColumnProperty(colIdx, 'colAutoMerge', true);
+                    }
+                }]
+            }, {
+                label: "병합 해제",
+                children: [{
+                    label: "그리드 영역 전체",
+                    callback: function() {
+                        grid1.setMerge(false);
+                    }
+                }, {
+                    label: "컬럼 영역",
+                    callback: function() {
+                        var colIdx = grid1.getView().focusedColumn().index();
+                        grid1.setColumnProperty(colIdx, 'colAutoMerge', false);
+                    }
+                }]
+            }]);
+        }
+    </script>
+    <i-dataset data-uid="14" id="dataset0">
+        <i-bind bindtype="recordset" property="" target="grid1" column="" data-uid="15"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="grid_context_extend" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-grid columnlastextend="true" style="width: 1000px; height: 320px; position: absolute; top: 8px; left: 8px; opacity: 0.99;" data-uid="16" id="grid1" selecttype="block" selectbordercolor="2AAAFF" rowcount="1" columncount="0" columns="[
+{fieldName: 'name', header: {text: '상품명'}},
+{fieldName: 'accountName', header: {text: '계좌번호'}},
+{fieldName: 'number', header: {text: '회차'}, type: 'number'},
+{fieldName: 'gubun', header: {text: '구분'}},
+{fieldName: 'currency', header: {text: '통화'}},
+{fieldName: 'remain', header: {text: '계좌잔액'}, type: 'number'}]" mergeuse="true" griditem="[[]]"></i-grid>
+</body>
+
+</html>

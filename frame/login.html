@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1920x1080" data-uid="6">
+    <meta name="created" content="2016/10/13 10:25" data-uid="7">
+    <title data-uid="8">login</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="9"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="10"></script>
+    <link rel="stylesheet" type="text/css" href="css/frame.css" data-uid="11">
+    <script type="text/javascript" data-uid="12">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-13
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button0() {
+            var id = edit0.value;
+            var password = maskedit0.value;
+            if(id != "" && password != ""){
+                window.location.href = "./index.html?id=" + id;    
+            }
+        }
+    </script>
+</head>
+
+<body id="login" data-uid="3" style="">
+    <div style="width: 100%;height: 100%;position:relative;background: #E0E0E0;" data-uid="13" id="login-panel">
+        <div style="width: 223px; height: 117px; position: absolute; top:50%; left:50%;margin-top:-70px; margin-left:-111.5px;" data-uid="14" id="div1">
+            <i-picture style="position: absolute; top: 13px; left: 43px; width: 135px; height: 35px; background-image: url(&quot;./images/ixebLogo.png&quot;); background-repeat: no-repeat;" data-uid="17" id="picture0" image="./images/ixebLogo.png"></i-picture>
+            <i-edit style="width: 140px; position: absolute; top: 64px; left: 3px;" data-uid="15" required="true" id="edit0"></i-edit>
+            <i-maskedit style="width: 140px; position: absolute; top: 90px; left: 3px;" data-uid="18" required="true" id="maskedit0" pattern=""></i-maskedit>
+            <i-button text="로그인" style="color:#71CDF3; background-color:#313131; position: absolute; top: 64px; left: 147px; width: 71px; height: 46px; background-size: 100% 100%;" data-uid="16" id="button0" onclick="onclick_button0();"></i-button>
+        </div>
+    </div>
+    <div class="top-area" style="width: 1903px; height: 60px; position: absolute; top: 0px; left: 30px;" data-uid="19" id="div2">
+        <div class="user-state-area" style="width: 100%; height: 30px; position: absolute; top: -1px; left: 0px;" data-uid="20" id="div4">
+            <i-picture style="position: absolute; top: 2.77472px; left: 4.802px; width: 84px; height: 25px; background-image: url(&quot;./images/ixebLog_2.png&quot;); background-repeat: no-repeat;" data-uid="21" id="picture0" image="./images/ixebLog_2.png"></i-picture>
+        </div>
+        <div class="top-menu" style="width: 100%; height: 30px; position: absolute; top: 29px; left: 0px;" data-uid="22" id="div5">
+            <i-combo style="top: -2px; left: -2px; margin-top: 5px; margin-left: 5px; height: 22px; position: absolute; width: 245px; z-index: 9999;" data-uid="23" id="combo0" dropdownstyle="dropdown"></i-combo>
+        </div>
+    </div>
+    <div class="tool-area" style="width: 30px; height: 933px; position: absolute; top: 0px; left: 0px;" data-uid="24" id="div3">
+        <i-text class="fa fa-calendar" style="color: rgb(255, 255, 255); position: absolute; top: 12px; left: 8px; width: 15px; height: 13px;" data-uid="25" id="text1"></i-text>
+        <i-text class="fa fa-envelope-o" style="color: rgb(255, 255, 255); position: absolute; top: 39px; left: 8px; width: 15px; height: 13px;" data-uid="26" id="text2"></i-text>
+        <i-text class="fa fa-wpforms" style="color: rgb(255, 255, 255); position: absolute; top: 66px; left: 8px; width: 15px; height: 13px;" data-uid="27" id="text3"></i-text>
+        <i-text class="fa fa-list-alt" style="color: rgb(255, 255, 255); position: absolute; top: 93px; left: 8px; width: 15px; height: 13px;" data-uid="28" id="text4"></i-text>
+        <i-text class="fa fa-user" style="color: rgb(255, 255, 255); position: absolute; top: 120px; left: 8px; width: 15px; height: 13px;" data-uid="29" id="text5"></i-text>
+        <i-text class="fa fa-sitemap" style="color: rgb(255, 255, 255); position: absolute; top: 147px; left: 8px; width: 15px; height: 13px;" data-uid="30" id="text6"></i-text>
+        <i-text class="fa fa-television" style="color: rgb(255, 255, 255); position: absolute; top: 174px; left: 8px; width: 15px; height: 13px;" data-uid="31" id="text7"></i-text>
+        <i-text class="fa fa-spinner" style="color: rgb(255, 255, 255); position: absolute; top: 201px; left: 8px; width: 15px; height: 13px;" data-uid="32" id="text8"></i-text>
+        <i-text class="fa fa-inbox" style="color: rgb(255, 255, 255); position: absolute; top: 228px; left: 8px; width: 15px; height: 13px;" data-uid="33" id="text9"></i-text>
+        <i-text class="fa fa-key" style="color: rgb(255, 255, 255); position: absolute; top: 255px; left: 8px; width: 15px; height: 13px;" data-uid="34" id="text10"></i-text>
+        <i-text class="fa fa-search" style="color: rgb(255, 255, 255); position: absolute; top: 282px; left: 8px; width: 15px; height: 13px;" data-uid="35" id="text11"></i-text>
+        <i-text class="fa fa-calculator" style="color: rgb(255, 255, 255); position: absolute; top: 309px; left: 8px; width: 15px; height: 13px;" data-uid="36" id="text12"></i-text>
+        <i-text class="fa fa-calendar-o" style="color: rgb(255, 255, 255); position: absolute; top: 336px; left: 8px; width: 15px; height: 13px;" data-uid="37" id="text13"></i-text>
+        <i-text class="fa fa-paste" style="color: rgb(255, 255, 255); position: absolute; top: 363px; left: 8px; width: 15px; height: 13px;" data-uid="38" id="text14"></i-text>
+        <i-text class="fa fa-usd" style="color: rgb(255, 255, 255); position: absolute; top: 390px; left: 8px; width: 15px; height: 13px;" data-uid="39" id="text15"></i-text>
+        <i-text class="fa fa-fax" style="color: rgb(255, 255, 255); position: absolute; top: 417px; left: 8px; width: 15px; height: 13px;" data-uid="40" id="text16"></i-text>
+        <i-text class="fa fa-edit" style="color: rgb(255, 255, 255); position: absolute; top: 444px; left: 8px; width: 15px; height: 13px;" data-uid="41" id="text17"></i-text>
+        <i-text class="fa fa-chain-broken" style="color: rgb(255, 255, 255); position: absolute; top: 471px; left: 8px; width: 15px; height: 13px;" data-uid="42" id="text18"></i-text>
+    </div>
+    <div class="footer" style="width: 100%; height: 25px; position: absolute; top: 1051px; left: 0px;" data-uid="43" id="div6">
+        <i-text text="<i class=&quot;fa fa-globe&quot; aria-hidden=&quot;true&quot;></i> &amp;nbsp; Online mode" style="position: absolute; top: 7.00512px; left: 20px; color: rgb(113, 205, 243); height: 12px;" data-uid="44" id="text0"></i-text>
+        <i-text text="<font style='color:#71CDF3'>ver</font>&amp;nbsp; 20130729-142731 D:0.004/ㅣ:1.562(s) |영문|&amp;nbsp;&amp;nbsp;&amp;nbsp;<font style='color:#71CDF3'>영업일자</font>2013-06-07" style="position: absolute; top: 6.50512px;left:calc(100% - 460px);"
+            data-uid="45" id="timer"></i-text>
+        <i-text text="" style="color: gold; font-weight: bolder;width: calc(100% - 750px);position: absolute; top: 6.5px; left: 282px;" data-uid="46" id="text19"></i-text>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+﻿{
+      "grio0" :[
+			["TBL_ACCESS_LOG.html",		"6", "2016-11-17", "한상범"], 
+			["TBL_DEPLOY_FILE.html",	"5", "2016-11-17", "한상범"], 
+			["TBL_DEPLOY_HISTORY.html",	"6", "2016-11-17", "한상범"], 
+			["TBL_DEPLOY_PATH.html",	"5", "2016-11-17", "한상범"], 
+			["TBL_POST.html",			"6", "2016-11-17", "한상범"], 
+			["TBL_POST_ACCESS.html",	"6", "2016-11-17", "한상범"], 
+			["TBL_REVISION.html",		"5", "2016-11-17", "한상범"], 
+			["TBL_REVISION_FILE.html",	"6", "2016-11-17", "한상범"], 
+			["TBL_SESSION.html",		"5", "2016-11-17", "한상범"],
+			["TBL_USER.html",			"5", "2016-11-17", "한상범"]
+      ]
+}    

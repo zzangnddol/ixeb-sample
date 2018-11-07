@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/12/15 11:07">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="5">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="6">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="7">
+    <meta name="created" content="2016/10/06 14:54" data-uid="8">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="9">
+    <title data-uid="10">grid_pivot_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="12"></script>
+    <script type="text/javascript" src="../js/ixebmanager.js" data-uid="12"></script>
+    <script type="text/javascript" data-uid="14">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-06
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return
+         */
+        function onclick_button8() {
+            //TODO:
+            pivot(dataset0, 'NAME', 'LEVLCD', 'TOTAL');
+        }
+
+        function pivot(dataset, xField, yField, strVal) {
+            // dataset1 컬럼 정의
+            // grid1 헤더 정의 //[{'fieldName':'COMPID','name':'','dataType':'','type':'','size':''}
+            var defColumns = [];
+            defColumns.push({
+                'fieldName': yField,
+                'name': yField,
+                'editor': {
+                    type: 'line'
+                }
+            });
+            var columns = [];
+            for (var i = 0, j = 0, len = dataset.getRowCount(); i < len; i++) {
+                var _fieldName = dataset.getValue(i, xField);
+                var _headerTitle = dataset.getValue(i, xField);
+                if (columns.indexOf(_fieldName) < 0) {
+                    defColumns.push({
+                        'fieldName': "F" + (j++),
+                        'name': _headerTitle,
+                        'header': {
+                            text: _headerTitle
+                        },
+                        'editor': {
+                            type: 'line'
+                        }
+                    });
+                    columns.push(_fieldName);
+                }
+            }
+            grid1.setColumns(defColumns); // = JSON.stringify(defColumns);
+            // dataset1 데이터 넣기
+            var rows = [];
+            for (var i = 0, len = dataset.getRowCount(); i < len; i++) {
+                var _yValue = dataset.getValue(i, yField);
+                if (rows.indexOf(_yValue) < 0) {
+                    rows.push(_yValue);
+                }
+            }
+            dataset1.clear();
+            dataset1.beginBulkLoad();
+            var records = [];
+            for (var i = 0, len = rows.length; i < len; i++) {
+                var record = {};
+                record[yField] = rows[i];
+                for (var j = 0, jlen = columns.length; j < jlen; j++) {
+                    // columns[j] 는 필드명
+                    // record["F" + j] = 1111;//'data'; //데이터 합계 등 처리
+                    record["F" + j] = sum(dataset, strVal, xField, columns[j], yField, record[yField]); //'data'; //데이터 합계 등 처리
+                    // console.log("sum", dataset, xField, columns[j], yField, record[yField]);//'data'; //데이터 합계 등 처리
+                }
+                dataset1.appendRow(record);
+                // records.push(record);
+            }
+            dataset1.endBulkLoad();
+            dataset1.loadComplete();
+            // dataset1.appendRows(records);
+        }
+
+        function sum(dataset, valColumn, field, condition1, conditionField, condition2) {
+            var sum = 0;
+            for (var i = 0, len = dataset.getRowCount(); i < len; i++) {
+                var row = dataset.getRow(i),
+                    data = parseInt(row[valColumn]);
+                // console.log(data);
+                if (row[field] == condition1 && row[conditionField] == condition2) {
+                    sum += data;
+                }
+            }
+            return sum;
+        }
+
+        function onclick_button7() {
+            alert(dataset0.getRowStatus(dataset0.getRowPosition()));
+        }
+
+        function onclick_button6() {
+            dataset0.setParams({
+                seq: "000 - 001"
+            });
+            ixeb.comm.transaction({
+                "in": ['dataset0=>' + dataset0.serviceId],
+                "out": [dataset0.serviceId + '=>dataset0'],
+                "url": getRootUrl() + "/ixeb-manager/service.ixeb",
+            }).done(function(r) {
+                console.log("success")
+            }).fail(function(r) {
+                console.log("error", r)
+            }).always(function() {
+                console.log("always")
+            });
+        }
+
+        function onclick_button5() {
+            dataset0.clear();
+        }
+
+        function onclick_button4() {
+            alert("print는 루디에서")
+        }
+
+        function onclick_button3() {
+            var input = $("<input type='file'>");
+            $(input).on('change', function() {
+                grid0.importData(this.files[0]);
+            });
+            $(input).click();
+        }
+
+        function onclick_button2() {
+            grid0.exportData("grid0.xlsx");
+        }
+
+        function onclick_button1() {
+            dataset0.deleteRow(grid0.getView().focusedRowIndex());
+        }
+
+        function onclick_button0() {
+            dataset0.appendRow({});
+        }
+    </script>
+    <i-dataset data-uid="15" id="dataset0" serviceid="service_pms001">
+        <header data-uid="16"> [ {"id": "COMPID","desc": "","object": "","type": "","size": ""}, {"id": "NAME","desc": "","object": "","type": "","size": ""}, {"id": "PARENT_ID","desc": "","object": "","type": "","size": ""}, {"id": "ID","desc": "","object": "","type": "","size":
+            ""}, {"id": "LEVLCD","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT1","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT2","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT3","desc": "","object": "","type":
+            "","size": ""}, {"id": "TITEXT4","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT5","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT6","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT7","desc": "","object":
+            "","type": "","size": ""}, {"id": "TITEXT8","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT9","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT10","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT11","desc":
+            "","object": "","type": "","size": ""}, {"id": "TITEXT12","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT13","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT14","desc": "","object": "","type": "","size": ""}, {"id":
+            "TITEXT15","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT16","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT17","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT18","desc": "","object": "","type":
+            "","size": ""}, {"id": "TITEXT19","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT20","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT21","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT22","desc":
+            "","object": "","type": "","size": ""}, {"id": "TITEXT23","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT24","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT25","desc": "","object": "","type": "","size": ""}, {"id":
+            "TITEXT26","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT27","desc": "","object": "","type": "","size": ""}, {"id": "TITEXT30","desc": "","object": "","type": "","size": ""}, {"id": "FULLTIME_TOTAL","desc": "","object": "","type":
+            "","size": ""}, {"id": "TOTAL","desc": "","object": "","type": "","size": ""}, {"id": "sort","desc": "","object": "","type": "","size": ""}, {"id": "seq","desc": "","object": "","type": "","size": ""} ] </header> <data data-uid="17">
+[]
+	</data>
+        <i-bind bindtype="recordset" property="" target="grid0" column="" data-uid="18"></i-bind>
+    </i-dataset>
+    <i-dataset data-uid="19" id="dataset1">
+        <i-bind bindtype="recordset" property="" target="grid1" column="" data-uid="20"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="b" data-uid="3">
+    <i-group text="Transaction Data" style="width: 1010px; height: 360px; position: absolute; top: 68px; left: 8px;" data-uid="21" id="group0" class="group-panel">
+        <i-grid ds-role="dataset0" style="width: 1000px; height: 320px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" rowautocount="false" statebar="false" columncount="0" columns="[{'fieldName':'COMPID','name':'','dataType':'','type':'','size':''},{'fieldName':'NAME','name':'','dataType':'','type':'','size':''},{'fieldName':'PARENT_ID','name':'','dataType':'','type':'','size':''},{'fieldName':'ID','name':'','dataType':'','type':'','size':''},{'fieldName':'LEVLCD','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT1','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT2','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT3','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT4','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT5','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT6','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT7','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT8','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT9','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT10','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT11','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT12','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT13','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT14','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT15','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT16','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT17','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT18','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT19','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT20','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT21','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT22','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT23','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT24','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT25','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT26','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT27','name':'','dataType':'','type':'','size':''},{'fieldName':'TITEXT30','name':'','dataType':'','type':'','size':''},{'fieldName':'FULLTIME_TOTAL','name':'','dataType':'','type':'','size':''},{'fieldName':'TOTAL','name':'','dataType':'','type':'','size':''},{'fieldName':'sort','name':'','dataType':'','type':'','size':''},{'fieldName':'seq','name':'','dataType':'','type':'','size':''}]"
+            griditem="[]" columnlastextend="true" data-uid="22" id="grid0"></i-grid>
+    </i-group>
+    <i-group text="Pivot Sample" style="width: 1010px; height: 360px; position: absolute; top: 520px; left: 8px;" data-uid="23" id="group1" class="group-panel">
+        <i-grid style="width: 1000px; height: 320px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="24" id="grid1" rowheaderheight="45"></i-grid>
+    </i-group>
+    <div style="width: 1010px; height: 45px; position: absolute; top: 8px; left: 8px;" data-uid="25" id="div0" class="search-panel">
+        <i-button ds-role="exec" name="btn_run" style="position: absolute; left: 933px; top: 11px; width: 65px; height: 20px; background-size: 100% 100%;" text="조회" data-uid="26" id="button6" onclick="onclick_button6();"></i-button>
+    </div>
+    <div style="width: 1010px; height: 45px; position: absolute; top: 460px; left: 8px;" data-uid="27" id="div1" class="search-panel">
+        <i-button text="pivot" style="position: absolute; top: 11px; left: 939px; height: 20px; background-size: 100% 100%;" data-uid="28" id="button8" onclick="onclick_button8();"></i-button>
+    </div>
+</body>
+
+</html>

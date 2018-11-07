@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/12/27 14:53">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="5">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="6">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="7">
+    <meta name="created" content="2016/10/11 17:49" data-uid="8">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="9">
+    <title data-uid="10">grid_animation_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="12"></script>
+    <script type="text/javascript" data-uid="13">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-11
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var fields = [{
+                "fieldName": "check_id"
+            }, {
+                "fieldName": "factory1",
+                "dataType": "number"
+            }, {
+                "fieldName": "factory2",
+                "dataType": "number"
+            }, {
+                "fieldName": "factory3",
+                "dataType": "number"
+            }, {
+                "fieldName": "factory4",
+                "dataType": "number"
+            }];
+            grid0.setFields(fields);
+            var columns = [{
+                "name": "colCheck",
+                "fieldName": "check_id",
+                "header": "CHK #",
+                "width": 60,
+                "styles": {
+                    "background": "#08000000",
+                    "textAlignment": "center"
+                }
+            }, {
+                "name": "ProductGroup1",
+                "width": "180",
+                /*"header": "Factory #1",*/
+                /*"childHeadersVisible": false,*/
+                "header": false,
+                "headerDelegate": "UnitPrice1",
+                "footerDelegate": "UnitPrice1",
+                "columns": [{
+                    "name": "Labels",
+                    "layout": "vertical",
+                    "width": 60,
+                    "childFootersVisible": false,
+                    "childHeadersVisible": false,
+                    "header": "구분",
+                    "columns": [{
+                        "type": "label",
+                        "text": "MAX.",
+                        "styles": {
+                            "textAlignment": "far",
+                            "background": "#08000000"
+                        }
+                    }, {
+                        "type": "label",
+                        "text": "1,000",
+                        "styles": {
+                            "textAlignment": "far"
+                        }
+                    }, {
+                        "type": "label",
+                        "text": "CURR.",
+                        "styles": {
+                            "textAlignment": "far",
+                            "background": "#08000000"
+                        }
+                    }, {
+                        "fieldName": "factory1",
+                        "styles": {
+                            "textAlignment": "far",
+                            "numberFormat": "#,##0.0"
+                        }
+                    }]
+                }, {
+                    "name": "UnitPrice1",
+                    "fieldName": "factory1",
+                    "width": 120,
+                    "styles": {
+                        "textAlignment": "far",
+                        "fontSize": 18,
+                        "color": "#080",
+                        "shapeInactiveColor": "#10000000",
+                        "shapeColor": "#80008800",
+                        "padding": 4,
+                        "numberFormat": "#,##0.0"
+                    },
+                    "header": {
+                        /*"text": "Value",*/
+                        "text": "Factory #1"
+                    },
+                    "footer": {
+                        "expression": "avg",
+                        "styles": {
+                            "numberFormat": "#,##0.0",
+                            "fontBold": true,
+                            "fontSize": 14,
+                            "color": "#008"
+                        }
+                    },
+                    "renderer": {
+                        "type": "circleGauge",
+                        "minValue": 0,
+                        "maxValue": 1000
+                    },
+                    "animations": [{
+                        "property": "value",
+                        "duration": 1000
+                    }]
+                }]
+            }, {
+                "name": "ProductGroup2",
+                "width": "180",
+                /* "header": "Factory #2", */
+                /* "childHeadersVisible": false,*/
+                "header": false,
+                "headerDelegate": "UnitPrice2",
+                "footerDelegate": "UnitPrice2",
+                "columns": [{
+                    "name": "Labels",
+                    "layout": "vertical",
+                    "width": 60,
+                    "childFootersVisible": false,
+                    "childHeadersVisible": false,
+                    "header": "구분",
+                    "columns": [{
+                        "type": "label",
+                        "text": "MAX.",
+                        "styles": {
+                            "textAlignment": "far",
+                            "background": "#08000000"
+                        }
+                    }, {
+                        "type": "label",
+                        "text": "1,000",
+                        "styles": {
+                            "textAlignment": "far"
+                        }
+                    }, {
+                        "type": "label",
+                        "text": "CURR.",
+                        "styles": {
+                            "textAlignment": "far",
+                            "background": "#08000000"
+                        }
+                    }, {
+                        "fieldName": "factory2",
+                        "styles": {
+                            "textAlignment": "far",
+                            "numberFormat": "#,##0.0"
+                        }
+                    }]
+                }, {
+                    "name": "UnitPrice2",
+                    "fieldName": "factory2",
+                    "width": 120,
+                    "styles": {
+                        "textAlignment": "far",
+                        "fontSize": 18,
+                        "color": "#080",
+                        "shapeInactiveColor": "#10000000",
+                        "shapeColor": "#80008800",
+                        "padding": 4,
+                        "numberFormat": "#,##0.0"
+                    },
+                    "header": {
+                        /* "text": "Value"*/
+                        "text": "Factory #2"
+                    },
+                    "footer": {
+                        "expression": "avg",
+                        "styles": {
+                            "numberFormat": "#,##0.0",
+                            "fontBold": true,
+                            "fontSize": 14,
+                            "color": "#008"
+                        }
+                    },
+                    "renderer": {
+                        "type": "circleGauge",
+                        "minValue": 0,
+                        "maxValue": 1000
+                    },
+                    "animations": [{
+                        "property": "value",
+                        "duration": 1000
+                    }]
+                }]
+            }, {
+                "name": "ProductGroup3",
+                "width": "180",
+                /* "header": "Factory #3", */
+                /* "childHeadersVisible": false, */
+                "header": false,
+                "headerDelegate": "UnitPrice3",
+                "footerDelegate": "UnitPrice3",
+                "columns": [{
+                    "name": "Labels",
+                    "layout": "vertical",
+                    "width": 60,
+                    "childFootersVisible": false,
+                    "childHeadersVisible": false,
+                    "header": "구분",
+                    "columns": [{
+                        "type": "label",
+                        "text": "MAX.",
+                        "styles": {
+                            "textAlignment": "far",
+                            "background": "#08000000"
+                        }
+                    }, {
+                        "type": "label",
+                        "text": "1,000",
+                        "styles": {
+                            "textAlignment": "far"
+                        }
+                    }, {
+                        "type": "label",
+                        "text": "CURR.",
+                        "styles": {
+                            "textAlignment": "far",
+                            "background": "#08000000"
+                        }
+                    }, {
+                        "fieldName": "factory3",
+                        "styles": {
+                            "textAlignment": "far",
+                            "numberFormat": "#,##0.0"
+                        }
+                    }]
+                }, {
+                    "name": "UnitPrice3",
+                    "fieldName": "factory3",
+                    "width": 120,
+                    "styles": {
+                        "textAlignment": "far",
+                        "fontSize": 18,
+                        "color": "#080",
+                        "shapeInactiveColor": "#10000000",
+                        "shapeColor": "#80008800",
+                        "padding": 4,
+                        "numberFormat": "#,##0.0"
+                    },
+                    "header": {
+                        /* "text": "Value" */
+                        "text": "Factory #3"
+                    },
+                    "footer": {
+                        "expression": "avg",
+                        "styles": {
+                            "numberFormat": "#,##0.0",
+                            "fontBold": true,
+                            "fontSize": 14,
+                            "color": "#008"
+                        }
+                    },
+                    "renderer": {
+                        "type": "circleGauge",
+                        "minValue": 0,
+                        "maxValue": 1000
+                    },
+                    "animations": [{
+                        "property": "value",
+                        "duration": 1000
+                    }]
+                }]
+            }, {
+                "name": "ProductGroup4",
+                "width": "180",
+                /* "header": "Factory #4", */
+                /* "childHeadersVisible": false, */
+                "header": false,
+                "headerDelegate": "UnitPrice3",
+                "footerDelegate": "UnitPrice3",
+                "columns": [{
+                    "name": "Labels",
+                    "layout": "vertical",
+                    "width": 60,
+                    "childFootersVisible": false,
+                    "childHeadersVisible": false,
+                    "header": "구분",
+                    "columns": [{
+                        "type": "label",
+                        "text": "MAX.",
+                        "styles": {
+                            "textAlignment": "far",
+                            "background": "#08000000"
+                        }
+                    }, {
+                        "type": "label",
+                        "text": "1,000",
+                        "styles": {
+                            "textAlignment": "far"
+                        }
+                    }, {
+                        "type": "label",
+                        "text": "CURR.",
+                        "styles": {
+                            "textAlignment": "far",
+                            "background": "#08000000"
+                        }
+                    }, {
+                        "fieldName": "factory4",
+                        "styles": {
+                            "textAlignment": "far",
+                            "numberFormat": "#,##0.0"
+                        }
+                    }]
+                }, {
+                    "name": "UnitPrice4",
+                    "fieldName": "factory4",
+                    "width": 120,
+                    "styles": {
+                        "textAlignment": "far",
+                        "fontSize": 18,
+                        "color": "#080",
+                        "shapeInactiveColor": "#10000000",
+                        "shapeColor": "#80008800",
+                        "padding": 4,
+                        "numberFormat": "#,##0.0"
+                    },
+                    "header": {
+                        /* "text": "Value" */
+                        "text": "Factory #4"
+                    },
+                    "footer": {
+                        "expression": "avg",
+                        "styles": {
+                            "numberFormat": "#,##0.0",
+                            "fontBold": true,
+                            "fontSize": 14,
+                            "color": "#008"
+                        }
+                    },
+                    "renderer": {
+                        "type": "circleGauge",
+                        "minValue": 0,
+                        "maxValue": 1000
+                    },
+                    "animations": [{
+                        "property": "value",
+                        "duration": 1000
+                    }]
+                }]
+            }];
+            grid0.getView().setColumns(columns);
+            grid0.getView().footer().setVisible(true);
+            grid0.getView().effectOptions().setAnimationEnabled(true);
+            grid0.getView().autoFill().setEnabled(true);
+            grid0.getView().loadStyles({
+                selection: {
+                    background: "#11000000",
+                    border: "#88000000,1"
+                },
+                body: {
+                    cellDynamic: [{
+                        expression: "value >= 700",
+                        styles: {
+                            color: "#b0880000",
+                            shapeColor: "#80880000"
+                        }
+                    }]
+                }
+            });
+            var rows = [];
+            var id = 1000;
+            for (var r = 0; r < 1000; r++) {
+                var row = [];
+                id += 1 + Math.floor(Math.random() * 3);
+                row.push("#" + id);
+                for (var f = 0; f < 4; f++) {
+                    var v = 50 + Math.random() * 950;
+                    row.push(v);
+                }
+                rows.push(row);
+            }
+            grid0.setGridData(rows);
+        }
+    </script>
+</head>
+
+<body id="grid_animation_sample" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="Grid Animation Sample" style="width: 1010px; height: 360px; position: absolute; top: 8px; left: 8px;" data-uid="14" id="group0" class="group-panel">
+        <i-grid columnlastextend="true" style="width: 1000px; height: 320px; position: absolute; top:4px; left: 4px; opacity: 0.99;" data-uid="15" id="grid0" sumrowcolor="#eef0f4" rowheight="80" strippedpattern="false"></i-grid>
+    </i-group>
+</body>
+
+</html>

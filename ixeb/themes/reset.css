@@ -1,0 +1,141 @@
+/**
+ * html5doctor.com Reset Stylesheet v1.6.1 (http://html5doctor.com/html-5-reset-stylesheet/)
+ * Richard Clark (http://richclarkdesign.com)
+ * http://cssreset.com
+ */
+/**{*/
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    /*font-size:100%;*/ /* remove by jino */
+    vertical-align:baseline;
+    background:transparent;
+}
+body {
+    line-height:1;
+}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+nav ul {
+    list-style:none;
+}
+blockquote, q {
+    quotes:none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+a {
+    margin:0;
+    padding:0;
+    /*font-size:100%;*/ /* remove by jino */
+    vertical-align:baseline;
+    background:transparent;
+}
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+del {
+    text-decoration: line-through;
+}
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+    empty-cells: show; /* add by jino */
+}
+/* add by jino */
+th, td {
+    vertical-align:middle;
+}
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+input, select {
+    vertical-align:middle;
+}
+/* 그리드 캘린더 CSS */
+body+div#\$dl_datepicker>table {
+            float: none;
+            clear: both;
+            box-sizing: border-box;
+            margin: 0px;
+            cursor: default;
+            font-family: Verdana;
+            font-size: 11px;
+            font-style: normal;
+            font-variant-ligatures: normal;
+            font-variant-caps: normal;
+            font-weight: normal;
+            overflow: auto;
+            z-index: 3000;
+            background: rgb(255, 255, 255);
+            border: 1px solid rgba(50, 50, 50, 0.3);
+            box-shadow: rgba(0, 0, 0, 0.5) 1px 2px 5px;
+            padding: 0px;
+            user-select: none;
+            left: 187px;
+            top: 451.391px;
+        }
+        
+        body+div#\$dl_datepicker>table>td {
+            padding: 1px;
+            text-align: right;
+            color: rgb(204, 204, 204);
+            border-radius: 1px;
+            border: 1px solid rgb(255, 255, 255);
+            margin: 0;
+            font-family: 'nanumgothic';
+            border-collapse: collapse;
+            display: table-cell;
+            vertical-align: inherit;
+        }
+        
+        body+div#\$dl_datepicker>div {
+            position: relative;
+            padding: 4px 4px 0px;
+            font-family: Verdana;
+            font-size: 12px;
+            font-style: normal;
+            font-variant-ligatures: normal;
+            font-variant-caps: normal;
+            font-weight: normal;
+            background-color: rgba(0, 200, 200, 0.1);
+            margin: 0px;
+        }

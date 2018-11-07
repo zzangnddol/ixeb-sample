@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/12/27 14:56" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta name="created" content="2016/10/06 11:17" data-uid="9">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="10">
+    <title data-uid="11">grid_filtering_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="13"></script>
+    <script type="text/javascript" data-uid="14">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-06
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            grid0.setColumnProperty(1, 'type', 'number');
+            grid0.setColumnProperty(2, 'type', 'number');
+            grid0.setColumnProperty(3, 'showCalendarButton', true);
+            grid0.setColumnProperty(4, 'showCalendarButton', true);
+            $.ajax({
+                url: 'filtering_sample.json',
+                success: function(ret) {
+                    grid0.setGridData(ret);
+                    grid0.addFilters(1, [{
+                        "name": "High Price",
+                        "expression": "value > 21000"
+                    }, {
+                        "name": "Mid Price",
+                        "expression": "(value > 0) && (value <= 30000)"
+                    }, {
+                        "name": "Low Price",
+                        "expression": "value <= 10000"
+                    }]);
+                    grid0.addFilters(2, [{
+                        "name": "High Quantity",
+                        "expression": "value > 200"
+                    }, {
+                        "name": "Mid Quantity",
+                        "expression": "(value > 0) && (value <= 10)"
+                    }, {
+                        "name": "Low Quantity",
+                        "expression": "value <= 10"
+                    }]);
+                    grid0.addFilters(4, [{
+                        "name": "배송전",
+                        "expression": "value < date('2016-10-07 00:00')"
+                    }, {
+                        "name": "배송중",
+                        "expression": "value >= date('2016-10-04 00:00') && value < date('2016-10-07 00:00')"
+                    }, {
+                        "name": "배송완료",
+                        "expression": "value > date('2016-10-07 00:00')"
+                    }]);
+                }
+            });
+        }
+    </script>
+</head>
+
+<body id="grid_filtering_sample" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="Grid Filtering Sample" style="width: 1010px; height: 360px; position: absolute; top: 8px; left: 8px;" data-uid="15" id="group0" class="group-panel">
+        <i-grid columnlastextend="true" style="width: 1000px; height: 320px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="16" id="grid0" columns="[ 
+                {
+                    &quot;fieldName&quot;: &quot;product_name&quot;,
+                    &quot;name&quot;: &quot;제품명&quot;
+                }, 
+                {
+                    &quot;fieldName&quot;: &quot;unit_price&quot;,
+                    &quot;name&quot;: &quot;단가&quot;
+                }, 
+                {
+                    &quot;fieldName&quot;: &quot;quantity&quot;,
+                    &quot;name&quot;: &quot;수량&quot;
+                }, 
+                {
+                    &quot;fieldName&quot;: &quot;order_date&quot;,
+                    &quot;name&quot;: &quot;발주일&quot;
+                }, 
+                {
+                    &quot;fieldName&quot;: &quot;ship_date&quot;,
+                    &quot;name&quot;: &quot;선적일&quot;
+                }, 
+                {
+                    &quot;fieldName&quot;: &quot;country&quot;,
+                    &quot;name&quot;: &quot;국가&quot;
+                }, 
+                {
+                    &quot;fieldName&quot;: &quot;unit&quot;,
+                    &quot;name&quot;: &quot;단위&quot;
+                }, 
+                {
+                    &quot;fieldName&quot;: &quot;currency&quot;,
+                    &quot;name&quot;: &quot;통화&quot;
+                },
+                {
+                    &quot;fieldName&quot;: &quot;customer_name&quot;,
+                    &quot;name&quot;: &quot;고객명&quot;
+                }
+            ]"></i-grid>
+    </i-group>
+</body>
+
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1920x1080" data-uid="6">
+    <meta name="created" content="2016/10/12 14:04" data-uid="7">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title data-uid="8">responsive</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="9"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="10"></script>
+    <script type="text/javascript" src="../js/ixebmanager.js" data-uid="10"></script>
+    <script type="text/javascript" data-uid="11">
+        function onclick_button7() {
+            alert(dataset0.getRowStatus(dataset0.getRowPosition()));
+        }
+
+        function onclick_button6() {
+            ixeb.comm.transaction({
+                "in": ['dataset0=>' + dataset0.serviceId],
+                "out": [dataset0.serviceId + '=>dataset0'],
+                "url": getRootUrl() + "/ixeb-manager/service.ixeb"
+            }).done(function(r) {
+                console.log("success");
+            }).fail(function(r) {
+                console.log("error", r);
+            }).always(function() {
+                console.log("always");
+            });
+        }
+
+        function onclick_button5() {
+            dataset0.clear();
+        }
+
+        function onclick_button4() {
+            alert("print는 루디에서")
+        }
+
+        function onclick_button3() {
+            var input = $("<input type='file'>");
+            $(input).on('change', function() {
+                grid0.importData(this.files[0]);
+            });
+            $(input).click();
+        }
+
+        function onclick_button2() {
+            grid0.exportData("grid0.xlsx");
+        }
+
+        function onclick_button1() {
+            dataset0.deleteRow(grid0.getView().focusedRowIndex());
+        }
+
+        function onclick_button0() {
+            dataset0.appendRow({});
+        }
+    </script>
+    <style data-uid="12">
+        @media screen and (max-width:800px) {
+            body {
+                padding-top: 2px;
+            }
+            #btngroup1 {
+                display: inline-block;
+            }
+            #btngroup2 {
+                display: inline-block;
+                float: right;
+            }
+            #button0 {
+                padding:2px 0px 2px 3px;
+            }
+            #button1 {
+                padding:2px 0px 2px 3px
+            }
+            #button2 {
+                padding:2px 0px 2px 3px
+            }
+            #button3 {
+                display: none;
+            }
+            #button4 {
+                display: none;
+            }
+            #button5 {
+                padding: 7px 8px 7px 8px;
+                font-weight: bold;
+                color: white;
+                font-size: 14px;
+                background-color: darkblue;
+                border-radius: 3px;
+            }
+            #button6 {
+                padding: 7px 8px 7px 8px;
+                font-weight: bold;
+                color: white;
+                font-size: 14px;
+                background-color: darkblue;
+                border-radius: 3px;
+            }
+            #button7 {
+                padding: 7px 8px 7px 8px;
+                font-weight: bold;
+                color: white;
+                font-size: 14px;
+                background-color: darkblue;
+                border-radius: 3px;
+            }
+            #chart0 {
+                width: 100%;
+                /*height: 320px;*/
+            }
+            #grid0 {
+                width: 100%;
+                height: 320px;
+            }
+        }
+        
+        @media screen and (min-width:801px) {
+            #button0 {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                width: 20px;
+                height: 20px;
+                padding: 0.2em 0.9em 0.2em 0.3em;
+            }
+            #button1 {
+                position: absolute;
+                left: 21px;
+                top: 0px;
+                width: 20px;
+                height: 20px;
+                padding: 0.2em 0.9em 0.2em 0.3em;
+            }
+            #button2 {
+                position: absolute;
+                left: 42px;
+                top: 0px;
+                width: 20px;
+                height: 20px;
+                padding: 0.2em 1em 0.2em 0.2em;
+            }
+            #button3 {
+                position: absolute;
+                left: 63px;
+                top: 0px;
+                width: 20px;
+                height: 20px;
+                padding: 0.2em 1em 0.2em 0.2em;
+            }
+            #button4 {
+                position: absolute;
+                left: 84px;
+                top: 0px;
+                width: 20px;
+                height: 20px;
+                padding: 0.2em 1em 0.2em 0.2em;
+            }
+            #button5 {
+                position: absolute;
+                top: 0px;
+                left: 287px;
+                width: 93px;
+                height: 20px;
+            }
+            #button6 {
+                position: absolute;
+                top: 0px;
+                left: 381px;
+                width: 117px;
+                height: 20px;
+            }
+            #button7 {
+                position: absolute;
+                top: 0px;
+                left: 499px;
+                width: 65px;
+                height: 20px;
+            }
+            #chart0 {
+                position: absolute;
+                opacity: 0.99;
+                top: 40px;
+                left: 576px;
+                width: 583px;
+                height: 320px;
+            }
+            #grid0 {
+                position: absolute;
+                opacity: 0.99;
+                top: 20px;
+                left: 0px;
+                width: 565px;
+                height: 320px;
+            }
+        }
+    </style>
+    <i-dataset data-uid="13" id="dataset0" serviceid="service_chart">
+        <header data-uid="14"> [ {"id": "월","desc": "","object": "","type": "","size": ""}, {"id": "매출액","desc": "","object": "","type": "","size": ""} ] </header> <data data-uid="15">
+[]
+	</data>
+        <i-bind bindtype="recordset" target="grid0" data-uid="17"></i-bind>
+        <i-bind bindtype="recordset" target="chart0" data-uid="18"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="responsive" data-uid="3">
+    <div id="btngroup1" data-uid="19">
+        <i-button ds-role="row_add" name="btn_plus" style="" class="fa fa-plus" text="" data-uid="20" id="button0" onclick="onclick_button0();"></i-button>
+        <i-button ds-role="row_remove" name="btn_minus" style="" class="fa fa-minus" text="" data-uid="21" id="button1" onclick="onclick_button1();"></i-button>
+        <i-button ds-role="upload" name="btn_upload" style="" class="fa fa-upload" text="" data-uid="22" id="button2" onclick="onclick_button2();"></i-button>
+        <i-button ds-role="download" name="btn_download" style="" class="fa fa-download" text="" data-uid="23" id="button3" onclick="onclick_button3();"></i-button>
+        <i-button ds-role="print" name="btn_print" style="" class="fa fa-print" text="" data-uid="24" id="button4" onclick="onclick_button4();"></i-button>
+    </div>
+    <div id="btngroup2" data-uid="25">
+        <i-button ds-role="clear" name="btn_init" style="" text="Clear All" data-uid="26" id="button5" onclick="onclick_button5();"></i-button>
+        <i-button ds-role="exec" name="btn_run" style="" text="Save &amp; Reload" data-uid="27" id="button6" onclick="onclick_button6();"></i-button>
+        <i-button ds-role="status" name="btn_status" style="" text="Status" data-uid="28" id="button7" onclick="onclick_button7();"></i-button>
+    </div>
+    <i-barchart data="{labelField:'월', labels: ['1', '2', 'March', 'April', 'May', 'June', 'July'],datasets: [{dataField:'매출액', 'label': '한글',backgroundColor:'red',data: [10,20,30,40,50,60,70], fill: false }]}" data-uid="29" id="chart0"></i-barchart>
+    <i-grid ds-role="dataset0" style="" rowautocount="false" statebar="false" columncount="0" columns="[{'fieldName':'월','name':'','dataType':'','type':'','size':''},{'fieldName':'매출액','name':'','dataType':'','type':'','size':''}]" griditem="[]"
+        columnlastextend="true" data-uid="30" id="grid0"></i-grid>
+</body>
+
+</html>

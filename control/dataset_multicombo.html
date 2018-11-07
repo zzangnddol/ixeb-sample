@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="ko">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2017/08/21 15:23" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1623" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="9">
+    <meta name="created" content="2017/08/21 08:26" data-uid="10">
+    <title data-uid="11">dataset filtering & multi-combo</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.min.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="13"></script>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript" data-uid="14">
+        function onclick_btn_exec0() {
+            combo1.index = -1;
+            combo2.index = -1;
+            combo3.index = -1;
+            ds_combo1.clearData();
+            ds_combo2.clearData();
+            ds_combo3.clearData();
+            ds_grid1.clearData();
+
+            ixeb.comm.transaction({
+                // "in": ['ds_base=>' + ds_base.serviceId],
+                "out": [ds_base.serviceId + '=>ds_base'],
+                "url": "http://localhost:8080/ixeb-manager/service.ixeb",
+                "beforeSend": function() {
+                    btn_exec0.blur();
+                	btn_exec0.text = "기초데이터 조회중...";
+                    btn_exec0.enable = false;
+                }
+            }).done(function(r) {
+                var rows = ds_base.getFilteredRows("");
+                ds_combo1.resetData(rows);
+                ds_grid1.resetData(rows);
+                combo1.focus();
+            }).fail(function(r) {
+                alert("Error:\n" + r.message);
+            }).always(function() {
+            	btn_exec0.text = "기초데이터 조회";
+                btn_exec0.enable = true;
+            });
+        }
+
+        function onchange_combo1() {
+            var sel1 = combo1.value,
+                sel2 = combo2.value,
+                sel3 = combo3.value;
+
+            combo2.index = -1;
+            combo3.index = -1;
+            ds_combo2.clearData();
+            ds_combo3.clearData();
+
+            if (sel1 != "") {
+                var rows = ds_base.getFilteredRows("{구분} == '" + sel1 + "'");
+                ds_combo2.resetData(rows);
+                ds_grid1.resetData(rows);
+            } else {
+                var rows = ds_base.getFilteredRows("");
+                ds_grid1.resetData(rows);
+            }
+        }
+
+        function onchange_combo2() {
+            var sel1 = combo1.value,
+                sel2 = combo2.value,
+                sel3 = combo3.value;
+
+            combo3.index = -1;
+            ds_combo3.clearData();
+
+            if (sel2 != "") {
+                var rows = ds_base.getFilteredRows("{구분} == '" + sel1 + "' && {국가명} == '" + sel2 + "'");
+                ds_combo3.resetData(rows);
+                ds_grid1.resetData(rows);
+            } else {
+                var rows = ds_base.getFilteredRows("{구분} == '" + sel1 + "'");
+                ds_grid1.resetData(rows);
+            }
+        }
+
+        function onchange_combo3() {
+            var sel1 = combo1.value,
+                sel2 = combo2.value,
+                sel3 = combo3.value;
+
+            if (sel3 != "") {
+                var rows = ds_base.getFilteredRows("{구분} == '" + sel1 + "' && {국가명} == '" + sel2 + "' && {진출지역} == '" + sel3 + "'");
+                ds_grid1.resetData(rows);
+            } else {
+                var rows = ds_base.getFilteredRows("{구분} == '" + sel1 + "' && {국가명} == '" + sel2 + "'");
+                ds_grid1.resetData(rows);
+            }
+        }
+    </script>
+    <i-dataset data-uid="15" id="ds_base" serviceid="OverseasCompanies">
+        <header data-uid="16">
+            [{"id":"구분","object":"","type":"","size":"","desc":""},{"id":"국가명","object":"","type":"","size":"","desc":""},{"id":"진출지역","object":"","type":"","size":"","desc":""},{"id":"회사명국문","object":"","type":"","size":"","desc":""},{"id":"회사명영문","object":"","type":"","size":"","desc":""},{"id":"홈페이지","object":"","type":"","size":"","desc":""},{"id":"해외대표","object":"","type":"","size":"","desc":""},{"id":"진출년도","object":"","type":"","size":"","desc":""},{"id":"투자형태","object":"","type":"","size":"","desc":""},{"id":"업종1","object":"","type":"","size":"","desc":""},{"id":"업종2","object":"","type":"","size":"","desc":""},{"id":"취급분야","object":"","type":"","size":"","desc":""},{"id":"본사파견","object":"","type":"","size":"","desc":""},{"id":"현지채용","object":"","type":"","size":"","desc":""},{"id":"내수수출","object":"","type":"","size":"","desc":""},{"id":"모기업명","object":"","type":"","size":"","desc":""},{"id":"관할무역관","object":"","type":"","size":"","desc":""}]
+        </header>
+        <data data-uid="17">
+			[]
+		</data>
+        <i-bind bindtype="recordset" target="grid0" data-uid="18"></i-bind>
+    </i-dataset>
+    <i-dataset data-uid="19" id="ds_combo1">
+        <i-bind bindtype="recordset" property="" target="combo1" column="" data-uid="20"></i-bind>
+    </i-dataset>
+    <i-dataset data-uid="21" id="ds_combo2">
+        <i-bind bindtype="recordset" property="" target="combo2" column="" data-uid="22"></i-bind>
+    </i-dataset>
+    <i-dataset data-uid="23" id="ds_combo3">
+        <i-bind bindtype="recordset" property="" target="combo3" column="" data-uid="24"></i-bind>
+    </i-dataset>
+    <i-dataset data-uid="25" id="ds_grid1">
+        <i-bind bindtype="recordset" property="" target="grid1" column="" data-uid="26"></i-bind>
+    </i-dataset>
+</head>
+
+<body data-uid="3">
+    <i-button id="btn_exec0" text="기초데이터 조회" onclick="onclick_btn_exec0();" style="position: absolute; left: 20px; top: 18px; width: 128px; background-size: 100% 100%; height: 20px;" data-uid="27"></i-button>
+    <i-grid id="grid0" style="position: absolute; width: 1210px; height: 132px; top: 40px; left: 20px; opacity: 0.99;" columns="[{'fieldName':'구분','name':'구분','colType':'','type':'','size':''},{'fieldName':'국가명','name':'국가명','colType':'','type':'','size':''},{'fieldName':'진출지역','name':'진출지역','colType':'','type':'','size':''},{'fieldName':'회사명국문','name':'회사명국문','colType':'','type':'','size':''},{'fieldName':'회사명영문','name':'회사명영문','colType':'','type':'','size':''},{'fieldName':'홈페이지','name':'홈페이지','colType':'','type':'','size':''},{'fieldName':'해외대표','name':'해외대표','colType':'','type':'','size':''},{'fieldName':'진출년도','name':'진출년도','colType':'','type':'','size':''},{'fieldName':'투자형태','name':'투자형태','colType':'','type':'','size':''},{'fieldName':'업종1','name':'업종1','colType':'','type':'','size':''},{'fieldName':'업종2','name':'업종2','colType':'','type':'','size':''},{'fieldName':'취급분야','name':'취급분야','colType':'','type':'','size':''},{'fieldName':'본사파견','name':'본사파견','colType':'','type':'','size':''},{'fieldName':'현지채용','name':'현지채용','colType':'','type':'','size':''},{'fieldName':'내수수출','name':'내수수출','colType':'','type':'','size':''},{'fieldName':'모기업명','name':'모기업명','colType':'','type':'','size':''},{'fieldName':'관할무역관','name':'관할무역관','colType':'','type':'','size':''}]"
+        rowautowidth="50" griditem="[]" data-uid="28"></i-grid>
+
+    <div style="width: 1212px;height: 1px;position: absolute;top: 191px;left: 20px;background-color: #999;" data-uid="29" id="div0"></div>
+    <i-text text="<i class=&quot;fa fa-caret-square-o-right&quot; aria-hidden=&quot;true&quot;></i> 기초데이터 및 dataset filtering을 활용한 다단 콤보박스" style="position: absolute; top: 210px; left: 20px; font-weight: bold; font-size: larger;" data-uid="30" id="text0"></i-text>
+
+    <i-combo style="width: 140px; position: absolute; top: 241.5px; left: 20px;" data-uid="31" id="combo1" allowduplicateitem="false" labelfield="구분" valuefield="구분" infomsg="[구분 선택]" onchange="onchange_combo1();"></i-combo>
+    <i-combo style="width: 140px; position: absolute; top: 241.5px; left: 190px;" data-uid="32" id="combo2" allowduplicateitem="false" labelfield="국가명" valuefield="국가명" infomsg="[국가명 선택]" onchange="onchange_combo2();"></i-combo>
+    <i-combo style="width: 140px; position: absolute; top: 241.5px; left: 360px;" data-uid="33" id="combo3" allowduplicateitem="false" labelfield="진출지역" valuefield="진출지역" infomsg="[진출지역 선택]" onchange="onchange_combo3();"></i-combo>
+
+    <i-grid id="grid1" style="position: absolute; width: 1210px; height: 342px; top: 272px; left: 20px; opacity: 0.99;" columns="[{'fieldName':'구분','name':'구분','colType':'','type':'','size':''},{'fieldName':'국가명','name':'국가명','colType':'','type':'','size':''},{'fieldName':'진출지역','name':'진출지역','colType':'','type':'','size':''},{'fieldName':'회사명국문','name':'회사명국문','colType':'','type':'','size':''},{'fieldName':'회사명영문','name':'회사명영문','colType':'','type':'','size':''},{'fieldName':'홈페이지','name':'홈페이지','colType':'','type':'','size':''},{'fieldName':'해외대표','name':'해외대표','colType':'','type':'','size':''},{'fieldName':'진출년도','name':'진출년도','colType':'','type':'','size':''},{'fieldName':'투자형태','name':'투자형태','colType':'','type':'','size':''},{'fieldName':'업종1','name':'업종1','colType':'','type':'','size':''},{'fieldName':'업종2','name':'업종2','colType':'','type':'','size':''},{'fieldName':'취급분야','name':'취급분야','colType':'','type':'','size':''},{'fieldName':'본사파견','name':'본사파견','colType':'','type':'','size':''},{'fieldName':'현지채용','name':'현지채용','colType':'','type':'','size':''},{'fieldName':'내수수출','name':'내수수출','colType':'','type':'','size':''},{'fieldName':'모기업명','name':'모기업명','colType':'','type':'','size':''},{'fieldName':'관할무역관','name':'관할무역관','colType':'','type':'','size':''}]"
+        rowautowidth="50" griditem="[]" data-uid="34"></i-grid>
+</body>
+
+</html>

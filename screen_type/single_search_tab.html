@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/12/27 15:01">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="5">
+    <meta name="ixeb-studio:guide-vline" content="1602,366,128,800," data-uid="6">
+    <meta name="ixeb-studio:guide-hline" content="" data-uid="7">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="8">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="9">
+    <meta name="created" content="2016/10/07 13:51" data-uid="10">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="11">
+    <title data-uid="12">single_search</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="13"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="14"></script>
+    <script type="text/javascript" data-uid="15">
+        function onTabPageChanged_tabs0() {
+            //TODO:
+            grid0.redraw();
+            grid1.redraw();
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-07
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            for (var i = 0; i < 24; i++) {
+                var opt = '<option value=' + i + '>' + i + '</option>';
+                $(select0).append(opt);
+            }
+            for (var i = 0; i < 60; i++) {
+                var opt = '<option value=' + i + '>' + i + '</option>';
+                $(select1).append(opt);
+            }
+            var columns = [{
+                'name': '진행상태',
+                'fieldName': 'process',
+                'width': 60
+            }, {
+                'name': '공사구분',
+                'fieldName': 'process1',
+                'width': 60
+            }, {
+                'name': '발주번호',
+                'fieldName': 'process2',
+                'width': 60
+            }, {
+                'name': '하도급명',
+                'fieldName': 'process3',
+                'width': 160
+            }, {
+                'name': '공사기간',
+                'fieldName': 'process4',
+                'width': 60
+            }, {
+                'name': '실행금액',
+                'fieldName': 'process5',
+                'width': 60
+            }, {
+                'name': '요청자',
+                'fieldName': 'process6',
+                'width': 60
+            }, {
+                'name': '요청일',
+                'fieldName': 'process7',
+                'width': 60
+            }, {
+                'name': '구분',
+                'fieldName': 'process8',
+                'width': 60
+            }];
+            grid0.columns = JSON.stringify(columns);
+            grid0.setColumnProperty(4, 'showCalendarButton', true);
+            grid0.setColumnProperty(4, 'pattern', 'yyyy-MM-dd');
+            grid0.setColumnProperty(5, 'type', 'number');
+            grid0.setColumnProperty(7, 'showCalendarButton', true);
+            grid0.setColumnProperty(7, 'pattern', 'yyyy-MM-dd');
+            grid0.rowCount = 40;
+            grid1.setColumnProperty(0, 'showCalendarButton', true); // 첫번째 컬럼의 showCalendarButton 속성을 true로 변경
+            grid1.setColumnProperty(0, 'pattern', 'yyyy-MM-dd'); // 첫번째 컬럼의 pattern 속성을 yyyy-MM-dd로 변경(showCalendarButton 이 true일 경우 pattern은 date 형식)
+            grid1.setColumnProperty(1, 'colType', 'combo'); // 두번째 컬럼의 colType 속성을 combo로 변경
+            grid1.setColumnProperty(1, 'items', ['KOR', 'USE', 'CHL', 'RUS']); // 두번째 컬럼의 콤보 아이템설정
+            grid1.setColumnProperty(2, 'colType', 'combo'); // 세번째 컬럼의 컬럼타입을 콤보로 변경
+            grid1.setColumnProperty(2, 'items', ['사용자 지정', '전체', '기본', '사용안함']); // 세번째 컬럼의 콤보 아이템 설정
+            grid1.setColumnProperty(3, 'colType', 'combo'); // 네번째 컬럼의 컬럼타입을 콤보로 변경
+            grid1.setColumnProperty(3, 'items', ['국민은행', '산업은행', '우리은행', '대구은행', '전북은행']); // 네번째 컬럼의 콤보 아이템 설정
+            grid1.setColumnProperty(4, 'wordWrap', true); // 다섯번째 컬럼의 wordWrap(개행사용) 속성을 true로 변경
+            grid1.setColumnProperty(6, 'tooltip', true); // 일곱번째 컬럼의 tooltip 속성 true
+            grid1.setColumnProperty(7, 'enableImage', '../images/send.png'); // 8번째 컬럼의 버튼 enable 이미지 변경
+			grid1.setColumnProperty(7, 'mouseoverImage', '../images/send.png'); // 8번째 컬럼의 버튼 enable 이미지 변경
+			grid1.setColumnProperty(7, 'clickImage', '../images/send.png'); // 8번째 컬럼의 버튼 enable 이미지 변경
+			grid1.setColumnProperty(7, 'buttonText', '');
+            // dummy data setting
+            var data = [
+                ['2016-10-02', 'KOR', '사용자 지정', '국민은행', '배송시 주문사항. \n 빠른배송원합니다', '김철수', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'USA', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요. \n 파손주의', '안철수', '서울시 영등포구 대림3동 콤텍빌딩', ''],
+                ['2016-10-02', 'USA', '사용자 지정', '전북은행', '배송시 주문사항. \n 빠른배송원합니다. \n 파손주의', '배철수', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'KOR', '사용자 지정', '산업은행'],
+                ['2016-10-02', 'CHL', '기본', '대구은행'],
+                ['2016-10-02', 'RUS', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요. \n 파손주의', '바둑이', '서울시 영등포구 대림3동 콤텍2층', ''],
+                ['2016-10-02', 'KOR', '기본', '대구은행'],
+                ['2016-10-02', 'CHL', '사용자 지정', '산업은행'],
+                ['2016-10-02', 'RUS', '사용안함', '우리은행'],
+                ['2016-10-02', 'KOR', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요.', '홍길동', '서울시 영등포구 대림3동 인포데스크', ''],
+                ['2016-10-02', 'KOR', '사용안함', '우리은행'],
+                ['2016-10-02', 'USA', '사용자 지정', '국민은행'],
+                ['2016-10-02', 'USA', '사용자 지정', '국민은행', '배송시 주문사항. \n 파손주의', '인젠트', '서울시 영등포구 대림3동 콤텍2증 인젠트', ''],
+                ['2016-10-02', 'KOR', '사용자 지정', '전북은행'],
+                ['2016-10-02', 'CHL', '기본', '대구은행'],
+                ['2016-10-02', 'RUS', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 파손주의', '콤텍', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'KOR', '사용자 지정', '대구은행'],
+                ['2016-10-02', 'CHL', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요.', '김철수', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'RUS', '전체', '전북은행'],
+                ['2016-10-02', 'KOR', '전체', '우리은행'],
+                ['2016-10-02', 'KOR', '사용자 지정', '국민은행', '배송시 주문사항. \n 빠른배송원합니다', '김철수', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'USA', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요. \n 파손주의', '안철수', '서울시 영등포구 대림3동 콤텍빌딩', ''],
+                ['2016-10-02', 'USA', '사용자 지정', '전북은행', '배송시 주문사항. \n 빠른배송원합니다. \n 파손주의', '배철수', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'KOR', '사용자 지정', '산업은행'],
+                ['2016-10-02', 'CHL', '기본', '대구은행'],
+                ['2016-10-02', 'RUS', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요. \n 파손주의', '바둑이', '서울시 영등포구 대림3동 콤텍2층', ''],
+                ['2016-10-02', 'KOR', '기본', '대구은행'],
+                ['2016-10-02', 'CHL', '사용자 지정', '산업은행'],
+                ['2016-10-02', 'RUS', '사용안함', '우리은행'],
+                ['2016-10-02', 'KOR', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요.', '홍길동', '서울시 영등포구 대림3동 인포데스크', ''],
+                ['2016-10-02', 'KOR', '사용안함', '우리은행'],
+                ['2016-10-02', 'USA', '사용자 지정', '국민은행'],
+                ['2016-10-02', 'USA', '사용자 지정', '국민은행', '배송시 주문사항. \n 파손주의', '인젠트', '서울시 영등포구 대림3동 콤텍2증 인젠트', ''],
+                ['2016-10-02', 'KOR', '사용자 지정', '전북은행'],
+                ['2016-10-02', 'CHL', '기본', '대구은행'],
+                ['2016-10-02', 'RUS', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 파손주의', '콤텍', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'KOR', '사용자 지정', '대구은행'],
+                ['2016-10-02', 'CHL', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요.', '김철수', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'RUS', '전체', '전북은행'],
+                ['2016-10-02', 'KOR', '전체', '우리은행'],
+                ['2016-10-02', 'KOR', '사용자 지정', '국민은행', '배송시 주문사항. \n 빠른배송원합니다', '김철수', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'USA', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요. \n 파손주의', '안철수', '서울시 영등포구 대림3동 콤텍빌딩', ''],
+                ['2016-10-02', 'USA', '사용자 지정', '전북은행', '배송시 주문사항. \n 빠른배송원합니다. \n 파손주의', '배철수', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'KOR', '사용자 지정', '산업은행'],
+                ['2016-10-02', 'CHL', '기본', '대구은행'],
+                ['2016-10-02', 'RUS', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요. \n 파손주의', '바둑이', '서울시 영등포구 대림3동 콤텍2층', ''],
+                ['2016-10-02', 'KOR', '기본', '대구은행'],
+                ['2016-10-02', 'CHL', '사용자 지정', '산업은행'],
+                ['2016-10-02', 'RUS', '사용안함', '우리은행'],
+                ['2016-10-02', 'KOR', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요.', '홍길동', '서울시 영등포구 대림3동 인포데스크', ''],
+                ['2016-10-02', 'KOR', '사용안함', '우리은행'],
+                ['2016-10-02', 'USA', '사용자 지정', '국민은행'],
+                ['2016-10-02', 'USA', '사용자 지정', '국민은행', '배송시 주문사항. \n 파손주의', '인젠트', '서울시 영등포구 대림3동 콤텍2증 인젠트', ''],
+                ['2016-10-02', 'KOR', '사용자 지정', '전북은행'],
+                ['2016-10-02', 'CHL', '기본', '대구은행'],
+                ['2016-10-02', 'RUS', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 파손주의', '콤텍', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'KOR', '사용자 지정', '대구은행'],
+                ['2016-10-02', 'CHL', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요.', '김철수', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'RUS', '전체', '전북은행'],
+                ['2016-10-02', 'KOR', '전체', '우리은행'],
+                ['2016-10-02', 'KOR', '사용자 지정', '국민은행', '배송시 주문사항. \n 빠른배송원합니다', '김철수', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'USA', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요. \n 파손주의', '안철수', '서울시 영등포구 대림3동 콤텍빌딩', ''],
+                ['2016-10-02', 'USA', '사용자 지정', '전북은행', '배송시 주문사항. \n 빠른배송원합니다. \n 파손주의', '배철수', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'KOR', '사용자 지정', '산업은행'],
+                ['2016-10-02', 'CHL', '기본', '대구은행'],
+                ['2016-10-02', 'RUS', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요. \n 파손주의', '바둑이', '서울시 영등포구 대림3동 콤텍2층', ''],
+                ['2016-10-02', 'KOR', '기본', '대구은행'],
+                ['2016-10-02', 'CHL', '사용자 지정', '산업은행'],
+                ['2016-10-02', 'RUS', '사용안함', '우리은행'],
+                ['2016-10-02', 'KOR', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요.', '홍길동', '서울시 영등포구 대림3동 인포데스크', ''],
+                ['2016-10-02', 'KOR', '사용안함', '우리은행'],
+                ['2016-10-02', 'USA', '사용자 지정', '국민은행'],
+                ['2016-10-02', 'USA', '사용자 지정', '국민은행', '배송시 주문사항. \n 파손주의', '인젠트', '서울시 영등포구 대림3동 콤텍2증 인젠트', ''],
+                ['2016-10-02', 'KOR', '사용자 지정', '전북은행'],
+                ['2016-10-02', 'CHL', '기본', '대구은행'],
+                ['2016-10-02', 'RUS', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 파손주의', '콤텍', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'KOR', '사용자 지정', '대구은행'],
+                ['2016-10-02', 'CHL', '사용자 지정', '우리은행', '배송시 주문사항. \n 빠른배송원합니다. \n 배송전 연락주세요.', '김철수', '서울시 영등포구 대림3동', ''],
+                ['2016-10-02', 'RUS', '전체', '전북은행'],
+                ['2016-10-02', 'KOR', '전체', '우리은행']
+            ];
+            grid1.setGridData(data);
+        }
+    </script>
+    <style data-uid="16">
+        td {
+            border: 1px solid #c7c7c7;
+        }
+        
+        .odd_td {
+            width: 180px!important;
+            background-color: #f2f2ef!important;
+        }
+    </style>
+</head>
+
+<body id="single_search" data-uid="3" oninitscreen="onInitScreen_body();">
+    <div style="top: 8.01042px; left: 8px; position: absolute; width: 800px; height: 68px; padding-left: 8px; padding-right: 8px;" data-uid="17" id="div0" class="search-panel">
+        <i-text text="기준일자" style="position: absolute; top: 12px; left: 8px; color: rgb(113, 69, 41); font-weight: bold;" data-uid="18" id="text0"></i-text>
+        <i-edit style="width: 159px; position: absolute; top: 8.98264px; left: 77.9826px; height: 22px;" data-uid="19" id="edit0" showcalendarbutton="true" value="2016-10-06" required="required"></i-edit>
+        <i-text text="조직코드 / 명" style="position: absolute; top: 11.9826px; left: 370px; color: rgb(113, 69, 41); font-weight: bold;" data-uid="20" id="text1"></i-text>
+        <i-edit style="width: 120px; position: absolute; top: 7.01385px; left: 450px; height: 22px;" data-uid="21" id="edit1"></i-edit>
+        <i-button text="검색" style="position: absolute; top: 6.98264px; left: 575.983px; width: 60px; height: 22px; background-size: 100% 100%;" data-uid="22" id="button0"></i-button>
+        <i-button text="검색" style="position: absolute; top: 34.9826px; left: 172.983px; height: 22px; background-size: 100% 100%;" data-uid="23" id="button1"></i-button>
+        <i-edit style="width: 110px; position: absolute; top: 35px; left: 231.014px; height: 22px;" data-uid="24" id="edit4"></i-edit>
+        <i-combo style="width: 262px; position: absolute; top: 35px; left: 450px; height: 22px;" data-uid="25" id="combo0"></i-combo>
+        <i-button text="조회" style="position: absolute; top: 34.9826px; left: 738.98px; height: 22px; background-size: 100% 100%;" data-uid="26" id="button2"></i-button>
+        <i-text text="사번 / 성명" style="position: absolute; top: 39px; left: 8px; color: rgb(113, 69, 41); font-weight: bold;" data-uid="27" id="text2"></i-text>
+        <i-edit style="width: 91px; position: absolute; top: 35px; left: 78px; height: 22px;" data-uid="28" id="edit2" required="required"></i-edit>
+        <i-text text="근무지역" style="position: absolute; top: 39px; left: 370px; color: rgb(113, 69, 41); font-weight: bold;" data-uid="29" id="text3"></i-text>
+        <i-edit style="width: 151px; position: absolute; top: 7px; left: 641px; height: 22px;" data-uid="30" id="edit3"></i-edit>
+    </div>
+    <i-tabs style="width: 800px; height: 631px; position: absolute; top: 90px; left: 10px;" data-uid="31" id="tabs0" index="1" ontabpagechanged="onTabPageChanged_tabs0();">
+        <i-tabpage title="단일조회" data-uid="32">
+            <i-group text="상세정보" style="width: 775px; height: 567px; position: absolute; top: 48.8235px; left: 10.0038px;" data-uid="33" id="group0" class="group-panel">
+                <i-text text="하도급공사기간" style="width: 94px; position: absolute; top: 28.688px; left: 4px; height: 13px;" data-uid="34" id="text4"></i-text>
+                <i-edit style="width: 105px; position: absolute; top: 24.188px; left: 105px; height: 23px;" data-uid="35" id="edit5" showcalendarbutton="true" required="required" value="2016-10-07"></i-edit>
+                <i-text text="~" style="width: 8px; position: absolute; top: 28.688px; left: 217.719px; height: 13px;" data-uid="36" id="text9"></i-text>
+                <i-edit style="width: 105px; position: absolute; top: 23.688px; left: 238.438px; height: 23px;" data-uid="37" id="edit6" required="required" showcalendarbutton="true" value="2016-10-11"></i-edit>
+                <i-text text="헌설실시" style="width: 72px; position: absolute; top: 63.688px; left: 4px; height: 13px;" data-uid="38" id="text5"></i-text>
+                <i-radio items="[{value:'value1', label:'예'},{value:'value2', label:'아니오'}]" style="width: 134px; position: absolute; top: 62.188px; left: 107px; height: 16px;" data-uid="39" id="radio0" itemcolcount="2" itemrowcount="0"></i-radio>
+                <i-text text="헌설방법" style="width: 58px; position: absolute; top: 97.688px; left: 4px; height: 13px;" data-uid="40" id="text6"></i-text>
+                <i-text text="헌설장소" style="width: 60px; position: absolute; top: 133.688px; left: 4px; height: 13px;" data-uid="41" id="text7"></i-text>
+                <i-edit style="width: 265px; position: absolute; top: 128.688px; left: 105px; height: 23px;" data-uid="42" id="edit7" showcalendarbutton="false" required="required"></i-edit>
+                <i-text text="공사개요" style="width: 66px; position: absolute; top: 335.688px; left: 4px; height: 13px;" data-uid="43" id="text8"></i-text>
+                <i-multilineedit style="width: 265px; height: 355px; position: absolute; top: 164.688px; left: 105px;" data-uid="44" id="multilineedit0"></i-multilineedit>
+                <i-radio items="[{value:'value1', label:'온라인'},{value:'value2', label:'오프라인'}]" style="width: 134px; position: absolute; top: 96.688px; left: 109px; height: 15px;" data-uid="45" id="radio1"></i-radio>
+                <i-edit style="width: 264px; height: 23px; position: absolute; top: 24.188px; left: 498px;" data-uid="46" id="edit8" required="required"></i-edit>
+                <i-edit style="width: 141px; height: 23px; position: absolute; top: 59.188px; left: 498px;" data-uid="47" id="edit9" required="required" showcalendarbutton="true" value="2016-10-11"></i-edit><select style="width: 41px; height: 23px; position: absolute; top: 58.688px; left: 645px;" data-uid="48" id="select0">                                </select>
+                <i-text text="시" style="width: 16px; height: 11px; position: absolute; top: 65.188px; left: 690px;"
+                    data-uid="49" id="text17"></i-text><select style="width: 39px; height: 23px; position: absolute; top: 58.688px; left: 713px;" data-uid="50" id="select1">
+                                    </select>
+                <i-text text="분" style="width: 12px; position: absolute; top: 64.188px; left: 756.005px; height: 13px;" data-uid="51" id="text18"></i-text>
+                <i-edit style="width: 200px; position: absolute; top: 94.688px; left: 498px; height: 23px;" data-uid="52" id="edit10" required="required"></i-edit>
+                <i-button text="조회" style="width: 54px; height: 23px; position: absolute; top: 94.688px; left: 705.001px; background-size: 100% 100%;" data-uid="53" id="button3"></i-button>
+                <i-edit style="width: 200px; height: 23px; position: absolute; left: 498px; top: 129.688px;" data-uid="54" required="required"></i-edit>
+                <i-button text="조회" style="position: absolute; height: 23px; width: 54px; top: 129.688px; left: 705.001px; background-size: 100% 100%;" data-uid="55" id="button4"></i-button>
+                <i-multilineedit style="width: 265px; height: 355px; position: absolute; top: 165.188px; left: 497px;" data-uid="56" id="multilineedit1" required="required"></i-multilineedit>
+                <i-text text="과세 / 비과세" style="width: 82px; position: absolute; top: 28.6875px; left: 398px; height: 13px;" data-uid="57" id="text12"></i-text>
+                <i-text text="헌설일시" style="width: 59px; position: absolute; top: 63.6875px; left: 421px; height: 13px;" data-uid="58" id="text13"></i-text>
+                <i-text text="헌설담당자" style="width: 72px; position: absolute; top: 97.688px; left: 408px; height: 13px;" data-uid="59" id="text14"></i-text>
+                <i-text text="입찰담당자" style="width: 64px; position: absolute; top: 133.688px; left: 408px; height: 13px;" data-uid="60" id="text15"></i-text>
+                <i-text text="특기사항" style="width: 81px; position: absolute; top: 335.688px; left: 407px; height: 13px;" data-uid="61" id="text16"></i-text>
+            </i-group>
+            <i-button class="group-btn" text="추가" style="position: absolute; top: 8.5px; left: 558.5px; background-size: 100% 100%;" data-uid="62" id="button5"></i-button>
+            <i-button class="group-btn" text="수정" style="position: absolute; top: 8.5px; left: 618.5px; background-size: 100% 100%;" data-uid="63" id="button6"></i-button>
+            <i-button class="group-btn" text="삭제" style="position: absolute; top: 8.5px; left: 678.5px; background-size: 100% 100%;" data-uid="64" id="button7"></i-button>
+            <i-button class="group-btn" text="저장" style="position: absolute; top: 8.5px; left: 738.5px; background-size: 100% 100%;" data-uid="65" id="button8"></i-button>
+        </i-tabpage>
+        <i-tabpage title="거래내역" data-uid="66">
+            <i-grid columnlastextend="true" style="width: 766px; height: 568px; position: relative; top: 4px; left: 4px; opacity: 0.99;" data-uid="67" id="grid0"></i-grid>
+        </i-tabpage>
+        <i-tabpage title="상품설명" data-uid="68">
+            <i-grid columnlastextend="true" style="width: 765px; height: 534px; position: relative; top: 4px; left: 4px; opacity: 0.99;" data-uid="69" id="grid1" columns="[{
+                fieldName: 'year',
+                name: '년월일',
+                width: 100
+            }, {
+                fieldName: 'nature',
+                name: '국가',
+                width: 60,
+                dataType: 'combo'
+            }, {
+                fieldName: 'set_type',
+                name: '설정방법',
+                width: 100,
+                dataType: 'combo'
+            }, {
+                fieldName: 'bank_name',
+                name: '은행명',
+                width: 80,
+                dataType: 'combo'
+            }, {
+                fieldName: 'memo',
+                name: '메모',
+                width: 200
+            }, {
+                fieldName: 'agent',
+                name: '담당자',
+                width: 60
+            }, {
+                fieldName: 'address',
+                name: '주소',
+                width: 70
+            }, {
+                fieldName: 'send_button',
+                name: '전송버튼',
+                width: 70,
+                dataType: 'button'
+            }]" usepage="true"></i-grid>
+        </i-tabpage>
+    </i-tabs>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+{
+    "type":[
+        {
+            "type": "화면",
+            "ext" : "html",
+            "template":[
+                {"일반화면(.html)":"screen.tmpl"}
+            ]
+        },
+        {
+            "type": "전장표",
+            "ext" : "html",
+            "template":[
+                {"전표(.html)":"slip.tmpl"}
+            ]
+        },
+        {
+            "type": "파일",
+            "template":[
+                {"Javacript(.js)": "js.tmpl",   "ext":"js"},
+                {"StyleSheet(.css)":"css.tmpl",  "ext":"css"} ,
+                {"XML(.xml)":       "xml.tmpl",  "ext":"xml"},
+                {"JSON(.json)":      "json.tmpl", "ext":"json"},
+                {"Sassy CSS(.scss)": "scss.tmpl", "ext":"scss"},
+                {"All files": ""}
+            ]
+        }
+    ]
+}

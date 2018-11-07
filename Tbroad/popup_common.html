@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+    <meta name="modified" content="2018/05/14 17:27">
+    <meta name="generator" content="iXebStudio 2.0.0.2460">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="ixeb-studio:grid-size" content="10x10">
+    <meta name="ixeb-studio:screen-size" content="1280x1024">
+	<meta name="created" content="2018/05/14 12:13">
+	<title>관리항목 조회(공통)</title>
+	<script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.min.js"></script>
+	<script type="text/javascript" src="../ixeb/lib/ixebBase.min.js"></script>
+    <link rel="stylesheet" href="assets/style/content.css">
+	<script type="text/javascript">
+	function onInitScreen_body() {
+        //TODO:
+        var header = [],
+            parent = window.opener,
+            // company_name = "신일기업(주)"
+            header_text = window.header_text,
+            header_col_width  =  window.col_width; 
+            
+        for(var i = 0, leng = header_text.length; i < leng; i++) {
+            var text = header_text[i],
+                width = header_col_width[i]/10 || 0;
+           
+           if(text != ""  ) {
+                header.push({ 
+                    'name' : text,
+                    'colWidth': width
+                });
+           }
+        }
+        
+        grid0.setColumns(header);
+        // company.value = company_name;
+    }
+	</script>
+    <i-dataset id="dataset0" serviceId="accountTypeList">
+        <header>
+            [{"id":"ACC_CODE","object":"","type":"","size":"","desc":"계정코드"},{"id":"ACC_NAME","object":"","type":"","size":"","desc":"계정명"},{"id":"DL_CLS","object":"","type":"","size":"","desc":"차/대기준"}]
+        </header>
+        <data>
+        	[]
+        </data>
+    </i-dataset>
+</head>
+<body onInitScreen="onInitScreen_body()">
+    <div class="popup-search">
+        <i-edit value="" required="true" id="company"></i-edit>
+        <i-button text="<img src='assets/images/ico-search.png'> 조회"></i-button>
+    </div>
+    <hr />
+    <i-grid style="width: 100%; height: 355px;" columns="[]" id="grid0"></i-grid>
+</body>
+</html>

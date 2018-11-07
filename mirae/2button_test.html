@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2017/04/04 14:28" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1534" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="9">
+    <meta name="created" content="2017/04/04 11:44" data-uid="10">
+    <title data-uid="11">2button_test</title>
+    <script type="text/javascript" src="../../lib/config.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="13"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="14"></script>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript" data-uid="15">
+        /**
+                                                                                                                                                                        	 * @작성자 : {USER}
+                                                                                                                                                                        	 * @작성날짜 : 2017-04-04
+                                                                                                                                                                        	 * @description : cell에 popupbutton 이 존재시 해당 버튼 클릭 이벤트
+                                                                                                                                                                        	 * @params:  {args0}: event객체
+                                                                                                                                                                        				 {args1}: grid 객체
+                                                                                                                                                                        				 {args2}: 클릭된 cell 객체
+                                                                                                                                                                        	 * @return 
+                                                                                                                                                                        	 */
+        function onCellButtonClicked_grid0(args) {
+            //TODO:
+            var e = args[0],
+                grid = args[1],
+                cell = args[2];
+            alert(cell.column.fieldName())
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-04-04
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_2button_test() {
+            //TODO:
+            var columns = ixeb.util.parseJSON(grid0.columns);
+            columns[4].columns = [{
+                fieldName: 'transfer',
+                editable: false,
+                renderer: {
+                    type: 'button',
+                    imageUrl: 'images/default_enable.png',
+                    hoveredImageUrl: 'images/default_mouseover.png',
+                    activeImageUrl: 'images/default_click.png',
+                    text: '이체'
+                },
+                styles: {
+                    textAlignment: 'center',
+                    borderRight: null
+                }
+            }, {
+                fieldName: 'bill_table',
+                editable: false,
+                renderer: {
+                    type: 'button',
+                    imageUrl: 'images/default_enable.png',
+                    hoveredImageUrl: 'images/default_mouseover.png',
+                    activeImageUrl: 'images/default_click.png',
+                    text: '거래내역'
+                },
+                styles: {
+                    textAlignment: 'center'
+                }
+            }];
+            grid0.columns = JSON.stringify(columns);
+            $.ajax({
+                url: '2button_data.json',
+                success: function(ret) {
+                    grid0.getColumn(4).setChildHeadersVisible(false);
+                    grid0.setGridData(ret.data);
+                }
+            });
+        }
+    </script>
+</head>
+
+<body id="2button_test" data-uid="3" oninitscreen="onInitScreen_2button_test();">
+    <i-grid style="width: 899px; height: 426px; position: absolute; top: 30px; left: 70px;" columns="[{'fieldName':'account_number','name':'계좌번호','colWidth':54,'colType':'maskedit','pattern':'ZZZ-ZZ-ZZZZZZ','type':'number','textAlignment':'center'},{'fieldName':'account_nick','name':'계좌별명','colWidth':49},{'fieldName':'account_asset','name':'계좌자산','colWidth':73,'colType':'maskedit','pattern':'ZZZ,ZZZ','type':'number','minusSign':'false','maxLength':'6','minLength':'0','textAlignment':'right'},{'fieldName':'withdraw_price','name':'출금가능금액','colWidth':62,'colType':'maskedit','pattern':'ZZZ,ZZZ','type':'number','minusSign':'false','maxLength':'6','minLength':'0','textAlignment':'right'},{'fieldName':'col4','name':'바로가기'}]"
+        data-uid="16" id="grid0" columncount="5" initrowcount="1" sumrowshow="sum" columnlastextend="true" columnmove="true" columnresize="true" statebar="false" rowautocount="false" strippedpattern="false" sorted="true" griditem="[]" checkbar="false" currencysign=""
+        decimallength="3" maxlength="6" minlength="0" minussign="false" pattern="ZZZ.ZZZ" textalign="right" type="number" unitdecimal="." unitinsert="true" unitposition="" unitsymbol="," sumrowtitle="합계" oncellbuttonclicked="onCellButtonClicked_grid0(arguments);"></i-grid>
+</body>
+
+</html>

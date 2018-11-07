@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/12/26 17:44">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="5">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="6">
+    <meta name="ixeb-studio:screen-size" content="1920x1080" data-uid="7">
+    <meta name="created" content="2016/10/03 18:04" data-uid="8">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="9">
+    <title data-uid="10">fixed_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="12"></script>
+    <script type="text/javascript" data-uid="13">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-03
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var data = [
+                ['primis', 'martis', 738.94, 534, '2016-09-09'],
+                ['sapien', 'pede', 333.25, 534, '2016-09-09'],
+                ['vivamus', 'vestibulum ante', 738.94, 534, '2016-09-09'],
+                ['aliquam', 'quam', 738.94, 534, '2016-09-09'],
+                ['sed', 'vestibulum ante', 738.94, 534, '2016-09-09'],
+                ['amet', 'pede', 738.94, 534, '2016-09-09'],
+                ['dui', 'quam', 738.94, 534, '2016-09-09'],
+                ['lorem', 'martis', 738.94, 534, '2016-09-09'],
+                ['luctus', 'martis', 738.94, 534, '2016-09-09'],
+                ['amet', 'pede', 738.94, 534, '2016-09-09'],
+                ['quis', 'quam', 738.94, 534, '2016-09-09'],
+                ['primis', 'martis', 738.94, 534, '2016-09-09'],
+                ['pop', 'martis', 738.94, 534, '2016-09-09'],
+                ['sed', 'vestibulum ante', 738.94, 534, '2016-09-09'],
+                ['primis', 'vestibulum ante', 738.94, 534, '2016-09-09'],
+                ['dui', 'pede', 738.94, 534, '2016-09-09'],
+                ['amet', 'martis', 738.94, 534, '2016-09-09'],
+                ['sapien', 'pede', 738.94, 534, '2016-09-09'],
+                ['primis', 'martis', 738.94, 534, '2016-09-09']
+            ]
+            grid0.setGridData(data);
+        }
+    </script>
+</head>
+
+<body id="fixed_sample" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="Fixed Column Sample" style="width: 1010px; height: 360px; position: absolute; top: 8px; left: 8px;" data-uid="14" id="group0" class="group-panel">
+        <i-grid columns="[
+        {fieldName: 'col1', name: '제품코드', colWidth: 150},
+        {fieldName: 'col2', name: '제품명', colWidth: 150},
+        {fieldName: 'col3',name: '단가', type: 'number',colWidth:400},
+        {fieldName: 'col4', name: '수량', type: 'number', colWidth: 350},
+        {fieldName: 'col5', name: '발주일', showCalendarButton: true, pattern: 'yyyy-MM-dd', colWidth: 300}
+        ]" style="width: 1000px; height: 320px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="15" id="grid0" fixframecol="1" fixframerow="0" strippedpattern="false" columnlastextend="false" fixframecolor="#d6d6d6"></i-grid>
+    </i-group>
+</body>
+
+</html>

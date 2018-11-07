@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2017/01/24 13:48" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1463" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="9">
+    <meta name="created" content="2017/01/24 11:16" data-uid="10">
+    <title data-uid="11">schedulerList</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="14"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="15"></script>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript" data-uid="14">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-01-24
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_okButton() {
+            //TODO:
+            window.close();
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-01-24
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button0() {
+            //TODO:
+            window.close();
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-01-24
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_schedulerList() {
+            //TODO:
+            var schedules = window.opener.sendschedules();
+            grid0.setGridData(schedules);
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-01-24
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button1() {
+            //TODO:
+            window.opener.openReg();
+        }
+
+        function refreshList() {
+            grid0.clearAll();
+            var schedules = window.opener.sendschedules();
+            grid0.setGridData(schedules);
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-01-24
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_delButton() {
+            //TODO:
+            var title = grid0.getCellData(grid0.getFocusedCell().rowIndex, 1)
+            window.opener.deleteSchedule(title);
+        }
+    </script>
+</head>
+
+<body id="schedulerList" data-uid="3" oninitscreen="onInitScreen_schedulerList();">
+    <i-grid style="width: 634px; height: 172px; position: absolute; top: 10px; left: 20px; opacity: 0.99;" columns="[{'fieldName':'date','name':'날짜','colWidth':'20'},{'fieldName':'title','name':'제목'}]" data-uid="15" id="grid0" columncount="2" initrowcount="0"
+        sumrowshow="none" columnlastextend="true" columnmove="true" columnresize="true" statebar="false" rowautocount="true" strippedpattern="true" sorted="true" checkbar="false" griditem="[]"></i-grid>
+    <i-button text="닫기" style="position: absolute; top: 210px; left: 600px; background-size: 100% 100%;" data-uid="16" id="button0" onclick="onclick_button0();"></i-button>
+    <i-button text="확인" style="position: absolute; top: 210px; left: 540px; background-size: 100% 100%;" data-uid="17" id="okButton" onclick="onclick_okButton();"></i-button>
+    <i-button text="등록" style="position: absolute; top: 210px; left: 420px; background-size: 100% 100%;" data-uid="18" id="button3" onclick="onclick_button1();"></i-button>
+    <i-button text="삭제" style="position: absolute; top: 210px; left: 480px; background-size: 100% 100%;" data-uid="19" id="delButton" onclick="onclick_delButton();"></i-button>
+</body>
+
+</html>

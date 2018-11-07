@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1580x1624" data-uid="6">
+    <meta name="created" content="2016/10/01 20:17" data-uid="7">
+    <title data-uid="8">chart sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="9"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="10"></script>
+    <script type="text/javascript" src="../js/ixebmanager.js" data-uid="10"></script>
+    <link rel="stylesheet" href="../css/samples.css" type="text/css" data-uid="11">
+    <script type="text/javascript" data-uid="12">
+        /**
+         ***/
+        function onEditCommitted_grid2(args) {
+            //TODO:
+            //var e = args[0], 
+            //	grid = args[1], 
+            //	cell = args[2], 
+            //	newValue = args[3], 
+            //	oldValue = args[4];
+            onclick_buttonDATA();
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-03
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button21() {
+            //TODO:
+            grid2.appendRow();
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-03
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_buttonDATA() {
+            //TODO:
+            var arrCol = [];
+            var arrData1 = [];
+            var arrData2 = [];
+            var arrGridData = grid2.getGridData();
+            for (var i = 0; i < arrGridData.length; i++) {
+                arrCol.push(arrGridData[i][0]);
+                arrData1.push(arrGridData[i][1]);
+                arrData2.push(arrGridData[i][2]);
+            }
+            var objData1 = {
+                dataField: 'item02',
+                'label': '',
+                backgroundColor: ['red', 'blue', 'green', 'orange', 'lime', 'magenta', 'gray', 'lightgray', 'lightblue', 'lightgreen', 'gold', 'silver'],
+                data: arrData1,
+                fill: false
+            };
+            var objData2 = {
+                dataField: 'item02',
+                'label': '',
+                backgroundColor: 'blue',
+                data: arrData2,
+                fill: false
+            };
+            chart2.setChartData([objData1, objData2]);
+            chart2.setChartColumn(arrCol);
+            chart4.setChartData([objData1, objData2]);
+            chart4.setChartColumn(arrCol);
+            chart5.setChartData([objData1, objData2]);
+            chart5.setChartColumn(arrCol);
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-03
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button1() {
+            //TODO:
+        }
+
+        function onclick_button9() {
+            alert(dataset1.getRowStatus(dataset1.getRowPosition()));
+        }
+
+        function onclick_button8() {
+            dataset1.clear();
+        }
+
+        function onclick_button4() {
+            alert("print는 루디에서")
+        }
+
+        function onclick_button3() {
+            var input = $("<input type='file'>");
+            $(input).on('change', function() {
+                grid1.importData(this.files[0]);
+            });
+            $(input).click();
+        }
+
+        function onclick_button2() {
+            grid1.exportData("grid1.xlsx");
+        }
+
+        function onclick_button1() {
+            dataset1.deleteRow(grid1.getView().focusedRowIndex());
+        }
+
+        function onclick_button0() {
+            dataset1.appendRow({});
+        }
+
+        function onclick_button7() {
+            alert(dataset0.getRowStatus(dataset0.getRowPosition()));
+        }
+
+        function onclick_button6() {
+            var option = {
+                url: getRootUrl() + "/ixeb-manager/service.ixeb"
+            };
+            option["out"] = [dataset0.serviceId + "=>dataset0"];
+            ixeb.comm.transaction(option).done(function(r) {
+                console.log("success")
+            }).fail(function(r) {
+                console.log("fail")
+            }).always(function() {
+                console.log("always")
+            });
+        }
+
+        function onclick_button5() {
+            dataset0.clear();
+        }
+
+        function onclick_button4() {
+            alert("print는 루디에서")
+        }
+
+        function onclick_button3() {
+            var input = $("<input type='file'>");
+            $(input).on('change', function() {
+                grid0.importData(this.files[0]);
+            });
+            $(input).click();
+        }
+
+        function onclick_button2() {
+            grid0.exportData("grid0.xlsx");
+        }
+
+        function onclick_button1() {
+            dataset0.deleteRow(grid0.getView().focusedRowIndex());
+        }
+
+        function onclick_button0() {
+            dataset0.appendRow({});
+        }
+    </script>
+    <i-dataset data-uid="13" id="dataset0" serviceid="service_chart">
+        <header data-uid="14"> [ {"id": "월","desc": "","object": "","type": "","size": ""}, {"id": "매출액","desc": "","object": "","type": "","size": ""} ] </header> <data data-uid="15">
+[]
+	</data>
+        <i-bind bindtype="recordset" target="chart0" data-uid="18"></i-bind>
+        <i-bind bindtype="recordset" target="chart3" data-uid="19"></i-bind>
+        <i-bind bindtype="recordset" target="chart6" data-uid="20"></i-bind>
+        <i-bind bindtype="recordset" target="grid0" data-uid="17"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="7" data-uid="3">
+    <i-group class="group-panel" text="TRANSACTION BIND" style="width: 1500px; height: 422px; position: absolute; top: 497px; left: 10px;" data-uid="21" id="group0">
+        <i-grid ds-role="dataset0" style="width: 480px; height: 320px; position: absolute; top: 40px; left: 17px; opacity: 0.99;" rowautocount="false" statebar="false" columncount="0" columns="[{'fieldName':'월','name':'','dataType':'','type':'','size':''},{'fieldName':'매출액','name':'','dataType':'','type':'','size':''}]"
+            griditem="[]" columnlastextend="true" data-uid="22" id="grid0"></i-grid>
+        <i-button ds-role="clear" name="btn_init" style="position: absolute; left: 302px; top: 20px; width: 65px; background-size: 100% 100%;" text="clear" data-uid="23" id="button5" onclick="onclick_button5();"></i-button>
+        <i-button ds-role="exec" name="btn_run" style="position: absolute; left: 367px; top: 20px; width: 65px; background-size: 100% 100%;" text="exec" data-uid="24" id="button6" onclick="onclick_button6();"></i-button>
+        <i-button ds-role="status" name="btn_status" style="position: absolute; left: 432px; top: 20px; width: 65px; background-size: 100% 100%;" text="status" data-uid="25" id="button7" onclick="onclick_button7();"></i-button>
+        <i-barchart style="width: 300px; height: 320px; position: absolute; top: 21px; left: 501px;" data="{'labelField':'월',labels: ['1', '2', 'March', 'April', 'May', 'June', 'July'],datasets: [ {'dataField':'매출액', 'label': '한글',backgroundColor:'red',data: [10,20,30,40,50,60,70], fill: false }]}"
+            data-uid="26" id="chart0"></i-barchart>
+        <i-linechart style="width: 300px; height: 320px; position: absolute; top: 21px; left: 805px;" data="{'labelField':'월',labels: ['1', '2', 'March', 'April', 'May', 'June', 'July'],datasets: [ {'dataField':'매출액', 'label': '한글',backgroundColor:'red',data: [10,20,30,40,50,60,70], fill: false }]}"
+            id="chart3" data-uid="27"></i-linechart>
+        <i-piechart style="width: 300px; position: absolute; top: 18px; left: 1101px; height: 320px;" data="{'labelField':'월',labels: ['1', '2', 'March', 'April', 'May', 'June', 'July'],datasets: [ {'dataField':'매출액', 'label': '한글',backgroundColor:['red','blue','green','orange','lime','magenta','gray','lightgray','lightblue','lightgreen','gold','silver'],data: [10,20,30,40,50,60,70], fill: false }]}"
+            id="chart6" data-uid="28"></i-piechart>
+    </i-group>
+    <i-group class="group-panel" text="GRID BIND" style="width: 1500px; height: 422px; position: absolute; top: 68px; left: 8px;" data-uid="29" id="group2">
+        <i-grid ds-role="dataset1" style="width: 480px; height: 252px; position: absolute; top: 46px; left: 9px; opacity: 0.99;" rowautocount="false" statebar="false" columncount="0" columns="[{'fieldName':'item01','name':'아이템01','dataType':'edit','type':'char','size':'256'},{'fieldName':'item02','name':'아이템02','dataType':'edit','type':'char','size':'256'},{'fieldName':'item03','name':'아이템03','dataType':'edit','type':'char','size':'256'}]"
+            griditem="[{'item01':'1월','item02':'15','item03':'20'},{'item01':'2월','item02':'20','item03':'25'},{'item01':'3월','item02':'30','item03':'35'}]" columnlastextend="true" data-uid="30" id="grid2" oneditcommitted="onEditCommitted_grid2(arguments);"></i-grid>
+        <i-barchart style="width: 300px; position: absolute; top: 18px; left: 493px; height: 320px;" data="{labelField:'item01',labels: ['1', '2', 'March', 'April', 'May', 'June', 'July'],datasets: [{dataField:'item02','label': '한글',backgroundColor:'red',data: [10,20,30,40,50,60,70], fill: false }, {dataField:'item03',fill: false,label: 'hidden dataset',data: [70,60,50,40,30,20,10],backgroundColor:'blue'}]}"
+            data-uid="31" id="chart2"></i-barchart>
+        <i-linechart style="width: 300px; position: absolute; top: 18px; left: 797px; height: 320px;" data="{labelField:'item01',labels: ['1', '2', 'March', 'April', 'May', 'June', 'July'],datasets: [{dataField:'item02','label': '한글',backgroundColor:'red',data: [10,20,30,40,50,60,70], fill: false }, {dataField:'item03',fill: false,label: 'hidden dataset',data: [70,60,50,40,30,20,10],backgroundColor:'blue'}]}"
+            data-uid="32" id="chart4"></i-linechart>
+        <i-piechart style="width: 300px; height: 320px; position: absolute; top: 18px; left: 1101px;" data="{'labelField':'월',labels: ['1', '2', 'March', 'April', 'May', 'June', 'July'],datasets: [ {'dataField':'매출액', 'label': '한글',backgroundColor:['red','blue','green','orange','lime','magenta','gray','lightgray','lightblue','lightgreen','gold','silver'],data: [10,20,30,40,50,60,70], fill: false }]}"
+            id="chart5" data-uid="33"></i-piechart>
+        <i-button text="SET CHART DATA" style="position: absolute; top: 22px; left: 350px; background-size: 100% 100%;" data-uid="34" id="button0" onclick="onclick_buttonDATA();"></i-button>
+        <i-button text="APPEND ROW" style="position: absolute; top: 22px; left: 229px; background-size: 100% 100%;" data-uid="35" id="button1" onclick="onclick_button21();"></i-button>
+    </i-group>
+    <div style="width: 1500px; height: 46px; position: absolute; top: 8px; left: 8px;" data-uid="36" id="div0" class="search-panel">
+        <i-text text="CHART 샘플" style="position: absolute; top: 10px; left: 11px; font-size: 25px;" data-uid="37" id="text0"></i-text>
+    </div>
+</body>
+
+</html>

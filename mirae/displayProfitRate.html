@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-vline" content="555," data-uid="5">
+    <meta name="modified" content="2017/04/17 16:57" data-uid="6">
+    <meta name="generator" content="iXebStudio 1.0.0.1544" data-uid="7">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="8">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="9">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="10">
+    <meta name="created" content="2017/04/13 18:02" data-uid="11">
+    <title data-uid="12">displayProfitRate</title>
+    <link rel="stylesheet" type="text/css" href="./css/theme.css" data-uid="13">
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="14"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="15"></script>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript" data-uid="16">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-04-13
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_displayProfitRate() {
+            //TODO:
+            $(fromtocalendar0).trigger("change");
+        }
+        var chartData = {
+            labels: [],
+            datasets: [{
+                label: '한글',
+                background: 'red',
+                data: [],
+                fill: false,
+                borderColor: 'red'
+            }]
+        };
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-04-13
+         * @description : 컨트롤에서 포커스를 잃었을때 값이 변경했을 경우 발생하는 이벤트
+         * @return 
+         */
+        function onchange_fromtocalendar0() {
+            //TODO:
+            var fromDate = new Date(fromtocalendar0.patternValueFrom),
+                toDate = new Date(fromtocalendar0.patternValueTo),
+                day = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            var fromDay = fromDate.getMonth(),
+                labels = [],
+                datas = [];
+            for (var i = fromDay, leng = toDate.getMonth(); i <= leng; i++) {
+                var label = String((i + 1));
+                if (i < 10) {
+                    label = "0" + label;
+                }
+                labels.push(label);
+                var j = 0;
+                if (i == fromDay) {
+                    j = fromDate.getDate();
+                }
+                for (j; j < day[fromDay]; j++) {
+                    datas.push(String(Math.floor(Math.random() * (15 - 1) + 1) / 10));
+                    if (day[fromDay] != j) {
+                        labels.push("");
+                    }
+                }
+            }
+            chartData.labels = labels;
+            chartData.datasets[0].data = datas;
+            linechart0.data = JSON.stringify(chartData).replace(/\"/gi, "'");
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-04-13
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button0() {
+            //TODO:
+        }
+    </script>
+    <style data-uid="17">
+        table td,
+        th {
+            border: 1px solid #C7C8CA;
+        }
+        
+        th {
+            width: 50%;
+        }
+        
+        table td {
+            text-align: right;
+            padding-right: 10px;
+            height: 28px;
+            background-color: #FFFFFF;
+        }
+        
+        table .header {
+            text-align: center;
+            background-color: #EBEEF3;
+        }
+    </style>
+</head>
+
+<body id="displayProfitRate" data-uid="3" oninitscreen="onInitScreen_displayProfitRate();">
+    <table data-uid="18" style="position: absolute; top: 76px; left: 10px; width: 620px; height: 158px;">
+        <tbody data-uid="19">
+            <tr data-uid="20">
+                <th colspan="2" class="header" data-uid="21">계좌 평가금액요약</th>
+                <th colspan="2" class="header" data-uid="22">투자 수익률 요약</th>
+            </tr>
+            <tr data-uid="23">
+                <td class="header" data-uid="24">기초 평가금액</td>
+                <td data-uid="25">356,151</td>
+                <td class="header" data-uid="26">투자원금</td>
+                <td data-uid="27">476,151</td>
+            </tr>
+            <tr data-uid="28">
+                <td class="header" data-uid="29">기간중 입금(고)금액</td>
+                <td data-uid="30">28,620,000</td>
+                <td class="header" data-uid="31">투자손익</td>
+                <td style="color:red;" data-uid="32">8,074</td>
+            </tr>
+            <tr data-uid="33">
+                <td class="header" data-uid="34">기간중 출금(고)금액</td>
+                <td data-uid="35">28,500,000</td>
+                <td class="header" data-uid="36">투자 수익률</td>
+                <td style="color:red;" data-uid="37">1.70</td>
+            </tr>
+            <tr data-uid="38">
+                <td class="header" data-uid="39">기말 평가금액</td>
+                <td data-uid="40">484,225</td>
+                <td class="header" data-uid="41"></td>
+                <td data-uid="42"></td>
+            </tr>
+        </tbody>
+    </table>
+    <i-linechart style="width: 620px; height: 204px; position: absolute; top: 239px; left: 10px; background: rgb(235, 238, 243);" data="{'labels':['04','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','05','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','06','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''],'datasets':[{'label':'한글','background':'red','data':['0.1','1.2','1.1','1.1','0.9','1.2','0.1','0.5','0.8','0.6','1.4','1.3','0.4','1.1','0.3','0.3','0.8','0.5','0.3','0.4','0.5','0.6','0.1','0.4','0.4','0.2','0.7','0.1','0.6','1.3','1.4','0.9','1','0.3','0.8','0.1','0.5','0.8','0.1','1.1','1.3','1.3','0.2','0.2','1.4','0.1','0.5','0.4','0.6','0.4','0.4','0.6','0.3','1.2','0.7','0.5','0.9','1.1','1','1','1.3','1.4','0.1','0.2','1.2','0.5','0.1','0.4','1','0.5','0.9','0.1','1.1','0.3','0.1','1','1.1','0.6','1.3','1','1.2','1.3','0.5','0.2','0.3','1','1','1.4','1.3'],'fill':false, borderColor:'red'}]}"
+        data-uid="43" id="linechart0" titletext="" autosize="false" xaxisgridshow="false"></i-linechart>
+    <i-slider endvalue="3" style="width: 132px; position: absolute; top: 420px; left: 480px; height: 10px; font-size: 16px;" data-uid="44" id="slider0"></i-slider>
+    <i-text text="* 투자수익률" style="position: absolute; top: 250px; left: 50px; font-weight: 900;" data-uid="45" id="text3"></i-text>
+    <div data-uid="46" style="position: relative; top: 10px; left: 10px; width: 620px; height: 61px; background: rgb(235, 238, 243);">
+        <i-text text="계좌번호" style="position: absolute; top: 14.5px; left: 10px;" data-uid="47" id="text0"></i-text>
+        <i-combo style="width: 127px; position: absolute; top: 10px; left: 70px; height: 23px;" data-uid="48" id="combo0" items="[{'label':'030-99-009228','value':'value1'},{'label':'031-79-109228','value':'value2'},{'label':'730-09-103227','value':'value3'}]"
+            index="0"></i-combo>
+        <i-edit style="width: 105px; position: absolute; top: 10px; left: 198px; height: 23px;" data-uid="49" id="edit0" value="손일웅" enable="false"></i-edit>
+        <i-text text="투자원금방식" style="position: absolute; top: 14.5px; left: 330px;" data-uid="50" id="text1"></i-text>
+        <i-combo style="width: 118px; position: absolute; top: 10px; left: 411px; height: 23px;" data-uid="51" id="combo1" items="[{'label':'순입금액수익률','value':'value1'}]" index="0"></i-combo>
+        <i-button text="조회" style="position: absolute; top: 11px; left: 561px; width: 49px; background-size: 100% 100%;" data-uid="52" id="button0" onclick="onclick_button0();"></i-button>
+        <i-text text="조회기간" style="position: absolute; top: 39.5px; left: 10px;" data-uid="53" id="text2"></i-text>
+        <i-fromtocalendar style="width: 244px; position: absolute; top: 35px; left: 70px; height: 22px;" data-uid="54" id="fromtocalendar0" periodsymbol=" ~  " onchange="onchange_fromtocalendar0();" valuefrom="20170401" valueto="20170601"></i-fromtocalendar>
+        <i-button text="1개월" style="position: absolute; top: 36px; left: 306px; width: 49px; background-size: 100% 100%;" data-uid="55" id="button1"></i-button>
+        <i-button text="3개월" style="position: absolute; top: 36px; left: 357px; width: 49px; background-size: 100% 100%;" data-uid="56" id="button2"></i-button>
+        <i-button text="6개월" style="position: absolute; top: 36px; left: 408px; width: 49px; background-size: 100% 100%;" data-uid="57" id="button3"></i-button>
+        <i-button text="1년" style="position: absolute; top: 36px; left: 459px; width: 49px; background-size: 100% 100%;" data-uid="58" id="button4"></i-button>
+        <i-button text="도움말" style="position: absolute;top: 36px;left: 510px;width: 49px;background-size: 100% 100%;border: 1px solid #000000;color: red;" data-uid="59" id="button5"></i-button>
+        <i-button text="계산식" style="position: absolute;top: 36px;left: 561px;width: 49px;background-size: 100% 100%;border: 1px solid #000000;color: red;" data-uid="60" id="button6"></i-button>
+    </div>
+</body>
+
+</html>

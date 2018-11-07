@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/12/27 14:55" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta name="created" content="2016/10/05 14:29" data-uid="9">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="10">
+    <title data-uid="11">grid_context_menu</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="13"></script>
+    <script type="text/javascript" data-uid="14">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-05
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var data = [
+                ['보통예금(IBK 급여통장', '072-997793-**-***', 0, 'P', 'KRW', 10051],
+                ['보통예금', '149-0867763-**-***', 0, 'P', 'KRW', 1110560],
+                ['보통예금', '072-997793-**-***', 0, 'P', 'KRW', 10851],
+                ['정기적금', '149-0866063-**-***', 0, 'P', 'KRW', 11125600],
+                ['보통예금(IBK 급여통장', '077-987793-**-***', 0, 'P', 'KRW', 10853],
+                ['보통예금', '149-0866063-**-***', 0, 'P', 'KRW', 11125600],
+                ['보통예금(IBK 급여통장', '072-997793-**-***', 0, 'P', 'KRW', 12752],
+                ['보통예금', '149-0866063-**-***', 0, 'P', 'KRW', 11145650],
+                ['보통예금(IBK 급여통장', '072-997793-**-***', 0, 'P', 'KRW', 13881],
+                ['보통예금', '149-0866063-**-***', 0, 'P', 'KRW', 12125600],
+            ];
+            grid0.setGridData(data);
+            grid0.getView().setContextMenu([{
+                label: "엑셀로 저장하기",
+                callback: function() {
+                    grid0.exportData('grid0_context_sample.xlsx');
+                }
+            }, {
+                label: "엑셀로 열기",
+                callback: function() {
+                    var input = $('<input type="file" onchange="grid0.importData(this.files[0]);">');
+                    $(input).click();
+                }
+            }, {
+                label: "셀 데이터 가져오기",
+                callback: function() {
+                    var focused = grid0.getView().focusedIndex();
+                    var rowIdx = focused.rowIndex;
+                    var colIdx = focused.column.index();
+                    alert(grid0.getCellData(rowIdx, colIdx));
+                }
+            }, {
+                label: "-" /* menu separator */
+            }, {
+                label: "잔액조회",
+                callback: function() {
+                    var focused = grid0.getView().focusedIndex();
+                    var rowIdx = focused.rowIndex;
+                    alert(JSON.stringify(grid0.getGridData()[rowIdx]));
+                }
+            }, {
+                label: "평잔조회"
+            }, {
+                label: "무통내역 조회"
+            }, {
+                label: "거래내역 조회"
+            }, {
+                label: "타점내역 조회"
+            }, {
+                label: "거래제한 조회"
+            }, {
+                label: "수신이미지 조회"
+            }, {
+                label: "-" /* menu separator */
+            }, {
+                label: "계좌 입금"
+            }, {
+                label: "[유통]계좌 입금"
+            }, {
+                label: "외환계좌 입금"
+            }, {
+                label: "동일계좌 다건 입금"
+            }]);
+        }
+    </script>
+</head>
+
+<body id="grid_context_menu" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="ContextMenu Sample" style="width: 1010px; height: 360px; position: absolute; top: 8px; left: 8px;" data-uid="15" id="group0" class="group-panel">
+        <i-grid columnlastextend="true" style="width: 1000px; height: 320px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="16" id="grid0" columns="[
+        {fieldName: 'col1', name: '상품명'},
+        {fieldName: 'col2', name: '계좌번호'},
+        {fieldName: 'col3',name: '회차', type: 'number'},
+        {fieldName: 'col4', name: '구분'},
+        {fieldName: 'col5', name: '통화'},
+        {fieldName: 'col6', name: '계좌잔액', type: 'number'}
+        ]"></i-grid>
+    </i-group>
+</body>
+
+</html>

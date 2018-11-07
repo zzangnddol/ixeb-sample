@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/11/28 21:29" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.796" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1920x1080" data-uid="8">
+    <meta name="created" content="2016/11/28 21:08" data-uid="9">
+    <title data-uid="10">singleCenter</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="12"></script>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript" data-uid="13">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-11-28
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_singleCenter() {
+            //TODO:
+            var url = "./center.html"
+            var tag = []
+            tag.push('<div class="head-title" style=" border-bottom: 5px solid #707686;     padding: 10px 0px 0px 0px; vertical-align: middle;">');
+            tag.push('<label>센터관리/</label>')
+            tag.push('<label style="font-size: 23px; vertical-align: bottom;">&nbsp;센터정보등록</label>');
+            tag.push('</div>');
+            if (url != "" && url != undefined) {
+                tag.push("<iframe style='height:calc( 100% - 50px); width:100%;' src =" + url + "></iframe>");
+            }
+            tag.push('</div>');
+            $("body").append(tag.join(""));
+        }
+    </script>
+</head>
+
+<body id="singleCenter" data-uid="3" oninitscreen="onInitScreen_singleCenter();"> </body>
+
+</html>

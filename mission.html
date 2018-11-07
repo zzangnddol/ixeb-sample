@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="generator" content="iXebStudio Platform 2.2018.0907.2795">
+    <meta name="ixeb-studio:SaveZOrder" content="undefined">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="ixeb-studio:grid-size" content="10x10">
+    <meta name="ixeb-studio:screen-size" content="1280x1024">
+    <meta name="created" content="2018/11/05 14:18">
+    <title>File title</title>
+    <script type="text/javascript" src="./ixeb/ext/jquery/2.2.1/jquery-2.2.1.min.js"></script>
+    <script type="text/javascript" src="./ixeb/lib/ixebBase.min.js"></script>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript">
+        function onclick_button0(e) {
+            console.log('search clicked', combo0.getSelectedValue(), combo1.getSelectedValue());
+
+            var params = {};
+            if (combo0.getSelectedValue()) params['GENDER_CD'] = combo0.getSelectedValue();
+            if (combo1.getSelectedValue()) params['DUTY_CD'] = combo1.getSelectedValue();
+            empinfo.setParams(params);
+
+            onclick_btn_exec3();
+        }
+
+        function onclick_btn_status0() {
+            alert(gendercode.getRowStatus(gendercode.getRowPosition()));
+        }
+
+        function onclick_btn_exec0() {
+            ixeb.comm.transaction({
+                "in": ['gendercode=>' + gendercode.serviceId],
+                "out": [gendercode.serviceId + '=>gendercode'],
+                "url": "http://localhost:8080/ixeb-manager/service.ixeb"
+            }).done(function (r) {
+                console.log("Success.");
+            }).fail(function (r) {
+                alert("Error:\n" + r.message);
+            }).always(function () {
+                // console.log("always");
+            });
+        }
+
+        function onclick_btn_clear0() {
+            gendercode.clear();
+        }
+
+        function onclick_btn_print0() {
+            alert("프린트 기능은 준비 중입니다.");
+        }
+
+        function onclick_btn_excelimort0() {
+            grid0.importData();
+        }
+
+        function onclick_btn_excelexport0() {
+            grid0.exportData("export.xlsx");
+        }
+
+        function onclick_btn_remove0() {
+            grid0.deleteRow(grid0.getView().focusedRowIndex());
+        }
+
+        function onclick_btn_add0() {
+            var row = gendercode.appendRow({});
+            grid0.setFocusedCell(row, 0);
+            grid0.focus();
+        }
+
+
+        function onclick_btn_status1() {
+            alert(dutyinfo.getRowStatus(dutyinfo.getRowPosition()));
+        }
+
+        function onclick_btn_exec1() {
+            ixeb.comm.transaction({
+                "in": ['dutyinfo=>' + dutyinfo.serviceId],
+                "out": [dutyinfo.serviceId + '=>dutyinfo'],
+                "url": "http://localhost:8080/ixeb-manager/service.ixeb"
+            }).done(function (r) {
+                console.log("Success.");
+            }).fail(function (r) {
+                alert("Error:\n" + r.message);
+            }).always(function () {
+                // console.log("always");
+            });
+        }
+
+        function onclick_btn_clear1() {
+            dutyinfo.clear();
+        }
+
+        function onclick_btn_print1() {
+            alert("프린트 기능은 준비 중입니다.");
+        }
+
+        function onclick_btn_excelimort1() {
+            grid1.importData();
+        }
+
+        function onclick_btn_excelexport1() {
+            grid1.exportData("export.xlsx");
+        }
+
+        function onclick_btn_remove1() {
+            grid1.deleteRow(grid1.getView().focusedRowIndex());
+        }
+
+        function onclick_btn_add1() {
+            var row = dutyinfo.appendRow({});
+            grid1.setFocusedCell(row, 0);
+            grid1.focus();
+        }
+
+        $(document).ready(function () {
+            onclick_btn_exec0();
+            onclick_btn_exec1();
+            onclick_btn_exec3();
+        });
+
+        function onclick_btn_status3() {
+            alert(empinfo.getRowStatus(empinfo.getRowPosition()));
+        }
+
+        function onclick_btn_exec3() {
+            ixeb.comm.transaction({
+                "in": ['empinfo=>' + empinfo.serviceId],
+                "out": [empinfo.serviceId + '=>empinfo'],
+                "url": "http://localhost:8080/ixeb-manager/service.ixeb"
+            }).done(function(r) {
+                console.log("Success.");
+                $("#div1").html(empinfo.getRowCount() + "개의 데이터가 존재합니다.");
+            }).fail(function(r) {
+                alert("Error:\n" + r.message);
+            }).always(function() {
+                // console.log("always");
+            });
+        }
+
+        function onclick_btn_clear3() {
+            empinfo.clear();
+        }
+
+        function onclick_btn_print3() {
+            alert("프린트 기능은 준비 중입니다.");
+        }
+
+        function onclick_btn_excelimort3() {
+                grid0.importData();
+        }
+
+        function onclick_btn_excelexport3() {
+            grid0.exportData("export.xlsx");
+        }
+
+        function onclick_btn_remove3() {
+            grid0.deleteRow(grid0.getView().focusedRowIndex());
+        }
+
+        function onclick_btn_add3() {
+            var row = empinfo.appendRow({});
+            grid0.setFocusedCell(row, 0);
+            grid0.focus();
+        }
+    </script>
+    <i-dataset id="gendercode" serviceId="service_gendercode">
+        <header>
+            [{"id":"CODE","object":"","type":"","size":"","desc":""},{"id":"GENDER","object":"","type":"","size":"","desc":""}]
+        </header><data>
+            []
+        </data>
+        <i-bind bindtype="recordset" property="" target="combo0" column=""></i-bind>
+    </i-dataset>
+    <i-dataset id="dutyinfo" serviceId="service_dutyinfo">
+        <header>
+            [{"id":"CODE","object":"","type":"","size":"","desc":""},{"id":"DUTY","object":"","type":"","size":"","desc":""}]
+        </header><data>
+            []
+        </data>
+        <i-bind bindtype="recordset" property="" target="combo1" column=""></i-bind>
+        <i-bind bindtype="recordset" property="" target="combo2" column=""></i-bind>
+    </i-dataset>
+    <i-dataset id="empinfo" serviceId="service_empinfo">
+        <header>
+            [{"id":"EMP_CD","object":"","type":"","size":"","desc":""},{"id":"EMP_NAME","object":"","type":"","size":"","desc":""},{"id":"GENDER_CD","object":"","type":"","size":"","desc":""},{"id":"GENDER","object":"","type":"","size":"","desc":""},{"id":"JOIN_DATE","object":"","type":"","size":"","desc":""},{"id":"DUTY_CD","object":"","type":"","size":"","desc":""},{"id":"DUTY","object":"","type":"","size":"","desc":""},{"id":"EMAIL","object":"","type":"","size":"","desc":""}]
+        </header>
+        <data>
+        	[]
+        </data>
+        <i-bind bindtype="attribute" property="value" target="edit0" column="EMP_NAME"></i-bind>
+        <i-bind bindtype="attribute" property="value" target="radio0" column="GENDER_CD"></i-bind>
+        <i-bind bindtype="attribute" property="value" target="maskedit0" column="JOIN_DATE"></i-bind>
+        <i-bind bindtype="attribute" property="value" target="combo2" column="DUTY_CD"></i-bind>
+            <i-bind bindtype="recordset" target="grid0">
+        </i-bind>
+</i-dataset>
+</head>
+
+<body>
+    <div style="position: absolute;border: 1px solid #000;left: 20px;top: 10px;height:56px;undefined:null;width:619px" id="div0">
+        
+            <i-text text="성별" style="position:absolute;left:9px;top:19px" id="text0"></i-text>
+        <i-text text="직급" style="position:absolute;left:219px;top:19px" id="text1"></i-text>
+        <i-combo style="width: 140px;position:absolute;left:49px;top:14px" id="combo0" labelField="GENDER" valueField="CODE" tabIndex="1" items="[]" itemAll="true" itemAllValue=""></i-combo>
+        <i-combo style="width: 140px;position:absolute;left:269px;top:14px" id="combo1" labelField="DUTY" valueField="CODE" tabIndex="2" itemAll="true" itemAllValue=""></i-combo>
+        <i-button text="조회" style="position:absolute;left:509px;top:15.5px" id="button0" tabIndex="3" onclick="onclick_button0(arguments[0])"></i-button>
+</div>
+    <table style="table-layout: fixed;position: absolute;height: 102px;left: 20px;top: 430px;undefined: null;width: 619px;border: 1px solid black;"
+        id="table0" border="1">
+        <colgroup>
+            <col width="10%">
+            <col width="40%">
+            <col width="10%">
+            <col width="40%">
+        </colgroup>
+        <tbody>
+            <tr>
+                <td align="center" style="border: 1px solid black;">
+                    <i-text text="이름" style="width: 100%;" id="text2"></i-text>
+                </td>
+                <td style="border: 1px solid black;padding: 0px 20px;">
+                    <i-edit style="position:;left:;top:;right:;bottom:;width:100%" id="edit0" tabIndex="4" enable="false"></i-edit>
+                </td>
+                <td align="center" style="border: 1px solid black;">
+                    <i-text text="성별" style="position:;left:;top:;right:;bottom:;width:100%" id="text3"></i-text>
+                </td>
+                <td style="border: 1px solid black;padding: 0px 20px;">
+                    <i-radio items="[{'disable':false,'label':'남자','value':'M'},{'disable':false,'label':'여자','value':'F'}]"
+                        style="position:;left:;top:;right:;bottom:;width:100%" id="radio0" tabIndex="5" enable="false"></i-radio>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="border: 1px solid black;">
+                    <i-text text="입사일" style="width: 100%;" id="text4"></i-text>
+                </td>
+                <td style="border: 1px solid black;padding: 0px 20px;">
+                    <i-maskedit style="height:23px;undefined:null;position:;left:;top:;right:;bottom:;width:100%" id="maskedit0"
+                        showCalendarButton="true" tabIndex="6" enable="false"></i-maskedit>
+                </td>
+                <td align="center" style="border: 1px solid black;">
+                    <i-text text="직급" style="width: 100%;" id="text5"></i-text>
+                </td>
+                <td style="border: 1px solid black;padding: 0px 20px;">
+                    <i-combo style="position:;left:;top:;right:;bottom:;width:100%" id="combo2" tabIndex="7" labelField="DUTY"
+                        valueField="CODE" enable="false"></i-combo>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    
+    
+    
+    
+    <i-grid id="grid0" style="position: absolute;left: 20px;top: 90px;undefined: null;width: 619px;height: 335px" columns="[{'fieldName':'EMP_CD','name':'EMP_CD','colType':'','type':'','headerText':'사번','colVisible':false},{'fieldName':'EMP_NAME','name':'EMP_NAME','colType':'','type':'','headerText':'이름'},{'fieldName':'JOIN_DATE','name':'JOIN_DATE','colType':'','type':'','headerText':'입사일'},{'fieldName':'EMAIL','name':'EMAIL','colType':'','type':'','headerText':'이메일','colWidth':160},{'fieldName':'DUTY','name':'DUTY','colType':'','type':'','headerText':'직급'},{'fieldName':'DUTY_CD','name':'DUTY_CD','colType':'','type':'','colVisible':false},{'fieldName':'GENDER','name':'GENDER','colType':'','type':'','headerText':'성별'},{'fieldName':'GENDER_CD','name':'GENDER_CD','colType':'','type':'','colVisible':false}]" tabIndex="8" columncount="8" initrowcount="0"></i-grid>
+    <div style="position: absolute;left: 20px;top: 70px;undefined: null;width: 619px;height: 25px;" id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-vline" content="1150," data-uid="5">
+    <meta name="modified" content="2016/11/29 10:59" data-uid="6">
+    <meta name="generator" content="iXebStudio 1.0.0.796" data-uid="7">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="8">
+    <meta name="ixeb-studio:screen-size" content="1920x1080" data-uid="9">
+    <meta name="created" content="2016/11/28 17:26" data-uid="10">
+    <title data-uid="11">center</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="13"></script>
+    <script type="text/javascript" data-uid="14">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-11-29
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button1() {
+            //TODO:
+            var rows = [];
+            for (var i = 0; i < 10; i++) {
+                rows.push([]);
+            }
+            grid0.setGridData(rows);
+            total.text = grid0.getGridData().length;
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-11-28
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button0() {
+            //TODO:
+            var isVisible = $("#info").is(":visible");
+            if (isVisible) {
+                $('#grid0').removeClass("active");
+                $('#button').removeClass("active");
+                $("#info").hide();
+            } else {
+                $('#grid0').addClass("active");
+                $('#button').addClass("active");
+                $("#info").show();
+            }
+            grid0.redraw()
+        }
+    </script>
+    <style data-uid="15">
+        i-grid#grid0.active {
+            height: calc(100% - 330px)!important;
+        }
+        
+        i-button#button.active :before {
+            content: "\f0de";
+        }
+    </style>
+</head>
+
+<body id="center" data-uid="3" style="min-width: 1150px;">
+    <i-text text="<i class=&quot;fa fa-dot-circle-o&quot; aria-hidden=&quot;true&quot; style=&quot;color:#1D6B9F;&quot;></i> 센터관리 > <b>센터정보등록</b> " style="position: absolute; top: 18.5px; left: 19px;" data-uid="16" id="text0"></i-text>
+    <div style="width: calc(100% - 40px); height: 40px; position: absolute; top: 38px; left: 19px; border: 2px solid rgb(251, 210, 150); border-radius: 5px; min-width: 1150px; background: rgb(255, 243, 226);" data-uid="17" id="div0">
+        <i-text text="센터코드" style="position: absolute; top: 11.5px; left: 18px; font-weight: bold;" data-uid="18" id="text1"></i-text>
+        <i-text text="센터명" style="position: absolute; top: 11.5px; left: 224px; font-weight: bold;" data-uid="19" id="text2"></i-text>
+        <i-text text="관리자번호" style="position: absolute; top: 11.5px; left: 424px; font-weight: bold;" data-uid="20" id="text3"></i-text>
+        <i-text text="주소" style="position: absolute; top: 11.5px; left: 752px; font-weight: bold;" data-uid="21" id="text4"></i-text>
+        <i-edit style="width: 116px; position: absolute; top: 7px; left: 78px; height: 22px;" data-uid="22" id="edit0"></i-edit>
+        <i-edit style="width: 116px; position: absolute; top: 7px; left: 271px;" data-uid="23" id="edit1"></i-edit>
+        <i-edit style="width: 196px; position: absolute; top: 7px; left: 787px; height: 22px;" data-uid="24" id="edit2"></i-edit>
+        <i-button data-uid="25" style="position: absolute;top: 7px;left: 690.969px;height: 22px;width: 19px;background-size: 100% 100%;" text="<i class='fa fa-search'></i>"></i-button>
+        <i-edit style="width: 196px; position: absolute; top: 7px; left: 497px; height: 22px;" data-uid="26" id="edit3"></i-edit>
+        <i-button data-uid="27" style="position: absolute; top: 7px; left: 982px; height: 22px; width: 19px; background-size: 100% 100%;" text="<i class='fa fa-search'></i>" id="button0"></i-button>
+        <i-button text="<i class='fa fa-search'></i>&nbsp;조회" style="position: absolute;top: 7px;left: calc( 100% - 80px);border: 1px solid rgb(198, 188, 176);border-radius: 3px;height: 22px;color: rgb(255, 255, 255);background: rgb(246, 130, 20);"
+            data-uid="28" id="button1" onclick="onclick_button1();"></i-button>
+    </div>
+    <div style="position: relative; margin: 0px 20px; top: 78px; width: calc(100% - 40px); left: -1px;" data-uid="29" id="container">
+        <div style="width: 100%;height: 188px;position: relative;left: 0px;background: rgb(234, 232, 229);display: none;" data-uid="30" id="info">
+            <i-text text="센터코드" style="position: absolute; top: 14px; left: 34px; font-weight: bold;" data-uid="31" id="text0"></i-text>
+            <i-text text="센터명" style="position: absolute; top: 14px; left: 284px; font-weight: bold;" data-uid="32" id="text1"></i-text>
+            <i-edit style="width: 168px; position: absolute; top: 10px; left: 94px; height: 22px;" data-uid="33" id="edit0"></i-edit>
+            <i-edit style="width: 168px; position: absolute; top: 10px; left: 331px;" data-uid="34" id="edit1"></i-edit>
+            <i-text text="관리자번호" style="position: absolute; top: 42px; left: 21px; font-weight: bold;" data-uid="35" id="text2"></i-text>
+            <i-button data-uid="36" style="position: absolute; top: 38px; left: 470px; height: 22px; width: 29px; background-size: 100% 100%;" text="<i class='fa fa-search'></i>" id="button1"></i-button>
+            <i-edit style="width: 377px; position: absolute; top: 38px; left: 94px; height: 22px;" data-uid="37" id="edit3"></i-edit>
+            <i-text text="주소" style="position: absolute; top: 71px; left: 59px; font-weight: bold;" data-uid="38" id="text3"></i-text>
+            <i-edit style="width: 377px; position: absolute; top: 67px; left: 94px; height: 22px;" data-uid="39" id="edit2"></i-edit>
+            <i-button data-uid="40" style="position: absolute; top: 67px; left: 470px; height: 22px; width: 29px; background-size: 100% 100%;" text="<i class='fa fa-search'></i>" id="button2"></i-button>
+            <i-text text="관리자코드" style="position: absolute; top: 100px; left: 21px; font-weight: bold;" data-uid="41" id="text4"></i-text>
+            <i-text text="관리자명" style="position: absolute; top: 100px; left: 272px; font-weight: bold;" data-uid="42" id="text5"></i-text>
+            <i-edit style="width: 168px; position: absolute; top: 96px; left: 94px; height: 22px;" data-uid="43" id="edit4"></i-edit>
+            <i-edit style="width: 168px; position: absolute; top: 96px; left: 331px;" data-uid="44" id="edit5"></i-edit>
+            <i-text text="관리자연락처" style="position: absolute; top: 130px; left: 9px; font-weight: bold;" data-uid="45" id="text6"></i-text>
+            <i-text text="설립연도" style="position: absolute; top: 130px; left: 272px; font-weight: bold;" data-uid="46" id="text7"></i-text>
+            <i-edit style="width: 168px; position: absolute; top: 126px; left: 94px; height: 22px;" data-uid="47" id="edit6"></i-edit>
+            <i-edit style="width: 168px; position: absolute; top: 126px; left: 331px;" data-uid="48" id="edit7"></i-edit>
+            <i-text text="센터사전" style="position: absolute; top: 160px; left: 34px; font-weight: bold;" data-uid="49" id="text8"></i-text>
+            <i-edit style="width: 168px; position: absolute; top: 156px; left: 94px; height: 22px;" data-uid="50" id="edit8"></i-edit>
+        </div>
+        <i-button text="<i class=&quot;fa fa-sort-desc&quot; aria-hidden=&quot;true&quot;></i>" style="position: relative;border-radius: 0px 0px 7px 7px;color: rgb(255, 255, 255);width: 71px;height: 13px;text-align: center;left: calc( 50% - 35px );background: rgb(246, 130, 20);"
+            data-uid="51" id="button" showfocusrect="false" onclick="onclick_button0();"></i-button>
+    </div>
+    <div style="width: 152px; height: 21px; position: relative; top: 80px; left: 19px;" data-uid="52" id="div1">
+        <i-text text="<i class=&quot;fa fa-dot-circle-o&quot; aria-hidden=&quot;true&quot; style=&quot;color:#1D6B9F;&quot;></i>등록대상" style="position: absolute; top: 2.5px; left: -1px; font-weight: bold;" data-uid="53" id="text5"></i-text>
+        <i-text text="[ Count :" style="position: absolute; top: 2.5px; left: 64px; font-weight: bold;" data-uid="54" id="text6"></i-text>
+        <i-text text="0" style="position: absolute; top: 2.5px; left: 128px; font-weight: bold; color: rgb(246, 130, 20);" data-uid="55" id="total"></i-text>
+        <i-text text="]" style="position: absolute; top: 2.5px; left: 155px; font-weight: bold;" data-uid="56" id="text7"></i-text>
+    </div>
+    <i-grid style="  border-top: 2px solid #003081; width: calc( 100% - 40px);height: calc( 100% - 150px);margin: 0px 20px;top: 80px;opacity: 0.99;" data-uid="57" id="grid0" columncount="0" columns="[{'width': 40,'fieldName' : 'no',             'name': '번호'},{'width':100,'fieldName' : 'centerCd',       'name' : '센터코드'},{'width':120,'fieldName' : 'centerName',     'name' : '센터명'},{'width':180,'fieldName' : 'address',        'name' : '주소'},{'width': 180,'fieldName' : 'adminCd',        'name' : '관리자코드'},{'width': 180,'fieldName' : 'adminName',      'name' : '관리자명'},{'width': 180,'fieldName' : 'addminTel',      'name' : '관리자연락처'},{'width': 180,'fieldName' : 'creatYear',      'name' : '설립연도'},{'width': 200,'fieldName' : 'centerInfo',     'name' : '센터사전'}]"
+        checkbar="true" rowautocount="false" gridoutlinecolor="" gridoutlinethick="1" columnlastextend="true"></i-grid>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-hline" content="" data-uid="5">
+    <meta name="ixeb-studio:guide-vline" content="" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="300x200" data-uid="8">
+    <meta name="created" content="2016/10/12 20:16" data-uid="9">
+    <title data-uid="10">message</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ime_lib/socket.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ime_lib/ime.js" data-uid="13"></script>
+    <script type="text/javascript" src="../ime_lib/window.js" data-uid="14"></script>
+    <script type="text/javascript" data-uid="13">
+    /**
+     * @작성자 : {USER}
+     * @작성날짜 : 2016-10-12
+     * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+     * @return 
+     */
+    function onclick_button0() { 
+     //TODO:
+        window.close();
+    
+    }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-12
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var parameter = document.location.href.split('?')[1]
+            if (parameter) {
+                var items = decodeURI(parameter).split('=')[1].replace(/%22/g, '\"').replace(/%7B/g, '\{').replace(/%7D/g, '\}');
+                var data = ixeb.util.parseJSON(items);
+                edit0.value = data.title;
+                multilineedit0.value = data.message;
+            }
+        }
+    </script>
+</head>
+
+<body id="message" data-uid="3" style="width: 300px;height: 200px;" oninitscreen="onInitScreen_body();">
+    <div style="width: 700px; height: 413px; position: absolute; top: 0px; left: 0px; border: 1px solid rgb(210, 210, 210);" data-uid="14" id="div0">
+        <div style="width: 698px; height: 26px; position: absolute; top: 0px; left: 0px; background-color: #8B8B8B;" data-uid="15" id="div1">
+            <i-text text="에러메시지&nbsp;&nbsp; &nbsp;<font style='color:#D2D2D2'>| ERROR MESSAGE</font>" style="position: absolute; top: 4.5px; left: 18px; font-size: 15px; color: rgb(255, 255, 255);" data-uid="16" id="text0"></i-text>
+        </div>
+        <i-edit style="width: 688px; margin: 0px 5px; position: absolute; top: 30px; left: 0px;border: 1px solid #D2D2D2;" data-uid="17" readonly="true" id="edit0"></i-edit>
+        <i-multilineedit style="width: 688px; height: 327px; position: absolute; top: 55px; left: 5px; border: 1px solid rgb(210, 210, 210);" data-uid="18" readonly="true" id="multilineedit0"></i-multilineedit>
+        <div style="width: 698px; height: 26px; position: absolute; top: 386px; left: 0px; background-color: rgb(139, 139, 139);" data-uid="19" id="div2">
+            <i-button text="닫기" style="position: absolute; top: 2px; left: 621px; color: rgb(118, 215, 255); background: rgb(49, 49, 49);" data-uid="20" id="button0" onclick="onclick_button0();"></i-button>
+        </div>
+    </div>
+</body>
+
+</html>

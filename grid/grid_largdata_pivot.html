@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="6">
+    <meta name="created" content="2016/10/19 10:18" data-uid="7">
+    <title data-uid="8">grid_largdata_pivot</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="9"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="10"></script>
+    <script type="text/javascript" src="../js/ixebmanager.js" data-uid="10"></script>
+    <script type="text/javascript" data-uid="11">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-19
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            ixeb.comm.transaction({
+                "in": ['dataset0=>' + dataset0.serviceId],
+                "out": [dataset0.serviceId + '=>dataset0'],
+                "url": getRootUrl() + "/ixeb-manager/service.slice.ixeb"
+            }).done(function(r) {
+                console.log("success");
+                pivot(dataset0, 'Purpose', 'Number', 'Pixels');
+                 grid1.addFilters(0, [
+                    {
+                        "name": "Low Number",
+                        "expression": "value < 100"
+                    }, 
+                    {
+                        "name": "Mid Number",
+                        "expression": "(value > 100) && (value <= 200)"
+                    }, 
+                    {
+                        "name": "High Number",
+                        "expression": "value > 200"
+                    }
+                ]);
+            }).fail(function(r) {
+                console.log("error", r);
+            }).always(function() {
+                console.log("always");
+            });
+        }
+
+        function pivot(dataset, xField, yField, strVal) {
+            // dataset1 컬럼 정의
+            // grid1 헤더 정의 //[{'fieldName':'COMPID','name':'','dataType':'','type':'','size':''}
+            var defColumns = [];
+            defColumns.push({
+                'fieldName': yField,
+                'name': yField,
+                'editor': {
+                    type: 'line'
+                }
+            });
+            var columns = [];
+            for (var i = 0, j = 0, len = dataset.getRowCount(); i < len; i++) {
+                var _fieldName = dataset.getValue(i, xField);
+                var _headerTitle = dataset.getValue(i, xField);
+                if (columns.indexOf(_fieldName) < 0) {
+                    defColumns.push({
+                        'fieldName': "F" + (j++),
+                        'name': _headerTitle,
+                        'header': {
+                            text: _headerTitle
+                        },
+                        'editor': {
+                            type: 'line'
+                        }
+                    });
+                    columns.push(_fieldName);
+                }
+            }
+            grid1.setColumns(defColumns); // = JSON.stringify(defColumns);
+            // dataset1 데이터 넣기
+            var rows = [];
+            for (var i = 0, len = dataset.getRowCount(); i < len; i++) {
+                var _yValue = dataset.getValue(i, yField);
+                if (rows.indexOf(_yValue) < 0) {
+                    rows.push(_yValue);
+                }
+            }
+            dataset1.clear();
+            dataset1.beginBulkLoad();
+            var records = [];
+            for (var i = 0, len = rows.length; i < len; i++) {
+                var record = {};
+                record[yField] = rows[i];
+                for (var j = 0, jlen = columns.length; j < jlen; j++) {
+                    // columns[j] 는 필드명
+                    // record["F" + j] = 1111;//'data'; //데이터 합계 등 처리
+                    //record["F" + j] = sum(dataset, strVal, xField, columns[j], yField, record[yField]); //'data'; //데이터 합계 등 처리
+                      //var row = dataset.getRow(i),
+                    //data = row[valColumn];
+                    record["F" + j] = sum(dataset, strVal, xField, columns[j], yField, record[yField]); //'data'; //데이터 합계 등 처리
+                    // console.log("sum", dataset, xField, columns[j], yField, record[yField]);//'data'; //데이터 합계 등 처리
+                }
+                dataset1.appendRow(record);
+                // records.push(record);
+            }
+            dataset1.endBulkLoad();
+            dataset1.loadComplete();
+            // dataset1.appendRows(records);
+        }
+
+        function sum(dataset, valColumn, field, condition1, conditionField, condition2) {
+            var sum = 0;
+            for (var i = 0, len = 1000; i < len; i++) {
+                var row = dataset.getRow(i),
+                    data = parseInt(row[valColumn]),
+                    data = isNaN(data) ? 0  : data;
+                // console.log(data);
+                if (row[field] == condition1 && row[conditionField] == condition2) {
+                    sum += data;
+                }
+            }
+            return sum;
+        }
+    </script>
+    <i-dataset data-uid="12" id="dataset0" serviceid="service_cctv">
+        <header data-uid="13"> [ {"id": "Agency","desc": "","object": "","type": "","size": ""}, {"id": "AddressNew","desc": "","object": "","type": "","size": ""}, {"id": "AddressOld","desc": "","object": "","type": "","size": ""}, {"id": "Purpose","desc": "","object": "","type":
+            "","size": ""}, {"id": "Number","desc": "","object": "","type": "","size": ""}, {"id": "Pixels","desc": "","object": "","type": "","size": ""}, {"id": "ShootingScene","desc": "","object": "","type": "","size": ""}, {"id": "DayOfKeep","desc":
+            "","object": "","type": "","size": ""}, {"id": "DateOfInstallation","desc": "","object": "","type": "","size": ""}, {"id": "AgencyPhoneNumber","desc": "","object": "","type": "","size": ""}, {"id": "Latitude","desc": "","object": "","type":
+            "","size": ""}, {"id": "Longitude","desc": "","object": "","type": "","size": ""} ] </header> <data data-uid="14">
+[]
+	</data>
+        <i-bind bindtype="recordset" target="grid0" data-uid="16"></i-bind>
+    </i-dataset>
+    <i-dataset data-uid="17" id="dataset1">
+        <i-bind bindtype="recordset" property="" target="grid1" column="" data-uid="23"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="grid_largdata_pivot" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-grid style="width: 1000px; height: 320px; position: absolute; top: 350px; left: 8px; opacity: 0.99;" data-uid="22" id="grid1"></i-grid>
+    <i-grid ds-role="dataset0" style="width: 1000px; height: 320px; position: absolute; top: 8px; left: 8px; opacity: 0.99;" rowautocount="false" statebar="false" columncount="0" columns="[{'fieldName':'Agency','name':'','dataType':'','type':'','size':''},{'fieldName':'AddressNew','name':'','dataType':'','type':'','size':''},{'fieldName':'AddressOld','name':'','dataType':'','type':'','size':''},{'fieldName':'Purpose','name':'','dataType':'','type':'','size':''},{'fieldName':'Number','name':'','dataType':'','type':'','size':''},{'fieldName':'Pixels','name':'','dataType':'','type':'','size':''},{'fieldName':'ShootingScene','name':'','dataType':'','type':'','size':''},{'fieldName':'DayOfKeep','name':'','dataType':'','type':'','size':''},{'fieldName':'DateOfInstallation','name':'','dataType':'','type':'','size':''},{'fieldName':'AgencyPhoneNumber','name':'','dataType':'','type':'','size':''},{'fieldName':'Latitude','name':'','dataType':'','type':'','size':''},{'fieldName':'Longitude','name':'','dataType':'','type':'','size':''}]"
+        griditem="[]" columnlastextend="true" data-uid="20" id="grid0"></i-grid>
+</body>
+
+</html>

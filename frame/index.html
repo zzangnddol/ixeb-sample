@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-vline" content="278," data-uid="5">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="6">
+    <meta name="ixeb-studio:screen-size" content="1920x1080" data-uid="7">
+    <meta name="created" content="2016/10/11 16:08" data-uid="8">
+    <meta name="viewport" content="width=1280, user-scalable=no">
+    <title data-uid="9">index</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="10"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="11"></script>
+    <link rel="stylesheet" type="text/css" href="css/frame.css" data-uid="15">
+    <style>
+        .tabCloseBtn {
+            width:15px!important; 
+            padding:1px;
+            border:none!important;
+            background-color:transparent;
+            margin-top:-2px;
+            color:#999!important;
+        }
+    </style>
+    <script type="text/javascript" data-uid="16">
+        var interval;
+        //백 버튼 방지: html 로드되면 실행
+        $(document).ready(function() {
+            cfHistoryNoBack();
+        });
+        //오페라, 사파리 뒤로가기 막기
+        function cfHistoryNoBack() {
+            if (window.history) {
+                window.history.forward(1);
+            }
+        }
+
+        function removeTab() {
+            var activeTab = $(tabs0).find('.tabbuttons button').index($(event.target).parent());
+            if(activeTab > -1) {
+                tabs0.removeTabpage(activeTab)
+            }
+        }
+
+        function setMessage(title, message, option) {
+            if (interval != undefined) {
+                clearInterval(interval);
+                interval = undefined;
+            }
+            switch (option) {
+                case "alert":
+                    alert(message, title);
+                    break;
+                case "confirm":
+                    return confirm(message)
+                    break;
+                case "ticker":
+                    var tag = [];
+                    tag.push('<marquee behavior="scroll" direction="left">');
+                    tag.push(message)
+                    tag.push('</marquee>');
+                    text19.text = tag.join("");
+                    break;
+                case "blink":
+                    var target = text19;
+                    var tag = '<blink>' + message + '</blink>';
+                    text19.text = tag;
+                    interval = setInterval(function() {
+                        var blink = $(target).find("blink");
+                        blink[0].style.visibility = blink[0].style.visibility == "" ? "hidden" : ""
+                    }, 400);
+                    break;
+                case "popup":
+                    var msg = message
+                    var data = '{"title" :"' + title + '", "message":"' + message + '"}';
+                    ixeb2.windows.create({
+                        width: 700,
+                        height: 414,
+                        WindowType: 'modal',
+                        //WindowType : 'popup',
+                        url: './popup/message.html'
+                    }, undefined, data);
+                    break;
+                case "default" : 
+                    text19.text = message;
+                    break;
+            }
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-11
+         * @description : 컨트롤에 포커스가 있는 상태에서 키보드의 키가 눌렀을때 발생하는 이벤트
+         * @return 
+         */
+        function onkeydown_combo0() {
+            //TODO:
+            if (event.keyCode === 13) {
+                var account = event.target.value;
+            	var url = combo0.value;
+                var text = "";
+                if(account == '123456'){
+                	url = '../screen_sample/deposite.html?item='+JSON.stringify({data:'123456',target:'edit0'});
+                    text= "입금"
+                }
+                if(combo0.getItems()[combo0.getCurSel()]!= undefined) {
+                    text = combo0.getItems()[combo0.getCurSel()].label.split("-")[1];
+                }
+                
+                var title = text+' <i-button onclick="removeTab()" class="tabCloseBtn fa fa-times"></i-button>';
+                var tabPage = [];
+                tabPage.push("<i-tabpage title='" + title + "'>");
+                tabPage.push('<div style="width:100%; height:100%;">');
+                tabPage.push('<div class="head-title" style=" border-bottom: 5px solid #707686;vertical-align: middle;">');
+                tabPage.push('<i-button style="border: none; width: 24px; height: 24px;" enableimage="./images/title-bullet-f.png"></i-button>');
+                tabPage.push('<i-text text="다이렉트/ "></i-text>')
+                tabPage.push('<i-text text="&nbsp' + text + '" style="font-size: 23px; vertical-align: bottom;"></i-text>');
+                tabPage.push('<i-button style="border: none; width: 20px; height: 24px;" enableimage="./images/title-bookmark-f.png"></i-button><div  style="display: inline-block; float:right;"><i-button style="border: none; width: 20px; height: 24px;" enableimage="./images/title-phone-f.png"></i-button><i-button style="border: none; width: 20px; height: 24px;" enableimage="./images/title-print-f.png"></i-button></div></div>');
+                if (url != "" && url != undefined) {
+                    tabPage.push("<iframe style='height:100%; width:100%;' src =" + url + "></iframe>");
+                }
+                tabPage.push('</div></i-tabpage>');
+                if (tabs0.getActiveTabpage() > -1) {
+                    tabs0.activeAppendTabpage(tabPage.join(""));
+                } else {
+                    tabs0.appendTabpage(tabPage.join(""));
+                }
+                var index = tabs0.getPageCount();
+                tabs0.setActiveTabpage(index - 1);
+                $(tabs0).find(".selected").css("overflow", "hidden");
+                text19.text = "<font style='color: gold; font-weight:bold;'>" + text + "화면이 호출 되었습니다.</font>";
+            }
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-11
+         * @description : 입력중 발생하는 이벤트
+         * @return 
+         */
+        // function oninput_combo0() {}
+        var data = "[ {'text': '고객/공통','icon': './images/SampleFramelayout_03.png','id': 'L1','children': []    },  {'text': '수신','icon': './images/SampleFramelayout_07.png','id': 'L2','children': [{    'url': '../screen_sample/deposite.html',    'text': '입금*'}, {    'url': '../screen_sample/withdraw.html',    'text': '출금*'}, {    'url': 'about:blank',    'text': '당좌/가계수표업무'}, {    'url': 'about:blank',    'text': '슬라이싱 조회 샘플'}, {    'url': 'about:blank',    'text': '고객기본정보조회'}, {    'url': 'about:blank',    'text': '통장증서/증명서발급업무'}, {    'url': 'about:blank',    'text': '승인신청/설정업무'}, {    'url': 'about:blank',    'text': '승인신청/승인관리'}, {    'url': 'about:blank',    'text': '지점업무조회'}, {    'url': 'about:blank',    'text': '외화예금'}, {    'url': 'about:blank',    'text': '본부어무'}, {    'url': 'about:blank',    'text': '금융채업무및주금납입업무'}, {    'url': 'about:blank',    'text': '주택청약및세금우대여부'}, {    'url': 'about:blank',    'text': '기준가격방식신탁업무'}, {    'url': 'about:blank',    'text': '공금예금업무'}, {    'url': 'about:blank',    'text': '수익증권업무'}]    }, {'text': '여신','icon': './images/SampleFramelayout_10.png','id': 'L3','children': [{    'url': '../screen_sample/loan.html',    'text': '대출실행'}]   }, {'text': '카드','icon': './images/SampleFramelayout_12.png','id': 'L4','children': []    }, {'text': '외환','icon': './images/SampleFramelayout_15.png','id': 'L5','children': []    }, {'text': '전자금융','icon': './images/SampleFramelayout_19.png','id': 'L6','children': []    }, {'text': '공동망','icon': './images/SampleFramelayout_22.png','id': 'L7','children': []    }, {'text': '재무관리','icon': './images/SampleFramelayout_26.png','id': 'L8','children': []}, {'text': 'sample','icon': './images/SampleFramelayout_29.png','id': 'L9','children': [{    'url': '../pos/pos.html',    'text': 'POS'},{    'url': '../screen_type/grid_search.html',    'text': '그리드조회'},{    'url': '../screen_type/grid_detail_search.html',    'text': '그리드상세조회'},{    'url': '../screen_type/grid_popup_search.html',    'text': '그리드팝업상세조회'},{    'url': '../screen_type/single_search.html',    'text': '단일조회'},{    'url': '../screen_type/single_search_tab.html',    'text': '단일조회(탭)'},{    'url': '../screen_sample/center.html',    'text': '센터정보등록'},{    'url': '../control/combo.html',    'text': 'combo sample'},{    'url': '../control/dataset_multicombo.html',    'text': '다단 combo sample'}, {    'url': '../control/button.html',    'text': 'button sample'}, {    'url': '../control/chart.html',    'text': 'chart sample'},{    'url': '../control/maskedit.html',    'text': 'maskedit sample'},{    'url': '../control/edit.html',    'text': 'edit sample'},{    'url': '../control/multiline.html',    'text': 'multiline edit sample'}, {    'url': '../control/text.html',    'text': 'text sample'},{    'url': '../control/tree.html',    'text': 'tree sample'},{    'url': '../control/radio_check.html',    'text': 'radio & check sample'},{    'url': '../grid/grid_animation_sample.html',    'text': 'grid_animation_sample'},{    'url': '../grid/grid_barchart_sample.html',     'text': 'grid_barchart_sample'},{    'url': '../grid/grid_calculate_sample.html',    'text': 'grid_calculate_sample'},{    'url': '../grid/grid_cell_merge_sample.html',    'text': 'grid_cell_merge_sample'},{    'url': '../grid/grid_cell_type_sample.html',    'text': 'grid_cell_type_sample'},{    'url': '../grid/grid_chart_total_sample.html',    'text': 'grid_chart_total_sample'},{    'url': '../grid/grid_context_menu.html',    'text': 'grid_context_menu'},{    'url': '../grid/grid_context_extend.html',    'text': 'grid_context_extend'},{    'url': '../grid/grid_excel_example.html',    'text': 'grid_excel_example'},{    'url': '../grid/grid_filtering_sample.html',    'text': 'grid_filtering_sample'},{    'url': '../grid/grid_fixed_col_sample.html',    'text': 'grid_fixed_col_sample'},{    'url': '../grid/grid_fixed_row_sample.html',    'text': 'grid_fixed_row_sample'},{    'url': '../grid/grid_gauge_sample.html',    'text': 'grid_gauge_sample'},{    'url': '../grid/grid_multi_sample.html',    'text': 'grid_multi_sample'},{    'url': '../grid/grid_num_check.html',    'text': 'grid_num_check'},{    'url': '../grid/grid_paging_sample.html',    'text': 'grid_paging_sample'},{    'url': '../grid/grid_piechart_sample.html',    'text': 'grid_piechart_sample'},{    'url': '../grid/grid_pivot_sample.html',    'text': 'grid_pivot_sample'},{    'url': '../grid/grid_signal_sample.html',    'text': 'grid_signal_sample'},{    'url': '../grid/grid_sort_sample.html',    'text': 'grid_sort_sample'},{    'url': '../grid/grid_stripped_pattern.html',    'text': 'grid_stripped_pattern'},{    'url': '../grid/grid_tree_calc_sample.html',    'text': 'grid_tree_calc_sample'},{    'url': '../grid/grid_tree_sample.html',    'text': 'grid_tree_sample'},{    'url': '../grid/grid_tree_toppos_chart_sample.html',    'text': 'grid_tree_toppos_chart_sample'},{    'url': '../grid/grid_undo_redo_sample.html',    'text': 'grid_undo_redo_sample'}]   }]";
+        var data1 = "[ {'text': '고객/공통','icon': './images/SampleFramelayout_03.png','id': 'L1','children': []    },  {'text': '수신','icon': './images/SampleFramelayout_07.png','id': 'L2','children': [{    'url': '../screen_sample/deposite.html',    'text': '입금*'}, {    'url': '../screen_sample/withdraw.html',    'text': '출금*'}, {    'url': 'about:blank',    'text': '당좌/가계수표업무'}, {    'url': 'about:blank',    'text': '슬라이싱 조회 샘플'}, {    'url': 'about:blank',    'text': '고객기본정보조회'}, {    'url': 'about:blank',    'text': '통장증서/증명서발급업무'}, {    'url': 'about:blank',    'text': '승인신청/설정업무'}, {    'url': 'about:blank',    'text': '승인신청/승인관리'}, {    'url': 'about:blank',    'text': '지점업무조회'}, {    'url': 'about:blank',    'text': '외화예금'}, {    'url': 'about:blank',    'text': '본부어무'}, {    'url': 'about:blank',    'text': '금융채업무및주금납입업무'}, {    'url': 'about:blank',    'text': '주택청약및세금우대여부'}, {    'url': 'about:blank',    'text': '기준가격방식신탁업무'}, {    'url': 'about:blank',    'text': '공금예금업무'}, {    'url': 'about:blank',    'text': '수익증권업무'}]    }, {'text': '여신','icon': './images/SampleFramelayout_10.png','id': 'L3','children': [{    'url': '../screen_sample/loan.html',    'text': '대출실행'}]   }]";
+
+        function makeMenus(list) {
+            var json = list;
+            var combo_items = [];
+            var textReg = /^.*\//gm;
+            if (typeof(list) === "string") {
+                json = ixeb.util.parseJSON(json);
+            }
+            for (var i = 0; i < json.length; i++) {
+                var node = json[i];
+                if (node.children != undefined) {
+                    var children = node.children;
+                    for (var j = 0; j < children.length; j++) {
+                        var _url = children[j].url == "about:blank" ? " " : children[j].url;
+                        var text = _url.replace(textReg, "") + " - " + children[j].text;
+                        combo_items.push({
+                            "value": _url,
+                            "label": text
+                        });
+                    }
+                }
+            }
+            combo0.items = JSON.stringify(combo_items);
+            leftMenu.items = list;
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-11
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var id = location.search.substring(4);
+            if (id == "ixeb2") {
+                $(tabs0).css("left", "30px");
+                $(div2).css("left", "calc( 100% - 250px )");
+                $(button3).css("display", "none");
+                $(button4).css("display", "none");
+                $(button5).css("display", "none");
+                $(button6).css("display", "none");
+                $(button7).css("display", "none");
+                $(button8).css("display", "none");
+                makeMenus(data1);
+            } else if (id == "ixeb1") {
+                $(tabs0).css("left", "280px");
+                $(div2).css("left", "30px");
+                makeMenus(data);
+            } else {
+                leftMenu.items = "[]";
+                $(div5).find("i-button").css("display", "none");
+            }
+            
+            var timeText = timer.text.substring(0,timer.text.length-10);
+            var date = new Date();
+            timeText+= date.getFullYear()+'-'+(date.getMonth()+1)+'-'+(date.getDate());
+            timer.text = timeText;
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-06
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_leftMenu() {
+            //TODO:
+            var node = leftMenu.getClickMenuInfo();
+            var url = node.url;
+            var tabPage = [];
+            //수정함..
+            if (node.type == "content") {
+                var title = node.text;//+' <i-button onclick="removeTab()" class="tabCloseBtn fa fa-times"></i-button>';
+                var tabPage = [];
+                tabPage.push("<i-tabpage title='" + title + "'>");
+                tabPage.push('<div style="width:100%; height:100%;">');
+                tabPage.push('<div class="head-title" style=" border-bottom: 5px solid #707686;vertical-align: middle;">');
+                tabPage.push('<i-button style="border: none; width: 24px; height: 24px;" enableimage="./images/title-bullet-f.png"></i-button>');
+                tabPage.push('<i-text text="'+ node.parentLabel +'/ "></i-text>')
+                tabPage.push('<i-text text="&nbsp' + node.text + '" style="font-size: 23px; vertical-align: bottom;"></i-text>');
+                tabPage.push('<i-button style="border: none; width: 20px; height: 24px;" enableimage="./images/title-bookmark-f.png"></i-button><div  style="display: inline-block; float:right;"><i-button style="border: none; width: 20px; height: 24px;" enableimage="./images/title-phone-f.png"></i-button><i-button style="border: none; width: 20px; height: 24px;" enableimage="./images/title-print-f.png"></i-button></div></div>');
+                if (url != "" && url != undefined) {
+                    tabPage.push("<iframe style='height:100%; width:100%;' src =" + url + "></iframe>");
+                }
+                tabPage.push('</div></i-tabpage>');
+                tabs0.appendTabpage(tabPage.join(""));
+                var index = tabs0.getPageCount();
+                tabs0.setActiveTabpage(index - 1);
+                $(tabs0).find(".selected").css("overflow", "hidden");
+                text19.text = "<font style='color: gold; font-weight:bold;'>" + node.text + "페이지가 호출 되었습니다.</font>";
+            }
+        }
+
+        function setActiveMenu(text) {
+            var index = 0;
+            switch (text) {
+                case "수신":
+                    index = 1;
+                    break;
+                case "여신":
+                    index = 2;
+                    break;
+                case "카드":
+                    index = 3;
+                    break;
+                case "외환":
+                    index = 4;
+                    break;
+                case "전자금융":
+                    index = 5;
+                    break;
+                case "공동망":
+                    index = 6;
+                    break;
+                case "재무관리":
+                    index = 7;
+                    break;
+                case "sample":
+                    index = 8;
+                    break;
+            }
+            leftMenu.setActiveIndex(index);
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-06
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button8(obj) {
+            //TODO:
+            setActiveMenu(obj.text);
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-06
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button7(obj) {
+            //TODO:
+            setActiveMenu(obj.text);
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-06
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button6(obj) {
+            //TODO:
+            setActiveMenu(obj.text);
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-06
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button5(obj) {
+            //TODO:
+            setActiveMenu(obj.text);
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-06
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button4(obj) {
+            //TODO:
+            setActiveMenu(obj.text);
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-06
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button3(obj) {
+            //TODO:
+            setActiveMenu(obj.text);
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-06
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button2(obj) {
+            //TODO:
+            setActiveMenu(obj.text);
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-06
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button0(obj) {
+            //TODO:
+            setActiveMenu(obj.text);
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-06
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button1(obj) {
+            setActiveMenu(obj.text);
+        }
+         
+        // 입금화면 호출 
+        function createDeposite(node,data){
+			var url = node.url;
+        	url += '?items='+JSON.stringify({data:data,target:'edit1'});
+            var title = node.text+' <i-button onclick="removeTab()" class="tabCloseBtn fa fa-times"></i-button>';
+                var tabPage = [];
+                tabPage.push("<i-tabpage title='" + title + "'>");
+                tabPage.push('<div style="width:100%; height:100%;">');
+                tabPage.push('<div class="head-title" style=" border-bottom: 5px solid #707686;vertical-align: middle;">');
+                tabPage.push('<i-button style="border: none; width: 24px; height: 24px;" enableimage="./images/title-bullet-f.png"></i-button>');
+                tabPage.push('<i-text text="'+ node.parentLabel +'/ "></i-text>')
+                tabPage.push('<i-text text="&nbsp' + node.text + '" style="font-size: 23px; vertical-align: bottom;"></i-text>');
+                tabPage.push('<i-button style="border: none; width: 20px; height: 24px;" enableimage="./images/title-bookmark-f.png"></i-button><div  style="display: inline-block; float:right;"><i-button style="border: none; width: 20px; height: 24px;" enableimage="./images/title-phone-f.png"></i-button><i-button style="border: none; width: 20px; height: 24px;" enableimage="./images/title-print-f.png"></i-button></div></div>');
+                if (url != "" && url != undefined) {
+                    tabPage.push("<iframe style='height:100%; width:100%;' src =" + url + "></iframe>");
+                }
+                tabPage.push('</div></i-tabpage>');
+                tabs0.appendTabpage(tabPage.join(""));
+                var index = tabs0.getPageCount();
+                tabs0.setActiveTabpage(index - 1);
+                $(tabs0).find(".selected").css("overflow", "hidden");
+                text19.text = "<font style='color: gold; font-weight:bold;'>" + node.text + "페이지가 호출 되었습니다.</font>";
+            
+        }
+    </script>
+</head>
+
+<body id="index_2" data-uid="3" oninitscreen="onInitScreen_body();">
+    <div class="top-area" style="width: 1903px; height: 60px; position: absolute; top: 0px; left: 29px;" data-uid="17" id="div0">
+        <div class="user-state-area" style="width: 100%; height: 30px; position: absolute; top: -1px; left: 0px;" data-uid="18" id="div4">
+            <i-picture style="position: absolute; top: 2.77472px; left: 4.802px; width: 84px; height: 25px; background-image: url(&quot;./images/ixebLog_2.png&quot;); background-repeat: no-repeat;" data-uid="19" id="picture0" image="./images/ixebLog_2.png"></i-picture>
+            <i-picture style="position: absolute; top: 3.25408px; left: calc(100% - 215px ); width: 215px; height: 23px; background-image: url(&quot;./images/user_state.png&quot;); background-repeat: no-repeat;" data-uid="20" id="picture1"
+                image="./images/user_state.png"></i-picture>
+        </div>
+        <div class="top-menu" style="width: 100%; height: 30px; position: absolute; top: 29px; left: 0px;" data-uid="21" id="div5">
+            <i-combo style="top: -2px; left: -2px; margin-top: 5px; margin-left: 5px; height: 22px; position: absolute; width: 245px; z-index: 9999;" data-uid="22" id="combo0" dropdownstyle="dropdown" onkeydown="onkeydown_combo0();" displayType="label"></i-combo>
+            <i-button text="고객공통" style="position: absolute; top: 0px; left: 253px; height: 100%; border: none; margin-right: 15px; width: 90px; color: rgb(255, 255, 255); text-shadow: rgb(68, 68, 68) 0px 1px 1px; background-color: rgb(112, 118, 134); background-size: 100% 100%;"
+                data-uid="23" id="button0" onclick="onclick_button1(this);"></i-button>
+            <i-button text="수신" style="position: absolute; top: 0px; left: 348px; height: 100%; border: none; color: rgb(255, 255, 255); text-shadow: rgb(68, 68, 68) 0px 1px 1px; margin-right: 15px; width: 90px; background-color: rgb(112, 118, 134); background-size: 100% 100%;"
+                data-uid="24" id="button1" onclick="onclick_button0(this);"></i-button>
+            <i-button text="여신" style="position: absolute; top: 0px; left: 443px; height: 100%; border: none; color: rgb(255, 255, 255); text-shadow: rgb(68, 68, 68) 0px 1px 1px; margin-right: 15px; width: 90px; background-color: rgb(112, 118, 134); background-size: 100% 100%;"
+                data-uid="25" id="button2" onclick="onclick_button2(this);"></i-button>
+            <i-button text="카드" style="position: absolute; top: 0px; left: 538px; height: 100%; border: none; color: rgb(255, 255, 255); text-shadow: rgb(68, 68, 68) 0px 1px 1px; margin-right: 15px; width: 90px; background-color: rgb(112, 118, 134); background-size: 100% 100%;"
+                data-uid="26" id="button3" onclick="onclick_button3(this);"></i-button>
+            <i-button text="외환" style="position: absolute; top: 0px; left: 633px; height: 100%; border: none; color: rgb(255, 255, 255); text-shadow: rgb(68, 68, 68) 0px 1px 1px; margin-right: 15px; width: 90px; background-color: rgb(112, 118, 134); background-size: 100% 100%;"
+                data-uid="27" id="button4" onclick="onclick_button4(this);"></i-button>
+            <i-button text="전자금융" style="position: absolute; top: 0px; left: 724px; height: 100%; border: none; color: rgb(255, 255, 255); text-shadow: rgb(68, 68, 68) 0px 1px 1px; margin-right: 15px; width: 90px; background-color: rgb(112, 118, 134); background-size: 100% 100%;"
+                data-uid="28" id="button5" onclick="onclick_button5(this);"></i-button>
+            <i-button text="공동망" style="position: absolute; top: 0px; left: 819px; height: 100%; border: none; color: rgb(255, 255, 255); text-shadow: rgb(68, 68, 68) 0px 1px 1px; margin-right: 15px; width: 90px; background-color: rgb(112, 118, 134); background-size: 100% 100%;"
+                data-uid="29" id="button6" onclick="onclick_button6(this);"></i-button>
+            <i-button text="재무관리" style="position: absolute; top: 0px; left: 914px; height: 100%; border: none; color: rgb(255, 255, 255); text-shadow: rgb(68, 68, 68) 0px 1px 1px; margin-right: 15px; width: 90px; background-color: rgb(112, 118, 134); background-size: 100% 100%;"
+                data-uid="30" id="button7" onclick="onclick_button7(this);"></i-button>
+            <i-button text="sample" style="position: absolute; top: 0px; left: 1009px; height: 100%; border: none; color: rgb(255, 255, 255); text-shadow: rgb(68, 68, 68) 0px 1px 1px; margin-right: 15px; width: 90px; background-color: rgb(112, 118, 134); background-size: 100% 100%;"
+                data-uid="31" id="button8" onclick="onclick_button8(this);"></i-button>
+        </div>
+    </div>
+    <div class="left-area" style="width: 250px; height: 874px; position: absolute; top: 59px; left: 30px;" data-uid="32" id="div2">
+        <i-accordion style="width: 100%; height: 100%; position: absolute; top: 0px; left: 0px;" headertextcolor="#FFFFFF" headerbackcolor="#2E2E2E" contentbackcolor="#444444" contenttextcolor="#AFAFAF" data-uid="33" id="leftMenu" items="" onclick="onclick_leftMenu();"></i-accordion>
+    </div>
+    <i-tabs class="contents-area" style="width: 1613px; height: 874px; position: absolute; top: 59px; left: 280px;" data-uid="34" id="tabs0" titlescroll="true"> </i-tabs>
+    <!-- <i-button style="position: absolute;top: 69px;right: 65px;" text="현재 탭 닫기" onclick="removeTab();"></i-button> -->
+    <div class="footer" style="width: 100%; height: 25px; position: absolute; top: 1051px; left: 0px;" data-uid="35" id="div3">
+        <i-text text="<i class=&quot;fa fa-globe&quot; aria-hidden=&quot;true&quot;></i> &amp;nbsp; Online mode" style="position: absolute; top: 7.00512px; left: 20px; color: rgb(113, 205, 243); height: 12px;" data-uid="36" id="text0"></i-text>
+        <i-text text="<font style='color:#71CDF3'>ver</font>&amp;nbsp; 20161003-142731 D:0.004/ㅣ:1.562(s) |영문|&amp;nbsp;&amp;nbsp;&amp;nbsp;<font style='color:#71CDF3'>영업일자</font>2016-10-18" style="position: absolute; top: 6.50512px;left:calc(100% - 460px);"
+            data-uid="37" id="timer"></i-text>
+        <i-text text="" style="color: gold; font-weight: bolder;width: calc(100% - 750px);position: absolute; top: 6.5px; left: 282px;" data-uid="38" id="text19"></i-text>
+    </div>
+    <div class="tool-area" style="width: 30px; height: 933px; position: absolute; top: 0px; left: 0px;" data-uid="39" id="div1">
+        <i-text class="fa fa-calendar" style="color: rgb(255, 255, 255); position: absolute; top: 12px; left: 8px; width: 15px; height: 13px;" data-uid="40" id="text1"></i-text>
+        <i-text class="fa fa-envelope-o" style="color: rgb(255, 255, 255); position: absolute; top: 39px; left: 8px; width: 15px; height: 13px;" data-uid="41" id="text2"></i-text>
+        <i-text class="fa fa-wpforms" style="color: rgb(255, 255, 255); position: absolute; top: 66px; left: 8px; width: 15px; height: 13px;" data-uid="42" id="text3"></i-text>
+        <i-text class="fa fa-list-alt" style="color: rgb(255, 255, 255); position: absolute; top: 93px; left: 8px; width: 15px; height: 13px;" data-uid="43" id="text4"></i-text>
+        <i-text class="fa fa-user" style="color: rgb(255, 255, 255); position: absolute; top: 120px; left: 8px; width: 15px; height: 13px;" data-uid="44" id="text5"></i-text>
+        <i-text class="fa fa-sitemap" style="color: rgb(255, 255, 255); position: absolute; top: 147px; left: 8px; width: 15px; height: 13px;" data-uid="45" id="text6"></i-text>
+        <i-text class="fa fa-television" style="color: rgb(255, 255, 255); position: absolute; top: 174px; left: 8px; width: 15px; height: 13px;" data-uid="46" id="text7"></i-text>
+        <i-text class="fa fa-spinner" style="color: rgb(255, 255, 255); position: absolute; top: 201px; left: 8px; width: 15px; height: 13px;" data-uid="47" id="text8"></i-text>
+        <i-text class="fa fa-inbox" style="color: rgb(255, 255, 255); position: absolute; top: 228px; left: 8px; width: 15px; height: 13px;" data-uid="48" id="text9"></i-text>
+        <i-text class="fa fa-key" style="color: rgb(255, 255, 255); position: absolute; top: 255px; left: 8px; width: 15px; height: 13px;" data-uid="49" id="text10"></i-text>
+        <i-text class="fa fa-search" style="color: rgb(255, 255, 255); position: absolute; top: 282px; left: 8px; width: 15px; height: 13px;" data-uid="50" id="text11"></i-text>
+        <i-text class="fa fa-calculator" style="color: rgb(255, 255, 255); position: absolute; top: 309px; left: 8px; width: 15px; height: 13px;" data-uid="51" id="text12"></i-text>
+        <i-text class="fa fa-calendar-o" style="color: rgb(255, 255, 255); position: absolute; top: 336px; left: 8px; width: 15px; height: 13px;" data-uid="52" id="text13"></i-text>
+        <i-text class="fa fa-paste" style="color: rgb(255, 255, 255); position: absolute; top: 363px; left: 8px; width: 15px; height: 13px;" data-uid="53" id="text14"></i-text>
+        <i-text class="fa fa-usd" style="color: rgb(255, 255, 255); position: absolute; top: 390px; left: 8px; width: 15px; height: 13px;" data-uid="54" id="text15"></i-text>
+        <i-text class="fa fa-fax" style="color: rgb(255, 255, 255); position: absolute; top: 417px; left: 8px; width: 15px; height: 13px;" data-uid="55" id="text16"></i-text>
+        <i-text class="fa fa-edit" style="color: rgb(255, 255, 255); position: absolute; top: 444px; left: 8px; width: 15px; height: 13px;" data-uid="56" id="text17"></i-text>
+        <i-text class="fa fa-chain-broken" style="color: rgb(255, 255, 255); position: absolute; top: 471px; left: 8px; width: 15px; height: 13px;" data-uid="57" id="text18"></i-text>
+    </div>
+</body>
+
+</html>

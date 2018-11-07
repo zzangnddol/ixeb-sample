@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/12/27 14:55" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta name="created" content="2016/10/10 11:23" data-uid="9">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="10">
+    <title data-uid="11">grid_chart_total_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="13"></script>
+    <script type="text/javascript" data-uid="14">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-10
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            // 차트에 사용할 팔레트 데이터
+            grid0.getView().loadPalettes([{
+                name: "pal01",
+                fills: ["#ffe17F", "#97CBE7", "#074868", "#B0D67A", "#2C560A", "#DD9D82", "#578Ba7"]
+            }, {
+                name: "pal02",
+                fills: ["#ffcccccc", "#ffaaaaaa", "#ff999999", "#ff777777", "#ff555555", "#ff333333", "#ff111111"]
+            }, {
+                name: "pal03",
+                fills: ["#100000ff", "#200000ff", "#300000ff"]
+            }]);
+            // 차트 사용시 그리드에 필드셋을 설정해줘야함
+            var fields = [{
+                fieldName: "term"
+            }, {
+                fieldName: "ie",
+                dataType: "number",
+                header: "IE",
+            }, {
+                fieldName: "firefox",
+                dataType: "number",
+                header: "Firefox"
+            }, {
+                fieldName: "chrome",
+                dataType: "number",
+                header: "Chrome"
+            }, {
+                fieldName: "safari",
+                dataType: "number",
+                header: "Safari"
+            }, {
+                fieldName: "opera",
+                dataType: "number",
+                header: "Opera"
+            }, {
+                fieldName: "gecko",
+                dataType: "number",
+                header: "Gecko"
+            }, {
+                fieldName: "netscape",
+                dataType: "number",
+                header: "Netscape"
+            }];
+            grid0.setFields(fields);
+            var columns = [{
+                layout: "vertical",
+                width: 60,
+                childHeadersVisible: false,
+                childFootersVisible: false,
+                fieldName: "aaa",
+                header: "Browser",
+                columns: [{
+                    fieldName: "bbb",
+                    type: "label",
+                    styles: {
+                        textAlignment: "center",
+                        background: "#f8f8f8"
+                    },
+                    text: "IE"
+                }, {
+                    type: "label",
+                    blankWhenCopy: true,
+                    fieldName: "bbbbn",
+                    styles: {
+                        textAlignment: "center",
+                        background: "#f8f8f8"
+                    },
+                    text: "Firefox"
+                }, {
+                    type: "label",
+                    fieldName: "bbbc",
+                    blankWhenCopy: true,
+                    styles: {
+                        textAlignment: "center",
+                        background: "#f8f8f8"
+                    },
+                    text: "Chrome"
+                }, {
+                    type: "label",
+                    styles: {
+                        fieldName: "bbbbv",
+                        textAlignment: "center",
+                        background: "#f8f8f8"
+                    },
+                    text: "Safari"
+                }, {
+                    type: "label",
+                    styles: {
+                        fieldName: "bbab",
+                        textAlignment: "center",
+                        background: "#f8f8f8"
+                    },
+                    text: "Opera"
+                }, {
+                    type: "label",
+                    styles: {
+                        fieldName: "bdbb",
+                        textAlignment: "center",
+                        background: "#f8f8f8"
+                    },
+                    text: "Gecko"
+                }, {
+                    type: "label",
+                    styles: {
+                        fieldName: "bb1b",
+                        textAlignment: "center",
+                        background: "#f8f8f8"
+                    },
+                    text: "Netscape"
+                }]
+            }, {
+                layout: "vertical",
+                width: 60,
+                childHeadersVisible: false,
+                childFootersVisible: false,
+                fieldName: "aabbb",
+                header: "Share",
+                columns: [{
+                    fieldName: "ie",
+                    width: 50,
+                    styles: {
+                        textAlignment: "far",
+                        suffix: "%"
+                    },
+                    header: {
+                        text: "2000"
+                    }
+                }, {
+                    fieldName: "firefox",
+                    width: 50,
+                    blankWhenCopy: true,
+                    styles: {
+                        textAlignment: "far",
+                        suffix: "%"
+                    },
+                    header: {
+                        text: "2001"
+                    }
+                }, {
+                    fieldName: "chrome",
+                    width: 50,
+                    styles: {
+                        textAlignment: "far",
+                        suffix: "%"
+                    },
+                    header: {
+                        text: "2002"
+                    }
+                }, {
+                    fieldName: "safari",
+                    width: 50,
+                    styles: {
+                        textAlignment: "far",
+                        suffix: "%"
+                    },
+                    header: {
+                        text: "2003"
+                    }
+                }, {
+                    fieldName: "opera",
+                    width: 50,
+                    styles: {
+                        textAlignment: "far",
+                        suffix: "%"
+                    },
+                    header: {
+                        text: "2004"
+                    }
+                }, {
+                    fieldName: "gecko",
+                    width: 50,
+                    styles: {
+                        textAlignment: "far",
+                        suffix: "%"
+                    },
+                    header: {
+                        text: "2005"
+                    }
+                }, {
+                    fieldName: "netscape",
+                    width: 50,
+                    styles: {
+                        textAlignment: "far",
+                        suffix: "%"
+                    },
+                    header: {
+                        text: "2006"
+                    }
+                }]
+            }, {
+                width: 300,
+                layout: "vertical",
+                header: "Pie Chart",
+                childHeadersVisible: false,
+                fieldName: "bbaaaab",
+                childFootersVisible: false,
+                columns: [{
+                    fieldName: "term",
+                    styles: {
+                        background: "#555",
+                        color: "#fff",
+                        textAlignment: "center",
+                        prefix: "Desktop Browser Market Share - ",
+                        textWrap: "normal"
+                    }
+                }, {
+                    type: "chart",
+                    fieldNames: "ie..netscape",
+                    fillHeight: 1,
+                    /*fillWdith: 1,*/
+                    width: 300,
+                    chart: {
+                        type: "pie",
+                        series: {
+                            styles: {
+                                background: "p(pal01:index)"
+                            }
+                        }
+                    },
+                    styles: {
+                        paddingTop: 5,
+                        borderBottom: null
+                    }
+                }, {
+                    fieldNames: "ie..netscape",
+                    renderer: {
+                        type: "seriesLegend",
+                        displayCount: 4
+                    },
+                    styles: {
+                        shapeColors: "pal01",
+                        shapeSize: "80%",
+                        paddingBottom: 4
+                    }
+                }]
+            }, {
+                width: 300,
+                layout: "vertical",
+                header: "Bar Chart",
+                childHeadersVisible: false,
+                childFootersVisible: false,
+                columns: [{
+                    fieldName: "term",
+                    styles: {
+                        background: "#333",
+                        color: "#fff",
+                        textAlignment: "center",
+                        prefix: "Desktop Browser Market Share - ",
+                        textWrap: "normal"
+                    }
+                }, {
+                    type: "chart",
+                    fieldNames: "ie..netscape",
+                    fillHeight: 1,
+                    /*fillWdith: 1,*/
+                    width: 300,
+                    chart: {
+                        type: "bar",
+                        plotArea: {
+                            styles: {
+                                background: "#080088ff"
+                            }
+                        },
+                        yAxes: {
+                            reversed: true
+                        },
+                        xAxes: {
+                            lineVisible: false
+                        },
+                        series: {
+                            styles: {
+                                background: "p(pal02:index)"
+                            }
+                        },
+                        styles: {
+                            paddingRight: 5,
+                            paddingTop: 5,
+                            borderBottom: null
+                        }
+                    }
+                }, {
+                    fieldNames: "ie..netscape",
+                    fieldName: "bbbaaaa",
+                    renderer: {
+                        type: "seriesLegend",
+                        displayCount: 4
+                    },
+                    styles: {
+                        shapeColors: "pal02",
+                        shapeSize: "80%",
+                        paddingBottom: 4
+                    }
+                }]
+            }];
+            grid0.getView().setColumns(columns);
+            grid0.getView().setOptions({
+                display: {
+                    rowResizable: true,
+                    heightMeasurer: "fixed"
+                }
+            });
+            $.ajax({
+                url: 'grid_chart_total_sample.json',
+                success: function(ret) {
+                    grid0.setGridData(ret);
+                }
+            })
+        }
+    </script>
+</head>
+
+<body id="grid_chart_total_sample" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="Grid Chart Sample" style="width: 1010px; height: 760px; position: absolute; top: 8px; left: 8px;" data-uid="15" id="group0" class="group-panel">
+        <i-grid columnlastextend="true" style="width: 1000px; height: 720px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="16" id="grid0" rowheight="300" strippedpattern="false" checkbar="true" columncount="0" selecttype="single" samerowheight="false"></i-grid>
+    </i-group>
+</body>
+
+</html>

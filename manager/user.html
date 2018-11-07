@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/11/21 18:49">
+    <meta name="generator" content="iXebStudio 1.0.0.1172" data-uid="5">
+    <meta name="ixeb-studio:guide-hline" content="" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1024x705" data-uid="8">
+    <meta name="created" content="2016/11/03 17:32" data-uid="9">
+    <title data-uid="10">user</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="12"></script>
+    <style data-uid="13" id="style1">
+        #div2 {
+            height: calc(100% - 135px);
+        }
+        
+        #grid0 {
+            width: calc(100% - 20px);
+        }
+        /*
+        div[name="toolbar_center"] i-button {
+            background-color: '#ff00ee'!important;
+        }
+        */
+        
+        div>div>i-button {
+            /*
+            background-color: #2E4255;
+            color: #ffffff;
+            */
+        }
+    </style>
+    <script type="text/javascript" data-uid="14">
+        // onInitScreen_body
+        function onInitScreen_body() {
+            grid0.setColumnProperty(0, 'colWidth', 30);
+            grid0.setColumnProperty(1, 'colWidth', 40);
+            grid0.setColumnProperty(2, 'colWidth', 40);
+            grid0.setColumnProperty(3, 'colWidth', 40);
+            grid0.setColumnProperty(4, 'colWidth', 60);
+            grid0.setColumnProperty(5, 'colWidth', 40);
+            grid0.setColumnProperty(5, 'colType', 'button');
+            grid0.setColumnProperty(5, 'enableImage', './images/check.png');
+            grid0.setColumnProperty(5, 'disableImage', './images/warning.png');
+            grid0.setColumnProperty(6, 'showCalendarButton', true);
+            grid0.setColumnProperty(6, 'pattern', 'yyyy/MM/dd HH:mm');
+            grid0.setColumnProperty(6, 'colWidth', 80);
+            grid0.setColumnProperty(7, 'colWidth', 100);
+            grid0.setColumnProperty(7, 'showCalendarButton', true);
+            grid0.setColumnProperty(7, 'pattern', 'yyyy/MM/dd HH:mm');
+            grid0.setColumnProperty(8, 'colWidth', 30);
+            grid0.setColumnProperty(8, 'colType', 'button');
+            grid0.setColumnProperty(8, 'enableImage', './images/modify.png');
+            grid0.getView().body().setStyles({
+                borderBottom: '#e6e6e6'
+            });
+            grid0.getView().setStyles({
+                border: '#e6e6e6,1px,solid'
+            });
+            grid0.getColumns().forEach(function(column) {
+                column.styles().setTextAlignment('center');
+            });
+            onclick_btn_select0();
+        }
+        // 조회
+        function onclick_btn_select0() {
+            /*
+            $.ajax({
+                url: './data/user2.json',
+                success: function(ret) {
+                    var data = ret["ixebstudio"];
+                    for (var i = 0; i < data.length; i++) {
+                        data[i].unshift(i + 1);
+                    }
+                    grid0.setGridData(data);
+                    text7.text = '총 ' + grid0.getGridData().length + '건이 조회되었습니다.';
+                    grid0.getColumn(5).setRenderer({
+                        enabledExpression: 'row != 1 && row != 4'
+                    });
+                }
+            });
+            */
+            ixeb.comm.transaction({
+                "async": true,
+                "out": [dataset0.serviceId + '=>dataset0'],
+                "url": "http://localhost:8080/ixeb-manager/service.ixeb"
+            }).done(function(r) {
+                console.log("success");
+            }).fail(function(r) {
+                console.log("error", r);
+            }).always(function() {
+                console.log("always");
+            });
+        }
+        // 상세조회
+        function onclick_button1() {
+            var state = $('#div3').css('display');
+            if (state == 'none') {
+                $('#div3').show();
+                $('#picture0').hide();
+                $('#btn_total_search').hide();
+            } else {
+                $('#div3').hide();
+            }
+        }
+        // 엑셀저장
+        function onclick_btn_excelExport0() {
+            grid0.exportData("export.xlsx");
+        }
+        // 엑셀입력
+        function onclick_btn_excelImport0() {
+            grid0.importData();
+        }
+        // 인쇄
+        function onclick_btn_print0() {
+            alert("인쇄");
+        }
+        // 신규입력
+        function onclick_btn_add0() {
+            //window.parent.onclick_user_add();
+            var div = $(window.top.document).find('#div0');
+            div.append($('#div_hidden').children().clone());
+            div.css('display', 'block');
+            div.find('#button0').on('click', onclick_11111);
+        }
+        // 메인 취소 클릭시 
+        function onclick_11111() {
+            debugger;
+            //
+            //
+            //
+            var div = $(this).parent();
+            div.find('#div1');
+            div.children().remove();
+            div.css('display', 'none');
+        }
+        // 신규입력 리턴
+        function onclick_btn_add0_return() {
+            alert("onclick_btn_add0_return");
+        }
+        // 선택삭제
+        function onclick_btn_clear0() {
+            //dataset0.clear();
+            dataset0.deleteRow(grid0.getView().focusedRowIndex());
+            dataset0.setRowStatus(grid0.getView().focusedRowIndex(), 'D');
+            console.log(dataset0.getRowPosition() + " - " + dataset0.getRowStatus(dataset0.getRowPosition()));
+        }
+        // 저장
+        function onclick_btn_exec0() {
+            alert("저장");
+        }
+    </script>
+    <i-dataset data-uid="15" id="dataset0" serviceid="service_TBL_USER">
+        <header data-uid="16"> [ {"id": "USER_IDX","desc": "순번","object": "edit","type": "char","size": "256"}, {"id": "USER_ID","desc": "행번","object": "","type": "","size": ""}, {"id": "NAME","desc": "이름","object": "","type": "","size": ""}, {"id": "OFFICE_CODE","desc": "부서코드","object":
+            "","type": "","size": ""}, {"id": "IP","desc": "접속IP","object": "","type": "","size": ""}, {"id": "LOGIN","desc": "로그인유무","object": "","type": "","size": ""}, {"id": "LATELY_LOGIN","desc": "최근로그인 일시","object": "","type": "","size": ""}, {"id":"LOGOUT_DATE","desc":
+            "로그아웃 일시","object": "","type": "","size": ""}, {"id": "MODIFY","desc": "처리","object": "","type": "","size": ""} ] </header> <data data-uid="17">
+[]
+	</data>
+        <i-bind bindtype="recordset" target="grid0" data-uid="18"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="user" data-uid="3" oninitscreen="onInitScreen_body();">
+    <div style="width: 100%; height: 100%; top: 0px; left: 0px; position: relative; background: rgb(230, 230, 230);" data-uid="19" id="div0">
+        <i-text text="시스템 사용자 관리" style="position: absolute; top: 10px; left: 14px; font-size: 13pt; letter-spacing: 0.5px;" data-uid="20" id="text0"></i-text>
+        <div style="height: 60px; top: 40px; left: 14px; position: relative; width: calc(100% - 28px); background: rgb(255, 255, 255);" data-uid="21" id="div1">
+            <i-combo style="width: 77px; position: absolute; top: 19px; left: 43px; height: 22px; background: none; border: 0px;" data-uid="22" id="combo0" items="[{'label':'통합검색','value':'0'},{'label':'세부검색','value':'1'}]" value="0"></i-combo>
+            <i-edit style="width: 398px; position: absolute; top: 19px; left: 118px; height: 22px; border: 2px solid #aed136" data-uid="23" id="edit0"></i-edit>
+            <i-picture style="position: absolute; top: 20.5px; left: 518px; width: 22px; height: 22px; background-image: url('./images/bt.png'); background-repeat: no-repeat; cursor: pointer;" data-uid="24" id="picture0" image="./images/bt.png"
+                onclick="onclick_button1();"></i-picture>
+            <i-button id="btn_total_search" text="조회" onclick="onclick_btn_select0();" style="position: absolute; right: 12px; top: 10px; width: 58px; height: 40px; color: white; background: rgb(111, 206, 0); pointer-events: auto!important; cursor: pointer;"
+                data-uid="25" showfocusrect="true"></i-button>
+        </div>
+        <div style="width : calc(100% - 28px); position: absolute; top: 126px; left: 14px; background: rgb(255, 255, 255);" data-uid="26" id="div2">
+            <div style="width: 481px; height: 32px; position: absolute; top: 3px; right: 0px;" data-uid="27" id="div7">
+                <i-button id="btn_excelExport" text="엑셀저장" onclick="onclick_btn_excelExport0();" style="position: absolute; top: 0px; left: 7px; width: 71px; height: 29px; background-size: 100% 100%; cursor: pointer; background-color: #2E4255; color: #ffffff;"
+                    data-uid="28"></i-button>
+                <i-button id="btn_excelImport" text="엑셀입력" onclick="onclick_btn_excelImport0();" style="position: absolute; top: 0px; left: 83px; width: 71px; height: 29px; background-size: 100% 100%; cursor: pointer; background-color: #2E4255; color: #ffffff;"
+                    data-uid="29"></i-button>
+                <i-button id="btn_print0" text="인쇄" onclick="onclick_btn_print0();" style="position: absolute; top: 0px; left: 159px; width: 71px; height: 29px; background-size: 100% 100%; cursor: pointer; background-color: #2E4255; color: #ffffff;"
+                    data-uid="30"></i-button>
+                <i-button id="btn_add0" text="신규입력" onclick="onclick_btn_add0();" style="position: absolute; top: 0px; left: 244px; width: 71px; height: 29px; background-size: 100% 100%; cursor: pointer; background-color: #2E4255; color: #ffffff;"
+                    data-uid="31"></i-button>
+                <i-button id="btn_clear0" text="선택삭제" onclick="onclick_btn_clear0();" style="position: absolute; top: 0px; left: 320px; width: 71px; height: 29px; background-size: 100% 100%; cursor: pointer; background-color: #2E4255; color: #ffffff;"
+                    data-uid="32"></i-button>
+                <i-button id="btn_exec0" text="저장" onclick="onclick_btn_exec0();" style="position: absolute; top: 0px; left: 405px; width: 71px; height: 29px; background-size: 100% 100%; cursor: pointer; background-color: rgb(0, 17, 44); color: #ffffff;"
+                    data-uid="33"></i-button>
+            </div>
+            <i-text text="" style="position: absolute; top: 10px; left: 9px;" data-uid="34" id="text7"></i-text>
+            <i-grid id="grid0" style="position: absolute; width : calc( 100% - 10px); height: 369px; top: 37px; left: 5px; opacity: 0.99;" columnlastextend="true" rowautocount="false" statebar="true" columncount="0" columns="[
+                    {'fieldName':'USER_IDX','name':'순번','dataType':'edit','type':'char','size':'256'},
+                    {'fieldName':'USER_ID','name':'행번','dataType':'','type':'','size':''},
+                    {'fieldName':'NAME','name':'이름','dataType':'','type':'','size':''},
+                    {'fieldName':'OFFICE_CODE','name':'부서코드','dataType':'','type':'','size':''},
+                    {'fieldName':'IP','name':'접속IP','dataType':'','type':'','size':''},
+                    {'fieldName':'LOGIN','name':'로그인유무','dataType':'','type':'','size':''},
+                    {'fieldName':'LATELY_LOGIN','name':'최근로그인 일시','dataType':'','type':'','size':''},
+                    {'fieldName':'LOGOUT_DATE','name':'로그아웃 일시','dataType':'','type':'','size':''},
+                    {'fieldName':'MODIFY','name':'처리','dataType':'','type':'','size':''}
+                ]" griditem="[]" data-uid="35" colheadbackcolor="#A2A2A2" colheadtextcolor="#ffffff" datatextcolor="#222222" rowheight="24" usepage="true" pagingtype="number" rowheaderheight="24" selectbackcolor="#ECFFAB" selectbordercolor="#2AAAAF"
+                controltypeshow="true" pagepercount="14" checkbar="true"></i-grid>
+        </div>
+        <div id="div3" style="height: 70px; position: absolute; top: 100px; left: 14px; width: calc(100% - 28px); background: white; display: none" data-uid="36">
+            <div style="height: 63px; position: absolute; top: 0px; left: 5px; width : calc( 100% - 10px); background: rgb(230, 230, 230);" data-uid="37" id="div4">
+                <i-text text="행번" style="position: absolute; top: 8.5px; left: 80px;" data-uid="38" id="text1"></i-text>
+                <i-edit style="width: 100px; position: absolute; top: 5px; left: 111px; height: 22px;" data-uid="39" id="edit1"></i-edit>
+                <i-text text="이름" style="position: absolute; top: 8.5px; left: 272px;" data-uid="40" id="text2"></i-text>
+                <i-edit style="width: 85px; position: absolute; top: 5px; left: 303px; height: 22px;" data-uid="41" id="edit2"></i-edit>
+                <i-text text="부서코드" style="position: absolute; top: 8.5px; left: 467px;" data-uid="42" id="text3"></i-text>
+                <i-edit style="width: 85px; position: absolute; top: 5px; left: 521px; height: 22px;" data-uid="43" id="edit3"></i-edit>
+                <i-text text="접속IP" style="position: absolute; top: 8.5px; left: 657px;" data-uid="44" id="text4"></i-text>
+                <i-edit style="width: 175px; position: absolute; left: 701px; height: 22px; top: 5px;" data-uid="45" id="edit4"></i-edit>
+                <i-text text="로그인유무" style="position: absolute; top: 38.5px; left: 43px;" data-uid="46" id="text5"></i-text>
+                <i-switch style="position: absolute; left: 111px; top: 34px; width: 35px;" data-uid="47" id="switch0"></i-switch>
+                <i-text text="최근로그인 일시" style="position: absolute; top: 38.5px; left: 206px;" data-uid="48" id="text6"></i-text>
+                <i-edit style="width: 85px; position: absolute; left: 303px; height: 22px; top: 35px;" data-uid="49" id="edit5"></i-edit>
+                <i-text text="로그아웃 일시" style="position: absolute; top: 38.5px; left: 439px;" data-uid="50" id="text8"></i-text>
+                <i-edit style="width: 85px; position: absolute; left: 521px; height: 22px; top: 35px;" data-uid="51" id="edit6"></i-edit>
+                <i-button text="조회" id="btn_detail_search" onclick="onclick_btn_select0();" style="position: absolute; left: 917px; top: 11.5px; width: 58px; height: 40px; color: white; background: rgb(111, 206, 0);" data-uid="52" showfocusrect="true"></i-button>
+            </div>
+        </div>
+        <div id="div_hidden" style="display:none" data-uid="53">
+            <div style="width: 1024px; height: 43px; position: absolute; top: 0px; left: 0px; background: rgb(35, 35, 35);" data-uid="54" id="div1">
+                <i-picture style="position: absolute; top: 8px; left: 360px; width: 33px; height: 30px; background-image: url('./images/newUser.png'); background-repeat: no-repeat;" data-uid="55" id="picture2" image="./images/newUser.png"></i-picture>
+                <i-text text="신규 사용자 등록" style="position: absolute; top: 12px; left: 396px; color: white; font-size: 20px; letter-spacing: -1.5px;" data-uid="56" id="text2"></i-text>
+                <i-text text="시스템 사용자를 등록합니다." style="position: absolute; top: 18px; left: 535px; color: rgb(115, 134, 53); font-size: 11px;" data-uid="57" id="text3"></i-text>
+            </div>
+            <i-text text="행번" style="position: absolute; top: 63px; left: 93px; color: white;" data-uid="58" id="text4"></i-text>
+            <i-edit style="width: 92px; height: 28px; position: absolute; top: 55px; left: 128px;" data-uid="59" id="edit0"></i-edit>
+            <i-text text="이름" style="position: absolute; top: 63px; left: 315px; color: white;" data-uid="60" id="text5"></i-text>
+            <i-edit style="width: 66px; height: 28px; position: absolute; top: 55px; left: 346px;" data-uid="61" id="edit1"></i-edit>
+            <i-text text="패스워드" style="position: absolute; top: 63px; left: 519px; color: white;" data-uid="62" id="text12"></i-text>
+            <i-edit style="width: 121px; height: 28px; position: absolute; top: 55px; left: 575px;" data-uid="63" id="edit6"></i-edit>
+            <i-text text="부서코드" style="position: absolute; top: 96.5px; left: 68px; color: white; letter-spacing: -0.4px;" data-uid="64" id="text6"></i-text>
+            <i-edit style="width: 109px; height: 28px; position: absolute; top: 90px; left: 128px;" data-uid="65" id="edit2"></i-edit>
+            <i-text text="부서이름" style="position: absolute; top: 96.5px; left: 290px; color: white;" data-uid="66" id="text13"></i-text>
+            <i-edit style="width: 121px; height: 28px; position: absolute; top: 90px; left: 346px;" data-uid="67" id="edit7"></i-edit>
+            <!--
+            <i-text text="접속IP" style="position: absolute; top: 95px; left: 535px; color: white;" data-uid="67" id="text7"></i-text>
+            <i-edit style="width: 121px; height: 28px; position: absolute; top: 90px; left: 576px;" data-uid="68" id="edit4"></i-edit>
+            -->
+            <i-button text="취소" style="width: 73px; height: 37px; position: absolute; top: 128px; left: 454px; border: 0px; color: white; background-color: rgb(63, 155, 17);" data-uid="68" id="button0"></i-button>
+            <i-button text="신규등록" style="width: 73px; height: 37px; position: absolute; top: 128px; left: 533px; border: 0px; color: white; background-color: rgb(114, 206, 3);" data-uid="69" id="button34" onclick="onclick_button34();"></i-button>
+        </div>
+    </div>
+</body>
+
+</html>

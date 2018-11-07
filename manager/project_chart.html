@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="6">
+    <meta name="created" content="2016/11/07 11:00" data-uid="7">
+    <title data-uid="8">project_chart</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="9"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="10"></script>
+    <script type="text/javascript" data-uid="11">
+        /* dummyData */
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-11-07
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var parameter = document.location.href.split('?')[1];
+            var key = "";
+            if (parameter) {
+                key = decodeURI(parameter).split('=')[1].replace(/%22/g, '\'').replace(/%7B/g, '\{').replace(/%7D/g, '\}');
+            }
+            var me = this;
+            $.ajax({
+                url: './data/projectList.json',
+                success: function(ret) {
+                    if (typeof ret == 'string') {
+                        ret = JSON.parse(ret);
+                    }
+                    changeComboData(me.combo0, ret, key);
+                    if (typeof me.combo0.value != 'undefined' && me.combo0.value != '') {
+                        changeChartData();
+                    }
+                },
+                error: function() {}
+            });
+        }
+
+        function changeComboData(combo, data, key) {
+            var arrData = [];
+            for (var i = 0, len = data.data.length; i < len; i++) {
+                arrData.push({
+                    value: data.data[i].identifier,
+                    label: data.data[i].identifier
+                });
+            }
+            combo.setItems(arrData);
+            if (typeof key == 'string' && key != '') {
+                combo.value = key;
+            }
+        }
+
+        function changeChartData() {
+            // var dummyData = statistic_data[combo0.value];
+            var me = this;
+            $.ajax('./data/chartData.json', {
+                success: function(data) {
+                    if (typeof data == 'string') {
+                        data = JSON.parse(data);
+                    }
+                    var value = me.combo0.value;
+                    if (typeof data[value] != 'undefined') {
+                        me.chart0.setChartData(data[value]['chart0'].datasets);
+                        me.chart0.setChartColumn(data[value]['chart0'].labels);
+                        me.chart1.setChartData(data[value]['chart1'].datasets);
+                        me.chart1.setChartColumn(data[value]['chart1'].labels);
+                        me.changeGrid(data[value]);
+                    }
+                },
+                error: function() {
+                    alert('json failed');
+                }
+            })
+        }
+
+        function changeGrid(data) {
+            var me = this;
+            var chart0Columns = [],
+                chart0Datas = [],
+                chart1Columns = [],
+                chart1Datas = [];
+            var chart0Labels = data['chart0'].labels,
+                chart0Datasets = data['chart0'].datasets;
+            var chart1Labels = data['chart1'].labels,
+                chart1Datasets = data['chart1'].datasets;
+            for (var i = 0; i < chart0Labels.length; i++) {
+                chart0Columns.push({
+                    fieldName: chart0Labels[i],
+                    name: chart0Labels[i]
+                });
+            }
+            for (var i = 0; i < chart1Labels.length; i++) {
+                chart1Columns.push({
+                    fieldName: chart1Labels[i] + i,
+                    name: chart1Labels[i]
+                });
+            }
+            for (var i = 0; i < chart0Datasets.length; i++) {
+                chart0Datas.push(chart0Datasets[i].data);
+            }
+            for (var i = 0; i < chart1Datasets.length; i++) {
+                chart1Datas.push(chart1Datasets[i].data);
+            }
+            me.grid0.setColumns(chart0Columns);
+            me.grid1.setColumns(chart1Columns);
+            me.grid0.setGridData(chart0Datas);
+            me.grid1.setGridData(chart1Datas);
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-11-07
+         * @description : 컨트롤에서 포커스를 잃었을때 값이 변경했을 경우 발생하는 이벤트
+         * @return 
+         */
+        function onchange_combo0() {
+            //TODO:
+            changeChartData();
+        }
+    </script>
+</head>
+
+<body id="manager_chart" data-uid="3" oninitscreen="onInitScreen_body();" style="background-color: #e6e6e6;">
+    <h3 data-uid="12" style="position: relative; top: 12px; left: 10px; width: 306px; height: 13px;"> 계정 이력 통계</h3>
+    <i-barchart style="width: 490px; height: 259px; position: absolute; top: 38px; left: 8px; background-color: rgb(254, 254, 254);" data-uid="13" id="chart0" titletext="월별 커밋 내역" legendshow="true"></i-barchart>
+    <i-combo style="width: 230px; position: absolute; top: 8px; left: 785px; height: 22px;" data-uid="14" id="combo0" items="[{'label':'ixebstudio','value':'ixebstudio'},{'label':'ixeb-api','value':'ixeb-api'},{'label':'ixeb-framework','value':'ixeb-framework'},{'label':'ixeb-manager','value':'ixeb-manager'}]"
+        onchange="onchange_combo0();" value="ixebstudio"></i-combo>
+    <i-barchart style="width: 490px; height: 259px; position: absolute; top: 319px; left: 8px; background-color: rgb(254, 254, 254);" data-uid="15" id="chart1" titletext="저자별 커밋 내역" legendshow="true"></i-barchart>
+    <i-grid style="width: 505px; height: 259px; position: absolute; top: 38px; left: 510px; opacity: 0.99;" data-uid="16" id="grid0"></i-grid>
+    <i-grid style="width: 505px; height: 259px; position: absolute; top: 319px; left: 510px; opacity: 0.99;" data-uid="17" id="grid1"></i-grid>
+</body>
+
+</html>

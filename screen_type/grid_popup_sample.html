@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-vline" content="793,119," data-uid="5">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="6">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="7">
+    <meta name="created" content="2016/10/10 15:58" data-uid="8">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="9">
+    <title data-uid="10">grid_popup_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="12"></script>
+    <script type="text/javascript" data-uid="13">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-12
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var parameter = document.location.href.split('?')[1]
+            if (parameter) {
+                var items = decodeURI(parameter).split('=')[1].replace(/%22/g, '\'').replace(/%7B/g, '\{').replace(/%7D/g, '\}');
+                items = ixeb.util.parseJSON(items);
+                edit2.value = items[0];
+                edit3.value = items[8];
+                edit7.value = items[2];
+                edit5.value = items[5];
+                edit8.value = items[5];
+            }
+        }
+    </script>
+    <style data-uid="14">
+        td {
+            border: 1px solid #cecece!important;
+        }
+        
+        .group-panel .even {
+            background-color: #ffffff!important;
+        }
+    </style>
+</head>
+
+<body id="grid_popup_sample" data-uid="3" oninitscreen="onInitScreen_body();">
+    <div style="top: 8px; left: 8px; position: absolute; width: 795px; height: 40px; padding-left: 8px; padding-right: 8px;" data-uid="15" id="div0" class="search-panel">
+        <i-text text="프로젝트코드 / 명" style="position: absolute; top: 12px; left: 4px; color: rgb(113, 69, 41); font-weight: bold;" data-uid="16" id="text0"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 7px; left: 110px;" data-uid="17" id="edit0" required="required"></i-edit>
+        <i-button text="검색" style="position: absolute; top: 7px; left: 254px; width: 60px; height: 22px; background-size: 100% 100%;" data-uid="18" id="button0"></i-button>
+        <i-edit style="width: 303px; position: absolute; top: 7px; left: 318px; height: 22px;" data-uid="19" id="edit1"></i-edit>
+        <i-button text="등록" style="position: absolute; top: 7px; left: 715px; width: 70px; height: 22px; background-size: 100% 100%;" data-uid="20" id="button2"></i-button>
+    </div>
+    <i-group text="기본정보" style="width: 795px; height: 189px; position: absolute; top: 60px; left: 8.5px;" data-uid="21" id="group0" class="group-panel">
+        <i-button text="닫기" style="position: absolute; top: 128px; left: 361.5px; width: 70px; background-size: 100% 100%;" data-uid="22" id="button3"></i-button>
+        <i-text text="진행상태" style="width: 52px; position: absolute; top: 13.5px; left: 51.5px; height: 13px;" data-uid="23" id="text1"></i-text>
+        <i-text text="프로젝트" style="position: absolute; width: 54px; height: 14px; top: 37px; left: 49.5px;" data-uid="24" id="text2"></i-text>
+        <i-text text="하도급공사명" style="position: absolute; top: 61.5px; left: 28.5px;" data-uid="25" id="text3"></i-text>
+        <i-text text="실행금액" style="position: absolute; top: 85.5px; left: 53.5px;" data-uid="26" id="text4"></i-text>
+        <i-edit style="width: 245px; position: absolute; top: 9px; left: 108.5px; height: 22px;" data-uid="27" id="edit2" value="작성중"></i-edit>
+        <i-edit style="width: 245px; position: absolute; top: 33px; left: 108.5px; height: 22px;" data-uid="28" id="edit3" value="테마프로젝트"></i-edit>
+        <i-edit style="width: 245px; position: absolute; top: 57px; left: 108.5px; height: 22px;" data-uid="29" id="edit4" required="required"></i-edit>
+        <i-edit style="width: 230px; position: absolute; top: 81px; left: 108.5px; height: 22px;" data-uid="30" id="edit5" value="1,234,567,890"></i-edit>
+        <i-text text="원" style="position: absolute; width: 12px; height: 14px; top: 85px; left: 341.5px;" data-uid="31" id="text5"></i-text>
+        <i-text text="반송사유" style="position: absolute; top: 14px; left: 418.5px;" data-uid="32" id="text6"></i-text>
+        <i-text text="발주번호" style="position: absolute; top: 37px; left: 418.5px;" data-uid="33" id="text7"></i-text>
+        <i-text text="도주금액" style="position: absolute; top: 61.5px; left: 418.5px;" data-uid="34" id="text8"></i-text>
+        <i-text text="발주지분율" style="position: absolute; top: 85.5px; left: 406.5px;" data-uid="35" id="text9"></i-text>
+        <i-edit style="width: 303px; position: absolute; top: 9px; left: 477.5px; height: 22px;" data-uid="36" id="edit6" value="내역 재검토 중 입니다."></i-edit>
+        <i-edit style="width: 303px; position: absolute; top: 33px; left: 477.5px; height: 22px;" data-uid="37" id="edit7" value="2016-10-10-25"></i-edit>
+        <i-edit style="width: 284px; position: absolute; top: 57px; left: 477.5px; height: 22px;" data-uid="38" id="edit8" value="1,234,567,890"></i-edit>
+        <i-edit style="width: 42px; position: absolute; top: 81px; left: 477.5px; height: 22px;" data-uid="39" id="edit9" value="59.8"></i-edit>
+        <i-text text="원" style="position: absolute; top: 61.5px; left: 767.5px;" data-uid="40" id="text10"></i-text>
+        <i-text text="%" style="position: absolute; top: 85.5px; left: 526.5px;" data-uid="41" id="text11"></i-text>
+    </i-group>
+    <i-button text="저장" style="position: absolute; top: 66px; left: 724px; width: 70px; background-size: 100% 100%;" data-uid="42" id="button1" class="group-btn"></i-button>
+</body>
+
+</html>

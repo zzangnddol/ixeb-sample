@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1024x705" data-uid="6">
+    <meta name="created" content="2016/11/14 21:43" data-uid="7">
+    <title data-uid="8">application_storage</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="9"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="10"></script>
+    <style data-uid="11">
+        html * {
+            box-shadow: none!important;
+        }
+        
+        #div1 {
+            left: 14px!important;
+            top: 40px!important;
+            width: calc(100% - 28px)!important;
+            height: calc(100% - 49px)!important;
+        }
+        
+        #grid0 {
+            width: calc(100% - 20px);
+        }
+        
+        #button0 {
+            border: 0px!important;
+        }
+        
+        div>div>i-button {
+            background-color: rgb(46, 66, 85);
+            color: #ffffff;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript" data-uid="12">
+        // onInitScreen_body
+        function onInitScreen_body() {
+            debugger;
+            var parameter = document.location.href.split('?')[1];
+            var key = "";
+            if (parameter) {
+                key = decodeURI(parameter).split('=')[1].replace(/%22/g, '\'').replace(/%7B/g, '\{').replace(/%7D/g, '\}');
+            }
+            onclick_btn_select0();
+        }
+        // 조회
+        function onclick_btn_select0() {
+            //*
+            $.ajax({
+                url: './data/application_storage.json',
+                success: function(ret) {
+                    var data = ret["grio0"];
+                    grid0.setGridData(data);
+                }
+            });
+            //*/
+        }
+    </script>
+    <i-dataset data-uid="13" id="dataset0">
+        <header data-uid="14"> [ {"id": "NAME","desc": "이름","object": "","type": "","size": ""}, {"id": "SIZE","desc": "크기","object": "","type": "","size": ""}, {"id": "DISTRIBUTION_DATE","desc": "배포일","object": "","type": "","size": ""}, {"id": "CREATER","desc": "저자","object":
+            "","type": "","size": ""}, {"id": "COMMAND","desc": "command","object": "","type": "","size": ""} ] </header> <data data-uid="15">
+[]
+	    </data>
+        <i-bind bindtype="recordset" target="grid0" data-uid="16"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="user" data-uid="3" oninitscreen="onInitScreen_body();">
+    <div style="width: 100%; height: 100%; top: 0px; left: 0px; position: relative; background: rgb(230, 230, 230);" data-uid="17" id="div0">
+        <i-text text="애플리케이션 저장소" style="position: absolute; top: 10px; left: 14px; font-size: 13pt; letter-spacing: 0.5px;" data-uid="18" id="text0"></i-text>
+        <div style="height: 60px; top: 40px; left: 14px; position: relative; width: calc(100% - 28px); background: rgb(255, 255, 255);" data-uid="19" id="div1">
+            <i-combo style="width: 140px; height: 30px; position: absolute; top: 13px; left: 5px;" data-uid="20" id="combo0" items="[{'label':'application','value':'0'}]"></i-combo>
+            <i-text text=">" style="position: absolute; top: 24px; left: 158px;" data-uid="21" id="text1"></i-text>
+            <i-text text="directory" style="position: absolute; top: 20px; left: 175px; font-size: 19px; color: red;" data-uid="22" id="text2"></i-text>
+            <i-text text=">" style="position: absolute; top: 24px; left: 258px;" data-uid="23" id="text3"></i-text>
+            <i-text text="subdirectory" style="position: absolute; top: 20px; left: 274px; font-size: 19px; color: red;" data-uid="24" id="text4"></i-text>
+            <i-grid id="grid0" style="position: absolute; width : calc( 100% - 10px); height: 475px; top: 55px; left: 5px; opacity: 0.99;" rowheight="22" columnlastextend="true" rowautocount="true" statebar="true" columncount="0" columns="[
+            {'fieldName':'NAME','name':'이름','dataType':'','type':'','size':''},
+            {'fieldName':'SIZE','name':'크기','dataType':'','type':'','size':''},
+            {'fieldName':'DISTRIBUTION_DATE','name':'배포일','dataType':'','type':'','size':''},
+            {'fieldName':'CREATERS','name':'저자','dataType':'','type':'','size':''},
+            {'fieldName':'COMMAND','name':'command','dataType':'','type':'','size':''}]" griditem="[]" data-uid="25" selectbackcolor="a8a800" colheadbackcolor="#A2A2A2" colheadtextcolor="#ffffff" strippedcolor="#EEF1F5"></i-grid>
+            <div style="width: calc(100% - 10px); height: 100px; position: absolute; top: 530px; left: 5px;" data-uid="26" id="div3">
+                <i-text text="파일 : " style="position: absolute; top: 11px; left: 15px; font-size: 18px;" data-uid="27" id="text5"></i-text>
+                <i-edit style="width: 155px; position: absolute; top: 3px; left: 150px;" data-uid="28" id="edit0"></i-edit>
+                <i-text text="Directory : " style="position: absolute; top: 37.5px; left: 15px; font-size: 18px;" data-uid="29" id="text6"></i-text>
+                <i-edit style="width: 155px; position: absolute; top: 32px; left: 150px;" data-uid="30" id="edit1"></i-edit>
+                <i-text text="설        명 : " style="position: absolute; top: 69.5px; left: 15px; font-size: 18px;" data-uid="31" id="text7"></i-text>
+                <i-edit style="width: 493px; height: 33px; position: absolute; top: 60px; left: 150px;" data-uid="32" id="edit2"></i-edit>
+                <i-button text="배포" style="position: absolute; width: 130px; height: 30px; top: 58px; left: 835px; background-size: 100% 100%; color: white; background: rgb(111, 206, 0);" data-uid="33" id="button0"></i-button>
+            </div>
+        </div>
+        <div style="width: 97.8091%; position: absolute; top: 531px; left: 14px; height: 482px; background: rgb(255, 255, 255); display: none;" data-uid="34" id="div2"> </div>
+    </div>
+</body>
+
+</html>

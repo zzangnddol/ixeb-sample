@@ -1,0 +1,42 @@
+ i-tabs>div {
+    border: 1px solid transparent;
+    background: transparent;
+}
+
+i-tabs>.top .tabpages>div {
+    border: 1px solid #72757A;
+}
+
+i-tabs .tabbuttons>div {
+    border-color: #ACB1B5;
+    background: #E1E4E9;
+    color: #292D2E;
+    margin-right: 0px;
+    border-bottom: 1px solid #72757A;
+}
+
+i-tabs div.tabpages>div {
+    border-top: 1px solid #273751;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+}
+
+i-tabs>.top .tabbuttons div.tab-button-wrapper.selected {
+    border-color: #7E8DB1;
+    border-bottom: 1px solid #72757A;
+    color: #FFFFFF;
+    background: #788DB8;
+    box-shadow: none;
+    font-weight: bold;
+}
+
+i-tabs.mouseover .top .tabbuttons div.tab-button-wrapper:hover {
+    border-top-color: #7E8DB1;
+    border-left-color: #7E8DB1;
+    border-right-color: #7E8DB1;
+}
+
+i-maskedit, i-edit, i-combo, i-radio,i-fromtocalendar .container {
+    border-radius: 0px!important;
+}

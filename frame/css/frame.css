@@ -1,0 +1,56 @@
+body {
+	min-width: 1132px;
+}
+#login-panel i-maskedit textarea{
+	text-security:disc;
+    -webkit-text-security:disc;
+    -mox-text-security:disc;
+}
+/*i-tabs > .top .tabbuttons.scrolled {
+	width: calc(100% - 165px);
+}*/
+.head-title {
+	padding: 10px 5px 15px;
+    border-bottom: 5px solid #707686;
+}
+.head-title i-button{
+	margin:0px 5px;
+}
+.top-area {
+	width: calc( 100% - 30px)!important;
+	min-width: 1114px;
+}
+.left-area {
+	height: calc( 100% - 84px )!important;
+	background: #444444;
+}
+.tool-area {
+	height: calc( 100% - 25px)!important;
+	background:#15171B;
+}
+.tool-area i-text{
+	color: #B2B2B2!important;
+}
+.top-menu {
+	background-color: #707686;
+}
+.contents-area {
+	background-color: #444444;
+	min-width: 863px;
+	width: calc( 100% - 280px)!important;
+	height: calc( 100% - 84px )!important;
+}
+.contents-area .tabpages {
+	background-image: url(../images/ixebLogo.png);
+    background-repeat: no-repeat;
+    background-position: 100% 98%;
+}
+.footer {
+	top:calc( 100% - 25px )!important;
+	background: #353535;
+	min-width: 1143px;
+	width: 100%!important;
+}
+.user-state-area {
+	background-color: #444444;
+}

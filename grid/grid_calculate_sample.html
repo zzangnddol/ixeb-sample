@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2017/03/13 10:00" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1920x1080" data-uid="8">
+    <meta name="created" content="2016/10/03 16:18" data-uid="9">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="10">
+    <title data-uid="11">calcul_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="13"></script>
+    <script type="text/javascript" data-uid="14">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-03
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var data = [
+                ['RY-10CBD', 10, 2121000, 2424000, 11000000, 10],
+                ['RY-10CBC', 11, 2230000, 2224000, 21000000, 2500000],
+                ['RX-11DBD', 10, 4221000, 14440, 22000000, 25000400],
+                ['RZ-10ZBD', 13, 2121103, 3424010, 21005000, 2520000],
+                ['RA-1DCBD', 12, 3123000, 224001, 31000000, 2502000],
+                ['R0-11C5D', 13, 11000, 5424000, 31000000, 2500030],
+                ['R1-102BD', 11, 21000, 6424000, 41000000, 2500050],
+                ['R1-11CBD', 10, 121000, 1424000, 41000000, 2500500]
+            ];
+            grid0.setGridData(data);
+        }
+    </script>
+</head>
+
+<body id="calcul_sample" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="Calculate Sample" style="width: 1265px; height: 367px; position: absolute; top: 8px; left: 8px;" data-uid="15" id="group0" class="group-panel">
+        <i-grid columnlastextend="true" style="width: 1248px; height: 320px; position: absolute; top: 8px; left: 8px; opacity: 0.99;" data-uid="16" id="grid0" rowheaderheight="25" columns="[
+            {
+                fieldName: 'no',
+                name: '모델번호',
+                width: 100
+            }, {
+                fieldName: 'calculate',
+                name: '용량',
+                type: 'number',
+                width: 60
+            }, {
+                fieldName: 'price',
+                name: '출하가',
+                type: 'number',
+                width: 100
+            }, {
+                fieldName: 'sales_price',
+                name: '판매가',
+                type: 'number',
+                width: 100
+            }, 
+            {   
+                fieldName: 'cash_price',
+                name: '현금구입가',
+                type: 'number',
+                width: 200
+            },
+            {   
+                fieldName: 'cash_divide',
+                name: '할부구입가',
+                type: 'number',
+                width: 180
+            }
+        ]" sumrowcolor="#bdf2ff" rowcount="3" sumrowshow="min" sumrowtitle="최소:  " sumformat="#,##0"></i-grid>
+    </i-group>
+</body>
+
+</html>

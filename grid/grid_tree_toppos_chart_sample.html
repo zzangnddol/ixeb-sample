@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/12/05 19:06">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="5">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="6">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="7">
+    <meta name="created" content="2016/10/10 14:28" data-uid="8">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="9">
+    <title data-uid="10">grid_tree_toppos_chart_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="12"></script>
+    <script type="text/javascript" data-uid="13">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-10
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var fields = [{
+                fieldName: "icon"
+            }, {
+                fieldName: "loan_number"
+            }, {
+                fieldName: "country"
+            }, {
+                fieldName: "interest_rate",
+                dataType: "number"
+            }, {
+                fieldName: "currency"
+            }, {
+                fieldName: "project_id"
+            }, {
+                fieldName: "original_amount",
+                dataType: "number"
+            }, {
+                fieldName: "cancelled_amount",
+                dataType: "number"
+            }, {
+                fieldName: "disbursed_amount",
+                dataType: "number"
+            }, {
+                fieldName: "repaid_amount",
+                dataType: "number"
+            }, {
+                fieldName: "sold_amount",
+                dataType: "number"
+            }, {
+                fieldName: "first_date",
+                dataType: "datetime",
+                datetimeFormat: "MM/dd/yyyy"
+            }, {
+                fieldName: "last_date",
+                dataType: "datetime",
+                datetimeFormat: "MM/dd/yyyy"
+            }];
+            treegrid0.setFields(fields);
+            var columns = [{
+                "name": "LoanNumber",
+                "fieldName": "loan_number",
+                "width": "110",
+                "styles": {
+                    textAlignment: "near"
+                },
+                "header": {
+                    "text": "대출번호"
+                }
+            }, {
+                "name": "Country",
+                "fieldName": "country",
+                "width": "70",
+                "styles": {},
+                "header": {
+                    "text": "국가"
+                }
+            }, {
+                "name": "InterestRate",
+                "fieldName": "interest_rate",
+                "width": "55",
+                "styles": {
+                    "textAlignment": "far"
+                },
+                "header": {
+                    "text": "이율"
+                },
+                "footer": {
+                    "expression": "avg",
+                    "styles": {
+                        "prefix": "평균: ",
+                        "numberFormat": "#,##0.00"
+                    }
+                }
+            }, {
+                "name": "Currency",
+                "fieldName": "currency",
+                "width": "40",
+                "styles": {
+                    "textAlignment": "center"
+                },
+                "header": {
+                    "text": "통화"
+                }
+            }, {
+                "name": "ProjectID",
+                "fieldName": "project_id",
+                "width": "70",
+                "styles": {
+                    "textAlignment": "center"
+                },
+                "header": {
+                    "text": "프로젝트 ID"
+                },
+                "footer": {
+                    "text": "합계",
+                    "styles": {
+                        "textAlignment": "far"
+                    }
+                }
+            }, {
+                "name": "OriginalAmount",
+                "fieldName": "original_amount",
+                "width": 80,
+                "styles": {
+                    "textAlignment": "far"
+                },
+                "header": {
+                    "text": "원금"
+                },
+                "footer": {
+                    "expression": "sum",
+                    "styles": {
+                        "prefix": "$",
+                        "numberFormat": "#,##0",
+                        "background": "#777",
+                        "color": "#fff",
+                        "borderTop": "#ddd"
+                    }
+                }
+            }, {
+                "name": "DisbursedAmount",
+                "fieldName": "disbursed_amount",
+                "width": 80,
+                "styles": {
+                    "textAlignment": "far"
+                },
+                "header": {
+                    "text": "지출금액"
+                },
+                "footer": {
+                    "expression": "varp",
+                    "text": "분산",
+                    "styles": {
+                        "prefix": "분산=>$",
+                        "numberFormat": "#,##0"
+                    }
+                }
+            }, {
+                "name": "FirstDate",
+                "fieldName": "first_date",
+                "width": "90",
+                "styles": {
+                    datetimeFormat: "yyyy-MM-dd",
+                    textAlignment: "center"
+                },
+                "header": {
+                    "text": "첫번째 상환"
+                }
+            }, {
+                "name": "LastDate",
+                "fieldName": "last_date",
+                "width": "90",
+                "styles": {
+                    datetimeFormat: "yyyy-MM-dd",
+                    textAlignment: "center"
+                },
+                "header": {
+                    "text": "마지막 상환"
+                }
+            }];
+            treegrid0.getView().setColumns(columns);
+            $.ajax({
+                url: 'grid_tree_chart_sample.json',
+                dataType: 'text',
+                success: function(ret) {
+                    treegrid0.setJsonData(ret, {
+                        currenty: true,
+                        rows: "",
+                        childRows: "rows"
+                    });
+                }
+            });
+            treegrid0.getView().registerImageList({
+                name: "images01",
+                rootUrl: "../images/",
+                items: ["at.png", "be.png", "br.png", "de.png", "dk.png", "et.png", "fi.png", "fr.png", "it.png", "jp.png"]
+            });
+            treegrid0.getView().setOptions({
+                display: {},
+                edit: {
+                    insertable: true
+                },
+                header: {
+                    height: 30
+                },
+                tree: {
+                    expanderWithCellStyles: true,
+                    iconField: 'icon',
+                    iconList: "images01",
+                    checkBoxVisible: true,
+                    headerItems: [{
+                        type: "chart",
+                        displayCallback: function(row) {
+                            return row.level() == 1;
+                        },
+                        minHeight: 150,
+                        styles: {
+                            padding: 4
+                        },
+                        chart: {
+                            type: "column",
+                            legend: {
+                                visible: true,
+                                position: "right",
+                                marginLeft: 10,
+                            },
+                            plotArea: {
+                                styles: {
+                                    background: "#0800ffff"
+                                }
+                            },
+                            xAxes: {
+                                padding: 0.1,
+                                styles: {
+                                    line: "#333"
+                                },
+                                tickStyles: {
+                                    line: "#333"
+                                }
+                            },
+                            yAxes: {
+                                indicators: [{
+                                    type: "line",
+                                    front: true,
+                                    series: "serFemale",
+                                    value: "avg",
+                                    label: "Average:${value}",
+                                    styles: {
+                                        line: "#600000ff,1px,dotted",
+                                        color: "#e00000ff",
+                                        fontSize: 10,
+                                        fontBold: true,
+                                        textAlignment: "far",
+                                        numberFormat: "#,##0"
+                                    }
+                                }, {
+                                    type: "line",
+                                    front: true,
+                                    series: "serMale",
+                                    value: "avg",
+                                    label: "Average:${value}",
+                                    styles: {
+                                        line: "#80ff0000,1px,dashed",
+                                        color: "#e0800000",
+                                        fontSize: 10,
+                                        fontBold: true,
+                                        textAlignment: "near",
+                                        numberFormat: "#,##0"
+                                    }
+                                }]
+                            },
+                            series: [{
+                                name: "serCountry",
+                                caption: "Country",
+                                labelField: "country",
+                                valueField: "interest_rate",
+                                summaryMode: "aggregate",
+                                labelLocation: "none",
+                                styles: {
+                                    background: "#AFD8F8"
+                                }
+                            }]
+                        }
+                    }]
+                }
+            });
+        }
+    </script>
+</head>
+
+<body id="grid_tree_toppos_chart_sample" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="Tree Grid Chart Sample" style="width: 1010px;; height: 360px; position: absolute; top: 8px; left: 8px;" data-uid="14" id="group0" class="group-panel">
+        <i-treegrid treelinecolor="#CCCCCC" columns="[{'fieldName':'dsColumnName', 'name':' '}]" style="width: 1000px; height: 320px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="15" id="treegrid0"></i-treegrid>
+    </i-group>
+</body>
+
+</html>

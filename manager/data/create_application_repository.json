@@ -1,0 +1,26 @@
+﻿{
+	"grid0" : [
+		["NAME0", "SIZE0", "EMPTY0"],
+		["NAME1", "SIZE1", "EMPTY1"],
+		["NAME2", "SIZE2", "EMPTY2"],
+		["NAME3", "SIZE3", "EMPTY3"],
+		["NAME4", "SIZE4", "EMPTY4"],
+		["NAME5", "SIZE5", "EMPTY5"],
+		["NAME6", "SIZE6", "EMPTY6"],
+		["NAME7", "SIZE7", "EMPTY7"],
+		["NAME8", "SIZE8", "EMPTY8"],
+		["NAME9", "SIZE9", "EMPTY9"]
+	],
+      "grid1" : [
+		["path0", "Display name0", "status0", "command0"],
+        ["path1", "Display name1", "status1", "command1"],
+		["path2", "Display name2", "status2", "command2"],
+		["path3", "Display name3", "status3", "command3"],
+		["path4", "Display name4", "status4", "command4"],
+		["path5", "Display name5", "status5", "command5"],
+		["path6", "Display name6", "status6", "command6"],
+		["path7", "Display name7", "status7", "command7"],
+		["path8", "Display name8", "status8", "command8"],
+		["path9", "Display name9", "status9", "command9"]
+	]
+}    

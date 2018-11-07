@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/12/05 19:11">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="5">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="6">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="7">
+    <meta name="created" content="2016/10/11 09:59" data-uid="8">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="9">
+    <title data-uid="10">grid_tree_calc_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="12"></script>
+    <script type="text/javascript" data-uid="13">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-11
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var fields = [{
+                fieldName: "icon"
+            }, {
+                fieldName: "loan_number"
+            }, {
+                fieldName: "country"
+            }, {
+                fieldName: "interest_rate",
+                dataType: "number"
+            }, {
+                fieldName: "currency"
+            }, {
+                fieldName: "project_id"
+            }, {
+                fieldName: "original_amount",
+                dataType: "number"
+            }, {
+                fieldName: "cancelled_amount",
+                dataType: "number"
+            }, {
+                fieldName: "disbursed_amount",
+                dataType: "number"
+            }, {
+                fieldName: "first_date",
+                dataType: "datetime",
+                datetimeFormat: "MM/dd/yyyy"
+            }, {
+                fieldName: "last_date",
+                dataType: "datetime",
+                datetimeFormat: "MM/dd/yyyy"
+            }];
+            var strings = {
+                'LoanNumber': '대출번호',
+                'Country': '국가',
+                'InterestRate': '이율',
+                'Average': '평균',
+                'Sum': '합계',
+                'Accumulate': '누적합계',
+                'Currency': '통화',
+                'ProjectID': '프로젝트 ID',
+                'OriginalAmount': '원금',
+                'CancelledAmount': '취소금액',
+                'DisbursedAmount': '지출금액',
+                'FirstDate': '최초 상환일',
+                'LastDate': '마지막 상환일'
+            }
+            treegrid0.setFields(fields);
+            var columns = [{
+                "name": "LoanNumber",
+                "fieldName": "loan_number",
+                "width": "160",
+                "styles": {
+                    textAlignment: "near"
+                },
+                "header": {
+                    "text": strings["LoanNumber"]
+                }
+            }, {
+                "name": "Country",
+                "fieldName": "country",
+                "width": "120",
+                "styles": {},
+                "header": {
+                    "text": strings["Country"]
+                }
+            }, {
+                "name": "InterestRate",
+                "fieldName": "interest_rate",
+                "width": "65",
+                "styles": {
+                    "textAlignment": "far"
+                },
+                "header": {
+                    "text": strings["InterestRate"]
+                },
+                "footer": {
+                    "expression": "avg",
+                    "styles": {
+                        "prefix": strings["Average"] + ": ",
+                        "numberFormat": "#,##0.00"
+                    }
+                },
+                "groupFooter": {
+                    "expression": "avg",
+                    "styles": {
+                        "numberFormat": "#,##0.00",
+                        "fontBold": true
+                    }
+                }
+            }, {
+                "name": "Currency",
+                "fieldName": "currency",
+                "width": "90",
+                "styles": {
+                    "textAlignment": "center"
+                },
+                "header": {
+                    "text": strings["Currency"]
+                }
+            }, {
+                "name": "ProjectID",
+                "fieldName": "project_id",
+                "width": "70",
+                "styles": {
+                    "textAlignment": "center"
+                },
+                "header": {
+                    "text": strings["ProjectID"]
+                },
+                "footer": {
+                    "text": strings["Sum"],
+                    "styles": {
+                        "textAlignment": "far"
+                    }
+                },
+                "groupFooter": {
+                    "text": strings['Accumulate'],
+                    "styles": {
+                        "suffix": " : ",
+                        "fontBold": true
+                    }
+                }
+            }, {
+                "name": "OriginalAmount",
+                "fieldName": "original_amount",
+                "width": 110,
+                "styles": {
+                    "textAlignment": "far"
+                },
+                "header": {
+                    "text": strings["OriginalAmount"]
+                },
+                "footer": {
+                    "expression": "sum",
+                    "styles": {
+                        "prefix": "$",
+                        "numberFormat": "#,##0",
+                        "background": "#777",
+                        "color": "#fff",
+                        "borderTop": "#ddd"
+                    }
+                },
+                "groupFooter": {
+                    "expression": "sum",
+                    "styles": {
+                        "prefix": "$",
+                        "numberFormat": "#,##0",
+                        "fontBold": true
+                    }
+                }
+            }, {
+                "name": "CancelledAmount",
+                "fieldName": "cancelled_amount",
+                "width": 110,
+                "styles": {
+                    "textAlignment": "far"
+                },
+                "header": {
+                    "text": strings["CancelledAmount"]
+                },
+                "footer": {
+                    "expression": "sum",
+                    "styles": {
+                        "prefix": "$",
+                        "numberFormat": "#,##0"
+                    }
+                }
+            }, {
+                "name": "DisbursedAmount",
+                "fieldName": "disbursed_amount",
+                "width": 110,
+                "styles": {
+                    "textAlignment": "far"
+                },
+                "header": {
+                    "text": strings["DisbursedAmount"]
+                },
+                "footer": {
+                    "expression": "varp",
+                    "text": "분산",
+                    "styles": {
+                        "prefix": "분산=>$",
+                        "numberFormat": "#,##0"
+                    }
+                }
+            }, {
+                "name": "FirstDate",
+                "fieldName": "first_date",
+                "width": "90",
+                "styles": {
+                    datetimeFormat: "yyyy-MM-dd",
+                    textAlignment: "center"
+                },
+                "header": {
+                    "text": strings["FirstDate"]
+                }
+            }, {
+                "name": "LastDate",
+                "fieldName": "last_date",
+                "width": "90",
+                "styles": {
+                    datetimeFormat: "yyyy-MM-dd",
+                    textAlignment: "center"
+                },
+                "header": {
+                    "text": strings["LastDate"]
+                }
+            }];
+            treegrid0.getView().setColumns(columns);
+            treegrid0.getView().registerImageList({
+                name: "images01",
+                rootUrl: "../images/",
+                items: ["at.png", "be.png", "br.png", "de.png", "dk.png", "et.png", "fi.png", "fr.png", "it.png", "jp.png"]
+            });
+            treegrid0.getView().setOptions({
+                display: {},
+                header: {
+                    height: 30
+                },
+                tree: {
+                    expanderWithCellStyles: true,
+                    iconField: 'icon',
+                    iconList: "images01",
+                    checkBoxVisible: true,
+                    footerLevels: "*",
+                    footerStyles: {
+                        background: "#100088ff"
+                    }
+                }
+            });
+            var rows = [
+                ["1", "IBRD00010", "France", "4.25", "USD", "P037383", "250", "000", "001.00", "11/01/1952", "05/01/1977"],
+                ["1.1", "IBRD00020", "Netherlands", "4.25", "USD", "P037452", "191", "044", "211.75", "04/01/1952", "10/01/1972"],
+                ["1.2", "IBRD00021", "Netherlands", "4.25", "USD", "P037452", "3", "955", "788.25", "04/01/1953", "04/01/1954"],
+                ["1.2.1", "IBRD00030", "Denmark", "4.25", "USD", "P037362", "40", "000", "000.00", "02/01/1953", "08/01/1972"],
+                ["1.2.2", "IBRD00040", "Luxembourg", "4.25", "USD", "P037451", "12", "000", "000.00", "07/15/1949", "07/15/1972"],
+                ["1.3", "IBRD00050", "Chile", "4.5", "USD", "P006578", "13", "500", "000.00", "07/01/1953", "07/01/1968"],
+                ["2", "IBRD00060", "Chile", "3.75", "USD", "P006577", "2", "500", "000.00", "07/01/1950", "01/01/1955"],
+                ["2.1", "IBRD00070", "Netherlands", "3.56", "USD", "P037453", "2", "000", "000.00", "01/15/1949", "07/15/1958"],
+                ["2.1.1", "IBRD00071", "Netherlands", "3.56", "USD", "P037453", "2", "000", "000.00", "01/15/1949", "07/15/1958"],
+                ["2.2", "IBRD00080", "Netherlands", "3.56", "USD", "P037454", "2", "000", "000.00", "01/15/1949", "07/15/1958"],
+                ["2.3", "IBRD00090", "Netherlands", "3.56", "USD", "P037455", "2", "000", "000.00", "01/15/1949", "07/15/1958"],
+                ["3", "IBRD00100", "Netherlands", "3.56", "USD", "P037456", "2", "000", "000.00", "01/15/1949", "07/15/1958"],
+                ["3.1", "IBRD00101", "Netherlands", "3.56", "USD", "P037456", "2", "000", "000.00", "01/15/1949", "07/15/1958"],
+                ["3.1.1", "IBRD00111", "Brazil", "4.5", "USD", "P006214", "75", "000", "000.00", "07/01/1953", "01/01/1974"],
+                ["3.1.2", "IBRD00112", "Brazil", "4.25", "USD", "P006214", "15", "000", "000.00", "07/01/1955", "01/01/1976"],
+                ["3.2", "IBRD00120", "Mexico", "4.5", "USD", "P007497", "24", "100", "000.00", "02/01/1953", "08/01/1973"],
+                ["3.3", "IBRD00130", "Mexico", "4.5", "USD", "P007498", "10", "000", "000.00", "01/01/1951", "01/01/1951"],
+                ["3.3.1", "IBRD00140", "Belgium", "4.25", "USD", "P037358", "16", "000", "000.00", "09/01/1953", "03/01/1969"],
+                ["4", "IBRD00150", "Netherlands", "4", "USD", "P037457", "15", "000", "000.00", "12/01/1952", "06/01/1964"],
+                ["4.1", "IBRD00160", "Finland", "4", "USD", "P037366", "12", "500", "000.00", "02/01/1953", "08/01/1964"],
+                ["4.2", "IBRD00170", "India", "4", "USD", "P009588", "34", "000", "000.00", "08/15/1950", "08/15/1964"],
+                ["5", "IBRD00180", "Colombia", "3.5", "USD", "P006682", "5", "000", "000.00", "05/15/1952", "11/15/1956"],
+                ["5.1", "IBRD00190", "India", "3.5", "USD", "P009586", "10", "000", "000.00", "06/01/1952", "12/01/1956"],
+                ["5.1.1", "IBRD00200", "Yugoslavia", "3", "USD", "P009133", "2", "700", "000.00", "06/15/1950", "09/15/1951"],
+                ["5.2", "IBRD00210", "Finland", "3", "USD", "P037365", "2", "300", "000.00", "06/15/1950", "09/15/1951"],
+                ["5.3", "IBRD00220", "El Salvador", "4.25", "USD", "P007137", "12", "545", "000.00", "07/15/1954", "01/15/1975"],
+                ["6", "IBRD00230", "India", "4", "USD", "P009587", "18", "500", "000.00", "04/15/1955", "04/15/1970"],
+                ["7", "IBRD00240", "Mexico", "4.5", "USD", "P007499", "26", "000", "000.00", "08/01/1953", "02/01/1975"],
+                ["8", "IBRD00250", "Brazil", "4.25", "USD", "P006215", "15", "000", "000.00", "09/15/1954", "03/15/1975"],
+                ["8.1", "IBRD00260", "Iraq", "3.75", "USD", "P005231", "12", "800", "000.00", "04/01/1956", "10/01/1965"],
+                ["8.2", "IBRD00270", "Turkey", "3.88", "USD", "P008872", "3", "900", "000.00", "04/01/1954", "10/01/1968"],
+                ["9", "IBRD00281", "Turkey", "4.25", "USD", "P008874", "12", "500", "000.00", "04/01/1956", "10/01/1975"],
+                ["9.1", "IBRD00282", "Turkey", "4.88", "USD", "P008874", "3", "800", "000.00", "04/01/1956", "10/01/1975"],
+                ["9.2", "IBRD00290", "Australia", "4.25", "USD", "P037342", "100", "000", "000.00", "09/01/1955", "09/01/1975"],
+                ["9.3", "IBRD00300", "Uruguay", "4.25", "USD", "P008109", "33", "000", "000.00", "02/15/1955", "08/15/1974"],
+                ["a0", "IBRD00310", "Ethiopia", "4", "USD", "P000659", "5", "000", "000.00", "03/01/1956", "03/01/1971"],
+                ["a0.1", "IBRD00320", "Ethiopia", "4", "USD", "P000658", "2", "000", "000.00", "03/01/1956", "03/01/1971"],
+                ["a0.2", "IBRD00330", "Mexico", "3.5", "USD", "P007500", "10", "000", "000.00", "03/15/1952", "09/15/1957"],
+                ["a1", "IBRD00340", "Turkey", "3.75", "USD", "P008873", "9", "000", "000.00", "03/15/1957", "09/15/1965"],
+                ["a1.1", "IBRD00320", "Ethiopia", "4", "USD", "P000658", "2", "000", "000.00", "03/01/1956", "03/01/1971"],
+                ["a1.1.1.", "IBRD00330", "Mexico", "3.5", "USD", "P007500", "10", "000", "000.00", "03/15/1952", "09/15/1957"],
+                ["a1.1.2.", "IBRD00330", "Mexico", "3.5", "USD", "P007500", "10", "000", "000.00", "03/15/1952", "09/15/1957"],
+                ["a1.2", "IBRD00320", "Ethiopia", "4", "USD", "P000658", "2", "000", "000.00", "03/01/1956", "03/01/1971"],
+                ["a1.3", "IBRD00320", "Ethiopia", "4", "USD", "P000658", "2", "000", "000.00", "03/01/1956", "03/01/1971"],
+                ["a2", "IBRD00310", "Ethiopia", "4", "USD", "P000659", "5", "000", "000.00", "03/01/1956", "03/01/1971"],
+                ["a2.1", "IBRD00320", "Ethiopia", "4", "USD", "P000658", "2", "000", "000.00", "03/01/1956", "03/01/1971"],
+                ["a2.2", "IBRD00330", "Mexico", "3.5", "USD", "P007500", "10", "000", "000.00", "03/15/1952", "09/15/1957"]
+            ];
+            treegrid0.setGridData(rows);
+        }
+    </script>
+</head>
+
+<body id="grid_tree_calc_sample" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="Grid Tree 누계" style="width: 1010px; height: 360px; position: absolute; top: 8px; left: 8px;" data-uid="14" id="group0" class="group-panel">
+        <i-treegrid treelinecolor="#CCCCCC" columns="[{'fieldName':'dsColumnName', 'name':' '}]" style="width: 1000px; height: 320px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="15" id="treegrid0" sumrowshow="sum" sumrowcolor="#eef0f4"
+            sumrowtitle="합계:   " treefield="loan_number"></i-treegrid>
+    </i-group>
+</body>
+
+</html>

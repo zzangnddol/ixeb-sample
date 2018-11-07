@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/12/15 12:01">
+    <meta name="generator" content="iXebStudio 1.0.0.1260" data-uid="5">
+    <meta name="ixeb-studio:grid-size" content="4x4" data-uid="6">
+    <meta name="ixeb-studio:screen-size" content="1280x2024" data-uid="7">
+    <meta name="created" content="2016/10/01 15:49" data-uid="8">
+    <title data-uid="9">combo</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="10"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="11"></script>
+    <link rel="stylesheet" href="../css/samples.css" type="text/css" data-uid="12">
+    <script type="text/javascript" data-uid="13">
+    </script>
+</head>
+
+<body id="combo" data-uid="3">
+    <i-group class="group-panel" text="DROPDOWN STYLE" style="width: 918px; height: 71px; position: absolute; top: 70px; left: 10px;" data-uid="14" id="group0">
+        <i-combo style="width: 140px; position: absolute; top: 10px; left: 125px;" data-uid="15" id="combo0" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            value="label1"></i-combo>
+        <i-text text="DROPDOWNLIST" style="position: absolute; top: 14.5px; left: 17px;" data-uid="16" id="text2"></i-text>
+        <i-text text="DROPDOWN" style="position: absolute; top: 14.5px; left: 269px;" data-uid="17" id="text3"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 10px; left: 351px;" data-uid="18" id="combo1" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            dropdownstyle="dropdown" value="label1"></i-combo>
+    </i-group>
+    <i-group class="group-panel" text="DISPLAY TYPE" style="width: 918px; height: 71px; position: absolute; top: 157px; left: 10px;" data-uid="19" id="group1">
+        <i-text text="VALUE" style="position: absolute; top: 8px; left: 8px;" data-uid="20" id="text5"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 8px; left: 37px;" data-uid="21" id="combo3" items="[{'label':'value1','value':'key1'},{'label':'value2','value':'key2'},{'label':'value3','value':'key3'},{'label':'value4','value':'key4'},{'label':'value5','value':'key5'}]"
+            displaytype="value" value="key1"></i-combo>
+        <i-text text="LABEL" style="position: absolute; top: 8px; left: 182px;" data-uid="22" id="text4"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 8px; left: 228px;" data-uid="23" id="combo2" items="[{'label':'value1','value':'key1'},{'label':'value2','value':'key2'},{'label':'value3','value':'key3'},{'label':'value4','value':'key4'},{'label':'value5','value':'key5'}]"
+            dropdownstyle="dropdown" value="key1"></i-combo>
+        <i-text text="VALUE + LABEL" style="position: absolute; top: 8px; left: 372px;" data-uid="24" id="text7"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 8px; left: 459px;" data-uid="25" id="combo4" items="[{'label':'value1','value':'key1'},{'label':'value2','value':'key2'},{'label':'value3','value':'key3'},{'label':'value4','value':'key4'},{'label':'value5','value':'key5'}]"
+            dropdownstyle="dropdown" value="key1" displaytype="value+label"></i-combo>
+    </i-group>
+    <i-group class="group-panel" text="SORT" style="width: 918px; height: 71px; position: absolute; top: 244px; left: 10px;" data-uid="26" id="group2">
+        <i-text text="ASC" style="position: absolute; top: 8px; left: 8px;" data-uid="27" id="text9"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 8px; left: 38px;" data-uid="28" id="combo6" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            value="label1"></i-combo>
+        <i-text text="DESC" style="position: absolute; top: 8px; left: 182px;" data-uid="29" id="text8"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 8px; left: 220px;" data-uid="30" id="combo5" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            dropdownstyle="dropdown" sort="desc" value="label4"></i-combo>
+    </i-group>
+    <i-group class="group-panel" text="ITEM ALL" style="width: 918px; height: 71px; position: absolute; top: 331px; left: 10px;" data-uid="31" id="group3">
+        <i-text text="TRUE" style="position: absolute; top: 8px; left: 8px;" data-uid="32" id="text12"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 8px; left: 44px;" data-uid="33" id="combo7" itemall="true" value="label1" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"></i-combo>
+        <i-text text="FALSE" style="position: absolute; top: 8px; left: 189px;" data-uid="34" id="text13" tabindex=""></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 8px; left: 230px;" data-uid="35" id="combo8" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            value="label1"></i-combo>
+        <i-text text="TOP" style="position: absolute; top: 8px; left: 374px;" data-uid="36" id="text1"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 8px; left: 403px;" data-uid="37" id="combo9" itemall="true" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            value="label1"></i-combo>
+        <i-text text="BOTTOM" style="position: absolute; top: 8px; left: 549px;" data-uid="38" id="text6"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 8px; left: 610px;" data-uid="39" id="combo10" itemall="true" itemallposition="bottom" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            value="label1"></i-combo>
+    </i-group>
+    <i-group class="group-panel" text="REQUIRE" style="width: 918px; height: 71px; position: absolute; top: 418px; left: 10px;" data-uid="40" id="group4">
+        <i-text text="TRUE" style="position: absolute; top: 8px; left: 8px;" data-uid="41" id="text9"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 8px; left: 45px;" data-uid="42" id="combo6" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            required="required" value="label1"></i-combo>
+        <i-text text="FALSE" style="position: absolute; top: 8px; left: 190px;" data-uid="43" id="text8"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 8px; left: 230px;" data-uid="44" id="combo5" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            dropdownstyle="dropdown" sort="desc" value="label1"></i-combo>
+    </i-group>
+    <div style="width: 918px; height: 45px; position: absolute; top: 9px; left: 8px;" data-uid="45" id="div0" class="search-panel">
+        <i-text text="COMBO 샘플" style="position: absolute; top: 9px; left: 11px; font-size: 25px;" data-uid="46" id="text0"></i-text>
+    </div>
+    <i-group class="group-panel" text="DISPLAY TYPE" style="width: 918px; height: 71px; position: absolute; top: 157px; left: 10px;" data-uid="106" id="group6">
+        <i-text text="VALUE" style="position: absolute; top: 14.5px; left: 17px;" data-uid="107" id="text5"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 10px; left: 64px;" data-uid="108" id="combo3" items="[{'label':'value1','value':'key1'},{'label':'value2','value':'key2'},{'label':'value3','value':'key3'},{'label':'value4','value':'key4'},{'label':'value5','value':'key5'}]"
+            displaytype="value" value="key1"></i-combo>
+        <i-text text="LABEL" style="position: absolute; top: 14.5px; left: 209px;" data-uid="109" id="text4"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 10px; left: 255px;" data-uid="110" id="combo2" items="[{'label':'value1','value':'key1'},{'label':'value2','value':'key2'},{'label':'value3','value':'key3'},{'label':'value4','value':'key4'},{'label':'value5','value':'key5'}]"
+            dropdownstyle="dropdown" value="key1"></i-combo>
+        <i-text text="VALUE + LABEL" style="position: absolute; top: 14.5px; left: 399px;" data-uid="111" id="text7"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 10px; left: 501px;" data-uid="112" id="combo4" items="[{'label':'value1','value':'key1'},{'label':'value2','value':'key2'},{'label':'value3','value':'key3'},{'label':'value4','value':'key4'},{'label':'value5','value':'key5'}]"
+            dropdownstyle="dropdown" value="key1" displaytype="value+label"></i-combo>
+    </i-group>
+    <i-group class="group-panel" text="SORT" style="width: 918px; height: 71px; position: absolute; top: 244px; left: 10px;" data-uid="113" id="group7">
+        <i-text text="ASC" style="position: absolute; top: 14.5px; left: 17px;" data-uid="114" id="text9"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 10px; left: 47px;" data-uid="115" id="combo6" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            value="label1"></i-combo>
+        <i-text text="DESC" style="position: absolute; top: 14.5px; left: 191px;" data-uid="116" id="text8"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 10px; left: 229px;" data-uid="117" id="combo5" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            dropdownstyle="dropdown" sort="desc" value="label4"></i-combo>
+    </i-group>
+    <i-group class="group-panel" text="ITEM ALL" style="width: 918px; height: 71px; position: absolute; top: 331px; left: 10px;" data-uid="118" id="group8">
+        <i-text text="TRUE" style="position: absolute; top: 14.5px; left: 17px;" data-uid="119" id="text12"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 10px; left: 54px;" data-uid="120" id="combo7" itemall="true" value="label1" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"></i-combo>
+        <i-text text="FALSE" style="position: absolute; top: 14.5px; left: 199px;" data-uid="121" id="text13" tabindex=""></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 10px; left: 240px;" data-uid="122" id="combo8" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            value="label1"></i-combo>
+        <i-text text="TOP" style="position: absolute; top: 14.5px; left: 384px;" data-uid="123" id="text1"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 10px; left: 413px;" data-uid="124" id="combo9" itemall="true" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            value="label1"></i-combo>
+        <i-text text="BOTTOM" style="position: absolute; top: 14.5px; left: 559px;" data-uid="125" id="text6"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 10px; left: 620px;" data-uid="126" id="combo10" itemall="true" itemallposition="bottom" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            value="label1"></i-combo>
+    </i-group>
+    <i-group class="group-panel" text="REQUIRE" style="width: 918px; height: 71px; position: absolute; top: 418px; left: 10px;" data-uid="127" id="group9">
+        <i-text text="TRUE" style="position: absolute; top: 14.5px; left: 17px;" data-uid="128" id="text9"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 10px; left: 54px;" data-uid="129" id="combo6" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            required="required" value="label1"></i-combo>
+        <i-text text="FALSE" style="position: absolute; top: 14.5px; left: 199px;" data-uid="130" id="text8"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 10px; left: 239px;" data-uid="131" id="combo5" items="[{'label':'combo1','value':'label1'},{'label':'combo2','value':'label2'},{'label':'combo3','value':'label3'},{'label':'combo4','value':'label4'}]"
+            dropdownstyle="dropdown" sort="desc" value="label1"></i-combo>
+    </i-group>
+    <div style="width: 918px; height: 45px; position: absolute; top: 9px; left: 8px;" data-uid="132" id="div1" class="search-panel">
+        <i-text text="COMBO 샘플" style="position: absolute; top: 9px; left: 11px; font-size: 25px;" data-uid="133" id="text0"></i-text>
+    </div>
+</body>
+
+</html>

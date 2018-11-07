@@ -1,0 +1,8 @@
+5565c5565
+< 				var sstr1 = /<(?:si|sstItem)>/g;
+---
+> 				var sstr1 = /<(?:si|sstItem)[^>]*>/g;
+9075c9075
+< 				var sheetdataregex = /<(?:\w+:)?sheetData>([^\u2603]*)<\/(?:\w+:)?sheetData>/;
+---
+> 				var sheetdataregex = /<(?:\w+:)?sheetData[^>]*>([^\u2603]*)<\/(?:\w+:)?sheetData>/;

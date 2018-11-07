@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2017/04/04 15:02" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1528" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="9">
+    <meta name="created" content="2017/03/28 10:24" data-uid="10">
+    <title data-uid="11">5</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="13"></script>
+    <!-- From here, enter your script and style. -->
+    <style type="text/css" data-uid="14">
+        .graph_container {
+            display: block;
+            width: 600px;
+            height: 200px;
+        }
+    </style>
+    <script type="text/javascript" data-uid="15">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-03-28
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_5() {
+            //TODO:
+            console.log('aaaa');
+            var barOptions_stacked = {
+                tooltips: {
+                    enabled: false
+                },
+                hover: {
+                    animationDuration: 0
+                },
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            display: false,
+                            beginAtZero: true,
+                            fontFamily: "'Open Sans Bold', sans-serif",
+                            fontSize: 11
+                        },
+                        scaleLabel: {
+                            display: false
+                        },
+                        gridLines: {
+                            display: false
+                        },
+                        stacked: true
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            display: false,
+                            color: "#fff",
+                            zeroLineColor: "#fff",
+                            zeroLineWidth: 0
+                        },
+                        ticks: {
+                            fontFamily: "'Open Sans Bold', sans-serif",
+                            fontSize: 11
+                        },
+                        stacked: true
+                    }]
+                },
+                legend: {
+                    display: false
+                },
+                animation: {
+                    onComplete: function() {
+                        var chartInstance = this.chart;
+                        var ctx = chartInstance.ctx;
+                        ctx.textAlign = "left";
+                        ctx.font = "9px Open Sans";
+                        ctx.fillStyle = "#fff";
+                        Chart.helpers.each(this.data.datasets.forEach(function(dataset, i) {
+                            var meta = chartInstance.controller.getDatasetMeta(i);
+                            Chart.helpers.each(meta.data.forEach(function(bar, index) {
+                                data = dataset.data[index];
+                                if (i == 0) {
+                                    ctx.fillText(data, 50, bar._model.y + 4);
+                                } else {
+                                    ctx.fillText(data, bar._model.x - 25, bar._model.y + 4);
+                                }
+                            }), this)
+                        }), this);
+                    }
+                },
+                pointLabelFontFamily: "Quadon Extra Bold",
+                scaleFontFamily: "Quadon Extra Bold",
+            };
+            var ctx = document.getElementById("Chart1");
+            var myChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: [""],
+                    datasets: [{
+                        data: [727],
+                        backgroundColor: "rgba(63,103,126,1)",
+                        hoverBackgroundColor: "rgba(50,90,100,1)"
+                    }, {
+                        data: [238],
+                        backgroundColor: "rgba(163,103,126,1)",
+                        hoverBackgroundColor: "rgba(140,85,100,1)"
+                    }, {
+                        data: [1238],
+                        backgroundColor: "rgba(63,203,226,1)",
+                        hoverBackgroundColor: "rgba(46,185,235,1)"
+                    }]
+                },
+                options: barOptions_stacked,
+            });
+        }
+    </script>
+    <i-dataset data-uid="16" id="dataset0" serviceid="">
+        <header data-uid="17"> [{"id":"location","object":"edit","type":"char","size":"256","desc":"location"},{"id":"value","object":"edit","type":"char","size":"256","desc":"value"}]</header> <data data-uid="18"> [] </data>
+        <i-bind bindtype="recordset" property="" target="piechart0"
+            column="" data-uid="19" oncomplete="onComplete()"></i-bind>
+        <i-bind bindtype="recordset" property="" target="barchart0" column="" data-uid="20"></i-bind>
+        <i-bind bindtype="recordset" target="grid0" data-uid="21"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="5" data-uid="3" oninitscreen="">
+    <div class="graph_container" data-uid="22"> <canvas id="Chart1" width="100px" height="20px" data-uid="23"></canvas> </div>
+    <i-button text="make chart" onclick="onInitScreen_5();" data-uid="24"> </i-button>
+</body>
+
+</html>

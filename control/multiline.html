@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1920x1080" data-uid="6">
+    <meta name="created" content="2016/10/04 14:37" data-uid="7">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="8">
+    <title data-uid="9">multiline</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="10"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="11"></script>
+    <script type="text/javascript" data-uid="12">
+    </script>
+</head>
+
+<body id="multiline" data-uid="3">
+    <i-group text="입력 TYPE" style="width: 1045px; height: 80px; position: absolute; top: 59px; left: 20px;" data-uid="46" id="group6" class="group-panel">
+        <i-text text="숫자 입력모드(number)" style="position: absolute; top: 15px; left: 13px; width: 144px; height: 13px;" data-uid="50" id="text13" autosize="false"></i-text>
+        <i-multilineedit style="width: 140px; height: 35px; position: absolute; top: 9px; left: 192px; text-align: right;" data-uid="49" id="multiline16" value="12345678" type="number"></i-multilineedit>
+        <i-text text="영문 입력모드(ascii)" style="position: absolute; top: 15px; left: 373px; width: 144px; height: 13px;" data-uid="48" id="text10"></i-text>
+        <i-multilineedit style="width: 140px; height: 35px; position: absolute; top: 9px; left: 533px; text-align: right;" data-uid="52" id="multiline18" value="ABCD!@#$" type="ascii"></i-multilineedit>
+        <i-text text="한글 입력모드(none)" style="position: absolute; top: 15px; left: 712px; width: 144px; height: 13px;" data-uid="47" id="text9"></i-text>
+        <i-multilineedit style="width: 140px; height: 35px; position: absolute; top: 9px; left: 874px; text-align: right;" data-uid="51" id="multiline17" value="123ABC가나다!@#" type="none"></i-multilineedit>
+    </i-group>
+
+    <i-group text="MultiLineEdit 검증" style="width: 1045px; height: 121px; position: absolute; top: 142px; left: 20px;" data-uid="35" id="group5" class="group-panel">
+        <i-text text="MaxLength 5" style="position: absolute; top: 18.666px; left: 12px; width: 144px; height: 13px;" data-uid="39" id="text6"></i-text>
+        <i-multilineedit style="width: 140px; height:35px; position: absolute; top: 12px; left: 193px; text-align: right;" data-uid="38" id="multiline13" value="12345678" type="number" maxlength="5"></i-multilineedit>
+        <i-text text="MinLength 1" style="position: absolute; top: 18.666px; left: 372px; width: 144px; height: 13px;" data-uid="36" id="text4"></i-text>
+        <i-multilineedit style="width: 140px; height:35px; position: absolute; top: 12px; left: 533px; text-align: right;" data-uid="37" id="multiline12" value="ABCD!@#$" type="ascii" minlength="1"></i-multilineedit>
+        <i-text text="required (true)" style="position: absolute; top: 18.666px; left: 712px; width: 144px; height: 13px;" data-uid="40" id="text3"></i-text>
+        <i-multilineedit style="width: 140px; height:35px; position: absolute; top: 12px; left: 874px; text-align: right;" data-uid="41" id="multiline09" value="12345678" required="required"></i-multilineedit>
+        <i-text text="비허용문자 (invalidChars)<br>123ABC가나다" style="position: absolute; top: 51px; left: 11px; width: 156px; height: 31px;" data-uid="42" id="text0"></i-text>
+        <i-multilineedit style="width: 140px; height: 35px; position: absolute; top: 51px; left: 193px; text-align: right;" data-uid="43" id="multilineedit0" value="1234ABCD가나다라" type="none" maxlength="" invalidchars="123ABC가나다"></i-multilineedit>
+        <i-text text="허용문자 (validChars)<br>123ABC가나다" style="position: absolute; top: 51px; left: 372px; width: 144px; height: 31px;" data-uid="44" id="text2"></i-text>
+        <i-multilineedit style="width: 140px; height: 35px; position: absolute; top: 51px; left: 533px; text-align: right;" data-uid="45" id="multilineedit1" value="1234ABCD가나다라" type="none" maxlength="" invalidchars="" validchars="123ABC가나다"></i-multilineedit>
+    </i-group>
+    
+    <i-group text="CharCasing" style="width: 1045px; height: 80px; position: absolute; top: 267px; left: 20px;" data-uid="28" id="group4" class="group-panel">
+        <i-text text="charcasing (none)" style="position: absolute; top: 15.666px; left: 14px; width: 144px; height: 13px;" data-uid="32" id="text11"></i-text>
+        <i-multilineedit style="width: 140px; height: 35px; position: absolute; top: 9px; left: 195px; text-align: right;" data-uid="31" id="multiline10" value="abcdABCD"></i-multilineedit>
+        <i-text text="charcasing (upper)" style="position: absolute; top: 16.01px; left: 374px; width: 116px; height: 13px;" data-uid="29" id="text9"></i-text>
+        <i-multilineedit style="width: 140px; height: 35px; position: absolute; top: 9px; left: 535px; text-align: right;" data-uid="30" id="multiline9" value="abcdABCD" charcasing="upper"></i-multilineedit>
+        <i-text text="charcasing (lower)" style="position: absolute; top: 15.666px; left: 714px; width: 144px; height: 13px;" data-uid="34" id="text16"></i-text>
+        <i-multilineedit style="width: 140px; height: 35px; position: absolute; top: 9px; left: 875px; text-align: right;" data-uid="33" id="multiline11" value="abcdABCD" charcasing="lower"></i-multilineedit>
+    </i-group>
+
+   <i-group text="ReadOnly" style="width: 1045px; height: 80px; position: absolute; top: 355px; left: 20px;" data-uid="23" id="group3" class="group-panel">
+        <i-text text="readonly (true)" style="position: absolute; top: 13.777px; left: 13px; width: 144px; height: 13px;" data-uid="24" id="text13"></i-text>
+        <i-multilineedit style="width: 140px; height: 35px; position: absolute; top: 8px; left: 194px; text-align: right;" data-uid="25" id="multiline7" value="12345678" readonly="readonly"></i-multilineedit>
+        <i-multilineedit style="width: 140px; height: 35px; position: absolute; top: 8px; left: 534px; text-align: right;" data-uid="26" id="multiline8" value="ABCD!@#$"></i-multilineedit>
+        <i-text text="readonly (false)" style="position: absolute; top: 13.777px; left: 373px; width: 144px; height: 13px;" data-uid="27" id="text15"></i-text>
+    </i-group>
+
+    <i-group text="selectAll" style="width: 1045px; height: 80px; position: absolute; top: 443px; left: 20px;" data-uid="18" id="group2" class="group-panel">
+        <i-text text="selectAll (true)" style="position: absolute; top: 12.889px; left: 12px; width: 144px; height: 13px;" data-uid="22" id="text19"></i-text>
+        <i-multilineedit style="width: 140px; height: 35px; position: absolute; top: 8px; left: 193px; text-align: right;" data-uid="21" id="multiline6" value="12345678"></i-multilineedit>
+        <i-text text="selectAll (false)" style="position: absolute; top: 13.777px; left: 372px; width: 144px; height: 13px;" data-uid="19" id="text17"></i-text>
+        <i-multilineedit style="width: 140px; height: 35px; position: absolute; top: 8px; left: 533px; text-align: right;" data-uid="20" id="multiline5" value="ABCD!@#$" selectall="false"></i-multilineedit>
+    </i-group>
+    
+    <i-group text="Enable" style="width: 1045px; height: 80px; position: absolute; top: 531px; left: 20px;" data-uid="13" id="group1" class="group-panel">
+        <i-text text="enable (true)" style="position: absolute; top: 12px; left: 13px; width: 144px; height: 12px;" data-uid="14" id="text20"></i-text>
+        <i-multilineedit style="width: 140px; height: 35px; position: absolute; top: 8px; left: 194px; text-align: right;" data-uid="15" id="multiline3" value="12345678"></i-multilineedit>
+        <i-text text="enable (false)" style="position: absolute; top: 13.777px; left: 373px; width: 144px; height: 13px;" data-uid="17" id="text22"></i-text>
+        <i-multilineedit style="width: 140px; height: 35px; position: absolute; top: 8px; left: 534px; text-align: right;" data-uid="16" id="multiline4" value="ABCD!@#$" selectall="true" enable="false"></i-multilineedit>
+    </i-group>
+    
+    <i-group text="horizontalScroll/verticalScroll" style="width: 1045px; height: 154px; position: absolute; top: 614px; left: 20px;" data-uid="54" id="group0" class="group-panel">
+        <i-text text="horizontalScroll (true)" style="position: absolute; top: 16px; left: 13px; width: 144px; height: 12px;" data-uid="55" id="text20"></i-text>
+        <i-multilineedit style="width: 140px; height: 100px; position: absolute; top: 12px; left: 194px; text-align: right;" data-uid="56" id="multiline3" value="" horizontalscroll="true" verticalscroll="false"></i-multilineedit>
+        <i-multilineedit style="width: 140px; height:100px; position: absolute; top: 12px; left: 534px; text-align: right;" data-uid="57" id="multiline4" value="" selectall="true" enable="true" verticalscroll="true"></i-multilineedit>
+        <i-text text="verticalScroll (true)" style="position: absolute; top: 17.777px; left: 373px; width: 144px; height: 13px;" data-uid="58" id="text22"></i-text>
+        <i-multilineedit style="width: 140px; height: 100px; position: absolute; top: 13px; left: 874px; text-align: right;" data-uid="59" id="multilineedit4" value="" selectall="true" enable="true" verticalscroll="true" horizontalscroll="true"></i-multilineedit>
+        <i-text text="horizontal,<br>verticalScroll (true)" style="position: absolute; top: 17.777px;left:712px;" data-uid="60" id="text5"></i-text>
+    </i-group>
+    <i-group text="autoHScroll/autoVScroll" style="width: 1045px; height: 154px; position: absolute; top: 771px; left: 20px;" data-uid="61" id="group7" class="group-panel">
+        <i-text text="autoHScroll (true)" style="position: absolute; top: 16px; left: 13px; width: 144px; height: 12px;" data-uid="62" id="text20"></i-text>
+        <i-multilineedit style="width: 140px; height: 100px; position: absolute; top: 12px; left: 194px; text-align: right;" data-uid="63" id="multiline3" value="" horizontalscroll="false" verticalscroll="false" autohscroll="true"></i-multilineedit>
+        <i-multilineedit style="width: 140px; height:100px; position: absolute; top: 12px; left: 534px; text-align: right;" data-uid="64" id="multiline4" value="" selectall="true" enable="true" verticalscroll="false" autovscroll="true"></i-multilineedit>
+        <i-text text="autoVScroll (true)" style="position: absolute; top: 17.777px; left: 373px; width: 144px; height: 13px;" data-uid="65" id="text22"></i-text>
+    </i-group>
+    <div style="width: 1045px; height: 45px; position: absolute; top: 8px; left: 20px;" data-uid="66" id="div0" class="search-panel">
+        <i-text text="MultiLineEdit Sample" style="position: absolute; top: 8px; left: 4px; font-size: 25px;" data-uid="67" id="text1"></i-text>
+    </div>
+</body>
+
+</html>

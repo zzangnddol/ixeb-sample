@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-vline" content="1602," data-uid="5">
+    <meta name="ixeb-studio:guide-hline" content="" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta name="created" content="2016/10/07 13:51" data-uid="9">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="10">
+    <title data-uid="11">single_search</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="13"></script>
+    <script type="text/javascript" data-uid="14">
+        function onTabPageChanged_tabs0() {
+            //TODO:
+            grid0.redraw();
+            grid1.redraw();
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-07
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            for (var i = 0; i < 24; i++) {
+                var opt = '<option value=' + i + '>' + i + '</option>';
+                $(select0).append(opt);
+            }
+            for (var i = 0; i < 60; i++) {
+                var opt = '<option value=' + i + '>' + i + '</option>';
+                $(select1).append(opt);
+            }
+            var columns = [{
+                'name': '진행상태',
+                'fieldName': 'process',
+                'width': 60
+            }, {
+                'name': '공사구분',
+                'fieldName': 'process1',
+                'width': 60
+            }, {
+                'name': '발주번호',
+                'fieldName': 'process2',
+                'width': 60
+            }, {
+                'name': '하도급명',
+                'fieldName': 'process3',
+                'width': 160
+            }, {
+                'name': '공사기간',
+                'fieldName': 'process4',
+                'width': 60
+            }, {
+                'name': '실행금액',
+                'fieldName': 'process5',
+                'width': 60
+            }, {
+                'name': '요청자',
+                'fieldName': 'process6',
+                'width': 60
+            }, {
+                'name': '요청일',
+                'fieldName': 'process7',
+                'width': 60
+            }, {
+                'name': '구분',
+                'fieldName': 'process8',
+                'width': 60
+            }];
+        }
+    </script>
+    <style data-uid="15">
+        td {
+            border: 1px solid #c7c7c7;
+        }
+        
+        .odd_td {
+            width: 180px!important;
+            background-color: #f2f2ef!important;
+        }
+    </style>
+</head>
+
+<body id="single_search" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="기본정보" style="width: 800px; height: 139px; position: absolute; top: 60px; left: 8px;" data-uid="16" id="group1" class="group-panel">
+        <div style="width: 798px; height: 27px; position: absolute; top: 25px; left: 0px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(205, 205, 203);" data-uid="17" id="div3"></div>
+        <div style="width: 798px; height: 26px; position: absolute; top: -1px; left: 0px; border-bottom-width: thin; border-bottom-style: solid; border-bottom-color: rgb(205, 205, 203);" data-uid="18" id="div1"></div>
+        <i-text text="진행상태" style="position: absolute; top: 6.5px; left: 29px; height: 13px;" data-uid="19" id="text1"></i-text>
+        <i-text text="프로젝트" style="position: absolute; top: 32.5px; left: 29px;" data-uid="20" id="text2" tabindex="F2F2EF"></i-text>
+        <i-text text="하도급공사명" style="position: absolute; top: 58.5px; left: 4px;" data-uid="21" id="text3" tabindex="F2F2EF"></i-text>
+        <i-text text="실행금액" style="position: absolute; top: 84.5px; left: 29px;" data-uid="22" id="text10" tabindex="F2F2EF"></i-text>
+        <i-text text="작성중" style="position: absolute; top: 6.5px; left: 95px;" data-uid="23" id="text11"></i-text>
+        <i-text text="테마프로젝트" style="position: absolute; top: 32.5px; left: 95px;" data-uid="24" id="text19"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 54px; left: 95px;" data-uid="25" id="edit0" required="required"></i-edit>
+        <i-text text="1,234,567,890" style="position: absolute; top: 84.5px; left: 95px;" data-uid="26" id="text20"></i-text>
+        <i-text text="반송사유" style="position: absolute; top: 6.5px; left: 284px; height: 13px;" data-uid="27" id="text21"></i-text>
+        <i-text text="발주번호" style="position: absolute; top: 32.5px; left: 284px;" data-uid="28" id="text22" tabindex="F2F2EF"></i-text>
+        <i-text text="도급금액" style="position: absolute; top: 58.5px; left: 284px;" data-uid="29" id="text23" tabindex="F2F2EF"></i-text>
+        <i-text text="발주지분율" style="position: absolute; top: 84.5px; left: 271px;" data-uid="30" id="text24" tabindex="F2F2EF"></i-text>
+        <i-text text="내역 재검토중입니다." style="position: absolute; top: 6.5px; left: 350px;" data-uid="31" id="text25"></i-text>
+        <i-text text="2011-05-01-25" style="position: absolute; top: 32.5px; left: 350px;" data-uid="32" id="text26"></i-text>
+        <i-text text="1,234,567,890" style="position: absolute; top: 84.5px; left: 350px;" data-uid="33" id="text27"></i-text>
+        <i-text text="1,234,567,890 원" style="position: absolute; top: 58.5px; left: 350px;" data-uid="34" id="text28"></i-text>
+        <i-text text="공종" style="position: absolute; top: 32.5px; left: 579px;" data-uid="35" id="text29" tabindex="F2F2EF"></i-text>
+        <i-text text="도급지분율" style="position: absolute; top: 59px; left: 541px;" data-uid="36" id="text30" tabindex="F2F2EF"></i-text>
+        <i-text text="발주구분" style="position: absolute; top: 85px; left: 554px;" data-uid="37" id="text31" tabindex="F2F2EF"></i-text>
+        <i-text text="본사" style="position: absolute; top: 85px; left: 642px;" data-uid="38" id="text33"></i-text>
+        <i-text text="59.8 %" style="position: absolute; top: 59px; left: 642px;" data-uid="39" id="text34"></i-text>
+        <i-maskedit style="width: 149px; position: absolute; top: 28px; left: 642px; height: 20px;" data-uid="40" id="maskedit0"></i-maskedit>
+        <div style="width: 100%; height: 1px; position: absolute; top: 80px; left: 0px;border-top:1px solid #CDCDCB;" data-uid="41" id="div2"></div>
+    </i-group>
+    <div style="top: 8.01042px; left: 8px; position: absolute; width: 800px; height: 40px; padding-left: 8px; padding-right: 8px;" data-uid="42" id="div0" class="search-panel">
+        <i-text text="* 프로젝트코드 / 명" style="position: absolute; top: 11.5px; left: 8px; color: rgb(113, 69, 41); font-weight: bold;" data-uid="43" id="text0"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 7.01389px; left: 127px;" data-uid="44" id="edit1"></i-edit>
+        <i-button text="s" style="position: absolute; top: 7.01389px; left: 269.014px; width: 22px; height: 22px; background-size: 100% 100%;" data-uid="45" id="button0"></i-button>
+        <i-button text="조회" style="position: absolute; top: 7.01385px; left: 736.98px; height: 22px; background-size: 100% 100%;" data-uid="46" id="button2"></i-button>
+        <i-edit style="width: 356px; position: absolute; top: 7px; left: 300px; height: 22px;" data-uid="47" id="edit3"></i-edit>
+    </div>
+    <i-group text="상세정보" style="width: 800px; height: 564px; position: absolute; top: 203.822px; left: 8.0038px;" data-uid="48" id="group0" class="group-panel">
+        <i-text text="하도급공사기간" style="position: absolute; top: 16.688px; left: 17px; height: 13px; width: 88px;" data-uid="49" id="text4"></i-text>
+        <i-edit style="width: 113px; position: absolute; top: 11.688px; left: 112px; height: 23px;" data-uid="50" id="edit5" showcalendarbutton="true" required="required" value="2016-10-07"></i-edit>
+        <i-text text="~" style="width: 8px; position: absolute; top: 16.688px; left: 235.719px; height: 13px;" data-uid="51" id="text9"></i-text>
+        <i-edit style="width: 113px; position: absolute; top: 11.688px; left: 255px; height: 23px;" data-uid="52" id="edit6" required="required" showcalendarbutton="true" value="2016-10-11"></i-edit>
+        <i-text text="헌설실시" style="position: absolute; top: 56.188px; left: 17px; height: 13px; width: 53px;" data-uid="53" id="text5"></i-text>
+        <i-radio items="[{value:'value1', label:'예'},{value:'value2', label:'아니오'}]" style="width: 103px; position: absolute; top: 54.188px; left: 112px; height: 16px;" data-uid="54" id="radio0" itemcolcount="2" itemrowcount="0"></i-radio>
+        <i-text text="헌설방법" style="position: absolute; top: 102.188px; left: 17px; height: 13px; width: 54px;" data-uid="55" id="text6"></i-text>
+        <i-radio items="[{value:'value1', label:'온라인'},{value:'value2', label:'오프라인'}]" style="width: 141px; position: absolute; top: 100.688px; left: 112px; height: 15px;" data-uid="56" id="radio1"></i-radio>
+        <i-text text="헌설장소" style="position: absolute; top: 146.188px; left: 17px; height: 13px; width: 56px;" data-uid="57" id="text7"></i-text>
+        <i-edit style="width: 255px; position: absolute; top: 140.688px; left: 113px; height: 23px;" data-uid="58" id="edit7" showcalendarbutton="false" required="required"></i-edit>
+        <i-text text="공사개요" style="position: absolute; top: 348.188px; left: 17px; height: 13px; width: 54px;" data-uid="59" id="text8"></i-text>
+        <i-multilineedit style="width: 255px; height: 336px; position: absolute; top: 186.188px; left: 113px;" data-uid="60" id="multilineedit0"></i-multilineedit> <select style="width: 39px; height: 23px; position: absolute; top: 50.6968px; left: 699.84px;" data-uid="61" id="select1">
+                            </select>
+        <i-text text="분" style="position: absolute; top: 55.6968px; left: 750px; height: 13px; width: 12px;" data-uid="62" id="text18"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 99.7016px; left: 516px; height: 23px;" data-uid="63" id="edit10" required="required"></i-edit>
+        <i-button text="조회" style="width: 55px; height: 23px; position: absolute; top: 99.697px; left: 661px; background-size: 100% 100%;" data-uid="64" id="button3"></i-button>
+        <i-button text="조회" style="position: absolute; height: 23px; width: 55px; top: 140.692px; left: 660px; background-size: 100% 100%;" data-uid="65" id="button4"></i-button>
+        <i-multilineedit style="width: 268px; height: 336px; position: absolute; top: 186.191px; left: 516px;" data-uid="66" id="multilineedit1" required="required"></i-multilineedit>
+    </i-group>
+    <i-button class="group-btn" text="추가" style="position: absolute; top: 64px; left: 627px; height: 22px; background-size: 100% 100%;" data-uid="67" id="button1"></i-button>
+    <i-button class="group-btn" text="삭제" style="position: absolute; top: 64px; left: 686px; height: 22px; background-size: 100% 100%;" data-uid="68" id="button5"></i-button>
+    <i-button class="group-btn" text="저장" style="position: absolute; top: 64px; left: 747px; height: 22px; background-size: 100% 100%;" data-uid="69" id="button6"></i-button>
+    <i-text text="과세 / 비과세" style="position: absolute; top: 250.51px; left: 429px; height: 13px; width: 84px;" data-uid="70" id="text12"></i-text>
+    <i-edit style="width: 137px; height: 23px; position: absolute; top: 245.504px; left: 526px;" data-uid="71" id="edit8" required="required"></i-edit>
+    <i-text text="헌설일시" style="position: absolute; top: 289.504px; left: 462px; height: 13px; width: 51px;" data-uid="72" id="text13"></i-text>
+    <i-edit style="width: 88px; height: 23px; position: absolute; top: 285.015px; left: 526px;" data-uid="73" id="edit9" required="required" showcalendarbutton="true" value="2016-10-11"></i-edit><select style="width: 41px; height: 23px; position: absolute; top: 284.51px; left: 621.28px;" data-uid="74" id="select0">                                </select>
+    <i-text text="시" style="height: 11px; position: absolute; top: 290.51px; left: 671.56px; width: 12px;"
+        data-uid="75" id="text17"></i-text>
+    <i-text text="헌설담당자" style="position: absolute; top: 338.504px; left: 450px; height: 13px; width: 63px;" data-uid="76" id="text14"></i-text>
+    <i-text text="입찰담당자" style="position: absolute; top: 379.515px; left: 450px; height: 13px; width: 63px;" data-uid="77" id="text15"></i-text>
+    <i-edit style="width: 140px; height: 23px; position: absolute; left: 526px; top: 374.51px;" data-uid="78" required="required"></i-edit>
+    <i-text text="특기사항" style="position: absolute; top: 581.504px; left: 462px; height: 13px; width: 51px;" data-uid="79" id="text16"></i-text>
+</body>
+
+</html>

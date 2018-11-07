@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2017/04/04 14:29" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1534" data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-uid="9">
+    <meta name="created" content="2017/04/04 13:36" data-uid="10">
+    <title data-uid="11">multiline_test</title>
+    <script type="text/javascript" src="../../lib/config.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="13"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="14"></script>
+    <!-- From here, enter your script and style. -->
+    <script type="text/javascript" data-uid="15">
+        /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                	 * @작성자 : {USER}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                	 * @작성날짜 : 2017-04-04
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                	 * @description : cell에 popupbutton 이 존재시 해당 버튼 클릭 이벤트
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                	 * @params:  {args0}: event객체
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                				 {args1}: grid 객체
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                				 {args2}: 클릭된 cell 객체
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                	 * @return 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                	 */
+        function onCellButtonClicked_grid0(args) {
+            //TODO:
+            var e = args[0],
+                grid = args[1],
+                cell = args[2];
+            alert(cell.column.index());
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2017-04-04
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_multiline_test() {
+            //TODO:
+            var fields = [];
+            for (var i = 0; i < 15; i++) {
+                fields.push('f' + i);
+            }
+            grid0.setFields(fields);
+            var columns = [{
+                'name': 'g1',
+                'fieldName': 'g1',
+                'layout': 'vertical',
+                'header': {
+                    visible: false
+                },
+                'columns': [{
+                    'name': 'credit',
+                    'fieldName': 'f0',
+                    'header': {
+                        'text': '이체일자'
+                    }
+                }, {
+                    'name': 'ChildGroup',
+                    'fiendName': 'child_group',
+                    'layout': 'horizontal',
+                    'header': {
+                        visible: false
+                    },
+                    'columns': [{
+                        'name': 'credit_child',
+                        'fieldName': 'f8',
+                        'header': {
+                            'text': '이체시간'
+                        }
+                    }]
+                }]
+            }, {
+                'name': 'g2',
+                'fieldName': 'g2',
+                'layout': 'vertical',
+                'header': {
+                    visible: false
+                },
+                'columns': [{
+                    'name': 'credit',
+                    'fieldName': 'f1',
+                    'header': {
+                        'text': '구분'
+                    }
+                }, {
+                    'name': 'ChildGroup',
+                    'fiendName': 'child_group',
+                    'layout': 'horizontal',
+                    'header': {
+                        visible: false
+                    },
+                    'columns': [{
+                        'name': 'credit_child',
+                        'fieldName': 'f9',
+                        'header': {
+                            'text': '입금은행'
+                        }
+                    }]
+                }]
+            }, {
+                'name': 'g3',
+                'fieldName': 'g3',
+                'layout': 'vertical',
+                'header': {
+                    visible: false
+                },
+                'columns': [{
+                    'name': 'credit',
+                    'fieldName': 'f2',
+                    'width': '70',
+                    'header': {
+                        'text': '입금계좌'
+                    }
+                }, {
+                    'name': 'ChildGroup',
+                    'fiendName': 'child_group',
+                    'layout': 'horizontal',
+                    'header': {
+                        visible: false
+                    },
+                    'columns': [{
+                        'name': 'credit_child',
+                        'fieldName': 'f10',
+                        'header': {
+                            'text': '계좌명'
+                        }
+                    }]
+                }]
+            }, {
+                'name': 'g4',
+                'fieldName': 'g4',
+                'layout': 'vertical',
+                'header': {
+                    visible: false
+                },
+                'columns': [{
+                    'name': 'credit',
+                    'fieldName': 'f3',
+                    'width': '70',
+                    'header': {
+                        'text': '이체금액'
+                    }
+                }, {
+                    'name': 'ChildGroup',
+                    'fiendName': 'child_group',
+                    'layout': 'horizontal',
+                    'header': {
+                        visible: false
+                    },
+                    'columns': [{
+                        'name': 'credit_child',
+                        'fieldName': 'f11',
+                        'header': {
+                            'text': '수수료'
+                        }
+                    }]
+                }]
+            }, {
+                'name': 'g5',
+                'fieldName': 'g5',
+                'layout': 'vertical',
+                'header': {
+                    visible: false
+                },
+                'columns': [{
+                    'name': 'credit',
+                    'fieldName': 'f4',
+                    'width': '70',
+                    'header': {
+                        'text': '내통장표시'
+                    }
+                }, {
+                    'name': 'ChildGroup',
+                    'fiendName': 'child_group',
+                    'layout': 'horizontal',
+                    'header': {
+                        visible: false
+                    },
+                    'columns': [{
+                        'name': 'credit_child',
+                        'fieldName': 'f12',
+                        'header': {
+                            'text': '받는분표시'
+                        }
+                    }]
+                }]
+            }, {
+                'name': 'g6',
+                'fieldName': 'g6',
+                'layout': 'vertical',
+                'header': {
+                    visible: false
+                },
+                'columns': [{
+                    'name': 'credit',
+                    'fieldName': 'f5',
+                    'width': '70',
+                    'header': {
+                        'text': '처리결과'
+                    }
+                }, {
+                    'name': 'ChildGroup',
+                    'fiendName': 'child_group',
+                    'layout': 'horizontal',
+                    'header': {
+                        visible: false
+                    },
+                    'columns': [{
+                        'name': 'credit_child',
+                        'fieldName': 'f13',
+                        'header': {
+                            'text': '불능사유'
+                        }
+                    }]
+                }]
+            }, {
+                fieldName: 'f6',
+                header: {
+                    text: '이체확인중'
+                },
+                editable: false,
+                renderer: {
+                    type: 'button',
+                    activeImageUrl: 'images/default_click.png',
+                    imageUrl: 'images/default_enable.png',
+                    hoveredImageUrl: 'images/default_mouseover.png'
+                },
+                styles: {
+                    textAlignment: 'center'
+                }
+            }];
+            grid0.getView().setColumns(columns);
+            dataset0.appendRow({
+                f0: '2017.03.08',
+                f1: '입금',
+                f2: '449-90-201232386',
+                f3: 120000,
+                f4: '처리완료',
+                f6: '확인',
+                f9: '22:20:22',
+                f10: '국민은행',
+                f11: '윤상수',
+                f12: 0,
+                f13: '윤상수'
+            });
+            dataset0.appendRow({
+                f0: '2017.03.08',
+                f1: '입금',
+                f2: '448-91-201332326',
+                f3: 120000,
+                f4: '처리완료',
+                f6: '확인',
+                f9: '22:20:24',
+                f10: '국민은행',
+                f11: '윤상수',
+                f12: 0,
+                f13: '윤상수'
+            })
+        }
+    </script>
+    <i-dataset data-uid="16" id="dataset0" serviceid="">
+        <header data-uid="17"> [{"id":"f1","object":"edit","type":"char","size":"256","desc":"item0"},{"id":"f2","object":"edit","type":"char","size":"256","desc":"item1"},{"id":"f3","object":"edit","type":"char","size":"256","desc":"item2"},{"id":"f4","object":"edit","type":"char","size":"256","desc":"item3"},{"id":"f5","object":"edit","type":"char","size":"256","desc":"item4"},{"id":"f6","object":"edit","type":"char","size":"256","desc":"item5"},{"id":"f7","object":"edit","type":"char","size":"256","desc":"item6"},{"id":"f8","object":"edit","type":"char","size":"256","desc":"item7"},{"id":"f9","object":"edit","type":"char","size":"256","desc":"item8"},{"id":"f10","object":"edit","type":"char","size":"256","desc":"item9"},{"id":"f11","object":"edit","type":"char","size":"256","desc":"item10"},{"id":"f12","object":"edit","type":"char","size":"256","desc":"item11"},{"id":"f13","object":"edit","type":"char","size":"256","desc":"item12"}]</header>
+        <data data-uid="18"> [] </data>
+        <i-bind bindtype="recordset" property="" target="grid0" column="" data-uid="19"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="multiline_test" data-uid="3" oninitscreen="onInitScreen_multiline_test();">
+    <i-grid style="width: 925px; height: 392px; position: absolute; top: 20px; left: 20px;" data-uid="20" id="grid0" columncount="1" initrowcount="1" sumrowshow="none" columnlastextend="true" columnmove="true" columnresize="true" statebar="false" rowautocount="false"
+        strippedpattern="false" sorted="true" griditem="[]" checkbar="false" rowheight="50" rowheaderheight="45" oncellbuttonclicked="onCellButtonClicked_grid0(arguments);"></i-grid>
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+{
+                "ixebstudio": {
+                    "chart0": {
+                        "labels": ["12월", "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월"],
+                        "datasets": [{
+                            "label": "개정판",
+                            "backgroundColor": "red",
+                            "data": [0, 0, 0, 0, 0, 140, 170, 250, 300, 300, 270],
+                            "fill": false
+                        }, {
+                            "label": "변경사항",
+                            "backgroundColor": "blue",
+                            "data": [0, 0, 0, 0, 0, 12900, 1640, 1700, 8500, 1400, 1340],
+                            "fill": false
+                        }]
+                    },
+                    "chart1": {
+                        "labels": ["김OO", "서OO", "최OO", "이OO", "이OO", "정OO", "이OO", "이OO","차OO","김OO","정OO","박OO","한OO"],
+                        "datasets": [{
+                            "label": "개정판",
+                            "backgroundColor": "red",
+                            "data": [30, 60, 40, 10, 20, 30, 0, 150,0,50,60,20,0],
+                            "fill": false
+                        }, {
+                            "label": "변경사항",
+                            "backgroundColor": "blue",
+                            "data": [4800, 100, 110, 700, 1200, 3500, 0, 16330,0,3500,0,200,0],
+                            "fill": false
+                        }]
+                    }
+                },
+                "ixeb-api": {
+                    "chart0": {
+                        "labels": ["12월", "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월"],
+                        "datasets": [{
+                            "label": "개정판",
+                            "backgroundColor": "red",
+                            "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5],
+                            "fill": false
+                        }, {
+                            "label": "변경사항",
+                            "backgroundColor": "blue",
+                            "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 148],
+                            "fill": false
+                        }]
+                    },
+                    "chart1": {
+                        "labels": ["김OO", "서OO", "최OO", "이OO", "이OO", "정OO", "이OO", "이OO","차OO","김OO","정OO","박OO","한OO"],
+                        "datasets": [{
+                            "label": "개정판",
+                            "backgroundColor": "red",
+                            "data": [5, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0],
+                            "fill": false
+                        }, {
+                            "label": "변경사항",
+                            "backgroundColor": "blue",
+                            "data": [148, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0],
+                            "fill": false
+                        }]
+                    }
+                },
+                "ixeb-framework": {
+                    "chart0": {
+                        "labels": ["12월", "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월"],
+                        "datasets": [{
+                            "label": "개정판",
+                            "backgroundColor": "red",
+                            "data": [0, 0, 0, 0, 1, 50, 50, 30, 60, 60, 100],
+                            "fill": false
+                        }, {
+                            "label": "변경사항",
+                            "backgroundColor": "blue",
+                            "data": [0, 0, 0, 0, 30, 6554, 1400, 812, 400, 500, 900],
+                            "fill": false
+                        }]
+                    },
+                    "chart1": {
+                        "labels": ["김OO", "서OO", "최OO", "이OO", "이OO", "정OO", "이OO", "이OO","차OO","김OO","정OO","박OO","한OO"],
+                        "datasets": [{
+                            "label": "개정판",
+                            "backgroundColor": "red",
+                            "data": [1, 450, 200, 0, 480, 150, 0, 5,0,200,10,50,0],
+                            "fill": false
+                        }, {
+                            "label": "변경사항",
+                            "backgroundColor": "blue",
+                            "data": [35, 900, 700, 0, 9500, 400, 0, 5,800,100,0,500,0],
+                            "fill": false
+                        }]
+                    }
+                },
+                "ixeb-manager": {
+                    "chart0": {
+                        "labels": ["12월", "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월"],
+                        "datasets": [{
+                            "label": "개정판",
+                            "backgroundColor": "red",
+                            "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5,0,0,0,0,0],
+                            "fill": false
+                        }, {
+                            "label": "변경사항",
+                            "backgroundColor": "blue",
+                            "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 82,0,0,0,0,0],
+                            "fill": false
+                        }]
+                    },
+                    "chart1": {
+                        "labels": ["김OO", "서OO", "최OO", "이OO", "이OO", "정OO", "이OO", "이OO","차OO","김OO","정OO","박OO","한OO"],
+                        "datasets": [{
+                            "label": "개정판",
+                            "backgroundColor": "red",
+                            "data": [5, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0],
+                            "fill": false
+                        }, {
+                            "label": "변경사항",
+                            "backgroundColor": "blue",
+                            "data": [92, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0],
+                            "fill": false
+                        }]
+                    }
+                }
+ }

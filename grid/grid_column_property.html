@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:guide-vline" content="251," data-uid="5">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="6">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="7">
+    <meta name="created" content="2016/10/19 17:56" data-uid="8">
+    <title data-uid="9">grid_column_property</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="10"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="11"></script>
+    <script type="text/javascript" data-uid="12">
+        /**
+                                                // 	 * @작성자 : {USER}
+                                                	 * @작성날짜 : 2016-10-20
+                                                	 * @description : cell 수정 완료 후 저장소로 보내진후 발생하는 이벤트
+                                                	 * @params:  {args0}: event객체
+                                                				 {args1}: grid 객체
+                                                				 {args2}: cell이 포함된 row 객체 
+                                                				 {args3}: update됀 cell index 
+                                                				 {args4}: 새로 변경된 cell 값
+                                                				 {args5}: 변경전 기존 cell 값
+                                                	 * @return 
+                                                	 */
+        function onEditCellUpdated_grid0(args) {
+            //TODO:
+            var e = args[0],
+                grid = args[1],
+                cell = args[2],
+                newValue = args[3],
+                oldValue = args[4];
+            var igrid = $(window.opener.document).find('#grid1')[0];
+            var colIdx = igrid.getView().focusedColumn().index();
+            console.log(colIdx)
+            var data = grid.dataSource().getRows()[grid.focusedRow().index()];
+            var key = data[0];
+            var value = data[1];
+            if (typeof value === 'boolean') {
+                value = ixeb.util.toBoolean(value);
+            }
+            if (typeof data === 'number') {
+                value = ixeb.util.toNumber(value);
+            }
+            igrid.setColumnProperty(colIdx, key, value);
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-19
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button1() {
+            //TODO:
+            console.log('close panel')
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-19
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var columns = [{
+                fieldName: 'propName',
+                name: '속성명'
+            }, {
+                fieldName: 'propValue',
+                name: '속성값'
+            }]
+            grid0.setColumns(columns);
+            var parameter = document.location.href.split('?')[1];
+            if (parameter) {
+                var items = decodeURI(parameter).split('=')[1].replace(/%22/g, '\'').replace(/%7B/g, '\{').replace(/%7D/g, '\}');
+                items = ixeb.util.parseJSON(items);
+                for (var i in items) {
+                    var row = {
+                        propName: i,
+                        propValue: items[i]
+                    };
+                    dataset0.appendRow(row);
+                }
+            }
+            grid0.setColumnProperty(0, 'colEnable', false);
+        }
+    </script>
+    <i-dataset data-uid="13" id="dataset0">
+        <i-bind bindtype="recordset" property="" target="grid0" column="" data-uid="15"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="grid_column_property" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-grid style="width: 500px; height: 650px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="16" id="grid0" columncount="3" oneditcellupdated="onEditCellUpdated_grid0(arguments);"></i-grid>
+    <i-button text="닫기" style="position: absolute; top: 660px; left: 227.5px; background-size: 100% 100%;" data-uid="17" id="button1" onclick="onclick_button1();"></i-button>
+</body>
+
+</html>

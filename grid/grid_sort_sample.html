@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="6">
+    <meta name="created" content="2016/10/05 17:27" data-uid="7">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="8">
+    <title data-uid="9">grid_sort_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="10"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="11"></script>
+    <script type="text/javascript" data-uid="12">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-05
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            grid0.setColumnProperty(2, 'type', 'number');
+            grid0.setColumnProperty(5, 'type', 'number');
+            grid0.setColumnProperty(4, 'colSort', true);
+            var data = [
+                ['IBRD16400', 'Korea', 7.35, 'USD', 'P004985', 1430000, 0, 1430000],
+                ['IBRD16401', 'India', 8.5, 'USD', 'P004701', 1450000, 8550702, 770000],
+                ['IBRD16402', 'India', 8.2, 'USD', 'P004721', 1500000, 0, 1430002],
+                ['IBRD16403', 'USA', 7.35, 'USD', 'P004923', 1500000, 0, 143003],
+                ['IBRD16404', 'Turkey', 8.25, 'USD', 'P004981', 1590000, 26863810, 1530000],
+                ['IBRD16405', 'Brazil', 8, 'USD', 'P004307', 1750000, 988880, 2230000],
+                ['IBRD16406', 'Brazil', 4.25, 'USD', 'P004217', 1910000, 0, 14760000],
+                ['IBRD16407', 'Mexico', 7.5, 'USD', 'P004452', 1750000, 0, 1420000],
+                ['IBRD16408', 'France', 8.55, 'USD', 'P004929', 1910000, 0, 1410000],
+                ['IBRD16409', 'Argentina', 7.9, 'USD', 'P004951', 2000000, 0, 2430000]
+            ];
+            grid0.setGridData(data);
+        }
+
+        function getCol(idx) {
+            return grid0.getColumn(idx);
+        }
+    </script>
+</head>
+
+<body id="grid_sort_sample" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="Grid Sort Sample" style="width: 1010px; height: 360px; position: absolute; top: 8px; left: 8px;" data-uid="13" id="group0" class="group-panel">
+        <i-grid style="width: 1000px; height: 320px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="14" id="grid0" columnlastextend="true" sortablevisible="true" sorted="true" columns="[
+                {
+                    'fieldName': 'no',
+                    'name': '대출번호'
+                },{
+                    'fieldName': 'nature',
+                    'name': '국가'
+                },{
+                    'fieldName': 'interest',
+                    'name': '이율'
+                },{
+                    'fieldName': 'currency',
+                    'name': '통화'
+                },{
+                    'fieldName': 'project_id',
+                    'name': '프로젝트 아이디'
+                },{
+                    'fieldName': 'orig_money',
+                    'name': '원금'
+                },{
+                    'fieldName': 'cancel_money',
+                    'name': '취소금액'
+                },{
+                    'fieldName': 'spend_money',
+                    'name': '지출액'
+                }
+            ]"></i-grid>
+    </i-group>
+</body>
+
+</html>

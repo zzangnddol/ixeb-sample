@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="6">
+    <meta name="created" content="2016/10/11 17:30" data-uid="7">
+    <link rel="stylesheet" href="../css/samples.css">
+    <title data-uid="8">grid_gauge_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="9"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="10"></script>
+    <script type="text/javascript" data-uid="11">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-11
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var fields = [{
+                "fieldName": "region"
+            }, {
+                "fieldName": "subregion"
+            }, {
+                "fieldName": "country"
+            }, {
+                "fieldName": "city_station"
+            }, {
+                "fieldName": "pm10",
+                "dataType": "number"
+            }, {
+                "fieldName": "pm25",
+                "dataType": "number"
+            }, {
+                "fieldName": "stations"
+            }, {
+                "fieldName": "description"
+            }];
+            grid0.setFields(fields);
+            var columns = [{
+                "name": "grpRegions",
+                "width": 130,
+                "header": "Regions",
+                "childHeadersVisible": false,
+                "childFootersVisible": false,
+                "columns": [{
+                    "name": "colLabels",
+                    "layout": "vertical",
+                    "width": 60,
+                    "columns": [{
+                        "type": "label",
+                        "text": "Region",
+                        "styles": {
+                            "textAlignment": "far",
+                            "fontSize": 11,
+                            "fontItalic": true,
+                            "paddingRight": 5,
+                            "background": "#08000000"
+                        }
+                    }, {
+                        "type": "label",
+                        "text": "Subregion",
+                        "styles": {
+                            "textAlignment": "far",
+                            "fontSize": 11,
+                            "fontItalic": true,
+                            "paddingRight": 5,
+                            "background": "#08000000"
+                        }
+                    }, {
+                        "type": "label",
+                        "text": "Country",
+                        "styles": {
+                            "textAlignment": "far",
+                            "fontSize": 11,
+                            "fontItalic": true,
+                            "paddingRight": 5,
+                            "background": "#08000000"
+                        }
+                    }]
+                }, {
+                    "name": "colRegions",
+                    "layout": "vertical",
+                    "width": 70,
+                    "columns": [{
+                        "fieldName": "region",
+                        "styles": {}
+                    }, {
+                        "fieldName": "subregion",
+                        "styles": {}
+                    }, {
+                        "fieldName": "country",
+                        "styles": {}
+                    }]
+                }]
+            }, {
+                "name": "colCity",
+                "fieldName": "city_station",
+                "header": "City/Station",
+                "width": 80,
+                "styles": {
+                    "textWrap": "normal"
+                }
+            }, {
+                "name": "comPm25",
+                "fieldName": "pm25",
+                "width": 170,
+                "styles": {
+                    "textAlignment": "far",
+                    "fontSize": 14,
+                    "color": "#008",
+                    "shapeInactiveColor": "#10000000",
+                    "shapeColor": "#80000088",
+                    "padding": 4,
+                    "numberFormat": "#,##0.0"
+                },
+                "dynamicStyles": [{
+                    "expressions": ["value > 40", "value > 20"],
+                    "styles": [{
+                        "shapeColor": "#a0aa0000",
+                        "color": "#800"
+                    }, {
+                        "shapeColor": "#a000aa00",
+                        "color": "#080"
+                    }]
+                }],
+                "header": {
+                    "text": "PM 2.5"
+                },
+                "footer": {
+                    "expression": "avg",
+                    "styles": {
+                        "fontSize": 14,
+                        "numberFormat": "#,##0.0"
+                    },
+                    "dynamicStyles": [{
+                        "expressions": ["value > 40", "value > 20"],
+                        "styles": [{
+                            "borderLeft": null,
+                            "background": "#40ff0000",
+                            "color": "#080"
+                        }, {
+                            "borderLeft": null,
+                            "background": "#4000ff00",
+                            "color": "#008"
+                        }]
+                    }]
+                },
+                "renderer": {
+                    "type": "linearGauge",
+                    "startValue": 0,
+                    "endValue": 80,
+                    "thickness": 9,
+                    "valueThickness": 0.5,
+                    "valueLocation": "top",
+                    "ranges": [{
+                        "label": "good",
+                        "endValue": 20,
+                        "background": "#30000000"
+                    }, {
+                        "label": "normal",
+                        "startValue": 20,
+                        "endValue": 40,
+                        "background": "#20000000"
+                    }, {
+                        "label": "bad",
+                        "startValue": 40,
+                        "endValue": 80,
+                        "background": "#10000000"
+                    }],
+                    "scale": {
+                        "ticks": [0, 20, 40, 80],
+                        "tickLength": 0,
+                        "lineStroke": null
+                    }
+                },
+                "animations": [{
+                    "property": "value",
+                    "duration": 1000
+                }]
+            }, {
+                "name": "colPm10",
+                "fieldName": "pm10",
+                "width": 170,
+                "styles": {
+                    "textAlignment": "far",
+                    "fontSize": 14,
+                    "color": "#008",
+                    "shapeInactiveColor": "#ffffff",
+                    "shapeColor": "#a00000aa",
+                    "padding": 4,
+                    "numberFormat": "#,##0.0"
+                },
+                "dynamicStyles": [{
+                    "expressions": ["value > 70", "value > 40"],
+                    "styles": [{
+                        "shapeColor": "#a0aa0000",
+                        "color": "#800"
+                    }, {
+                        "shapeColor": "#a000aa00",
+                        "color": "#080"
+                    }]
+                }],
+                "header": {
+                    "text": "PM 10"
+                },
+                "footer": {
+                    "expression": "avg",
+                    "styles": {
+                        "fontSize": 14,
+                        "numberFormat": "#,##0.0"
+                    },
+                    "dynamicStyles": [{
+                        "expressions": ["value > 70", "value > 40"],
+                        "styles": [{
+                            "shapeColor": "#a0aa0000",
+                            "color": "#800"
+                        }, {
+                            "shapeColor": "#a000aa00",
+                            "color": "#080"
+                        }]
+                    }]
+                },
+                "renderer": {
+                    "type": "linearGauge",
+                    "startValue": 0,
+                    "endValue": 130,
+                    "thickness": 17,
+                    "valueThickness": 0.33,
+                    "ranges": [{
+                        "label": "good",
+                        "endValue": 40,
+                        "background": "#10000000"
+                    }, {
+                        "label": "normal",
+                        "startValue": 40,
+                        "endValue": 70,
+                        "background": "#20000000"
+                    }, {
+                        "label": "bad",
+                        "startValue": 70,
+                        "endValue": 130,
+                        "background": "#30000000"
+                    }],
+                    "scale": {
+                        "ticks": [0, 40, 70, 130],
+                        "tickLength": 0,
+                        "lineStroke": null
+                    }
+                },
+                "animations": [{
+                    "property": "value",
+                    "duration": 1000
+                }]
+            }, {
+                "name": "colStations",
+                "fieldName": "stations",
+                "header": "Monitoring Stations",
+                "width": 150,
+                "styles": {
+                    "textWrap": "normal"
+                }
+            }, {
+                "name": "colDescription",
+                "fieldName": "description",
+                "header": "Air Quality",
+                "width": 300,
+                "styles": {
+                    "textWrap": "normal"
+                }
+            }];
+            grid0.getView().setColumns(columns);
+            grid0.getView().effectOptions().setAnimationEnabled(true);
+            grid0.getView().autoFill().setEnabled(true);
+            grid0.getView().loadStyles({
+                selection: {
+                    background: "#11000000",
+                    border: "#88000000,1"
+                }
+            });
+            $.ajax({
+                url: "grid_gauge_sample.csv",
+                dataType: 'text',
+                success: function(data) {
+                    grid0.setCsvData(data, {
+                        start: 1,
+                        quoted: true
+                    });
+                },
+                error: function(xhr, status, error) {
+                    var err = status + ', ' + error;
+                    alert("jQuery ajax() Failed: " + err);
+                }
+            });
+        }
+    </script>
+</head>
+
+<body id="grid_gauge_sample" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="Grid Gauge Sample" style="width: 1010px; height: 360px; position: absolute; top: 8px; left: 8px;" data-uid="12" id="group0" class="group-panel">
+        <i-grid style="width: 1000px; height: 320px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="13" id="grid0" rowheight="80" strippedpattern="false"></i-grid>
+    </i-group>
+</body>
+
+</html>

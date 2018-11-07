@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1280x1300" data-uid="6">
+    <meta name="created" content="2016/10/03 17:53" data-uid="7">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="8">
+    <title data-uid="9">tree_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="10"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="11"></script>
+    <script type="text/javascript" data-uid="12">
+    </script>
+</head>
+
+<body id="tree_sample" data-uid="3">
+    <i-group text="Tree Type" style="width: 1076px; height: 477px; position: absolute; top: 59px; left: 20px;" data-uid="13" id="group0" class="group-panel">
+        <i-tree style="width: 304px; height: 424px; position: absolute; top: 8px; left: 216px; background-color: white;" items="[{'children':[{'icon':'','id':'t1_2','sIcon':'','text':'신용등급조회(가계대출보유고객)'},{'icon':'','id':'t1_4','sIcon':'','text':'심사역관리'},{'icon':'','id':'t1_5','sIcon':'','text':'특정기업관리'},{'icon':'','id':'t1_6','sIcon':'','text':'TOPS공무원우대론중복취급허용등록'},{'icon':'','id':'t1_7','sIcon':'','text':'승인조건관리'},{'icon':'','id':'t1_8','sIcon':'','text':'단체협의대출승인관리'}],'icon':'','id':'t1_1','sIcon':'','text':'관리업무'},{'children':[{'icon':'','id':'t1_9','sIcon':'','text':'신청접수'},{'icon':'','id':'t1_10','sIcon':'','text':'신청결과'},{'icon':'','id':'t1_11','sIcon':'','text':'신청결과'}],'icon':'','id':'t1_3','sIcon':'','text':'신청'},{'children':[{'icon':'','id':'t1_13','sIcon':'','text':'심사안건 등록'},{'icon':'','id':'t1_14','sIcon':'','text':'심사안건 조회 및 심의'},{'icon':'','id':'t1_15','sIcon':'','text':'승인 및 부결 등록'},{'icon':'','id':'t1_16','sIcon':'','text':'심사역별 평가건수 조회'}],'icon':'','id':'t1_12','sIcon':'','text':'여신협의회'}]"
+            data-uid="14" id="tree0"></i-tree>
+        <i-text text="기본 트리 (showCheckBox : false )" style="position: absolute; top: 8px; left: 8px;" data-uid="15" id="text1"></i-text>
+        <i-text text="기본 트리 (showCheckBox : true )" style="position: absolute; top: 8px; left: 525px;" data-uid="16" id="text2"></i-text>
+        <i-tree style="width: 327px; height: 424px; position: absolute; top: 8px; left: 730px; background-color: white;" items="[{'id':'t1_1','text':'관리업무','icon':'','sIcon':'','children':[{'id':'t1_2','text':'신용등급조회(가계대출보유고객)','icon':'','sIcon':''},{'id':'t1_4','text':'심사역관리','icon':'','sIcon':''},{'id':'t1_5','text':'특정기업관리','icon':'','sIcon':''},{'id':'t1_6','text':'TOPS공무원우대론중복취급허용등록','icon':'','sIcon':''},{'id':'t1_7','text':'승인조건관리','icon':'','sIcon':''},{'id':'t1_8','text':'단체협의대출승인관리','icon':'','sIcon':''}]},{'id':'t1_3','text':'신청','icon':'','sIcon':'','children':[{'id':'t1_9','text':'신청접수','icon':'','sIcon':''},{'id':'t1_10','text':'신청결과','icon':'','sIcon':''},{'id':'t1_11','text':'신청결과','icon':'','sIcon':''}]},{'id':'t1_12','text':'여신협의회','icon':'','sIcon':'','children':[{'id':'t1_13','text':'심사안건 등록','icon':'','sIcon':''},{'id':'t1_14','text':'심사안건 조회 및 심의','icon':'','sIcon':''},{'id':'t1_15','text':'승인 및 부결 등록','icon':'','sIcon':''},{'id':'t1_16','text':'심사역별 평가건수 조회','icon':'','sIcon':''}]}]"
+            data-uid="17" id="tree1" showcheckbox="true"></i-tree>
+    </i-group>
+    <i-group text="singleExpand" style="width: 1076px; height: 328px; position: absolute; top: 539px; left: 20px;" data-uid="18" id="group1" class="group-panel">
+        <i-tree style="width: 304px; height: 279px; position: absolute; top: 8px; left: 216px; background-color: white;" items="[{'children':[{'icon':'','id':'t1_2','sIcon':'','text':'신용등급조회(가계대출보유고객)'},{'icon':'','id':'t1_4','sIcon':'','text':'심사역관리'},{'icon':'','id':'t1_5','sIcon':'','text':'특정기업관리'},{'icon':'','id':'t1_6','sIcon':'','text':'TOPS공무원우대론중복취급허용등록'},{'icon':'','id':'t1_7','sIcon':'','text':'승인조건관리'},{'icon':'','id':'t1_8','sIcon':'','text':'단체협의대출승인관리'}],'icon':'','id':'t1_1','sIcon':'','text':'관리업무'},{'children':[{'icon':'','id':'t1_9','sIcon':'','text':'신청접수'},{'icon':'','id':'t1_10','sIcon':'','text':'신청결과'},{'icon':'','id':'t1_11','sIcon':'','text':'신청결과'}],'icon':'','id':'t1_3','sIcon':'','text':'신청'}]"
+            data-uid="19" id="tree2" singleexpand="true"></i-tree>
+        <i-text text="singleExpand true" style="position: absolute; top: 8px; left: 8px;" data-uid="20" id="text1"></i-text>
+        <i-text text="singleExpand false" style="position: absolute; top: 8px; left: 525px;" data-uid="21" id="text2"></i-text>
+        <i-tree style="width: 327px; height: 279px; position: absolute; top: 8px; left: 730px; background-color: white;" items="[{'children':[{'icon':'','id':'t1_2','sIcon':'','text':'신용등급조회(가계대출보유고객)'},{'icon':'','id':'t1_4','sIcon':'','text':'심사역관리'},{'icon':'','id':'t1_5','sIcon':'','text':'특정기업관리'},{'icon':'','id':'t1_6','sIcon':'','text':'TOPS공무원우대론중복취급허용등록'},{'icon':'','id':'t1_7','sIcon':'','text':'승인조건관리'},{'icon':'','id':'t1_8','sIcon':'','text':'단체협의대출승인관리'}],'icon':'','id':'t1_1','sIcon':'','text':'관리업무'},{'children':[{'icon':'','id':'t1_9','sIcon':'','text':'신청접수'},{'icon':'','id':'t1_10','sIcon':'','text':'신청결과'},{'icon':'','id':'t1_11','sIcon':'','text':'신청결과'}],'icon':'','id':'t1_3','sIcon':'','text':'신청'}]"
+            data-uid="22" id="tree3" showcheckbox="false"></i-tree>
+    </i-group>
+    <i-group text="clickExpand" style="width: 1076px; height: 328px; position: absolute; top: 871px; left: 19px;" data-uid="23" id="group2" class="group-panel">
+        <i-tree style="width: 304px; height: 279px; position: absolute; top: 8px; left: 216px; background-color: white;" items="[{'children':[{'icon':'','id':'t1_2','sIcon':'','text':'신용등급조회(가계대출보유고객)'},{'icon':'','id':'t1_4','sIcon':'','text':'심사역관리'},{'icon':'','id':'t1_5','sIcon':'','text':'특정기업관리'},{'icon':'','id':'t1_6','sIcon':'','text':'TOPS공무원우대론중복취급허용등록'},{'icon':'','id':'t1_7','sIcon':'','text':'승인조건관리'},{'icon':'','id':'t1_8','sIcon':'','text':'단체협의대출승인관리'}],'icon':'','id':'t1_1','sIcon':'','text':'관리업무'},{'children':[{'icon':'','id':'t1_9','sIcon':'','text':'신청접수'},{'icon':'','id':'t1_10','sIcon':'','text':'신청결과'},{'icon':'','id':'t1_11','sIcon':'','text':'신청결과'}],'icon':'','id':'t1_3','sIcon':'','text':'신청'}]"
+            data-uid="24" id="tree4" clickexpand="true"></i-tree>
+        <i-text text="clickExpand true" style="position: absolute; top: 8px; left: 8px;" data-uid="25" id="text1"></i-text>
+        <i-text text="clickExpand false" style="position: absolute; top: 8px; left: 525px;" data-uid="26" id="text2"></i-text>
+        <i-tree style="width: 327px; height: 279px; position: absolute; top: 8px; left: 730px; background-color: white;" items="[{'children':[{'icon':'','id':'t1_2','sIcon':'','text':'신용등급조회(가계대출보유고객)'},{'icon':'','id':'t1_4','sIcon':'','text':'심사역관리'},{'icon':'','id':'t1_5','sIcon':'','text':'특정기업관리'},{'icon':'','id':'t1_6','sIcon':'','text':'TOPS공무원우대론중복취급허용등록'},{'icon':'','id':'t1_7','sIcon':'','text':'승인조건관리'},{'icon':'','id':'t1_8','sIcon':'','text':'단체협의대출승인관리'}],'icon':'','id':'t1_1','sIcon':'','text':'관리업무'},{'children':[{'icon':'','id':'t1_9','sIcon':'','text':'신청접수'},{'icon':'','id':'t1_10','sIcon':'','text':'신청결과'},{'icon':'','id':'t1_11','sIcon':'','text':'신청결과'}],'icon':'','id':'t1_3','sIcon':'','text':'신청'}]"
+            data-uid="27" id="tree5" showcheckbox="false"></i-tree>
+    </i-group>
+    <div style="width: 1076px; height: 45px; position: absolute; top: 10px; left: 20px;" data-uid="28" id="div0" class="search-panel">
+        <i-text text="Tree Sample" style="position: absolute; top: 8px; left: 9px; font-size: 25px;" data-uid="29" id="text0"></i-text>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="6">
+    <meta name="created" content="2016/10/13 13:48" data-uid="7">
+    <title data-uid="8">join</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="9"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="10"></script>
+    <link rel="stylesheet" href="../css/samples.css" type="text/css" data-uid="11">
+    <script type="text/javascript" data-uid="12">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-13
+         * @description : 컨트롤에서 포커스를 잃었을때 값이 변경했을 경우 발생하는 이벤트
+         * @return
+         */
+        function onchange_combo0() {
+            //TODO:
+            var selVal = combo0.getSelectedValue();
+            var url = '';
+            if (selVal == '현금') {
+                panel0.url = './join_value1.html';
+            } else if (selVal == '대체') {
+                panel1.url = './join_value2.html';
+            }
+        }
+    </script>
+</head>
+
+<body id="join" data-uid="3">
+    <i-text text="※ 가상계좌 입금도 가능합니다." style="position: absolute; top: 8px; left: 8px; color : green;" data-uid="13" id="text0"></i-text>
+    <div style="width: 1020px; height: 103px; position: absolute; top: 33px; left: 8px;" class="div-group-panel" data-uid="14" id="div0">
+        <i-text text="계좌번호" style="position: absolute; top: 14.5px; left: 51px;" data-uid="15" id="text1"></i-text>
+        <i-text text="계좌금액" style="position: absolute; top: 44.5px; left: 51px;" data-uid="16" id="text2"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 10px; left: 109px; height: 22px;" data-uid="17" id="edit0"></i-edit>
+        <i-edit style="width: 140px; position: absolute; top: 40px; left: 109px;" data-uid="18" id="edit1"></i-edit>
+        <i-text text="현금/대체 구분" style="position: absolute; top: 74.5px; left: 17px;" data-uid="19" id="text3"></i-text>
+        <i-combo style="width: 140px; position: absolute; top: 70px; left: 109px;" data-uid="20" id="combo0" items="[{'label':'1-현금','value':'현금'},{'label':'2-대체','value':'대체'}]" onchange="onchange_combo0();"></i-combo>
+        <i-button text="찾기" style="position: absolute; top: 10px; left: 257px; height: 22px; background-size: 100% 100%;" data-uid="21" id="button0"></i-button>
+    </div>
+    <i-panel style="width: 2px; height: 10px; position: absolute; top: 170px; left: 0px;" data-uid="22" id="panel0" autopanel="true"></i-panel>
+    <i-panel style="width: 2px; height: 10px; position: absolute; top: 420px; left: 0px;" data-uid="23" id="panel1" autopanel="true"></i-panel>
+</body>
+
+</html>

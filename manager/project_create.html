@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/11/21 18:49">
+    <meta name="generator" content="iXebStudio 1.0.0.1172" data-uid="5">
+    <meta name="ixeb-studio:guide-vline" content="1897," data-uid="6">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="7">
+    <meta name="ixeb-studio:screen-size" content="1920x1080" data-uid="8">
+    <meta name="created" content="2016/11/07 10:48" data-uid="9">
+    <style data-uid="10">
+        .edit_border {
+            border: 2px solid #aed136;
+        }
+        
+        .edit_border:hover {
+            border: 2px solid #9cae14;
+        }
+        
+        .project_create {
+            background: #FFFFFF!important;
+            min-width: 1024px;
+            width: calc(100% - 16px)!important;
+            border: none!important;
+        }
+        
+        i-multilineedit {
+            width: calc(100% - 124px)!important;
+        }
+    </style>
+    <title data-uid="11">project_create</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="12"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="13"></script>
+    <script type="text/javascript" data-uid="14">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-11-07
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button1() {
+            //TODO:
+            window.parent.panel0.url = "projectList.html?identifier=" + edit0.value;
+        }
+
+        function onDataCellClicked_grid0(args) {
+            //TODO:
+            var fname = args[2].column.fieldName();
+            if (fname === 'account') {
+                window.parent.panel0.url = "projectList.html?identifier=" + edit0.value;
+            } else if (fname === 'statistics') {
+                window.parent.panel0.url = "project_chart.html?identifier=" + edit0.value;
+            }
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-11-07
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var columns = [{
+                fieldName: 'identifier',
+                header: {
+                    text: '식별자'
+                },
+                styles: {
+                    paddingLeft: 10
+                },
+                width: 80
+            }, {
+                fieldName: 'project_id',
+                header: {
+                    text: '프로젝트 명'
+                },
+                styles: {
+                    paddingLeft: 10
+                },
+                width: 80
+            }, {
+                fieldName: 'description',
+                header: {
+                    text: '설명'
+                },
+                styles: {
+                    paddingLeft: 10
+                },
+                width: 300
+            }, {
+                header: {
+                    text: '비고',
+                    styles: {
+                        background: '#A2A2A2',
+                        color: '#ffffff',
+                        hoveredBackground: '#A2A2A2',
+                        hoveredColor: '#ffffff'
+                    },
+                },
+                childHeadersVisible: false,
+                width: 80,
+                columns: [{
+                    fieldName: 'account',
+                    header: {
+                        text: ' ',
+                    },
+                    button: 'action',
+                    buttonVisibility: 'always',
+                    renderer: {
+                        type: 'button',
+                        text: '계정판'
+                    },
+                    width: 40
+                }, {
+                    fieldName: 'statistics',
+                    button: 'action',
+                    buttonVisibility: 'always',
+                    header: {
+                        text: ' '
+                    },
+                    renderer: {
+                        type: 'button',
+                        text: '통계'
+                    },
+                    width: 40
+                }]
+            }];
+            grid0.getView().setColumns(columns);
+            grid0.getView().body().setStyles({
+                borderBottom: '#e6e6e6'
+            });
+            grid0.getView().setStyles({
+                border: '#e6e6e6,1px,solid'
+            });
+            $.ajax({
+                url: './data/projectList.json',
+                success: function(ret) {
+                    dataset0.appendRows(ret.data);
+                }
+            });
+        }
+
+        function onclick_button0() {
+            var input = $('<input type="file" webkitDirectory>');
+            input.click();
+        }
+    </script>
+    <i-dataset data-uid="15" id="dataset0">
+        <i-bind bindtype="attribute" target="edit1" column="project_id" property="value" data-uid="16"></i-bind>
+        <i-bind bindtype="attribute" target="edit0" column="identifier" property="value" data-uid="17"></i-bind>
+        <i-bind bindtype="recordset" target="grid0" data-uid="18"></i-bind>
+        <i-bind bindtype="attribute" target="multilineedit0" column="description" property="value" data-uid="19"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="project_create" data-uid="3" oninitscreen="onInitScreen_body();" style="background-color: #e6e6e6;">
+    <div style="width: calc(100% - 16px); height: 320px; position: absolute; top: 30px; left: 8px; margin-right: 8px; background-color: rgb(255, 255, 255);" data-uid="20" id="div0">
+        <i-text text="프로젝트 명 :" style="position: absolute; top: 7.5px; left: 8px; font-weight: bold;" data-uid="21" id="text0"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 3px; left: 101px;" data-uid="22" id="edit0" class="edit_border"></i-edit>
+        <i-text text="식별자 :" style="position: absolute; top: 43.5px; left: 8px; font-weight: bold;" data-uid="23" id="text1"></i-text>
+        <i-edit style="width: 140px; position: absolute; top: 39px; left: 101px;" data-uid="24" id="edit1" class="edit_border"></i-edit>
+        <i-text text="import" style="position: absolute; top: 79.5px; left: 8px; font-weight: bold;" data-uid="25" id="text2"></i-text>
+        <i-button text="import" style="position: absolute; top: 76px; left: 101px; background-size: 100% 100%;" data-uid="26" id="button0" onclick="onclick_button0();"></i-button>
+        <i-text text="설명 : " style="position: absolute; top: 116px; left: 8px; font-weight: bold;" data-uid="27" id="text3"></i-text>
+        <i-multilineedit style="position: absolute; top: 116px; left: 101px; height: 165px;" data-uid="28" id="multilineedit0" class="edit_border"></i-multilineedit>
+        <i-button text="생성" style="position: absolute; top: 290px; right: 24px; width: 76px; height: 20px; color: rgb(255, 255, 255); border: none; border-radius: 0px; background-color: rgb(111, 206, 0); background-size: 100% 100%; cursor: pointer;"
+            data-uid="29" id="button1" onclick="onclick_button1();"></i-button>
+    </div>
+    <i-grid id="grid0" style="position: absolute; height: 250px; top: 380px; left: 8px; opacity: 0.99; width: calc(100% - 16px) !important;" columnlastextend="true" rowautocount="false" statebar="false" columncount="0" columns="[{'fieldName':'identifier','name':'식별자','dataType':'edit','type':'char','size':'256'},{'fieldName':'project_id','name':'프로젝트 명','dataType':'edit','type':'char','size':'256'},{'fieldName':'description','name':'설명','dataType':'edit','type':'char','size':'256'},{'fieldName':'account','name':'계정판','dataType':'edit','type':'char','size':'256'},{'fieldName':'statistics','name':'통계','dataType':'edit','type':'char','size':'256'}]"
+        griditem="[]" data-uid="30" ondatacellclicked="onDataCellClicked_grid0(arguments);" rowheaderheight="25" strippedcolor="#EEF1F5" colheadbackcolor="#A2A2A2" colheadtextcolor="#FFFFFF" selectbackcolor="#D2FFAB" selectbordercolor="#2AAAFF"></i-grid>
+    <h3 style="position: absolute; top: 8px; left: 8px;font-weight: bold;" data-uid="31" id="text4">프로젝트 생성</h3>
+</body>
+
+</html>

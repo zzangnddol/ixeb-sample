@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="6">
+    <meta name="created" content="2016/10/18 13:51" data-uid="7">
+    <title data-uid="8">testGrid</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="9"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="10"></script>
+    <script type="text/javascript" src="../js/ixebmanager.js" data-uid="10"></script>
+    <script type="text/javascript" data-uid="11">
+	/**
+	 * @작성자 : {USER}
+	 * @작성날짜 : 2016-10-18
+	 * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+	 * @return 
+	 */
+	function onclick_button8() { 
+ //TODO:
+        
+        window.opener.grid0.setGridData( grid0.getGridData() );
+	
+	}
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-18
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            grid0.setGridData(window.opener.grid0.getGridData());
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-18
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        
+
+        function onclick_button7() {
+            alert(dataset0.getRowStatus(dataset0.getRowPosition()));
+        }
+
+        function onclick_button6() {
+            ixeb.comm.transaction({
+                "in": ['dataset0=>' + dataset0.serviceId],
+                "out": [dataset0.serviceId + '=>dataset0'],
+                "url": getRootUrl() + "/ixeb-manager/service.ixeb"
+            }).done(function(r) {
+                console.log("success");
+            }).fail(function(r) {
+                console.log("error", r);
+            }).always(function() {
+                console.log("always");
+            });
+        }
+
+        function onclick_button5() {
+            dataset0.clear();
+        }
+
+        function onclick_button4() {
+            alert("print는 루디에서")
+        }
+
+        function onclick_button3() {
+            var input = $("<input type='file'>");
+            $(input).on('change', function() {
+                grid0.importData(this.files[0]);
+            });
+            $(input).click();
+        }
+
+        function onclick_button2() {
+            grid0.exportData("grid0.xlsx");
+        }
+
+        function onclick_button1() {
+            dataset0.deleteRow(grid0.getView().focusedRowIndex());
+        }
+
+        function onclick_button0() {
+            dataset0.appendRow({});
+        }
+    </script>
+    <i-dataset data-uid="12" id="dataset0" serviceid="service_cctv">
+        <header data-uid="13"> [ {"id": "Agency","desc": "","object": "","type": "","size": ""}, {"id": "AddressNew","desc": "","object": "","type": "","size": ""}, {"id": "AddressOld","desc": "","object": "","type": "","size": ""}, {"id": "Purpose","desc": "","object": "","type":
+            "","size": ""}, {"id": "Number","desc": "","object": "","type": "","size": ""}, {"id": "Pixels","desc": "","object": "","type": "","size": ""}, {"id": "ShootingScene","desc": "","object": "","type": "","size": ""}, {"id": "DayOfKeep","desc":
+            "","object": "","type": "","size": ""}, {"id": "DateOfInstallation","desc": "","object": "","type": "","size": ""}, {"id": "AgencyPhoneNumber","desc": "","object": "","type": "","size": ""}, {"id": "Latitude","desc": "","object": "","type":
+            "","size": ""}, {"id": "Longitude","desc": "","object": "","type": "","size": ""} ] </header> <data data-uid="14">
+[]
+	</data>
+        <i-bind bindtype="recordset" target="grid0" data-uid="16"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="testGrid" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-grid ds-role="dataset0" style="width:480px; height: 320px; position:absolute; top: 20px; left: 0px; pointer-events:auto" rowautocount="false" statebar="false" columncount="0" columns="[{'fieldName':'Agency','name':'','dataType':'','type':'','size':''},{'fieldName':'AddressNew','name':'','dataType':'','type':'','size':''},{'fieldName':'AddressOld','name':'','dataType':'','type':'','size':''},{'fieldName':'Purpose','name':'','dataType':'','type':'','size':''},{'fieldName':'Number','name':'','dataType':'','type':'','size':''},{'fieldName':'Pixels','name':'','dataType':'','type':'','size':''},{'fieldName':'ShootingScene','name':'','dataType':'','type':'','size':''},{'fieldName':'DayOfKeep','name':'','dataType':'','type':'','size':''},{'fieldName':'DateOfInstallation','name':'','dataType':'','type':'','size':''},{'fieldName':'AgencyPhoneNumber','name':'','dataType':'','type':'','size':''},{'fieldName':'Latitude','name':'','dataType':'','type':'','size':''},{'fieldName':'Longitude','name':'','dataType':'','type':'','size':''}]"
+        griditem="[]" columnlastextend="true" data-uid="17" id="grid0"></i-grid>
+    <i-button ds-role="row_add" name="btn_plus" style="position: absolute; left:0px; top: 0px; width:20px; height: 20px;padding: 0.2em 0.9em 0.2em 0.3em;" class="fa fa-plus" text="" data-uid="18" id="button0" onclick="onclick_button0();"></i-button>
+    <i-button ds-role="row_remove" name="btn_minus" style="position: absolute; left:21px; top: 0px; width:20px; height: 20px;padding: 0.2em 0.9em 0.2em 0.3em;" class="fa fa-minus" text="" data-uid="19" id="button1" onclick="onclick_button1();"></i-button>
+    <i-button ds-role="upload" name="btn_upload" style="position: absolute; left:42px; top: 0px; width:20px; height: 20px;padding: 0.2em 1em 0.2em 0.2em;" class="fa fa-upload" text="" data-uid="20" id="button2" onclick="onclick_button2();"></i-button>
+    <i-button ds-role="download" name="btn_download" style="position: absolute; left:63px; top: 0px; width:20px; height: 20px;padding: 0.2em 1em 0.2em 0.2em;" class="fa fa-download" text="" data-uid="21" id="button3" onclick="onclick_button3();"></i-button>
+    <i-button ds-role="print" name="btn_print" style="position: absolute; left:84px; top: 0px; width:20px; height: 20px;padding: 0.2em 1em 0.2em 0.2em;" class="fa fa-print" text="" data-uid="22" id="button4" onclick="onclick_button4();"></i-button>
+    <i-button ds-role="clear" name="btn_init" style="position: absolute; left:285px; top: 0px; width:65px;" text="clear" data-uid="23" id="button5" onclick="onclick_button5();"></i-button>
+    <i-button ds-role="exec" name="btn_run" style="position: absolute; left:350px; top: 0px; width:65px;" text="exec" data-uid="24" id="button6" onclick="onclick_button6();"></i-button>
+    <i-button ds-role="status" name="btn_status" style="position: absolute; left:415px; top: 0px; width:65px;" text="status" data-uid="25" id="button7" onclick="onclick_button7();"></i-button>
+    <i-button text="parent" style="position: absolute; top: 360px; left: 410px; background-size: 100% 100%;" data-uid="26" id="button8" onclick="onclick_button8();"></i-button>
+</body>
+
+</html>

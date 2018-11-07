@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+    <meta name="modified" content="2018/05/14 17:36">
+    <meta name="generator" content="iXebStudio 2.0.0.2460">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="ixeb-studio:grid-size" content="10x10">
+    <meta name="ixeb-studio:screen-size" content="1280x1024">
+	<meta name="created" content="2018/05/14 12:13">
+	<title>계정과목조회--</title>
+	<script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.min.js"></script>
+	<script type="text/javascript" src="../ixeb/lib/ixebBase.min.js"></script>
+    <link rel="stylesheet" href="assets/style/content.css">
+	<script type="text/javascript">
+    	function onDataCellDblClicked_grid0(e, grid, cell) {
+            //TODO:
+            //부모창 값... 세팅...   
+            var rowData = account_items.getRow( grid0.getDataIndex(grid0.getFocusedCell().rowIndex) );
+            window.opener.setAccTypeData( rowData );
+            window.close();
+        }
+    
+    	function onInitScreen_body() {
+            //TODO:
+            ixeb.comm.transaction({
+                "in": ['account_items=>' + account_items.serviceId],
+                "out": [account_items.serviceId + '=>account_items'],
+                "url": "http://localhost:8080/ixeb-manager/service.ixeb"
+            }).done(function(r) {
+                console.log("Success.");
+            }).fail(function(r) {
+                alert("Error:\n" + r.message);
+            }).always(function() {
+                // console.log("always");
+            });    
+        }
+    </script>
+    <i-dataset id="account_items" serviceId="service_ACCTYPE">
+        <header>
+            [{"id":"ACC_CODE","object":"","type":"","size":"","desc":""},{"id":"ACC_NAME","object":"","type":"","size":"","desc":""},{"id":"DL_CLS","object":"","type":"","size":"","desc":""}]
+        </header>
+        <data>
+        	[]
+        </data>
+        <i-bind bindtype="recordset" target="grid0">
+        </i-bind>
+    </i-dataset>
+</head>
+<body onInitScreen="onInitScreen_body()">
+    <div class="popup-search">
+        <i-edit value="" required="true" id="company"></i-edit>
+        <i-button text="<img src='assets/images/ico-search.png'> 조회"></i-button>
+    </div>
+    <hr />
+    <i-grid style="width: 100%; height: 355px;" columns="[{'fieldName':'ACC_CODE','name':'ACC_CODE','colType':'','type':'','headerText':'계정코드','colWidth':40,'readOnly':true},{'fieldName':'ACC_NAME','name':'ACC_NAME','colType':'','type':'','headerText':'계정명','readOnly':true},{'fieldName':'DL_CLS','name':'DL_CLS','colType':'','type':'','colVisible':false}]" id="grid0" columncount="3" initrowcount="0" columnlastextend="true" selectType="rows" onDataCellDblClicked="onDataCellDblClicked_grid0(arguments[0], arguments[1], arguments[2])"></i-grid>
+</body>
+</html>

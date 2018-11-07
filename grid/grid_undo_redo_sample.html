@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/12/27 14:59">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="5">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="6">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="7">
+    <meta name="created" content="2016/10/10 10:25" data-uid="8">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="9">
+    <title data-uid="10">grid_undo_redo_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="12"></script>
+    <script type="text/javascript" data-uid="13">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-10
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button2() {
+            //TODO:
+            grid0.getView().redo();
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-10
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button1() {
+            //TODO:
+            grid0.getView().undo();
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-10
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+        }
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-10
+         * @description : 컨트롤 영역에서 왼쪽 마우스 버튼을 클릭했을 때 발생하는 이벤트
+         * @return 
+         */
+        function onclick_button0() {
+            //TODO:
+            grid0.getView().setUndoable(true);
+            grid0.getView().dataSource().setUndoable(true);
+            grid0.setGridData([{
+                product_name: 'mattis',
+                product_price: '738.94',
+                product_quantity: 534,
+                shipped_date: '2016-10-10',
+                country: 'Korea',
+                date: '2016-10-07'
+            }, {
+                product_name: 'pede',
+                product_price: '333.25',
+                product_quantity: 853,
+                shipped_date: '2016-10-10',
+                country: 'Venezuela',
+                date: '2016-10-07'
+            }, {
+                product_name: 'vestibulum ante',
+                product_price: '446.14',
+                product_quantity: 407,
+                shipped_date: '2016-10-10',
+                country: 'Portugal',
+                date: '2016-10-07'
+            }, {
+                product_name: 'quam',
+                product_price: '821.40',
+                product_quantity: 298,
+                shipped_date: '2016-10-10',
+                country: 'Korea',
+                date: '2016-10-07'
+            }, {
+                product_name: 'vestibulum',
+                product_price: '210.40',
+                product_quantity: 707,
+                shipped_date: '2016-10-10',
+                country: 'Russia',
+                date: '2016-10-07'
+            }]);
+        }
+    </script>
+</head>
+
+<body id="grid_undo_redo_sample" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="Undo & Redo Sample" style="width: 1010px; height: 360px; position: absolute; top: 68px; left: 8px;" data-uid="14" id="group0" class="group-panel">
+        <i-grid columnlastextend="true" style="width: 1000px; height: 320px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="15" id="grid0" columns="[{'fieldName': 'product_name', 'name': '제품명'}, {'fieldName': 'product_price', 'name': '단가'}, {'fieldName': 'product_quantity', 'name': '수량'}, {'fieldName': 'date', 'name': '발주일'}, {'fieldName': 'shipped_date', 'name': '선적일'}, {'fieldName': 'country', 'name': '국가'}]"></i-grid>
+    </i-group>
+    <div style="width: 1010px; height: 45px; position: absolute; top: 8px; left: 8px;" data-uid="16" id="div0" class="search-panel">
+        <i-button text="set data" style="position: absolute; top: 11px; left: 747px; width: 80px; background-size: 100% 100%;" data-uid="17" id="button0" onclick="onclick_button0();"></i-button>
+        <i-button text="undo" style="position: absolute; top: 11px; left: 832px; width: 80px; background-size: 100% 100%;" data-uid="18" id="button1" onclick="onclick_button1();"></i-button>
+        <i-button text="redo" style="position: absolute; top: 11px; left: 918px; width: 80px; background-size: 100% 100%;" data-uid="19" id="button2" onclick="onclick_button2();"></i-button>
+    </div>
+</body>
+
+</html>

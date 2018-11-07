@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/12/05 18:33">
+    <meta name="generator" content="iXebStudio 1.0.0.1263" data-uid="5">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="6">
+    <meta name="ixeb-studio:screen-size" content="1280x1024" data-uid="7">
+    <meta name="created" content="2016/10/10 11:03" data-uid="8">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="9">
+    <title data-uid="10">grid_piechart_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="11"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="12"></script>
+    <script type="text/javascript" data-uid="13">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-10-10
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            var columns = [{
+                type: "label",
+                header: {
+                    text: "Bar 시리즈"
+                }
+            }];
+            var chart = {
+                type: "bar",
+                legend: {
+                    visible: true,
+                    position: "right",
+                    direction: "vertical",
+                    marginLeft: 10
+                },
+                plotArea: {
+                    styles: {
+                        background: "#0800ffff",
+                        border: '#800000ff,1px,dashed'
+                    }
+                },
+                series: [{
+                    name: "serFemale",
+                    caption: "Female",
+                    labelField: "year",
+                    valueField: "value",
+                    summaryMode: "aggregate",
+                    labelLocation: "none",
+                    styles: {
+                        background: "#AFD8F8",
+                        border: "#fff,2px"
+                    },
+                    dynamicStyles: [{
+                        expression: "value > 80",
+                        styles: {
+                            background: "#f00"
+                        }
+                    }],
+                    items: [{
+                        year: '2000',
+                        value: 43
+                    }, {
+                        year: '2001',
+                        value: 65
+                    }, {
+                        year: '2002',
+                        value: 83,
+                        sliced: true
+                    }, {
+                        year: '2003',
+                        value: 57
+                    }, {
+                        year: '2004',
+                        value: 71
+                    }]
+                }]
+            };
+            grid0.getView().setColumns(columns);
+            grid0.getView().setOptions({
+                footer: {
+                    visible: false
+                },
+                checkBar: {
+                    visible: false
+                },
+                display: {
+                    fitStyle: "fill"
+                },
+                headerItems: [{
+                    type: "chart",
+                    /*displayLevels: "*",*/
+                    displayCallback: function(group) {
+                        return group.level() == grid.rowGroupLevels();
+                    },
+                    minHeight: 150,
+                    fillHeight: 1,
+                    styles: {
+                        borderRight: null,
+                        borderBottom: null,
+                        padding: 10
+                    },
+                    chart: chart
+                }]
+            });
+            var ser = chart.series[0];
+            var t = setInterval(function() {
+                var item = grid0.getView().headerItems().getItem(0);
+                ser.totalAngle += 10;
+                item.setChart(chart);
+                item.refresh();
+                if (ser.totalAngle >= 360) clearInterval(t);
+            }, 20);
+            ser.totalAngle = 0;
+        }
+    </script>
+</head>
+
+<body id="grid_piechart_sample" data-uid="3" oninitscreen="onInitScreen_body();">
+    <i-group text="Grid PieChart Sample" style="width: 1010px;; height: 360px; position: absolute; top: 8px; left: 8px;" data-uid="14" id="group0" class="group-panel">
+        <i-grid style="width: 1000px; height: 320px; position: absolute; top: 4px; left: 4px; opacity: 0.99;" data-uid="15" id="grid0" sorted="false"></i-grid>
+    </i-group>
+</body>
+
+</html>

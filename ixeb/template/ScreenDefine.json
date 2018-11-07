@@ -1,0 +1,76 @@
+{
+    "size":{"width":1280, "height":700},
+    "sheets":[
+        {"id":0, "form":[
+            {"pos":"G13", "value":"%DATE%"},
+            {"pos":"G15", "value":"%BUSINESS%"}
+        ]},
+        {"id":1, "form":[
+            {"pos":"D11", "value":"%DATE%"}
+            ]},
+        {"id":2, "form":[
+            {"pos":"B2", "value":"%BUSINESS%"},
+            {"pos":"D2", "value":"%SUBBUSINESS%"},
+            {"pos":"H2", "value":"%SCREENNO%"},
+            {"pos":"B3", "value":"%SCREENID%"},
+            {"pos":"D3", "value":"%TITLE%"},
+            {"pos":"H3", "value":"%DATE%"},
+            {"pos":"B4", "value":"%SCREENTYPE%"},
+            {"pos":"D4", "value":"%SCREENSEQ%"},
+            {"pos":"H4", "value":"%USERID%"},
+            {"pos":"B5", "value":"%DESCRIPTION%"},
+            {"pos":"A7", "value":"%IMAGE%"},
+            {"multi":true, "key":"controls", "base":39, "headers":2, "lines":1, "insert":true, "fields":[
+                {"pos":"A1", "key":"GROUP"},
+                {"pos":"B1", "key":"id"},
+                {"pos":"C1", "key":"tagname"},
+                {"pos":"D1", "key":"length"},
+                {"pos":"E1", "key":"minLength"},
+                {"pos":"F1", "key":"maxLength"},
+                {"pos":"G1", "key":"required"}
+            ]},
+            {"multi":true, "key":"tran_event", "base":42, "headers":2, "lines":1, "insert":true, "fields":[
+                {"pos":"A1", "key":"TEST0"}
+            ]},
+            {"multi":true, "key":"etc_event", "base":45, "headers":2, "lines":1, "insert":true, "fields":[
+                {"pos":"A1", "key":"TEST1"}
+            ]},
+            {"multi":true, "key":"ref", "base":48, "headers":1, "lines":1, "insert":true, "fields":[
+                {"pos":"A1", "key":"TEST2"}
+            ]}
+        ]},
+        {"id":3, "form":[
+            {"multi":true, "key":"datasets", "base":1, "headers":1, "lines":1, "fields":[
+                {"pos":"A1", "key":"id"},
+                {"pos":"B1", "key":"tagName"},
+                {"pos":"C1", "key":"serviceId"},
+                {"multi":true, "key":"bindInfo", "base":1, "headers":1, "lines":1, "fields":[
+                    {"pos":"D1", "key":"bindType"},
+                    {"pos":"E1", "key":"target.id"},
+                    {"pos":"F1", "key":"target.tagName"}
+                ]}
+            ]}
+        ]},
+        {"id":4, "form":[
+            {"multi":true, "key":"iomaps", "base":1, "headers":1, "lines":1, "fields":[
+                {"pos":"A1", "key":"id"},
+                {"pos":"B1", "key":"name"},
+                {"multi":true, "key":"ioInfo", "base":1, "headers":1, "lines":1, "fields":[
+                    {"pos":"C1", "key":"iotype"},
+                    {"multi":true, "key":"fields", "base":1, "headers":1, "lines":1, "fields":[
+                        {"pos":"D1", "key":"fid"},
+                        {"pos":"E1", "key":"desc"},
+                        {"pos":"F1", "key":"controltype"},
+                        {"pos":"G1", "key":"type"},
+                        {"pos":"H1", "key":"length"}
+                    ]}
+                ]}
+            ]}
+        ]},
+        {"id":5, "form":[
+            {"multi":true, "key":"functions", "base":1, "headers":1, "lines":1, "fields":[
+                {"pos":"A1"}
+            ]}
+        ]}
+    ]
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1024x705" data-uid="6">
+    <meta name="created" content="2016/11/14 20:02" data-uid="7">
+    <title data-uid="8">distribution_history</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="9"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="10"></script>
+    <style data-uid="11">
+        html * {
+            box-shadow: none!important;
+        }
+        
+        #div1 {
+            left: 14px!important;
+            top: 40px!important;
+            width: calc(100% - 28px)!important;
+            height: calc(100% - 49px)!important;
+        }
+    </style>
+    <script type="text/javascript" data-uid="12">
+        function onInitScreen_body() {
+            grid0.setColumnProperty(0, 'colWidth', 20);
+            grid0.setColumnProperty(1, 'colWidth', 20);
+            grid0.setColumnProperty(2, 'colWidth', 40);
+            grid0.setColumnProperty(3, 'colWidth', 20);
+            onclick_btn_select0();
+        }
+
+        function onclick_btn_select0() {
+            /*
+            $.ajax({
+                url: './data/distribution_history.json',
+                success: function(ret) {
+                    var data = ret["grio0"];
+                    grid0.setGridData(data);
+                }
+            });
+            //*/
+            ixeb.comm.transaction({
+                "async": true,
+                "out": [dataset0.serviceId + '=>dataset0'],
+                "url": "http://localhost:8080/ixeb-manager/service.ixeb"
+            }).done(function(r) {
+                console.log("success");
+            }).fail(function(r) {
+                console.log("error", r);
+            }).always(function() {
+                console.log("always");
+            });
+        }
+    </script>
+    <i-dataset data-uid="13" id="dataset0" serviceid="service_TBL_DEPLOY_HISTORY">
+        <header data-uid="14"> [ {"id": "DEPLOY_PATH","desc": "Application 위치","object": "","type": "","size": ""}, 
+        {"id": "ID","desc": "배포한 File 개수","object": "","type": "","size": ""}, 
+        {"id": "DESCRIPTION","desc": "내용","object": "","type": "","size": ""}, 
+        {"id": "DEPLOIED_TIME","desc": "배포일","object": "","type": "","size": ""} ] </header> <data data-uid="15">
+[]
+	    </data>
+        <i-bind bindtype="recordset" target="grid0" data-uid="16"></i-bind>
+    </i-dataset>
+</head>
+
+<body id="user" data-uid="3" oninitscreen="onInitScreen_body();">
+    <div style="width: 100%; height: 100%; top: 0px; left: 0px; position: relative; background: rgb(230, 230, 230);" data-uid="17" id="div0">
+        <i-text text="배포 이력조회" style="position: absolute; top: 10px; left: 14px; font-size: 13pt; letter-spacing: 0.5px;" data-uid="18" id="text0"></i-text>
+        <div style="height: 60px; top: 40px; left: 14px; position: relative; width: calc(100% - 28px); background: rgb(255, 255, 255);" data-uid="19" id="div1">
+            <i-grid id="grid0" style="position: absolute; width : calc( 100% - 10px); height: 613px; top: 37px; left: 5px; opacity: 0.99;" rowheight="22" columnlastextend="true" rowautocount="true" statebar="true" columncount="0" columns="[
+            {'fieldName':'DEPLOY_PATH','name':'Application 위치','dataType':'','type':'','size':''},
+            {'fieldName':'ID','name':'배포한 File 개수','dataType':'','type':'','size':''},
+            {'fieldName':'DESCRIPTION','name':'내용','dataType':'','type':'','size':''},
+            {'fieldName':'DEPLOIED_TIME','name':'배포일','dataType':'','type':'','size':''}]" griditem="[]" data-uid="20" selectbackcolor="a8a800" colheadbackcolor="#A2A2A2" colheadtextcolor="#ffffff" strippedcolor="#EEF1F5"></i-grid>
+        </div>
+    </div>
+</body>
+
+</html>

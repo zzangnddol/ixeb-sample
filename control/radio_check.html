@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1920x1080" data-uid="6">
+    <meta name="created" content="2016/10/03 15:41" data-uid="7">
+    <link rel="stylesheet" href="../css/samples.css" data-uid="8">
+    <title data-uid="9">radio_sample</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="10"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="11"></script>
+    <script type="text/javascript" data-uid="12">
+    </script>
+</head>
+
+<body id="radio_sample" data-uid="3">
+ <i-group text="Radio Item Align" style="width: 872px; height: 168px; position: absolute; top: 59px; left: 20px;" data-uid="13" id="group0" class="group-panel">
+        <i-radio items="[{'disable':false,'label':'주민번호','value':'value1'},{'disable':false,'label':'사업자등록번호','value':'value2'},{'disable':false,'label':'외국인등록번호','value':'value3'}]" style="position: absolute; top: 12px; left: 183px;" data-uid="14" id="radio0"></i-radio>
+        <i-radio items="[{'disable':false,'label':'은행대출 신청접수1','value':'value1'},{'disable':false,'label':'공사모기지론 신청접수','value':'value2'},{'disable':false,'label':'주택 담보대출 신청접수','value':'value3'}]" style="position: absolute; top: 64px; left: 692px;"
+            data-uid="15" id="radio1" itemalign="vertical"></i-radio>
+        <i-radio items="[{'disable':false,'label':'고객 조회','value':'value1'},{'disable':false,'label':'고객 신규','value':'value2'},{'disable':false,'label':'고객 수정','value':'value3'},{'disable':false,'label':'고객 해제','value':'4'}]" style="position: absolute; top: 12px; left: 692px;"
+            data-uid="16" id="radio2" itemLimit="2"></i-radio>
+        <i-radio items="[{'disable':false,'label':'고객 조회','value':'value1'},{'disable':false,'label':'고객 신규','value':'value2'},{'disable':false,'label':'고객 수정','value':'value3'},{'disable':false,'label':'고객 해제','value':'4'}]" style="position: absolute; top: 68px; left: 183px;"
+            data-uid="17" id="radio3" itemLimit="2"></i-radio>
+        <i-text text="가로 선택 라디오" style="position: absolute; top: 12px; left: 13px; width: 99px; height: 13px;" data-uid="18" id="text1" autosize="false"></i-text>
+        <i-text text="세로 선택 라디오" style="position: absolute; top: 12px; left: 503px;" data-uid="19" id="text2"></i-text>
+        <i-text text="가로 선택 라디오 ( 2 X 2 )" style="position: absolute; top: 64px; left: 13px;" data-uid="20" id="text3"></i-text>
+        <i-text text="세로 선택 라디오 ( 3 X 1 )" style="position: absolute; top: 64px; left: 503px;" data-uid="21" id="text4"></i-text>
+    </i-group>
+    <i-group text="Radio Item Space" style="width: 872px; height: 168px; position: absolute; top: 231px; left: 20px;" data-uid="22" id="group1" class="group-panel">
+        <i-text text="colSpace 20" style="position: absolute; top: 12px; left: 13px;" data-uid="23" id="text5"></i-text>
+        <i-radio items="[{'disable':false,'label':'고객 조회','value':'value1'},{'disable':false,'label':'고객 신규','value':'value2'},{'disable':false,'label':'고객 수정','value':'value3'},{'disable':false,'label':'고객 해제','value':'4'}]" style="position: absolute; top: 12px; left: 114px;"
+            data-uid="24" id="radio4" itemcolspace="20" itemLimit="2"></i-radio>
+        <i-text text="colSpace 40" style="position: absolute; top: 12px; left: 298px;" data-uid="25" id="text6"></i-text>
+        <i-radio items="[{'disable':false,'label':'고객 조회','value':'value1'},{'disable':false,'label':'고객 신규','value':'value2'},{'disable':false,'label':'고객 수정','value':'value3'},{'disable':false,'label':'고객 해제','value':'4'}]" style="position: absolute; top: 12px; left: 401px;"
+            data-uid="26" id="radio5" itemcolspace="40" itemLimit="2"></i-radio>
+        <i-text text="rowSpace 20" style="position: absolute; top: 64px; left: 13px;" data-uid="27" id="text7"></i-text>
+        <i-radio items="[{'disable':false,'label':'고객 조회','value':'value1'},{'disable':false,'label':'고객 신규','value':'value2'},{'disable':false,'label':'고객 수정','value':'value3'},{'disable':false,'label':'고객 해제','value':'4'}]" style="position: absolute; top: 64px; left: 114px;"
+            data-uid="28" id="radio6" itemrowspace="20" itemLimit="2"></i-radio>
+        <i-radio items="[{'disable':false,'label':'고객 조회','value':'value1'},{'disable':false,'label':'고객 신규','value':'value2'},{'disable':false,'label':'고객 수정','value':'value3'},{'disable':false,'label':'고객 해제','value':'4'}]" style="position: absolute; top: 64px; left: 401px;"
+            data-uid="29" id="radio7" itemLimit="2" itemrowspace="40"></i-radio>
+        <i-text text="rowSpace 40" style="position: absolute; top: 63px; left: 298px;" data-uid="30" id="text8"></i-text>
+    </i-group>
+    <i-group text="Enable" style="width: 872px; height: 70px; position: absolute; top: 402px; left: 20px;" data-uid="31" id="group2" class="group-panel">
+        <i-text text="Enable true" style="position: absolute; top: 12px; left: 13px;" data-uid="32" id="text9"></i-text>
+        <i-text text="Enable false" style="position: absolute; top: 12px; left: 340px;" data-uid="33" id="text10"></i-text>
+        <i-radio items="[{value:'value1', label:'Radio 1'},{value:'value2', label:'Radio 2'},{value:'value3', label:'Radio 3'}]" style="position: absolute; top: 12px; left: 109px;" data-uid="34" id="radio8"></i-radio>
+        <i-radio items="[{value:'value1', label:'Radio 1'},{value:'value2', label:'Radio 2'},{value:'value3', label:'Radio 3'}]" style="position: absolute; top: 12px; left: 439px;" data-uid="35" id="radio9" enable="false"></i-radio>
+    </i-group>
+    <i-group text="Required" style="width: 872px; height: 70px; position: absolute; top: 475px; left: 20px;" data-uid="36" id="group4" class="group-panel">
+        <i-text text="required true" style="position: absolute; top: 12px; left: 13px;" data-uid="37" id="text9"></i-text>
+        <i-text text="required false" style="position: absolute; top: 12px; left: 340px;" data-uid="38" id="text10"></i-text>
+        <i-radio items="[{value:'value1', label:'Radio 1'},{value:'value2', label:'Radio 2'},{value:'value3', label:'Radio 3'}]" style="position: absolute; top: 12px; left: 109px;" data-uid="39" id="radio10" required="required"></i-radio>
+        <i-radio items="[{value:'value1', label:'Radio 1'},{value:'value2', label:'Radio 2'},{value:'value3', label:'Radio 3'}]" style="position: absolute; top: 12px; left: 439px;" data-uid="40" id="radio11" enable="true"></i-radio>
+    </i-group>
+    <i-group text="checked" style="width: 872px; height: 67px; position: absolute; top: 616px; left: 20px;" data-uid="41" id="group0" class="group-panel">
+        <i-text text="checked true" style="position: absolute; top: 10px; left: 9px; width: 99px; height: 13px;" data-uid="42" id="text1" autosize="false"></i-text>
+        <i-check text="Check" style="position: absolute; top: 10px; left: 113px;" data-uid="43" id="check0" checked="checked"></i-check>
+        <i-text text="checked false" style="position: absolute; top: 10px; left: 192px;" data-uid="44" id="text3"></i-text>
+        <i-check text="Check" style="position: absolute; top: 10px; left: 298px;" data-uid="45" id="check1"></i-check>
+    </i-group>
+    <i-group text="enable" style="width: 872px; height: 67px; position: absolute; top: 689px; left: 20px;" data-uid="46" id="group2" class="group-panel">
+        <i-text text="enable true" style="position: absolute; top: 10px; left: 9px; width: 99px; height: 13px;" data-uid="47" id="text1" autosize="false"></i-text>
+        <i-check text="Check" style="position: absolute; top: 10px; left: 113px;" data-uid="48" id="check2"></i-check>
+        <i-text text="enable false" style="position: absolute; top: 10px; left: 192px;" data-uid="49" id="text3"></i-text>
+        <i-check text="Check" style="position: absolute; top: 10px; left: 298px;" data-uid="50" id="check3" enable="false"></i-check>
+    </i-group>
+    <i-group text="required" style="width: 872px; height: 67px; position: absolute; top: 762px; left: 20px;" data-uid="51" id="group2" class="group-panel">
+        <i-text text="required true" style="position: absolute; top: 10px; left: 9px; width: 99px; height: 13px;" data-uid="52" id="text1" autosize="false"></i-text>
+        <i-check text="Check" style="position: absolute; top: 10px; left: 113px;" data-uid="53" id="check2" required="required"></i-check>
+        <i-text text="required false" style="position: absolute; top: 10px; left: 192px;" data-uid="54" id="text3"></i-text>
+        <i-check text="Check" style="position: absolute; top: 10px; left: 298px;" data-uid="55" id="check3" enable="true"></i-check>
+    </i-group>
+    <div style="width: 872px; height: 45px; position: absolute; top: 8px; left: 20px;" data-uid="56" id="div0" class="search-panel">
+        <i-text text="Radio Sample" style="position: absolute; top: 8px; left: 4px; font-size: 25px;" data-uid="57" id="text0"></i-text>
+    </div>
+    <div style="width: 872px; height: 45px; position: absolute; top: 565px; left: 20px;" data-uid="58" id="div1" class="search-panel">
+        <i-text text="Check Sample" style="position: absolute; top: 8px; left: 4px; font-size: 25px;" data-uid="59" id="text0"></i-text>
+    </div>
+</body>
+
+</html>

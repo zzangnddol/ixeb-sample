@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="modified" content="2016/12/14 11:12" data-uid="5">
+    <meta name="generator" content="iXebStudio 1.0.0.1172" data-uid="6">
+    <meta name="ixeb-studio:guide-vline" content="" data-uid="7">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="8">
+    <meta name="ixeb-studio:screen-size" content="1024x768" data-uid="9">
+    <meta name="created" content="2016/11/03 14:00" data-uid="10">
+    <meta name="viewport" content="width=1024, user-scalable=no" data-uid="11">
+    <title data-uid="12">index</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="13"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="14"></script>
+    <style type="text/css" media="all" data-uid="15">
+        html * {
+            box-shadow: none!important;
+        }
+        
+        div>i-button {
+            cursor: pointer!important;
+        }
+        
+        #mainDiv {
+            min-width: 1024px;
+            min-height: 705px;
+            margin: auto!important;
+            border: 0px!important;
+        }
+        
+        #topMenu {
+            min-width: 1024px;
+            left: 0px!important;
+            top: 0px!important;
+            width: 1024px!important;
+            height: 53px!important;
+            border: 0px!important;
+        }
+        
+        #topMenu i-button.active {
+            background-color: rgb(34, 34, 34)!important;
+            color: #FFFFFF!important;
+        }
+        
+        #subMenu {
+            min-width: 1024px;
+            left: 0px!important;
+            top: 53px!important;
+            width: 1024px!important;
+            height: 120px!important;
+            border: 0px!important;
+            display: none;
+        }
+        
+        #subMenu.active {
+            display: block;
+        }
+        
+        #div2 {
+            min-width: 170px;
+            top: 0px!important;
+            right: 0px!important;
+            width: 170px!important;
+            height: calc(100%)!important;
+            border: 0px!important;
+        }
+        
+        #panel0 {
+            min-width: 1024px;
+            width: 1024px!important;
+            height: calc(100% - 56px)!important;
+            left: 0px!important;
+            top: 53px!important;
+            border: 0px!important;
+        }
+        
+        #subMenu.show {
+            display: block;
+        }
+    </style>
+    <script type="text/javascript" data-uid="16">
+        function initMenu(menuId) {
+            $('#subMenu').removeClass("active");
+            $("#topMenu").find(".active").removeClass("active");
+            if (menuId != undefined) $("#" + menuId).addClass("active");
+        }
+
+        function onInitScreen_body() {
+            panel0.url = "./main.html";
+            $(multilineedit0).width('calc(100% - 14px)')
+        }
+
+        function onclick_picture0() {
+            initMenu();
+            panel0.url = "./main.html";
+        }
+
+        function menuChange(menuId) {
+            var topState = $('#topMenu').find("#" + menuId).css('background-color');
+            var subState = $('#subMenu').css('display');
+            $('#topMenu').find('.active').removeClass('active');
+            $('#subMenu').removeClass("active");
+            var topRemoveState = $('#topMenu').find("#" + menuId).css('background-color');
+            if (topState == topRemoveState) {
+                $('#topMenu').find("#" + menuId).addClass('active');
+                $('#subMenu').addClass("active");
+            } else {
+                $('#topMenu').find("#" + menuId).addClass('active');
+                $('#subMenu').removeClass("active");
+                if (subState == 'none') {
+                    $('#subMenu').addClass("active");
+                }
+            }
+        }
+        // 사용자관리
+        function onclick_userManagement() {
+            menuChange('bt_userManagement');
+        }
+        // 공지관리
+        function onclick_button1() {
+            menuChange('button1');
+        }
+        // 형상관리
+        function onclick_button2() {
+            menuChange('button2');
+        }
+        // 배포관리
+        function onclick_button3() {
+            menuChange('button3');
+        }
+        // 배포 실행
+        function onclick_button13() {
+            if ('./create_application_repository.html' == panel0.url) {
+                panel0.url = "";
+            }
+            initMenu("button13");
+            panel0.url = "./create_application_repository.html";
+        }
+        // 배포 이력조회
+        function onclick_button14() {
+            if ('./distribution_history.html' == panel0.url) {
+                panel0.url = "";
+            }
+            initMenu("button14");
+            panel0.url = "./distribution_history.html";
+        }
+        // 배포 이력통계
+        function onclick_button15() {
+            if ('./application_storage.html' == panel0.url) {
+                panel0.url = "";
+            }
+            initMenu("button15");
+            panel0.url = "./application_storage.html";
+        }
+
+        function onclick_button20() {
+            var state = $('#div2').css('display');
+            if (state == 'none') {
+                $('#div2').show();
+            } else {
+                $('#div2').hide();
+            }
+        }
+        // 사용자 정보조회
+        function onclick_button5() {
+            if ('./user_info.html' == panel0.url) {
+                panel0.url = "";
+            }
+            initMenu("bt_userManagement");
+            panel0.url = "./user_info.html";
+        }
+        // 사용자 접속통계
+        function onclick_button6() {
+            if ('./user_connect.html' == panel0.url) {
+                panel0.url = "";
+            }
+            initMenu("bt_userManagement");
+            panel0.url = "./user_connect.html";
+        }
+        // 사용자 권한조회
+        function onclick_button7() {
+            if ('./user_auth.html' == panel0.url) {
+                panel0.url = "";
+            }
+            initMenu("bt_userManagement");
+            panel0.url = "./user_auth.html";
+        }
+        // 공지 메시지조회
+        function onclick_button8() {
+            if ('./board_list.html' == panel0.url) {
+                panel0.url = "";
+            }
+            initMenu("button8");
+            //panel0.url = "./board.html";
+            panel0.url = "./board_list.html";
+        }
+        // 프로젝트 생성
+        function onclick_button10() {
+            if ('./project_create.html' == panel0.url) {
+                panel0.url = "";
+            }
+            initMenu("button2");
+            panel0.url = "./project_create.html";
+        }
+        // 프로젝트 목록
+        function onclick_button11() {
+            if ('./projectList.html' == panel0.url) {
+                panel0.url = "";
+            }
+            initMenu("button2");
+            panel0.url = "./projectList.html";
+        }
+        // 프로젝트 통계
+        function onclick_button12() {
+            if ('./project_chart.html' == panel0.url) {
+                panel0.url = "";
+            }
+            initMenu("button2");
+            panel0.url = "./project_chart.html";
+        }
+
+        function onclick_picture1() {
+            var state = $('#div2').css('display');
+            if (state == 'none') {
+                $('#div2').show();
+            } else {
+                $('#div2').hide();
+            }
+        }
+
+        function onclick_text0() {
+            if ('./video.html' == panel0.url) {
+                panel0.url = "";
+            }
+            initMenu("bt_userManagement");
+            panel0.url = "./video.html";
+            $('#div2').hide();
+        }
+
+        function onclick_user_add() {
+            $('#div0').show();
+        }
+
+        function onclick_button0() {
+            //$('#div0').hide();
+            alert('index1 !');
+        }
+        // 게시판
+        // 새글쓰기
+        function onclick_board_add() {
+            $('#div5').show();
+        }
+        // 취소
+        function onclick_board_cancel() {
+            $('#div5').hide();
+        }
+        // 저장
+        function onclick_board_save() {
+            $('#div5').hide();
+        }
+    </script>
+</head>
+
+<body id="user" data-uid="3" oninitscreen="onInitScreen_body();">
+    <div style="left: 0px; top: 0px; width: 1024px; height: 100%; position: relative;" id="mainDiv" data-uid="17">
+        <div style="height: 53px; position: absolute; left: 0px; width: 1024px; top: 0px; background: rgb(174, 209, 54);" data-uid="18" id="topMenu">
+            <i-button text="사용자관리" style="position: absolute; height: 45px; color: black; top: 8px; width: 75px; left: 229px; border: 0px; background: rgb(174, 209, 54);" data-uid="19" id="bt_userManagement" onclick="onclick_userManagement(this);" showfocusrect="false"></i-button>
+            <i-button text="공지관리" style="position: absolute; height: 45px; color: black; top: 8px; width: 75px; left: 349px; border: 0px; background: rgb(174, 209, 54);" data-uid="20" id="button1" onclick="onclick_button1(this);" showfocusrect="false"></i-button>
+            <i-button text="형상관리" style="position: absolute; height: 45px; color: black; top: 8px; width: 75px; left: 473px; border: 0px; background: rgb(174, 209, 54);" data-uid="21" id="button2" onclick="onclick_button2(this);" showfocusrect="false"></i-button>
+            <i-button text="배포관리" style="position: absolute; height: 45px; color: black; top: 8px; width: 75px; left: 595px; border: 0px; background: rgb(174, 209, 54);" data-uid="22" id="button3" onclick="onclick_button3(this);" showfocusrect="false"></i-button>
+            <i-button text="서버API관리" style="position: absolute; height: 45px; color: black; top: 8px; width: 75px; left: 714px; border: 0px; background: rgb(174, 209, 54);" data-uid="23" id="button4" showfocusrect="false"></i-button>
+            <i-picture style="position: absolute; top: 8px; left: 6px; width: 145px; height: 38px; background-image: url('./images/ixebLogo3.png'); background-repeat: no-repeat; cursor: pointer;" data-uid="24" id="picture0" image="./images/ixebLogo3.png"
+                onclick="onclick_picture0();"></i-picture>
+            <i-picture style="position: absolute; top: 6px; right: 19px; width: 49px; height: 46px; background-image: url('./images/userInfo.png'); background-repeat: no-repeat; cursor: pointer;" data-uid="25" id="picture1" image="./images/userInfo.png"
+                onclick="onclick_picture1();"></i-picture>
+        </div>
+        <i-panel style="width: 1024px; height: 705px; position: absolute; left: 0px; top: 60px;" data-uid="26" id="panel0" name="panel0Name"> </i-panel>
+        <div style="min-width: 1024px; width: 1024px; height: 7px; position: absolute; top: 53px; left: 0px; background: rgb(81, 81, 81);" data-uid="27" id="div4"></div>
+        <div id="subMenu" style="width: 1024px; height: 120px; top: 53px; left: 0px; position: absolute; background: rgb(34, 34, 34); letter-spacing: -1px;" data-uid="28">
+            <i-button text="사용자 정보조회" style="position: absolute; top: 12px; left: 205px; width: 103px; height: 20px; color: white; border: 0px; background: rgb(34, 34, 34);" id="button5" onclick="onclick_button5();" data-uid="29"></i-button>
+            <i-button text="사용자 접속통계" style="position: absolute; top: 35px; left: 205px; width: 103px; height: 20px; color: white; border: 0px; background: rgb(34, 34, 34);" data-uid="30" id="button6" onclick="onclick_button6();"></i-button>
+            <i-button text="사용자 권한조회" style="position: absolute; top: 58px; left: 205px; width: 103px; height: 20px; color: white; border: 0px; background: rgb(34, 34, 34);" data-uid="31" id="button7" onclick="onclick_button7();"></i-button>
+            <i-button text="공지 메시지조회" style="position: absolute; top: 12px; left: 327px; width: 97px; height: 20px; background-size: 100% 100%; color: white; border: 0px; background: rgb(34, 34, 34);" data-uid="32" id="button8" onclick="onclick_button8();"></i-button>
+            <i-button text="공지 메시지 조회통계" style="position: absolute; top: 35px; left: 327px; width: 125px; height: 20px; background-size: 100% 100%; color: white; border: 0px; background: rgb(34, 34, 34);" data-uid="33" id="button9"></i-button>
+            <i-button text="프로젝트 생성" style="position: absolute; top: 12px; left: 464px; width: 84px; height: 20px; background-size: 100% 100%; color: white; border: 0px; background: rgb(34, 34, 34);" data-uid="34" id="button10" onclick="onclick_button10();"></i-button>
+            <i-button text="프로젝트 목록" style="position: absolute; top: 35px; left: 464px; width: 84px; height: 20px; background-size: 100% 100%; color: white; border: 0px; background: rgb(34, 34, 34);" data-uid="35" id="button11" onclick="onclick_button11();"></i-button>
+            <i-button text="프로젝트 통계" style="position: absolute; top: 58px; left: 464px; width: 84px; height: 20px; background-size: 100% 100%; color: white; border: 0px; background: rgb(34, 34, 34);" data-uid="36" id="button12" onclick="onclick_button12();"></i-button>
+            <i-button text="배포 실행" style="position: absolute; top: 12px; left: 576px; width: 84px; height: 20px; background-size: 100% 100%; color: white; border: 0px; background: rgb(34, 34, 34);" data-uid="37" id="button13" onclick="onclick_button13();"></i-button>
+            <i-button text="배포 이력조회" style="position: absolute; top: 35px; left: 588px; width: 84px; height: 20px; background-size: 100% 100%; color: white; border: 0px; background: rgb(34, 34, 34);" data-uid="38" id="button14" onclick="onclick_button14();"></i-button>
+            <i-button text="배포 이력통계" style="position: absolute; top: 58px; left: 588px; width: 84px; height: 20px; background-size: 100% 100%; color: white; border: 0px; background: rgb(34, 34, 34);" data-uid="39" id="button15" onclick="onclick_button15();"></i-button>
+            <i-button text="배포 그룹조회" style="position: absolute; top: 80px; left: 588px; width: 84px; height: 20px; background-size: 100% 100%; color: white; border: 0px; background: rgb(34, 34, 34);" data-uid="40" id="button16"></i-button>
+            <i-button text="DB 접속정보 관리" style="position: absolute; top: 12px; left: 687px; width: 109px; height: 20px; background-size: 100% 100%; color: white; border: 0px; background: rgb(34, 34, 34);" data-uid="41" id="button17"></i-button>
+            <i-button text="서비스 별 쿼리문 관리" style="position: absolute; top: 35px; left: 687px; width: 131px; height: 20px; background-size: 100% 100%; color: white; border: 0px; background: rgb(34, 34, 34);" data-uid="42" id="button18"></i-button>
+            <i-button text="쿼리문 이력/로그 관리" style="position: absolute; top: 58px; left: 687px; width: 131px; height: 20px; background-size: 100% 100%; color: white; border: 0px; background: rgb(34, 34, 34);" data-uid="43" id="button19"></i-button>
+        </div>
+        <div style="width: 170px; position: absolute; top: 0px; background: rgb(81, 81, 81); display: none;" data-uid="44" id="div2">
+            <i-button id="button20" text="" onclick="onclick_button20();" style="position: absolute; top: 5px; left: 69px; width: 29px; height: 41px; border: 0px; background-image: url('./images/right_bt.png'); background-size: 100% 100%; cursor:pointer;"
+                data-uid="45" enableimage="./images/right_bt.png"></i-button>
+            <i-text text="과장 김덕진 (300217)" style="position: absolute; top: 55px; left: 21px; width: 131px; height: 16px; color: white; cursor:pointer;" data-uid="46" id="text0" onclick="onclick_text0();"></i-text>
+            <i-text text="02-787-0124" style="position: absolute; top: 75px; left: 44px; width: 84px; height: 16px; color: white;" data-uid="47" id="text1"></i-text>
+            <i-button text="로그아웃" style="position: absolute; top: 99px; left: 31px; width: 114px; height: 27px; color: white; background: rgb(174, 209, 54);" data-uid="48" id="button21"></i-button>
+            <i-button text="정보 수정" style="position: absolute; top: 136px; left: 31px; width: 114px; height: 27px; color: white; background: rgb(51, 51, 51);" data-uid="49" id="button22"></i-button>
+            <div style="width: 170px; height: 213px; position: absolute; top: 187px; left: 0px; background: rgb(51, 51, 51);" data-uid="50" id="div3">
+                <i-button text="시작페이지 설정" style="position: absolute;top: 20px;left: 13.5px;width: 140px;height: 30px;border: 0px;color: white;text-indent: 12px;background-image: url('./images/sideICO_03.png');background-attachment: initial;background-color: rgb(51, 51, 51);background-origin: initial;background-clip: initial;background-position: 0% 50%;background-repeat: no-repeat;"
+                    data-uid="51" id="button23" imagefit="false" enableimage="./images/sideICO_03.png"></i-button>
+                <i-button text="DB 서버 연결 관리" style="position: absolute;top: 56px;left: 13.5px;width: 140px;height: 30px;border: 0px;color: white;text-indent: 24px;background-image: url('./images/sideICO_06.png');background-attachment: initial;background-color: rgb(51, 51, 51);background-origin: initial;background-clip: initial;background-position: 0% 50%;background-repeat: no-repeat;"
+                    data-uid="52" id="button24" imagefit="false" enableimage="./images/sideICO_06.png"></i-button>
+                <i-button text="형상 서버 연결관리" style="position: absolute;top: 92px;left: 13.5px;width: 140px;height: 30px;border: 0px;color: white;text-indent: 26px;background-image: url('./images/sideICO_08.png');background-attachment: initial;background-color: rgb(51, 51, 51);background-origin: initial;background-clip: initial;background-position: 0% 50%;background-repeat: no-repeat;"
+                    data-uid="53" id="button25" imagefit="false" enableimage="./images/sideICO_08.png"></i-button>
+                <i-button text="배포서버 설정" style="position: absolute;top: 124px;left: 13.5px;width: 140px;height: 30px;border: 0px;color: white;background-image: url('./images/sideICO_10.png');background-attachment: initial;background-color: rgb(51, 51, 51);background-origin: initial;background-clip: initial;background-position: 0% 50%;background-repeat: no-repeat;"
+                    data-uid="54" id="button26" imagefit="false" enableimage="./images/sideICO_10.png"></i-button>
+                <i-button text="서버 메뉴 설정" style="position: absolute;top: 158px;left: 13.5px;width: 140px;height: 30px;border: 0px;color: white;text-indent: 4px;background-image: url('./images/sideICO_12.png');background-attachment: initial;background-color: rgb(51, 51, 51);background-origin: initial;background-clip: initial;background-position: 0% 50%;background-repeat: no-repeat;"
+                    data-uid="55" id="button27" imagefit="false" enableimage="./images/sideICO_12.png"></i-button>
+            </div>
+            <i-button text="사용자 권한조회" style="position: absolute;top: 426px;left: 13.5px;width: 135px;height: 27px;border: 0px;color: white;text-indent: -2px;background-image: url('./images/PageHistory.png');background-attachment: initial;background-color: rgb(81, 81, 81);background-origin: initial;background-clip: initial;background-position: 0% 50%;background-repeat: no-repeat;"
+                data-uid="56" id="button28" enableimage="./images/PageHistory.png" imagefit="false"></i-button>
+            <i-button text="형상 이력통계" style="position: absolute; top: 453px; left: 13.5px; width: 135px; height: 27px; border: 0px; color: white; text-indent: -15px; background-image: url(&quot;./images/PageHistory.png&quot;); background-attachment: initial; background-color: rgb(81, 81, 81); background-origin: initial; background-clip: initial; background-position: 0% 50%; background-repeat: no-repeat;"
+                data-uid="57" id="button29" enableimage="./images/PageHistory.png" imagefit="false"></i-button>
+            <i-button text="배포 그룹조회" style="position: absolute;top: 480px;left: 13.5px;width: 135px;height: 27px;border: 0px;color: white;text-indent: -13px;background-image: url('./images/PageHistory.png');background-attachment: initial;background-color: rgb(81, 81, 81);background-origin: initial;background-clip: initial;background-position: 0% 50%;background-repeat: no-repeat;"
+                data-uid="58" id="button30" enableimage="./images/PageHistory.png" imagefit="false"></i-button>
+            <i-button text="배포 이력통계" style="position: absolute;top: 507px;left: 13.5px;width: 135px;height: 27px;border: 0px;color: white;text-indent: -13px;background-image: url('./images/PageHistory.png');background-attachment: initial;background-color: rgb(81, 81, 81);background-origin: initial;background-clip: initial;background-position: 0% 50%;background-repeat: no-repeat;"
+                data-uid="59" id="button31" enableimage="./images/PageHistory.png" imagefit="false"></i-button>
+            <i-button text="사용자 권한조회" style="position: absolute;top: 534px;left: 13.5px;width: 135px;height: 27px;border: 0px;color: white;background-image: url('./images/PageHistory.png');background-attachment: initial;background-color: rgb(81, 81, 81);background-origin: initial;background-clip: initial;background-position: 0% 50%;background-repeat: no-repeat;"
+                data-uid="60" id="button32" enableimage="./images/PageHistory.png" imagefit="false"></i-button>
+            <i-button text="사용자 접속통계" style="position: absolute;top: 561px;left: 13.5px;width: 135px;height: 27px;border: 0px;color: white;background-image: url('./images/PageHistory.png');background-attachment: initial;background-color: rgb(81, 81, 81);background-origin: initial;background-clip: initial;background-position: 0% 50%;background-repeat: no-repeat;"
+                data-uid="61" id="button33" enableimage="./images/PageHistory.png" imagefit="false"></i-button>
+        </div>
+        <div id="topdiv0" data-uid="62"> </div>
+        <div style="width: 1024px; height: 409px; position: absolute; top: 0px; left: 0px; background: rgb(58, 58, 58); display: none;" data-uid="63" id="div5">
+            <div style="width: 1024px; height: 43px; position: absolute; top: 0px; left: 0px; background: rgb(35, 35, 35);" data-uid="64" id="div6">
+                <i-picture style="position: absolute; top: 8px; left: 483px; width: 30px; height: 30px; background-image: url(&quot;./images/newUser.png&quot;); background-repeat: no-repeat;" data-uid="65" id="picture2" image="./images/newUser.png"></i-picture>
+                <i-text text="새글쓰기" style="position: absolute; top: 12px; left: 522px; color: white; font-size: 20px; letter-spacing: -1.5px;" data-uid="66" id="text2"></i-text>
+            </div>
+            <i-button text="취소" style="width: 73px; height: 37px; position: absolute; top: 348px; left: 454px; border: 0px; color: white; background-color: rgb(63, 155, 17); background-size: 100% 100%;" data-uid="67" id="button0" onclick="onclick_board_cancel();"></i-button>
+            <i-button text="저장" style="width: 73px; height: 37px; position: absolute; top: 348px; left: 533px; border: 0px; color: white; background-color: rgb(114, 206, 3); background-size: 100% 100%;" data-uid="68" id="button34" onclick="onclick_board_save();"></i-button>
+            <div style="width: calc(100% - 14px); height: 85px; position: absolute; top: 52px; left: 7px; background-color: white;" data-uid="69" id="div7">
+                <i-text text="일반사항" style="position: absolute; top: 6px; left: 7px;" data-uid="70" id="text8"></i-text>
+                <i-text text="제목" style="position: absolute; top: 25.5px; left: 32px;" data-uid="71" id="text9"></i-text>
+                <i-edit style="width: 927px; position: absolute; top: 21px; left: 78px; height: 22px;" data-uid="72" id="edit3"></i-edit>
+                <i-text text="팝업글" style="position: absolute; top: 53.5px; left: 19px;" data-uid="73" id="text10"></i-text>
+                <i-combo style="width: 72px; position: absolute; top: 49px; left: 78px; height: 22px;" data-uid="74" id="combo0" items="[{'label':'미사용','value':'0'},{'label':'사용','value':'1'}]"></i-combo>
+                <i-edit style="width: 105px; position: absolute; top: 49px; left: 160px;" data-uid="75" id="edit5" showcalendarbutton="true"></i-edit>
+            </div>
+            <div style="width: calc(100% - 14px); height: 185px; position: absolute; top: 147px; left: 7px; background-color: white;" data-uid="76" id="div8">
+                <i-text text="문서내용" style="position: absolute; top: 6px; left: 7px;" data-uid="77" id="text11"></i-text>
+                <i-multilineedit style="width: calc(100% - 14px); height: 139px; position: absolute; top: 25px; left: 7px;" data-uid="78" id="multilineedit0"></i-multilineedit>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

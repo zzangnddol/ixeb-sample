@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html data-uid="1" lang="en">
+
+<head data-uid="2">
+    <meta charset="UTF-8" data-uid="4">
+    <meta name="ixeb-studio:grid-size" content="10x10" data-uid="5">
+    <meta name="ixeb-studio:screen-size" content="1920x1080" data-uid="6">
+    <meta name="created" content="2016/11/07 16:31" data-uid="7">
+    <title data-uid="8">main</title>
+    <script type="text/javascript" src="../ixeb/ext/jquery/2.2.1/jquery-2.2.1.js" data-uid="9"></script>
+    <script type="text/javascript" src="../ixeb/lib/ixebBase.min.js" data-uid="10"></script>
+    <script type="text/javascript" data-uid="11">
+        /**
+         * @작성자 : {USER}
+         * @작성날짜 : 2016-11-07
+         * @description :   
+         * @return 
+         */
+        function onInitScreen_body() {
+            //TODO:
+            //request(grid2, './data/user.json');
+            request(grid0, './data/notice.json');
+            //request(grid1, './data/revision.json');
+            request(grid3, './data/deploy.json');
+            var me = this;
+            $.ajax('./data/chartData.json', {
+                success: function(data) {
+                    if (typeof data == 'string') {
+                        data = JSON.parse(data);
+                    }
+                    var value = "ixebstudio";
+                    if (typeof data[value] != 'undefined') {
+                        me.chart1.setChartColumn(data[value]['chart1'].labels);
+                        me.chart1.setChartData(data[value]['chart1'].datasets);
+                    }
+                },
+                error: function() {
+                    alert('json failed');
+                }
+            });
+            $.ajax('./data/loginCount.json', {
+                success: function(data) {
+                    if (typeof data != 'undefined') {
+                        if (typeof data == 'string') {
+                            data = JSON.parse(data);
+                        }
+                        me.linechart0.setChartColumn(data.labels);
+                        me.linechart0.setChartData(data.datasets);
+                    }
+                },
+                error: function() {
+                    alert('json failed');
+                }
+            });
+            grid0.getView().body().setStyles({
+                borderBottom: '#e6e6e6'
+            });
+            grid0.getView().setStyles({
+                border: '#e6e6e6,1px,solid'
+            });
+            //grid2.getView().body().setStyles({
+            //    borderBottom: '#e6e6e6'
+            //});
+            //grid2.getView().setStyles({
+            //    border: '#e6e6e6,1px,solid'
+            //});
+            grid3.getView().body().setStyles({
+                borderBottom: '#e6e6e6'
+            });
+            grid3.getView().setStyles({
+                border: '#e6e6e6,1px,solid'
+            });
+        }
+
+        function request(grid, url) {
+            $.ajax({
+                url: url,
+                success: function(ret) {
+                    var data = ret.ixebstudio;
+                    grid.setColumns(ret.columns);
+                    grid.setGridData(data);
+                    //grid1.setColumnProperty(1, 'colVisible', false);
+                    //grid1.setColumnProperty(2, 'colVisible', false);
+                    //grid2.setColumnProperty(2, 'colVisible', false);
+                }
+            })
+        }
+    </script>
+</head>
+
+<body id="main" data-uid="3" oninitscreen="onInitScreen_body();" style="background-color: #e6e6e6;overflow:hidden;">
+    <div style="width: 100%; height: 606px; position: absolute; top: 12px; left: 2px; background-color: rgb(230, 230, 230);" data-uid="12" id="div0">
+        <i-grid style="width: 490px; height: 250px; position: absolute; top: 42px; left: 8px; opacity: 0.99;" data-uid="13" id="grid0" colheadbackcolor="#A2A2A2" colheadtextcolor="#FFFFFF" strippedcolor="#EEF1F5" selectbackcolor="a8a800" gridbackcolor="rgb(250, 250, 250);"></i-grid>
+        <h1 text="Text" style="position: absolute; top: 8px; left: 8px;" data-uid="14" id="text0">공지사항</h1>
+        <div style="width: 490px; height: 250px; position: absolute; top: 42px; left: 509px; overflow:hidden; border:1px solid #e6e6e6; background-color: rgb(250, 250, 250);" data-uid="15" id="div1">
+            <i-barchart style="width: 488px; height: 305px; position: absolute; top: -28px; left: -4.00063px;" data-uid="16" id="chart1" legendshow="true"></i-barchart>
+        </div>
+        <h1 text="Text" style="position: absolute; top: 15.5px; left: 509.015px;" data-uid="17" id="h10">저자별 커밋 내역</h1>
+        <!-- <i-grid style="width: 490px; height: 250px; position: absolute; top: 346px; left: 8px; opacity: 0.99;" data-uid="16" id="grid2" strippedcolor="#EEF1F5" colheadtextcolor="#ffffff" colheadbackcolor="#a2a2a2" selectbackcolor="a8a800"
+            gridbackcolor="rgb(250, 250, 250);"></i-grid> -->
+        <div style="width: 490px; height: 250px; position: absolute; top: 346px; left: 8px;  overflow:hidden; border:1px solid #e6e6e6; background-color: rgb(250, 250, 250);" data-uid="18" id="div1">
+            <!-- <i-chart style="width: 488px; height: 305px; position: absolute; top: -28px; left: -4.00063px;" data-uid="19" id="chart1" legendshow="true"></i-chart> -->
+            <i-linechart style="width: 488px; height: 296px; position: absolute; top: -28px; left: -4.00063px;" data-uid="19" id="linechart0" legendshow="true"></i-linechart>
+        </div>
+        <h1 text="Text" style="position: absolute; top: 321.5px; left: 8px;" data-uid="20" id="h11">최근 접속 정보</h1>
+        <i-grid style="width: 490px; height: 250px; position: absolute; top: 346px; left: 509px; opacity: 0.99;" data-uid="21" id="grid3" strippedcolor="#EEF1F5" colheadbackcolor="#a2a2a2" colheadtextcolor="#ffffff" selectbackcolor="#a8a844"
+            gridbackcolor="rgb(250, 250, 250);"></i-grid>
+        <h1 text="Text" style="position: absolute; top: 321.5px; left: 509.015px;" data-uid="22" id="h12">최근 배포 이력</h1>
+    </div>
+</body>
+
+</html>
