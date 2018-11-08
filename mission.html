@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="generator" content="iXebStudio Platform 2.2018.0907.2795">
@@ -13,14 +14,16 @@
     <script type="text/javascript" src="./ixeb/lib/ixebBase.min.js"></script>
     <!-- From here, enter your script and style. -->
     <script type="text/javascript">
+        function onAfterInitScreen_body() {
+            $('#radio0').css('visibility', 'visible');
+        }
+
         function onclick_button0(e) {
             console.log('search clicked', combo0.getSelectedValue(), combo1.getSelectedValue());
-
             var params = {};
-            if (combo0.getSelectedValue()) params['GENDER_CD'] = combo0.getSelectedValue();
-            if (combo1.getSelectedValue()) params['DUTY_CD'] = combo1.getSelectedValue();
+            if (combo0.getSelectedValue()) params.GENDER_CD = combo0.getSelectedValue();
+            if (combo1.getSelectedValue()) params.DUTY_CD = combo1.getSelectedValue();
             empinfo.setParams(params);
-
             onclick_btn_exec3();
         }
 
@@ -33,11 +36,11 @@
                 "in": ['gendercode=>' + gendercode.serviceId],
                 "out": [gendercode.serviceId + '=>gendercode'],
                 "url": "http://localhost:8080/ixeb-manager/service.ixeb"
-            }).done(function (r) {
+            }).done(function(r) {
                 console.log("Success.");
-            }).fail(function (r) {
+            }).fail(function(r) {
                 alert("Error:\n" + r.message);
-            }).always(function () {
+            }).always(function() {
                 // console.log("always");
             });
         }
@@ -68,7 +71,6 @@
             grid0.focus();
         }
 
-
         function onclick_btn_status1() {
             alert(dutyinfo.getRowStatus(dutyinfo.getRowPosition()));
         }
@@ -78,11 +80,11 @@
                 "in": ['dutyinfo=>' + dutyinfo.serviceId],
                 "out": [dutyinfo.serviceId + '=>dutyinfo'],
                 "url": "http://localhost:8080/ixeb-manager/service.ixeb"
-            }).done(function (r) {
+            }).done(function(r) {
                 console.log("Success.");
-            }).fail(function (r) {
+            }).fail(function(r) {
                 alert("Error:\n" + r.message);
-            }).always(function () {
+            }).always(function() {
                 // console.log("always");
             });
         }
@@ -112,8 +114,7 @@
             grid1.setFocusedCell(row, 0);
             grid1.focus();
         }
-
-        $(document).ready(function () {
+        $(document).ready(function() {
             onclick_btn_exec0();
             onclick_btn_exec1();
             onclick_btn_exec3();
@@ -147,7 +148,7 @@
         }
 
         function onclick_btn_excelimort3() {
-                grid0.importData();
+            grid0.importData();
         }
 
         function onclick_btn_excelexport3() {
@@ -192,22 +193,21 @@
         <i-bind bindtype="attribute" property="value" target="radio0" column="GENDER_CD"></i-bind>
         <i-bind bindtype="attribute" property="value" target="maskedit0" column="JOIN_DATE"></i-bind>
         <i-bind bindtype="attribute" property="value" target="combo2" column="DUTY_CD"></i-bind>
-            <i-bind bindtype="recordset" target="grid0">
+        <i-bind bindtype="recordset" target="grid0">
         </i-bind>
-</i-dataset>
+    </i-dataset>
 </head>
 
-<body>
+<body onAfterInitScreen="onAfterInitScreen_body()">
     <div style="position: absolute;border: 1px solid #000;left: 20px;top: 10px;height:56px;undefined:null;width:619px" id="div0">
-        
-            <i-text text="성별" style="position:absolute;left:9px;top:19px" id="text0"></i-text>
+
+        <i-text text="성별" style="position:absolute;left:9px;top:19px" id="text0"></i-text>
         <i-text text="직급" style="position:absolute;left:219px;top:19px" id="text1"></i-text>
         <i-combo style="width: 140px;position:absolute;left:49px;top:14px" id="combo0" labelField="GENDER" valueField="CODE" tabIndex="1" items="[]" itemAll="true" itemAllValue=""></i-combo>
         <i-combo style="width: 140px;position:absolute;left:269px;top:14px" id="combo1" labelField="DUTY" valueField="CODE" tabIndex="2" itemAll="true" itemAllValue=""></i-combo>
         <i-button text="조회" style="position:absolute;left:509px;top:15.5px" id="button0" tabIndex="3" onclick="onclick_button0(arguments[0])"></i-button>
-</div>
-    <table style="table-layout: fixed;position: absolute;height: 102px;left: 20px;top: 430px;undefined: null;width: 619px;border: 1px solid black;"
-        id="table0" border="1">
+    </div>
+    <table style="table-layout: fixed;position: absolute;height: 102px;left: 20px;top: 430px;undefined: null;width: 619px;border: 1px solid black;" id="table0" border="1">
         <colgroup>
             <col width="10%">
             <col width="40%">
@@ -226,8 +226,7 @@
                     <i-text text="성별" style="position:;left:;top:;right:;bottom:;width:100%" id="text3"></i-text>
                 </td>
                 <td style="border: 1px solid black;padding: 0px 20px;">
-                    <i-radio items="[{'disable':false,'label':'남자','value':'M'},{'disable':false,'label':'여자','value':'F'}]"
-                        style="position:;left:;top:;right:;bottom:;width:100%" id="radio0" tabIndex="5" enable="false"></i-radio>
+                    <i-radio items="[{'disable':false,'label':'남자','value':'M'},{'disable':false,'label':'여자','value':'F'}]" style="position: ;left: ;top: ;right: ;bottom: ;width: 100%;visibility: hidden" id="radio0" tabIndex="5" enable="false"></i-radio>
                 </td>
             </tr>
             <tr>
@@ -235,26 +234,20 @@
                     <i-text text="입사일" style="width: 100%;" id="text4"></i-text>
                 </td>
                 <td style="border: 1px solid black;padding: 0px 20px;">
-                    <i-maskedit style="height:23px;undefined:null;position:;left:;top:;right:;bottom:;width:100%" id="maskedit0"
-                        showCalendarButton="true" tabIndex="6" enable="false"></i-maskedit>
+                    <i-maskedit style="height:23px;undefined:null;position:;left:;top:;right:;bottom:;width:100%" id="maskedit0" showCalendarButton="true" tabIndex="6" enable="false"></i-maskedit>
                 </td>
                 <td align="center" style="border: 1px solid black;">
                     <i-text text="직급" style="width: 100%;" id="text5"></i-text>
                 </td>
                 <td style="border: 1px solid black;padding: 0px 20px;">
-                    <i-combo style="position:;left:;top:;right:;bottom:;width:100%" id="combo2" tabIndex="7" labelField="DUTY"
-                        valueField="CODE" enable="false"></i-combo>
+                    <i-combo style="position:;left:;top:;right:;bottom:;width:100%" id="combo2" tabIndex="7" labelField="DUTY" valueField="CODE" enable="false"></i-combo>
                 </td>
             </tr>
         </tbody>
     </table>
 
-    
-    
-    
-    
-    
     <i-grid id="grid0" style="position: absolute;left: 20px;top: 90px;undefined: null;width: 619px;height: 335px" columns="[{'fieldName':'EMP_CD','name':'EMP_CD','colType':'','type':'','headerText':'사번','colVisible':false},{'fieldName':'EMP_NAME','name':'EMP_NAME','colType':'','type':'','headerText':'이름'},{'fieldName':'JOIN_DATE','name':'JOIN_DATE','colType':'','type':'','headerText':'입사일'},{'fieldName':'EMAIL','name':'EMAIL','colType':'','type':'','headerText':'이메일','colWidth':160},{'fieldName':'DUTY','name':'DUTY','colType':'','type':'','headerText':'직급'},{'fieldName':'DUTY_CD','name':'DUTY_CD','colType':'','type':'','colVisible':false},{'fieldName':'GENDER','name':'GENDER','colType':'','type':'','headerText':'성별'},{'fieldName':'GENDER_CD','name':'GENDER_CD','colType':'','type':'','colVisible':false}]" tabIndex="8" columncount="8" initrowcount="0"></i-grid>
     <div style="position: absolute;left: 20px;top: 70px;undefined: null;width: 619px;height: 25px;" id="div1"></div>
 </body>
+
 </html>
