@@ -14,6 +14,20 @@
     <script type="text/javascript" src="./ixeb/lib/ixebBase.min.js"></script>
     <!-- From here, enter your script and style. -->
     <script type="text/javascript">
+        function onclick_button5(e) {
+            console.log('탭 변경 버튼 클릭');
+            var tabPage = tabs0.index;
+            tabPage++;
+            console.log('tabPage', tabPage);
+            if (tabPage > tabs0.getPageCount() - 1) tabPage = 0;
+            tabs0.setActiveTabpage(tabPage);
+        }
+
+        function onTabpageChanged_tabs0(e) {
+            console.log('tab page changed');
+            text2.text = tabs0.index;
+        }
+
         function onInitScreen_body() {
             console.log('grid data', grid1.getGridData());
             var data = {
@@ -94,6 +108,7 @@
             console.log('maskedit value', maskedit0.value);
             edit1.value = maskedit0.value;
             grid1.setMerge(true);
+            onTabpageChanged_tabs0();
         }
 
         function onchange_radio0(e) {
@@ -183,6 +198,13 @@
     <i-panel style="height: 320px;position: absolute;top: 320px;left: 70px;border: 1px solid black;width: 455px" id="panel0" url="mission-panel.html"></i-panel>
     <i-calendar style="width: 16em; position: absolute; top: 250px; left: 540px;" id="calendar0"></i-calendar>
     <i-barchart style="position: absolute;top: 250px;left: 760px;height:198px;undefined:null;width:251px" data="{labels: ['1', '2', 'March', 'April', 'May', 'June', 'July'],datasets: [{'label': '한글',backgroundColor:'red',data: [10,20,30,40,50,60,70], fill: false }]}" id="barchart0"></i-barchart>
+    <i-tabs style="position: absolute;top: 460px;left: 540px;undefined:null;width:324px;height:227px" id="tabs0" onTabpageChanged="onTabpageChanged_tabs0(arguments[0])">
+        <i-tabpage pagetitle="Tabpage 1"></i-tabpage>
+        <i-tabpage pagetitle="Tabpage 2"></i-tabpage>
+        <i-tabpage pagetitle="Tabpage 3"></i-tabpage>
+    </i-tabs>
+    <i-button text="전환" style="position: absolute; top: 460px; left: 870px;" id="button5" onclick="onclick_button5(arguments[0])"></i-button>
+    <i-text text="Text" style="position: absolute; top: 490px; left: 870px;" id="text2"></i-text>
 </body>
 
 </html>
